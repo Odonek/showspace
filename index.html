@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Virtuální prohlídky pro realitní makléře, kavárny a fitness centra. Získejte náskok díky 360° prezentaci vašeho prostoru." />
+  <title>ShowSpace – Ukaž svůj prostor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #F0E3CA;
+      color: #1B1A17;
+      border: 20px solid #1B1A17;
+      box-sizing: border-box;
+    }
+    header {
+      background: #A35709;
+      color: #fff;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0 0 0.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    header button {
+      background: #FF8303;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #1B1A17;
+      border-radius: 8px;
+    }
+    .section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .features ul {
+      list-style: none;
+      padding: 0;
+    }
+    .features li::before {
+      content: "✔️ ";
+      color: #FF8303;
+    }
+    .package {
+      background: #fff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #A35709;
+      border-radius: 8px;
+    }
+    .package h3 {
+      margin-top: 0;
+      color: #A35709;
+    }
+    form input,
+    form textarea,
+    form button {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    form button {
+      background: #A35709;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    .success {
+      background: #d4edda;
+      padding: 1rem;
+      border: 1px solid #c3e6cb;
+      color: #155724;
+      margin-bottom: 1rem;
+    }
+    .error {
+      background: #f8d7da;
+      padding: 1rem;
+      border: 1px solid #f5c6cb;
+      color: #721c24;
+      margin-bottom: 1rem;
+    }
+    footer {
+      background: #1B1A17;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+  <!-- Tidio chatbot embed -->
+  <script src="//code.tidio.co/your-tidio-public-key.js" async></script>
+</head>
+<body>
+  <header>
+    <h1>ShowSpace – Ukaž svůj prostor dřív, než otevřeš dveře</h1>
+    <p>360° virtuální prohlídky pro realitky, kavárny a fitka – od 2 490 Kč</p>
+    <a href="#kontakt"><button>Chci prohlídku</button></a>
+  </header>
+
+  <section class="section features">
+    <h2>Pro koho to je?</h2>
+    <ul>
+      <li>Realitní makléři – méně zbytečných prohlídek, víc vážných zájemců</li>
+      <li>Kavárny a restaurace – ukaž atmosféru, přiveď hosty online</li>
+      <li>Fitka a wellness – buduj důvěru a přitažlivost</li>
+      <li>Salony – rozhodování je o dojmu</li>
+    </ul>
+  </section>
+
+  <section class="section packages">
+    <h2>Balíčky</h2>
+    <div class="package">
+      <h3>Základní 360° – 2 490 Kč</h3>
+      <p>Interaktivní 360° prohlídka do 3 místností, hosting na 6 měsíců</p>
+    </div>
+    <div class="package">
+      <h3>Standard – 4 990 Kč</h3>
+      <p>Navíc úvodní video nebo půdorys, iframe na web, základní úpravy</p>
+    </div>
+    <div class="package">
+      <h3>Premium – 7 990 Kč</h3>
+      <p>Navíc promo video (IG reels), voice-over, export do Google Maps</p>
+    </div>
+  </section>
+
+  <section class="section contact" id="kontakt">
+    <h2>Kontaktuj mě</h2>
+    <form action="https://formspree.io/f/xyzabcd" method="POST">
+      <input type="text" name="name" placeholder="Vaše jméno" required />
+      <input type="email" name="email" placeholder="E-mail" required />
+      <input type="tel" name="phone" placeholder="Telefon" />
+      <textarea name="message" placeholder="Popis prostoru, zájem o balíček..." rows="4"></textarea>
+      <button type="submit">Odeslat poptávku</button>
+    </form>
+    <div id="form-status"></div>
+  </section>
+
+  <footer>
+    &copy; 2025 ShowSpace.cz – vytvořeno pro efektivní prezentaci prostoru
+  </footer>
+
+  <script>
+    const form = document.querySelector("form");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const action = form.action;
+
+      try {
+        const response = await fetch(action, {
+          method: "POST",
+          body: data,
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          status.innerHTML = "<p style='color:green;'>Děkujeme! Vaše zpráva byla odeslána.</p>";
+          form.reset();
+        } else {
+          status.innerHTML = "<p style='color:red;'>Chyba při odesílání. Zkuste to prosím znovu.</p>";
+        }
+      } catch (error) {
+        status.innerHTML = "<p style='color:red;'>Chyba připojení. Zkuste to prosím znovu.</p>";
+      }
+    });
+  </script>
+</body>
+</html>
