@@ -2,10 +2,11 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Virtuální prohlídky pro realitní makléře, kavárny a fitness centra. Získejte náskok díky 360° prezentaci vašeho prostoru." />
   <title>ShowSpace – Ukaž svůj prostor</title>
   <style>
+    /* Reset a základní styl */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -28,41 +29,100 @@
       font-size: 1.2rem;
     }
     header button {
-  background: transparent;
-  border: 2px solid #fff;
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  cursor: pointer;
-  color: #fff;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-header button:hover {
-  background: #fff;
-  color: #FF6B00;
-}
-    nav {
-  background-color: #222222;
-  padding: 1rem;
-}
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-nav ul li a:hover {
-  color: #FF6B00;
-}
+      background: transparent;
+      border: 2px solid #fff;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #fff;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    header button:hover {
+      background: #fff;
+      color: #FF6B00;
+    }
 
+    /* NAVIGATION */
+    nav {
+      background-color: #222222;
+      position: relative;
+      z-index: 100;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      display: block;
+      padding: 1rem 0;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: #FF6B00;
+      outline: none;
+    }
+
+    /* Hamburger menu button - skrytý na desktopu */
+    #menu-toggle {
+      display: none;
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 110;
+    }
+    #menu-toggle:focus {
+      outline: 2px solid #FF6B00;
+      outline-offset: 2px;
+    }
+
+    /* Hamburger icon bars */
+    #menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 5px 0;
+      background: white;
+      transition: 0.4s;
+      border-radius: 2px;
+    }
+
+    /* MOBILE - MENU SKRYTO */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        background: #222222;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      nav ul.open {
+        max-height: 500px; /* dostatečná výška pro menu */
+      }
+      nav ul li a {
+        padding: 1rem 1.5rem;
+        border-top: 1px solid #333;
+      }
+
+      /* Hamburger menu zobrazen */
+      #menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Ostatní sekce (převzato původní styl) */
     .section {
       padding: 2rem;
       max-width: 1000px;
@@ -223,20 +283,25 @@ nav ul li a:hover {
     <p>Zaujměte klienty během 30 sekund ještě dříve, než vejdou. Od 2 990 Kč.</p>
     <button onclick="document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' })">Nezávazná poptávka</button>
   </header>
-<nav>
-  <ul>
-    <li><a href="#onas">O nás</a></li>
-    <li><a href="#balicky">Balíčky</a></li>
-    <li><a href="#webnamiru">Web na míru</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-    
-  </ul>
-</nav>
+  
+  <nav>
+    <button id="menu-toggle" aria-label="Otevřít menu" aria-expanded="false" aria-controls="menu-list">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="menu-list">
+      <li><a href="#onas">O nás</a></li>
+      <li><a href="#balicky">Balíčky</a></li>
+      <li><a href="#webnamiru">Web na míru</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
 
   <section class="section" id="onas">
-  <h2>O nás</h2>
-  <p>Jsme profesionálové na virtuální prohlídky. Pomáháme podnikům, realitkám i jednotlivcům efektivně prezentovat své prostory ve 360° formátu.</p>
-</section>
+    <h2>O nás</h2>
+    <p>Jsme profesionálové na virtuální prohlídky. Pomáháme podnikům, realitkám i jednotlivcům efektivně prezentovat své prostory ve 360° formátu.</p>
+  </section>
   
   <section class="section features">
     <h2>Proč virtuální prohlídku?</h2>
@@ -265,10 +330,10 @@ nav ul li a:hover {
     </div>
   </section>
   
-<section class="section" id="webnamiru">
-  <h2>Web na míru</h2>
-  <p>Chcete vlastní web nebo 360° prezentaci integrovat do vaší stránky? Nabízíme tvorbu jednoduchých prezentačních – rychle, levně a efektivně.</p>
-</section>
+  <section class="section" id="webnamiru">
+    <h2>Web na míru</h2>
+    <p>Chcete vlastní web nebo 360° prezentaci integrovat do vaší stránky? Nabízíme tvorbu jednoduchých prezentačních – rychle, levně a efektivně.</p>
+  </section>
 
   <section class="section contact" id="kontakt">
     <h2>Kontaktuj nás</h2>
@@ -288,88 +353,110 @@ nav ul li a:hover {
 
   <!-- Chatbot button and window -->
   <div id="chatbot-btn" title="Chat s námi">💬</div>
-  <div id="chatbot-window" role="dialog" aria-live="polite" aria-label="Chatbot okno">
-    <div id="chatbot-header">Chatbot</div>
-    <div id="chatbot-messages">
-      <div class="chatbot-message bot-message">S čím potřebujete pomoci?</div>
-    </div>
+  <div id="chatbot-window" role="dialog" aria-live="polite" aria-label="Chatbot">
+    <div id="chatbot-header">ShowSpace Chatbot</div>
+    <div id="chatbot-messages"></div>
     <div id="chatbot-input-area">
-      <input type="text" id="chatbot-input" placeholder="Napište zprávu..." aria-label="Zpráva"/>
+      <input id="chatbot-input" type="text" aria-label="Napište zprávu" />
       <button id="chatbot-send-btn" aria-label="Odeslat zprávu">→</button>
     </div>
   </div>
 
   <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const chatbotBtn = document.getElementById('chatbot-btn');
-  const chatbotWindow = document.getElementById('chatbot-window');
-  const chatbotMessages = document.getElementById('chatbot-messages');
-  const chatbotInput = document.getElementById('chatbot-input');
-  const chatbotSendBtn = document.getElementById('chatbot-send-btn');
+    // MENU TOGGLE na mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuList = document.getElementById('menu-list');
 
-  chatbotBtn.addEventListener('click', () => {
-    const isVisible = getComputedStyle(chatbotWindow).display === 'flex';
-    chatbotWindow.style.display = isVisible ? 'none' : 'flex';
-    if (!isVisible) chatbotInput.focus();
-  });
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      menuList.classList.toggle('open');
+    });
 
-  function appendMessage(text, isUser) {
-    const msg = document.createElement('div');
-    msg.className = `chatbot-message ${isUser ? 'user-message' : 'bot-message'}`;
-    msg.textContent = text;
-    chatbotMessages.appendChild(msg);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-  }
+    // Uzavření menu po kliknutí na odkaz (mobile)
+    menuList.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(window.innerWidth <= 768){
+          menuToggle.setAttribute('aria-expanded', false);
+          menuList.classList.remove('open');
+        }
+      });
+    });
 
-  function getBotReply(message) {
-    const msg = message.toLowerCase();
+    // FORM STATUS
+    const form = document.getElementById('kontakt-form');
+    const formStatus = document.getElementById('form-status');
 
-    if (msg.includes('web') || msg.includes('stránky')) {
-      return "Naše webovky jsou optimalizované pro rychlé načítání a skvělou prezentaci virtuálních prohlídek.";
-    }
-    if (msg.includes('balíček') || msg.includes('cena') || msg.includes('ceník')) {
-      return "Nabízíme tři balíčky: Základní, Standard a Premium, od 2 490 Kč do 7 990 Kč.";
-    }
-    if (msg.includes('jak to funguje') || msg.includes('proces')) {
-      return "Proces je jednoduchý: focení, vytvoření prohlídky a doručení odkazu.";
-    }
-    if (msg.includes('kontakt')) {
-      return "Kontaktujte nás přes formulář, e-mail nebo telefonicky.";
-    }
-    if (msg.includes('hosting')) {
-      return "Hosting virtuální prohlídky je v ceně na 6 měsíců, poté lze prodloužit.";
-    }
-    if (msg.includes('video') || msg.includes('promo')) {
-      return "Balíček Premium obsahuje promo video (IG reels) a voice-over.";
-    }
-    if (msg.includes('půdorys')) {
-      return "Standardní balíček obsahuje půdorys pro lepší orientaci.";
-    }
-
-    return "Omlouvám se, nerozumím přesně vaší otázce. Můžete ji prosím upřesnit?";
-  }
-
-  function handleUserInput() {
-    const userText = chatbotInput.value.trim();
-    if (!userText) return;
-    appendMessage(userText, true);
-    chatbotInput.value = '';
-
-    setTimeout(() => {
-      const reply = getBotReply(userText);
-      appendMessage(reply, false);
-    }, 500);
-  }
-
-  chatbotSendBtn.addEventListener('click', handleUserInput);
-  chatbotInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
+    form.addEventListener('submit', e => {
       e.preventDefault();
-      handleUserInput();
-    }
-  });
-});
-</script>
+      const formData = new FormData(form);
 
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if(response.ok) {
+          formStatus.textContent = "Děkujeme za vaši poptávku. Ozveme se co nejdříve!";
+          formStatus.className = 'success';
+          form.reset();
+        } else {
+          response.json().then(data => {
+            if(data.errors) {
+              formStatus.textContent = data.errors.map(error => error.message).join(", ");
+              formStatus.className = 'error';
+            } else {
+              formStatus.textContent = "Něco se nepovedlo, zkuste to prosím později.";
+              formStatus.className = 'error';
+            }
+          });
+        }
+      }).catch(() => {
+        formStatus.textContent = "Chyba při odesílání formuláře, zkuste to později.";
+        formStatus.className = 'error';
+      });
+    });
+
+    // CHATBOT
+    const chatbotBtn = document.getElementById('chatbot-btn');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotSendBtn = document.getElementById('chatbot-send-btn');
+
+    chatbotBtn.addEventListener('click', () => {
+      const visible = chatbotWindow.style.display === 'flex';
+      chatbotWindow.style.display = visible ? 'none' : 'flex';
+      if (!visible) chatbotInput.focus();
+    });
+
+    chatbotSendBtn.addEventListener('click', sendMessage);
+    chatbotInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    function sendMessage() {
+      const text = chatbotInput.value.trim();
+      if (!text) return;
+
+      appendMessage(text, 'user-message');
+      chatbotInput.value = '';
+      // Simulace odpovědi - tady by bylo AI nebo API
+      setTimeout(() => {
+        appendMessage('Díky za zprávu! Ozveme se brzy.', 'bot-message');
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      }, 1000);
+    }
+
+    function appendMessage(text, className) {
+      const msg = document.createElement('div');
+      msg.className = `chatbot-message ${className}`;
+      msg.textContent = text;
+      chatbotMessages.appendChild(msg);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+  </script>
 </body>
 </html>
