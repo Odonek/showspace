@@ -41,6 +41,28 @@ header button:hover {
   background: #fff;
   color: #FF6B00;
 }
+    nav {
+  background-color: #222222;
+  padding: 1rem;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+nav ul li a:hover {
+  color: #FF6B00;
+}
+
     .section {
       padding: 2rem;
       max-width: 1000px;
@@ -201,6 +223,14 @@ header button:hover {
     <p>Zaujměte klienty během 30 sekund ještě dříve, než vejdou. Od 2 990 Kč.</p>
     <button onclick="document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' })">Nezávazná poptávka</button>
   </header>
+<nav>
+  <ul>
+    <li><a href="#onas">O nás</a></li>
+    <li><a href="#balicky">Balíčky</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#webnamiru">Web na míru</a></li>
+  </ul>
+</nav>
 
   <section class="section features">
     <h2>Proč virtuální prohlídku?</h2>
@@ -212,7 +242,12 @@ header button:hover {
       <li>Lze připojit na Google, Seznam, Mapy, Web</li>
     </ul>
   </section>
-
+  
+<section class="section" id="onas">
+  <h2>O nás</h2>
+  <p>Jsme profesionálové na virtuální prohlídky. Pomáháme podnikům, realitkám i jednotlivcům efektivně prezentovat své prostory ve 360° formátu.</p>
+</section>
+  
   <section class="section">
     <h2>Balíčky</h2>
     <div class="package">
@@ -228,9 +263,15 @@ header button:hover {
       <p>Velké objekty, hotely, showroomy, školy nebo více pater. Na míru.</p>
     </div>
   </section>
+  
+<section class="section" id="webnamiru">
+  <h2>Web na míru</h2>
+  <p>Chcete vlastní web nebo 360° prezentaci integrovat do vaší stránky? Nabízíme tvorbu jednoduchých prezentačních webů na klíč – rychle, levně a efektivně.</p>
+</section>
 
+  
   <section class="section contact" id="kontakt">
-    <h2>Kontaktuj mě</h2>
+    <h2>Kontaktuj nás</h2>
     <form id="kontakt-form" action="https://formspree.io/f/xeozkaqj" method="POST">
       <input type="text" name="name" placeholder="Vaše jméno" required />
       <input type="email" name="email" placeholder="E-mail" required />
