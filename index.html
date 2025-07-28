@@ -265,84 +265,88 @@
   </div>
 
   <script>
-    const chatbotBtn = document.getElementById('chatbot-btn');
-    const chatbotWindow = document.getElementById('chatbot-window');
-    const chatbotMessages = document.getElementById('chatbot-messages');
-    const chatbotInput = document.getElementById('chatbot-input');
-    const chatbotSendBtn = document.getElementById('chatbot-send-btn');
+   document.addEventListener('DOMContentLoaded', () => {
+  const chatbotBtn = document.getElementById('chatbot-btn');
+  const chatbotWindow = document.getElementById('chatbot-window');
+  const chatbotMessages = document.getElementById('chatbot-messages');
+  const chatbotInput = document.getElementById('chatbot-input');
+  const chatbotSendBtn = document.getElementById('chatbot-send-btn');
 
-    chatbotBtn.addEventListener('click', () => {
-      if (chatbotWindow.style.display === 'flex') {
-        chatbotWindow.style.display = 'none';
-      } else {
-        chatbotWindow.style.display = 'flex';
-        chatbotInput.focus();
-      }
-    });
+  chatbotBtn.addEventListener('click', () => {
+    const currentDisplay = getComputedStyle(chatbotWindow).display;
+    if (currentDisplay === 'flex') {
+      chatbotWindow.style.display = 'none';
+    } else {
+      chatbotWindow.style.display = 'flex';
+      chatbotInput.focus();
+    }
+  });
 
-    function appendUserMessage(text) {
-      const msg = document.createElement('div');
-      msg.classList.add('chatbot-message', 'user-message');
-      msg.textContent = text;
-      chatbotMessages.appendChild(msg);
+  function appendUserMessage(text) {
+    const msg = document.createElement('div');
+    msg.classList.add('chatbot-message', 'user-message');
+    msg.textContent = text;
+    chatbotMessages.appendChild(msg);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  function getBotReply(message) {
+    const msg = message.toLowerCase();
+
+    if (msg.includes('web') || msg.includes('webovky') || msg.includes('stránky')) {
+      return "Naše webovky jsou optimalizované pro rychlé načítání a skvělou prezentaci virtuálních prohlídek.";
+    }
+
+    if (msg.includes('balíček') || msg.includes('cena') || msg.includes('ceník')) {
+      return "Nabízíme tři balíčky: Základní, Standard a Premium, od 2 490 Kč do 7 990 Kč. Každý balíček obsahuje různé služby, rád vám pomohu s výběrem.";
+    }
+
+    if (msg.includes('jak to funguje') || msg.includes('jak pracujete') || msg.includes('proces')) {
+      return "Proces je jednoduchý: naplánujeme focení, vytvoříme virtuální prohlídku a vy ji získáte připravenou pro vaše klienty online.";
+    }
+
+    if (msg.includes('kontakt') || msg.includes('jak vás kontaktovat')) {
+      return "Kontaktovat nás můžete přes formulář na stránce, e-mail nebo telefonicky. Rádi zodpovíme vaše dotazy.";
+    }
+
+    if (msg.includes('hosting') || msg.includes('jak dlouho')) {
+      return "Hosting virtuálních prohlídek je zahrnutý po dobu 6 měsíců, pak je možné službu prodloužit.";
+    }
+
+    if (msg.includes('video') || msg.includes('promo')) {
+      return "V balíčku Premium nabízíme promo video včetně IG reels a voice-over, které zvýší atraktivitu vaší prezentace.";
+    }
+
+    if (msg.includes('půdorys')) {
+      return "Standardní balíček obsahuje základní půdorys, který pomáhá klientům lépe si představit prostor.";
+    }
+
+    return "Omlouvám se, nerozumím přesně vaší otázce. Můžete ji prosím upřesnit?";
+  }
+
+  chatbotSendBtn.addEventListener('click', () => {
+    const text = chatbotInput.value.trim();
+    if (text === '') return;
+    appendUserMessage(text);
+    chatbotInput.value = '';
+
+    setTimeout(() => {
+      const botReply = document.createElement('div');
+      botReply.classList.add('chatbot-message', 'bot-message');
+      botReply.textContent = getBotReply(text);
+      chatbotMessages.appendChild(botReply);
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }, 600);
+  });
+
+  chatbotInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      chatbotSendBtn.click();
     }
+  });
+});
 
-    function getBotReply(message) {
-      const msg = message.toLowerCase();
-
-      if (msg.includes('web') || msg.includes('webovky') || msg.includes('stránky')) {
-        return "Naše webovky jsou optimalizované pro rychlé načítání a skvělou prezentaci virtuálních prohlídek.";
-      }
-
-      if (msg.includes('balíček') || msg.includes('cena') || msg.includes('ceník')) {
-        return "Nabízíme tři balíčky: Základní, Standard a Premium, od 2 490 Kč do 7 990 Kč. Každý balíček obsahuje různé služby, rád vám pomohu s výběrem.";
-      }
-
-      if (msg.includes('jak to funguje') || msg.includes('jak pracujete') || msg.includes('proces')) {
-        return "Proces je jednoduchý: naplánujeme focení, vytvoříme virtuální prohlídku a vy ji získáte připravenou pro vaše klienty online.";
-      }
-
-      if (msg.includes('kontakt') || msg.includes('jak vás kontaktovat')) {
-        return "Kontaktovat nás můžete přes formulář na stránce, e-mail nebo telefonicky. Rádi zodpovíme vaše dotazy.";
-      }
-
-      if (msg.includes('hosting') || msg.includes('jak dlouho')) {
-        return "Hosting virtuálních prohlídek je zahrnutý po dobu 6 měsíců, pak je možné službu prodloužit.";
-      }
-
-      if (msg.includes('video') || msg.includes('promo')) {
-        return "V balíčku Premium nabízíme promo video včetně IG reels a voice-over, které zvýší atraktivitu vaší prezentace.";
-      }
-
-      if (msg.includes('půdorys')) {
-        return "Standardní balíček obsahuje základní půdorys, který pomáhá klientům lépe si představit prostor.";
-      }
-
-      return "Omlouvám se, nerozumím přesně vaší otázce. Můžete ji prosím upřesnit?";
-    }
-
-    chatbotSendBtn.addEventListener('click', () => {
-      const text = chatbotInput.value.trim();
-      if (text === '') return;
-      appendUserMessage(text);
-      chatbotInput.value = '';
-
-      setTimeout(() => {
-        const botReply = document.createElement('div');
-        botReply.classList.add('chatbot-message', 'bot-message');
-        botReply.textContent = getBotReply(text);
-        chatbotMessages.appendChild(botReply);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-      }, 600);
-    });
-
-    chatbotInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        chatbotSendBtn.click();
-      }
-    });
   </script>
 </body>
 </html>
