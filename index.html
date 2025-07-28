@@ -267,13 +267,15 @@ const chatbotInput = document.getElementById('chatbot-input');
 const chatbotSendBtn = document.getElementById('chatbot-send-btn');
 
 chatbotBtn.addEventListener('click', () => {
-  if (chatbotWindow.style.display === 'flex') {
+  const currentDisplay = getComputedStyle(chatbotWindow).display;
+  if (currentDisplay === 'flex') {
     chatbotWindow.style.display = 'none';
   } else {
     chatbotWindow.style.display = 'flex';
     chatbotInput.focus();
   }
 });
+
 
 function appendUserMessage(text) {
   const msg = document.createElement('div');
