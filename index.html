@@ -28,14 +28,19 @@
       font-size: 1.2rem;
     }
     header button {
-      background: #FF6B00;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      color: #fff;
-      border-radius: 8px;
-    }
+  background: transparent;
+  border: 2px solid #fff;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+header button:hover {
+  background: #fff;
+  color: #FF6B00;
+}
     .section {
       padding: 2rem;
       max-width: 1000px;
