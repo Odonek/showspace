@@ -317,53 +317,55 @@
   <section class="section" id="balicky">
     <h2>Balíčky</h2>
     <div class="package">
-      <h3>Mini – 2 990 Kč</h3>
-      <p>Malý prostor do 50 m². Ideální pro kavárny, malé provozovny.</p>
+      <h3>Mini</h3>
+      <p>Malé prostory do 30 m². Rychlá a levná prohlídka.</p>
+      <p><strong>2 990 Kč</strong></p>
     </div>
     <div class="package">
-      <h3>Standard – 4 990 Kč</h3>
-      <p>Byt, kancelář, obchod do 100 m². Zahrnuje základní editaci a export.</p>
+      <h3>Standard</h3>
+      <p>Byty, kanceláře a střední prostory do 100 m².</p>
+      <p><strong>6 490 Kč</strong></p>
     </div>
     <div class="package">
-      <h3>Premium – individuální</h3>
-      <p>Velké objekty, hotely, showroomy, školy nebo více pater. Na míru.</p>
+      <h3>Premium</h3>
+      <p>Větší objekty, webové prezentace, úpravy na míru.</p>
+      <p><strong>Na dotaz</strong></p>
     </div>
   </section>
-  
+
   <section class="section" id="webnamiru">
     <h2>Web na míru</h2>
-    <p>Chcete vlastní web nebo 360° prezentaci integrovat do vaší stránky? Nabízíme tvorbu jednoduchých prezentačních – rychle, levně a efektivně.</p>
+    <p>Vytvoříme vám originální webovou prezentaci s integrovanou 360° virtuální prohlídkou pro lepší vizuální zážitek klientů.</p>
   </section>
 
-  <section class="section contact" id="kontakt">
-    <h2>Kontaktuj nás</h2>
-    <form id="kontakt-form" action="https://formspree.io/f/xeozkaqj" method="POST">
-      <input type="text" name="name" placeholder="Vaše jméno" required />
-      <input type="email" name="email" placeholder="E-mail" required />
-      <input type="tel" name="phone" placeholder="Telefon" />
-      <textarea name="message" placeholder="Popis prostoru, zájem o balíček..." rows="4" required></textarea>
-      <button type="submit">Odeslat poptávku</button>
+  <section class="section" id="kontakt">
+    <h2>Kontakt</h2>
+    <form id="contact-form" novalidate>
+      <input type="text" id="name" name="name" placeholder="Vaše jméno" required aria-required="true" />
+      <input type="email" id="email" name="email" placeholder="Váš e-mail" required aria-required="true" />
+      <textarea id="message" name="message" placeholder="Zpráva" rows="4" required aria-required="true"></textarea>
+      <button type="submit">Odeslat</button>
+      <div id="form-response" role="alert" aria-live="assertive"></div>
     </form>
-    <div id="form-status"></div>
   </section>
 
-  <footer>
-    &copy; Ondřej Němec 2025 ShowSpace.cz – vytvořeno pro efektivní prezentaci prostoru
-  </footer>
-
-  <!-- Chatbot button and window -->
-  <div id="chatbot-btn" title="Chat s námi">💬</div>
-  <div id="chatbot-window" role="dialog" aria-live="polite" aria-label="Chatbot">
+  <!-- Chatbot tlačítko a okno -->
+  <button id="chatbot-btn" aria-label="Otevřít chatbot">💬</button>
+  <div id="chatbot-window" role="region" aria-live="polite" aria-label="Chatbot virtuálních prohlídek">
     <div id="chatbot-header">ShowSpace Chatbot</div>
-    <div id="chatbot-messages"></div>
+    <div id="chatbot-messages" tabindex="0" aria-live="polite" aria-atomic="false"></div>
     <div id="chatbot-input-area">
-      <input id="chatbot-input" type="text" aria-label="Napište zprávu" />
-      <button id="chatbot-send-btn" aria-label="Odeslat zprávu">→</button>
+      <input id="chatbot-input" type="text" placeholder="Napiš zprávu..." aria-label="Vstup pro zprávu chatbotu" />
+      <button id="chatbot-send-btn" aria-label="Odeslat zprávu chatbotu">Send</button>
     </div>
   </div>
 
+  <footer>
+    <p>© 2025 ShowSpace.cz – Virtuální prohlídky a webové prezentace</p>
+  </footer>
+
   <script>
-    // MENU TOGGLE na mobile
+    // Menu toggle pro mobilní zařízení
     const menuToggle = document.getElementById('menu-toggle');
     const menuList = document.getElementById('menu-list');
 
@@ -373,90 +375,93 @@
       menuList.classList.toggle('open');
     });
 
-    // Uzavření menu po kliknutí na odkaz (mobile)
-    menuList.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(window.innerWidth <= 768){
-          menuToggle.setAttribute('aria-expanded', false);
-          menuList.classList.remove('open');
-        }
-      });
-    });
-
-    // FORM STATUS
-    const form = document.getElementById('kontakt-form');
-    const formStatus = document.getElementById('form-status');
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const formData = new FormData(form);
-
-      fetch(form.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      }).then(response => {
-        if(response.ok) {
-          formStatus.textContent = "Děkujeme za vaši poptávku. Ozveme se co nejdříve!";
-          formStatus.className = 'success';
-          form.reset();
-        } else {
-          response.json().then(data => {
-            if(data.errors) {
-              formStatus.textContent = data.errors.map(error => error.message).join(", ");
-              formStatus.className = 'error';
-            } else {
-              formStatus.textContent = "Něco se nepovedlo, zkuste to prosím později.";
-              formStatus.className = 'error';
-            }
-          });
-        }
-      }).catch(() => {
-        formStatus.textContent = "Chyba při odesílání formuláře, zkuste to později.";
-        formStatus.className = 'error';
-      });
-    });
-
-    // CHATBOT
+    // Chatbot UI elements
     const chatbotBtn = document.getElementById('chatbot-btn');
     const chatbotWindow = document.getElementById('chatbot-window');
     const chatbotMessages = document.getElementById('chatbot-messages');
     const chatbotInput = document.getElementById('chatbot-input');
     const chatbotSendBtn = document.getElementById('chatbot-send-btn');
 
-    chatbotBtn.addEventListener('click', () => {
-      const visible = chatbotWindow.style.display === 'flex';
-      chatbotWindow.style.display = visible ? 'none' : 'flex';
-      if (!visible) chatbotInput.focus();
-    });
+    // Funkce pro přidání zprávy do okna chatbotu
+    function appendMessage(text, className) {
+      const msg = document.createElement('div');
+      msg.classList.add('chatbot-message', className);
+      msg.textContent = text;
+      chatbotMessages.appendChild(msg);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
 
-    chatbotSendBtn.addEventListener('click', sendMessage);
-    chatbotInput.addEventListener('keydown', e => {
-      if (e.key === 'Enter') sendMessage();
-    });
+    // Funkce na rozpoznání dotazu a odpověď
+    function getBotResponse(userText) {
+      const text = userText.toLowerCase();
 
+      if (/cena|kolik stojí|cena prohlídky|cena balíčku/.test(text)) {
+        return "Naše balíčky začínají už od 2 990 Kč. Máme Mini, Standard a Premium balíček na míru.";
+      }
+      if (/jak|jak funguje|jak to funguje|jak probíhá/.test(text)) {
+        return "Virtuální prohlídka se natáčí pomocí speciální 360° kamery a výsledný obsah je možné sdílet online na webu, Google Mapách a dalších platformách.";
+      }
+      if (/balíček|balíčky|co nabízíte|nabídka/.test(text)) {
+        return "Nabízíme tři balíčky: Mini pro malé prostory, Standard pro byty a kanceláře a Premium pro větší objekty nebo web na míru.";
+      }
+      if (/kontakt|jak vás kontaktovat|jak se spojit|telefon|email/.test(text)) {
+        return "Kontaktovat nás můžete přes náš kontaktní formulář na stránce nebo přímo e-mailem a telefonem, které najdete v sekci Kontakt.";
+      }
+      if (/web|web na míru|webová prezentace/.test(text)) {
+        return "Ano, nabízíme tvorbu vlastních webů i integraci 360° prezentací přímo do vašeho stávajícího webu.";
+      }
+      // Výchozí odpověď, pokud nic nepoznáme
+      return "Díky za dotaz! Můžeš to prosím upřesnit, nebo se podívej na naši nabídku balíčků a kontakt.";
+    }
+
+    // Funkce pro odeslání zprávy uživatele a získání odpovědi
     function sendMessage() {
       const text = chatbotInput.value.trim();
       if (!text) return;
 
       appendMessage(text, 'user-message');
       chatbotInput.value = '';
-      // Simulace odpovědi - tady by bylo AI nebo API
+
+      const response = getBotResponse(text);
+
       setTimeout(() => {
-        appendMessage('Díky za zprávu! Ozveme se brzy.', 'bot-message');
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-      }, 1000);
+        appendMessage(response, 'bot-message');
+      }, 500);
     }
 
-    function appendMessage(text, className) {
-      const msg = document.createElement('div');
-      msg.className = `chatbot-message ${className}`;
-      msg.textContent = text;
-      chatbotMessages.appendChild(msg);
+    // Otevření / zavření chatbot okna
+    chatbotBtn.addEventListener('click', () => {
+      const isVisible = chatbotWindow.style.display === 'flex';
+      if (!isVisible) {
+        chatbotWindow.style.display = 'flex';
+        chatbotInput.focus();
+        // Uvítací zpráva při otevření
+        if (!chatbotWindow.dataset.welcomeSent) {
+          appendMessage("Dobrý den! Jak vám mohu pomoci s virtuálními prohlídkami ShowSpace?", 'bot-message');
+          chatbotWindow.dataset.welcomeSent = "true";
+        }
+      } else {
+        chatbotWindow.style.display = 'none';
+      }
+    });
+
+    // Odeslání zprávy tlačítkem
+    chatbotSendBtn.addEventListener('click', sendMessage);
+
+    // Odeslání zprávy Enterem
+    chatbotInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    // Pro přístupnost, scroll focus do zpráv při nové zprávě
+    const observer = new MutationObserver(() => {
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
+    });
+    observer.observe(chatbotMessages, { childList: true });
+
   </script>
 </body>
 </html>
