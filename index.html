@@ -98,6 +98,103 @@
       padding: 1rem;
       font-size: 0.9rem;
     }
+
+    /* Chatbot styles */
+    #chatbot-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #FF8303;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      color: #1B1A17;
+      z-index: 1000;
+    }
+
+    #chatbot-window {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      background: white;
+      border: 2px solid #FF8303;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+    }
+
+    #chatbot-header {
+      background: #FF8303;
+      color: #1B1A17;
+      padding: 10px;
+      border-radius: 8px 8px 0 0;
+      font-weight: bold;
+      text-align: center;
+      user-select: none;
+    }
+
+    #chatbot-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+      color: #1B1A17;
+    }
+
+    .chatbot-message {
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      border-radius: 15px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+    .bot-message {
+      background: #FFEBCC;
+      align-self: flex-start;
+    }
+    .user-message {
+      background: #FF8303;
+      color: white;
+      align-self: flex-end;
+    }
+
+    #chatbot-input-area {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    #chatbot-input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 0 0 0 10px;
+      outline: none;
+    }
+
+    #chatbot-send-btn {
+      background: #FF8303;
+      border: none;
+      color: #1B1A17;
+      padding: 0 15px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 0 0 10px 0;
+      transition: background-color 0.3s ease;
+    }
+    #chatbot-send-btn:hover {
+      background: #e67300;
+    }
   </style>
 </head>
 <body>
@@ -149,43 +246,64 @@
     &copy; 2025 ShowSpace.cz – vytvořeno pro efektivní prezentaci prostoru
   </footer>
 
+  <!-- Chatbot button and window -->
+  <div id="chatbot-btn" title="Chat s námi">💬</div>
+  <div id="chatbot-window" role="dialog" aria-live="polite" aria-label="Chatbot okno">
+    <div id="chatbot-header">Chatbot</div>
+    <div id="chatbot-messages">
+      <div class="chatbot-message bot-message">S čím potřebujete pomoci?</div>
+    </div>
+    <div id="chatbot-input-area">
+      <input type="text" id="chatbot-input" placeholder="Napište zprávu..." aria-label="Zpráva"/>
+      <button id="chatbot-send-btn" aria-label="Odeslat zprávu">→</button>
+    </div>
+  </div>
+
   <script>
-    const form = document.getElementById("kontakt-form");
-    const status = document.getElementById("form-status");
+    const chatbotBtn = document.getElementById('chatbot-btn');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotSendBtn = document.getElementById('chatbot-send-btn');
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    chatbotBtn.addEventListener('click', () => {
+      if(chatbotWindow.style.display === 'flex') {
+        chatbotWindow.style.display = 'none';
+      } else {
+        chatbotWindow.style.display = 'flex';
+        chatbotInput.focus();
+      }
+    });
 
-      const data = {
-        name: form.name.value,
-        email: form.email.value,
-        phone: form.phone.value,
-        message: form.message.value,
-      };
+    function appendUserMessage(text) {
+      const msg = document.createElement('div');
+      msg.classList.add('chatbot-message', 'user-message');
+      msg.textContent = text;
+      chatbotMessages.appendChild(msg);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
 
-      try {
-        const response = await fetch(form.action, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(data),
-        });
+    chatbotSendBtn.addEventListener('click', () => {
+      const text = chatbotInput.value.trim();
+      if(text === '') return;
+      appendUserMessage(text);
+      chatbotInput.value = '';
 
-        if (response.ok) {
-          status.innerHTML = "<div class='success'>Děkujeme! Vaše zpráva byla odeslána.</div>";
-          form.reset();
-        } else {
-          const data = await response.json();
-          if (data.errors) {
-            status.innerHTML = "<div class='error'>" + data.errors.map(e => e.message).join(", ") + "</div>";
-          } else {
-            status.innerHTML = "<div class='error'>Chyba při odesílání. Zkuste to prosím znovu.</div>";
-          }
-        }
-      } catch (error) {
-        status.innerHTML = "<div class='error'>Chyba připojení. Zkontrolujte internet nebo zkuste to později.</div>";
+      // Tady můžeš přidat logiku odpovědi od chatbota, teď jen echo
+      setTimeout(() => {
+        const botReply = document.createElement('div');
+        botReply.classList.add('chatbot-message', 'bot-message');
+        botReply.textContent = "Díky za zprávu, ozveme se co nejdříve.";
+        chatbotMessages.appendChild(botReply);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      }, 600);
+    });
+
+    // Enter pro odeslání zprávy
+    chatbotInput.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter') {
+        e.preventDefault();
+        chatbotSendBtn.click();
       }
     });
   </script>
