@@ -261,36 +261,29 @@
 
   <script>
     const chatbotBtn = document.getElementById('chatbot-btn');
-    const chatbotWindow = document.getElementById('chatbot-window');
-    const chatbotMessages = document.getElementById('chatbot-messages');
-    const chatbotInput = document.getElementById('chatbot-input');
-    const chatbotSendBtn = document.getElementById('chatbot-send-btn');
+const chatbotWindow = document.getElementById('chatbot-window');
+const chatbotMessages = document.getElementById('chatbot-messages');
+const chatbotInput = document.getElementById('chatbot-input');
+const chatbotSendBtn = document.getElementById('chatbot-send-btn');
 
-    chatbotBtn.addEventListener('click', () => {
-      if(chatbotWindow.style.display === 'flex') {
-        chatbotWindow.style.display = 'none';
-      } else {
-        chatbotWindow.style.display = 'flex';
-        chatbotInput.focus();
-      }
-    });
+chatbotBtn.addEventListener('click', () => {
+  if (chatbotWindow.style.display === 'flex') {
+    chatbotWindow.style.display = 'none';
+  } else {
+    chatbotWindow.style.display = 'flex';
+    chatbotInput.focus();
+  }
+});
 
-    function appendUserMessage(text) {
-      const msg = document.createElement('div');
-      msg.classList.add('chatbot-message', 'user-message');
-      msg.textContent = text;
-      chatbotMessages.appendChild(msg);
-      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
+function appendUserMessage(text) {
+  const msg = document.createElement('div');
+  msg.classList.add('chatbot-message', 'user-message');
+  msg.textContent = text;
+  chatbotMessages.appendChild(msg);
+  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
 
-    chatbotSendBtn.addEventListener('click', () => {
-      const text = chatbotInput.value.trim();
-      if(text === '') return;
-      appendUserMessage(text);
-      chatbotInput.value = '';
-
-      // Tady můžeš přidat logiku odpovědi od chatbota, teď jen echo
-      function getBotReply(message) {
+function getBotReply(message) {
   const msg = message.toLowerCase();
 
   if (msg.includes('web') || msg.includes('webovky') || msg.includes('stránky')) {
@@ -326,7 +319,7 @@
 
 chatbotSendBtn.addEventListener('click', () => {
   const text = chatbotInput.value.trim();
-  if(text === '') return;
+  if (text === '') return;
   appendUserMessage(text);
   chatbotInput.value = '';
 
@@ -339,14 +332,14 @@ chatbotSendBtn.addEventListener('click', () => {
   }, 600);
 });
 
+// Enter pro odeslání zprávy
+chatbotInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    chatbotSendBtn.click();
+  }
+});
 
-    // Enter pro odeslání zprávy
-    chatbotInput.addEventListener('keydown', (e) => {
-      if(e.key === 'Enter') {
-        e.preventDefault();
-        chatbotSendBtn.click();
-      }
-    });
   </script>
 </body>
 </html>
