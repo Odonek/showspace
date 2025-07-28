@@ -10,13 +10,13 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #F0E3CA;
-      color: #1B1A17;
-      border: 20px solid #1B1A17;
+      background: #FAF5EF;
+      color: #222222;
+      border: 20px solid #222222;
       box-sizing: border-box;
     }
     header {
-      background: #A35709;
+      background: #FF6B00;
       color: #fff;
       padding: 2rem;
       text-align: center;
@@ -28,12 +28,12 @@
       font-size: 1.2rem;
     }
     header button {
-      background: #FF8303;
+      background: #FF6B00;
       border: none;
       padding: 1rem 2rem;
       font-size: 1rem;
       cursor: pointer;
-      color: #1B1A17;
+      color: #fff;
       border-radius: 8px;
     }
     .section {
@@ -47,18 +47,18 @@
     }
     .features li::before {
       content: "✔️ ";
-      color: #FF8303;
+      color: #FF6B00;
     }
     .package {
       background: #fff;
       padding: 1rem;
       margin-bottom: 1rem;
-      border: 1px solid #A35709;
+      border: 1px solid #FF6B00;
       border-radius: 8px;
     }
     .package h3 {
       margin-top: 0;
-      color: #A35709;
+      color: #FF6B00;
     }
     form input,
     form textarea,
@@ -70,10 +70,9 @@
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 4px;
-      box-sizing: border-box;
     }
     form button {
-      background: #A35709;
+      background: #FF6B00;
       color: #fff;
       border: none;
       cursor: pointer;
@@ -93,34 +92,29 @@
       margin-bottom: 1rem;
     }
     footer {
-      background: #1B1A17;
+      background: #222222;
       color: #fff;
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
     }
-
-    /* Chatbot styles */
-   #chatbot-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #FF8303;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  color: #1B1A17;
-  z-index: 9999; /* Zvyšuji z-index, aby byl nad vším */
-  user-select: none;
-}
-
-
+    #chatbot-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #FF6B00;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      color: #fff;
+      z-index: 1000;
+    }
     #chatbot-window {
       position: fixed;
       bottom: 90px;
@@ -128,34 +122,31 @@
       width: 300px;
       max-height: 400px;
       background: white;
-      border: 2px solid #FF8303;
+      border: 2px solid #FF6B00;
       border-radius: 10px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       display: none;
       flex-direction: column;
       z-index: 1000;
-      user-select: none;
     }
-
     #chatbot-header {
-      background: #FF8303;
-      color: #1B1A17;
+      background: #FF6B00;
+      color: #fff;
       padding: 10px;
       border-radius: 8px 8px 0 0;
       font-weight: bold;
       text-align: center;
+      user-select: none;
     }
-
     #chatbot-messages {
       flex: 1;
       padding: 10px;
       overflow-y: auto;
       font-size: 0.9rem;
-      color: #1B1A17;
+      color: #222222;
       display: flex;
       flex-direction: column;
     }
-
     .chatbot-message {
       margin-bottom: 10px;
       padding: 8px 12px;
@@ -164,20 +155,18 @@
       word-wrap: break-word;
     }
     .bot-message {
-      background: #FFEBCC;
+      background: #FFF2E0;
       align-self: flex-start;
     }
     .user-message {
-      background: #FF8303;
+      background: #FF6B00;
       color: white;
       align-self: flex-end;
     }
-
     #chatbot-input-area {
       display: flex;
       border-top: 1px solid #ddd;
     }
-
     #chatbot-input {
       flex: 1;
       border: none;
@@ -186,11 +175,10 @@
       border-radius: 0 0 0 10px;
       outline: none;
     }
-
     #chatbot-send-btn {
-      background: #FF8303;
+      background: #FF6B00;
       border: none;
-      color: #1B1A17;
+      color: #fff;
       padding: 0 15px;
       cursor: pointer;
       font-weight: bold;
@@ -198,40 +186,41 @@
       transition: background-color 0.3s ease;
     }
     #chatbot-send-btn:hover {
-      background: #e67300;
+      background: #E55E00;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>ShowSpace – Ukaž svůj prostor dřív, než otevřeš dveře</h1>
-    <p>360° virtuální prohlídky pro realitky, kavárny a fitka – od 2 490 Kč</p>
-    <a href="#kontakt"><button>Chci prohlídku</button></a>
+ <header>
+    <h1>Virtuální prohlídky, které prodávají</h1>
+    <p>Zaujměte klienty dřív, než vejdou. Od 2 490 Kč.</p>
+    <button onclick="document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' })">Nezávazná poptávka</button>
   </header>
 
   <section class="section features">
-    <h2>Pro koho to je?</h2>
+    <h2>Proč virtuální prohlídku?</h2>
     <ul>
-      <li>Realitní makléři – méně zbytečných prohlídek, víc vážných zájemců</li>
-      <li>Kavárny a restaurace – ukaž atmosféru, přiveď hosty online</li>
-      <li>Fitka a wellness – buduj důvěru a přitažlivost</li>
-      <li>Salony – rozhodování je o dojmu</li>
+      <li>Přiláká více zájemců</li>
+      <li>Zvyšuje důvěryhodnost</li>
+      <li>Prodává dřív než fotky</li>
+      <li>Funguje nonstop</li>
+      <li>Lze připojit na Google, Seznam, Mapy, Web</li>
     </ul>
   </section>
 
-  <section class="section packages">
+  <section class="section">
     <h2>Balíčky</h2>
     <div class="package">
-      <h3>Základní 360° – 2 490 Kč</h3>
-      <p>Interaktivní 360° prohlídka do 3 místností, hosting na 6 měsíců</p>
+      <h3>Mini – 2 490 Kč</h3>
+      <p>Malý prostor do 50 m². Ideální pro kavárny, malé provozovny.</p>
     </div>
     <div class="package">
-      <h3>Standard – 4 990 Kč</h3>
-      <p>Navíc úvodní video nebo půdorys, iframe na web, základní úpravy</p>
+      <h3>Standard – 3 990 Kč</h3>
+      <p>Byt, kancelář, obchod do 100 m². Zahrnuje základní editaci a export.</p>
     </div>
     <div class="package">
-      <h3>Premium – 7 990 Kč</h3>
-      <p>Navíc promo video (IG reels), voice-over, export do Google Maps</p>
+      <h3>Premium – individuální</h3>
+      <p>Velké objekty, hotely, showroomy, školy nebo více pater. Na míru.</p>
     </div>
   </section>
 
