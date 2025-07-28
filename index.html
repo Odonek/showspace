@@ -340,13 +340,15 @@
 
   <section class="section" id="kontakt">
     <h2>Kontakt</h2>
-    <form id="contact-form" novalidate>
-      <input type="text" id="name" name="name" placeholder="Vaše jméno" required aria-required="true" />
-      <input type="email" id="email" name="email" placeholder="Váš e-mail" required aria-required="true" />
-      <textarea id="message" name="message" placeholder="Zpráva" rows="4" required aria-required="true"></textarea>
-      <button type="submit">Odeslat</button>
-      <div id="form-response" role="alert" aria-live="assertive"></div>
-    </form>
+    <form id="contact-form" action="https://formspree.io/f/xeozkaqj" method="POST" novalidate>
+  <input type="text" id="name" name="name" placeholder="Vaše jméno" required aria-required="true" />
+  <input type="tel" id="phone" name="phone" placeholder="Telefonní číslo" />
+  <input type="email" id="email" name="email" placeholder="Váš e-mail" required aria-required="true" />
+  <textarea id="message" name="message" placeholder="Zpráva" rows="4" required aria-required="true"></textarea>
+  <button type="submit">Odeslat</button>
+  <div id="form-response" role="alert" aria-live="assertive"></div>
+</form>
+
   </section>
 
   <!-- Chatbot tlačítko a okno -->
