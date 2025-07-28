@@ -99,8 +99,7 @@
       font-size: 0.9rem;
     }
   </style>
-  <!-- Tidio chatbot embed -->
-  <script src="//code.tidio.co/your-tidio-public-key.js" async></script>
+ 
 </head>
 <body>
   <header>
@@ -137,13 +136,16 @@
 
   <section class="section contact" id="kontakt">
     <h2>Kontaktuj mě</h2>
-    <form action="https://formspree.io/f/xyzabcd" method="POST">
-      <input type="text" name="name" placeholder="Vaše jméno" required />
-      <input type="email" name="email" placeholder="E-mail" required />
-      <input type="tel" name="phone" placeholder="Telefon" />
-      <textarea name="message" placeholder="Popis prostoru, zájem o balíček..." rows="4"></textarea>
-      <button type="submit">Odeslat poptávku</button>
-    </form>
+    <form id="kontakt-form" action="https://formspree.io/f/xeozkaqj" method="POST">
+  <input type="text" name="name" placeholder="Vaše jméno" required />
+  <input type="email" name="email" placeholder="E-mail" required />
+  <input type="tel" name="phone" placeholder="Telefon" />
+  <textarea name="message" placeholder="Popis prostoru, zájem o balíček..." rows="4" required></textarea>
+  <button type="submit">Odeslat poptávku</button>
+</form>
+<div id="form-status"></div>
+
+
     <div id="form-status"></div>
   </section>
 
@@ -151,32 +153,39 @@
     &copy; 2025 ShowSpace.cz – vytvořeno pro efektivní prezentaci prostoru
   </footer>
 
-  <script>
-    const form = document.querySelector("form");
-    const status = document.getElementById("form-status");
+ <script>
+  const form = document.getElementById("kontakt-form");
+  const status = document.getElementById("form-status");
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      const action = form.action;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
 
-      try {
-        const response = await fetch(action, {
-          method: "POST",
-          body: data,
-          headers: { Accept: "application/json" },
-        });
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
-        if (response.ok) {
-          status.innerHTML = "<p style='color:green;'>Děkujeme! Vaše zpráva byla odeslána.</p>";
-          form.reset();
+      if (response.ok) {
+        status.innerHTML = "<div class='success'>Děkujeme! Vaše zpráva byla odeslána.</div>";
+        form.reset();
+      } else {
+        const data = await response.json();
+        if (data.errors) {
+          status.innerHTML = "<div class='error'>" + data.errors.map(e => e.message).join(", ") + "</div>";
         } else {
-          status.innerHTML = "<p style='color:red;'>Chyba při odesílání. Zkuste to prosím znovu.</p>";
+          status.innerHTML = "<div class='error'>Chyba při odesílání. Zkuste to prosím znovu.</div>";
         }
-      } catch (error) {
-        status.innerHTML = "<p style='color:red;'>Chyba připojení. Zkuste to prosím znovu.</p>";
       }
-    });
-  </script>
+    } catch (error) {
+      status.innerHTML = "<div class='error'>Chyba připojení. Zkontrolujte internet nebo zkuste to později.</div>";
+    }
+  });
+</script>
+
 </body>
 </html>
