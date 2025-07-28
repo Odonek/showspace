@@ -266,15 +266,22 @@ const chatbotMessages = document.getElementById('chatbot-messages');
 const chatbotInput = document.getElementById('chatbot-input');
 const chatbotSendBtn = document.getElementById('chatbot-send-btn');
 
-chatbotBtn.addEventListener('click', () => {
-  const currentDisplay = getComputedStyle(chatbotWindow).display;
-  if (currentDisplay === 'flex') {
-    chatbotWindow.style.display = 'none';
-  } else {
-    chatbotWindow.style.display = 'flex';
-    chatbotInput.focus();
-  }
-});
+document.addEventListener('DOMContentLoaded', () => {
+    const chatbotBtn = document.getElementById('chatbot-btn');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotSendBtn = document.getElementById('chatbot-send-btn');
+
+    chatbotBtn.addEventListener('click', () => {
+      const currentDisplay = getComputedStyle(chatbotWindow).display;
+      if (currentDisplay === 'flex') {
+        chatbotWindow.style.display = 'none';
+      } else {
+        chatbotWindow.style.display = 'flex';
+        chatbotInput.focus();
+      }
+    });
 
 
 function appendUserMessage(text) {
