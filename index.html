@@ -19,6 +19,66 @@
   --text: #111111;          /* ostřejší kontrast */
   --muted: #999;
 }
+   /* Lehce zesvětlené přechody pro lepší čitelnost černého textu */
+  @keyframes goldPrimary {
+    0% {background: linear-gradient(135deg, #FAF1D6 0%, #3A3A4A 100%);}
+    50% {background: linear-gradient(135deg, #3A3A4A 0%, #FAF1D6 100%);}
+    100% {background: linear-gradient(135deg, #FAF1D6 0%, #3A3A4A 100%);}
+  }
+  @keyframes primaryAccent {
+    0% {background: linear-gradient(135deg, #3A3A4A 0%, #FAF1D6 100%);}
+    50% {background: linear-gradient(135deg, #FAF1D6 0%, #3A3A4A 100%);}
+    100% {background: linear-gradient(135deg, #3A3A4A 0%, #FAF1D6 100%);}
+  }
+
+  /* Společné zaoblení a odsazení pro všechny sekce */
+  #prokoho,
+  #proc,
+  #balicky,
+  #webnamiru,
+  #onas,
+  #kontakt {
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 2rem;
+    color: #111111;
+    background-clip: padding-box;
+  }
+
+  /* Rámečky pro Pro koho je? a Proč virtuální prohlídku? */
+  #prokoho,
+  #proc {
+    border: 3px solid var(--accent);
+  }
+
+  /* Animace pozadí */
+  #prokoho,
+  #balicky,
+  #onas {
+    animation: goldPrimary 40s ease-in-out infinite;
+    background-size: 400% 400%;
+  }
+  #proc,
+  #webnamiru,
+  #kontakt {
+    animation: primaryAccent 40s ease-in-out infinite;
+    background-size: 400% 400%;
+  }
+
+  /* Stylování log Instagramu a TikToku ve footeru */
+  footer a {
+    background: var(--accent);
+    border: none;
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+  }
+  
     * {
       box-sizing: border-box;
       margin: 0;
@@ -436,7 +496,7 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
 </ul>
 </nav>
 
-<section class="section features">
+<section class="section features" id="prokoho">
 <h2>Pro koho je?</h2>
 <ul>
 <li>Pro realitní kanceláře – prodávejte rychleji a dráž</li>
@@ -448,7 +508,7 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
 </section>
 
 
-<section class="section features">
+<section class="section features" id="proc">
 <h2>Proč virtuální prohlídku?</h2>
 <ul>
 <li>📈 Zvyšuje důvěryhodnost</li>
