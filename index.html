@@ -128,7 +128,7 @@
       content: "\2714\0020";
       color: var(--accent);
     }
-   .package {
+    .package {
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
@@ -136,6 +136,7 @@
     margin-bottom: 2rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     cursor: pointer;
+    position: relative;
   }
 
   .package:hover {
@@ -152,6 +153,7 @@
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     letter-spacing: -0.3px;
+    display: inline-block;
   }
 
   .package p {
@@ -175,6 +177,22 @@
   .package.open .package-details {
     max-height: 500px;
     margin-top: 1rem;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 16px;
+    height: 16px;
+    border-right: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary);
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+  }
+
+  .package.open .arrow {
+    transform: rotate(-135deg);
   }
 
     #virtual-tour {
@@ -420,6 +438,7 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
   <section class="section" id="balicky">
   <h2>Balíčky</h2>
   <div class="package" onclick="togglePackage(this)">
+    <div class="arrow"></div>
     <h3>Mini</h3>
     <p><strong>3 290 Kč</strong></p>
     <div class="package-details">
@@ -427,6 +446,7 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
     </div>
   </div>
   <div class="package" onclick="togglePackage(this)">
+    <div class="arrow"></div>
     <h3>Standard</h3>
     <p><strong>6 490 Kč</strong></p>
     <div class="package-details">
@@ -434,6 +454,7 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
     </div>
   </div>
   <div class="package" onclick="togglePackage(this)">
+    <div class="arrow"></div>
     <h3>Premium</h3>
     <p><strong>Na dotaz</strong></p>
     <div class="package-details">
@@ -447,6 +468,7 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
     el.classList.toggle('open');
   }
 </script>
+
 
 
   <section class="section" id="webnamiru">
