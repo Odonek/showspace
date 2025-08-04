@@ -18,19 +18,19 @@
   --bg: #F8F8F8;            /* světlejší, vzdušnější pozadí */
   --text: #111111;          /* ostřejší kontrast */
   --muted: #999;
+   --accent-light: #F8E4A6;     /* světlejší zlatá pro gradient */
 }
    /* Lehce zesvětlené přechody pro lepší čitelnost černého textu */
   @keyframes goldPrimary {
-    0% {background: linear-gradient(135deg, #FAF1D6 0%, #3A3A4A 100%);}
-    50% {background: linear-gradient(135deg, #3A3A4A 0%, #FAF1D6 100%);}
-    100% {background: linear-gradient(135deg, #FAF1D6 0%, #3A3A4A 100%);}
-  }
-  @keyframes primaryAccent {
-    0% {background: linear-gradient(135deg, #3A3A4A 0%, #FAF1D6 100%);}
-    50% {background: linear-gradient(135deg, #FAF1D6 0%, #3A3A4A 100%);}
-    100% {background: linear-gradient(135deg, #3A3A4A 0%, #FAF1D6 100%);}
-  }
-
+  0%   { background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%); }
+  50%  { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%); }
+  100% { background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%); }
+}
+@keyframes primaryAccent {
+  0%   { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%); }
+  50%  { background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%); }
+  100% { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%); }
+}
   /* Společné zaoblení a odsazení pro všechny sekce */
   #prokoho,
   #proc,
@@ -46,10 +46,16 @@
   }
 
   /* Rámečky pro Pro koho je? a Proč virtuální prohlídku? */
-  #prokoho,
-  #proc {
-    border: 3px solid var(--accent);
-  }
+  /* Zlaté rámečky pro všechny sekce */
+#prokoho,
+#proc,
+#balicky,
+#webnamiru,
+#onas,
+#kontakt {
+  border: 3px solid var(--accent);
+}
+
 
   /* Animace pozadí */
   #prokoho,
@@ -61,7 +67,7 @@
   #proc,
   #webnamiru,
   #kontakt {
-    animation: primaryAccent 40s ease-in-out infinite;
+    animation: goldPrimary 40s ease-in-out infinite;
     background-size: 400% 400%;
   }
 
@@ -887,7 +893,6 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
 </script>
 </body>
 </html>
-
 
 
 
