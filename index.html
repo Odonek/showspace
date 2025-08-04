@@ -652,92 +652,6 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
     z-index: 10001;
   }
 }
-header {
-  background: var(--primary);
-  color: #fff;
-  padding: 4rem 2rem 3rem 2rem;
-  text-align: center;
-  animation: fadeInDown 1s ease-out;
-}
-
-.header-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.2rem;
-}
-header {
-  background: var(--primary);
-  color: #fff;
-  padding: 4rem 2rem;
-  animation: fadeInDown 1s ease-out;
-}
-
-.header-flex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;         /* mezera mezi logem a textem, klidně ještě větší – nebo podle vkusu */
-  max-width: 900px;  /* nebo 1100px */
-  margin: 0 auto;
-}
-
-.logo-header {
-  height: 90px;    /* velké logo na desktopu */
-  width: auto;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-  display: block;
-}
-
-.header-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  text-align: left;
-}
-
-header p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  text-align: left;
-}
-
-@media (max-width: 900px) {
-  .header-flex {
-    gap: 1.2rem;
-  }
-  .logo-header {
-    height: 65px;
-  }
-}
-
-@media (max-width: 600px) {
-  .header-flex {
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-  }
-  .logo-header {
-    height: 44px;
-    margin-bottom: 0;
-  }
-  .header-content h1 {
-    font-size: 1.25rem;
-  }
-  header {
-    padding: 2rem 1rem;
-  }
-}
-
-
 
   </style>
   </head>
@@ -748,19 +662,10 @@ header p {
     </div>
   </div>
 <header>
-  <div class="header-flex">
-    <a href="/" class="logo-link">
-      <img src="images/logonahoru.png" alt="ShowSpace logo" class="logo-header" />
-    </a>
-    <div class="header-content">
-      <h1>Virtuální prohlídky, které prodávají</h1>
-      <p>Zaujměte klienty během 30 sekund ještě dříve, než vejdou. Od 2 990 Kč.</p>
-      <button onclick="document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' })">Nezávazná poptávka</button>
-    </div>
-  </div>
+<h1>Virtuální prohlídky, které prodávají</h1>
+<p>Zaujměte klienty během 30 sekund ještě dříve, než vejdou. Od 2 990 Kč.</p>
+<button onclick="document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' })">Nezávazná poptávka</button>
 </header>
-
-
 <nav>
 <button aria-controls="menu-list" aria-expanded="false" aria-label="Otevřít menu" id="menu-toggle">
 <span></span>
@@ -1147,10 +1052,6 @@ document.getElementById('menu-toggle').addEventListener('click', toggleMobileMen
 </div>
 </body>
 </html>
-
-
-
-
 
 
 
