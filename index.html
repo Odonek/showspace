@@ -653,15 +653,38 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
 
 
 
-   .hero-header {
+  .hero-header {
   position: relative;
   width: 100%;
-  background: var(--primary);
-  min-height: 320px;
+  min-height: 420px;
   padding-top: 3rem;
   padding-bottom: 2rem;
   display: block;
   overflow: visible;
+  background: url('images/pozadi.jpg') center center/cover no-repeat;
+}
+    .hero-header::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(10,10,35,0.72) 0%,
+    rgba(203,161,53,0.19) 70%,
+    rgba(10,10,35,0.79) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-center, .hero-logo {
+  position: relative;
+  z-index: 2;
+}
+
+/* Zvýraznění textu pro lepší čitelnost */
+.hero-center h1, .hero-center p, .hero-center button {
+  text-shadow: 0 2px 16px rgba(0,0,0,0.25), 0 0px 1px #000000;
 }
 
 .hero-logo {
@@ -1150,6 +1173,7 @@ document.getElementById('menu-toggle').addEventListener('click', toggleMobileMen
 </div>
 </body>
 </html>
+
 
 
 
