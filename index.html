@@ -475,9 +475,35 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
     50% { transform: translateY(-15px) translateX(10px); }
     100% { transform: translateY(0) translateX(0); }
   }
+    #preloader {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--bg);            /* světlejší pozadí */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+  }
+  #preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  /* Logo animace (volitelné) */
+  #preloader img {
+    width: 150px;    /* velikost loga */
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.1); }
+  }
   </style>
   </head>
 <body>
+    <div id="preloader">
+    <img src="path/to/11 oko nad white.png" alt="ShowSpace logo">
+  </div>
 <header>
 <h1>Virtuální prohlídky, které prodávají</h1>
 <p>Zaujměte klienty během 30 sekund ještě dříve, než vejdou. Od 2 990 Kč.</p>
@@ -822,5 +848,13 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
     }
   });
 </script>
+    <script>
+  window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    // krátké zpoždění, aby byl efekt vidět
+    setTimeout(() => preloader.classList.add('hidden'), 300);
+  });
+</script>
 </body>
 </html>
+
