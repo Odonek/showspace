@@ -18,18 +18,16 @@
   --bg: #F8F8F8;            /* světlejší, vzdušnější pozadí */
   --text: #111111;          /* ostřejší kontrast */
   --muted: #999;
-   --accent-light: #F8E4A6;     /* světlejší zlatá pro gradient */
+  --gold-medium: #E7C86A;    /* Vnitřní zlatá */
+  --gold-light: #FFF8E2;     /* Světlý podklad */
+  --gold-dark: #CBA135;      /* Rámeček */
 }
-   /* Lehce zesvětlené přechody pro lepší čitelnost černého textu */
-  @keyframes goldPrimary {
-  0%   { background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%); }
-  50%  { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%); }
-  100% { background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%); }
-}
-@keyframes primaryAccent {
-  0%   { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%); }
-  50%  { background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%); }
-  100% { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%); }
+  /* Prémiová sekce */
+#prokoho, #proc, #balicky, #webnamiru, #onas, #kontakt {
+  border: 3px solid var(--gold-dark);
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-medium) 75%, var(--gold-dark) 100%);
+  color: #111;
+  box-shadow: 0 2px 24px 0 rgba(203,161,53,0.08);
 }
   /* Společné zaoblení a odsazení pro všechny sekce */
   #prokoho,
@@ -57,19 +55,7 @@
 }
 
 
-  /* Animace pozadí */
-  #prokoho,
-  #balicky,
-  #onas {
-    animation: goldPrimary 40s ease-in-out infinite;
-    background-size: 400% 400%;
-  }
-  #proc,
-  #webnamiru,
-  #kontakt {
-    animation: goldPrimary 40s ease-in-out infinite;
-    background-size: 400% 400%;
-  }
+  
 
   /* Stylování log Instagramu a TikToku ve footeru */
   footer a {
@@ -1066,7 +1052,6 @@ document.getElementById('menu-toggle').addEventListener('click', toggleMobileMen
 </div>
 </body>
 </html>
-
 
 
 
