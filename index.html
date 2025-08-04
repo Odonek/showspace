@@ -590,13 +590,16 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
 #menu-toggle {
   display: flex !important;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   background: none;
   border: none;
   position: absolute;
-  top: 20px; left: 20px;
+  top: 22px;
+  right: 18px;         /* přesun doprava */
+  left: auto !important;
   z-index: 10001;
 }
+
 #menu-toggle span {
   width: 30px; height: 3px;
   background: var(--accent);
@@ -621,7 +624,8 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
     max-width: 95vw !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    padding: 1.1rem 0.8rem !important;
+    margin: 2.5rem auto !important;
+    padding: 1.4rem 1.2rem !important;
     border-radius: 16px !important;
     border-width: 3px !important;
     box-sizing: border-box;
@@ -633,6 +637,33 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
   }
   header {
     padding: 2.5rem 1rem !important;
+  }
+}
+@media (max-width: 600px) {
+  .section,
+  #prokoho,
+  #proc,
+  #balicky,
+  #webnamiru,
+  #onas,
+  #kontakt {
+    max-width: 93vw !important;
+    margin: 2.5rem auto !important;
+    padding: 1.5rem 1.1rem !important;
+    border-radius: 16px !important;
+    box-sizing: border-box;
+  }
+  #menu-toggle {
+    display: flex !important;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 22px;
+    right: 18px;
+    left: auto !important;
+    z-index: 10001;
   }
 }
 
@@ -1035,6 +1066,7 @@ document.getElementById('menu-toggle').addEventListener('click', toggleMobileMen
 </div>
 </body>
 </html>
+
 
 
 
