@@ -516,6 +516,98 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
   color: var(--primary);
   opacity: 0;
 }
+    @media (max-width: 480px) {
+  .section {
+    padding: 0 0.5rem !important;
+    margin: 2rem 0 !important;
+  }
+  header {
+    padding: 2rem 1rem;
+  }
+  header h1 {
+    font-size: 1.2rem;
+  }
+  header p {
+    font-size: 0.98rem;
+  }
+  nav ul {
+    display: none !important;
+  }
+  /* Overlay menu */
+  #mobile-menu-overlay {
+    display: none;
+    position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(10,10,35,0.97);
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s;
+  }
+  #mobile-menu-overlay.open {
+    display: flex;
+    opacity: 1;
+  }
+  #mobile-menu-overlay ul {
+    list-style: none;
+    padding: 0;
+  }
+  #mobile-menu-overlay li {
+    margin: 2rem 0;
+  }
+  #mobile-menu-overlay a {
+    color: var(--accent);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  /* Custom cursor skrytý */
+  #custom-cursor {
+    display: none !important;
+  }
+  /* Menší bubliny */
+  .floating-shape {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  /* Chatbot úprava */
+  #chatbot-window {
+    width: 95vw !important;
+    max-height: 80vh !important;
+    right: 2vw !important;
+    bottom: 2vw !important;
+    border-radius: 18px !important;
+  }
+  #chatbot-messages {
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
+
+/* Hamburger styl pro mobile nav */
+#menu-toggle {
+  display: flex !important;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 20px; left: 20px;
+  z-index: 10001;
+}
+#menu-toggle span {
+  width: 30px; height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  display: block;
+  transition: all 0.3s;
+}
+@media (min-width: 769px) {
+  #mobile-menu-overlay, #menu-toggle { display: none !important; }
+}
+
   </style>
   </head>
 <body>
@@ -891,8 +983,31 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
     });
   });
 </script>
+    <script>
+function toggleMobileMenu() {
+  const overlay = document.getElementById('mobile-menu-overlay');
+  if (overlay.classList.contains('open')) {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  } else {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+document.getElementById('menu-toggle').addEventListener('click', toggleMobileMenu);
+</script>
+<div id="mobile-menu-overlay">
+  <button aria-label="Zavřít menu" onclick="toggleMobileMenu()" style="position:absolute;top:20px;right:20px;background:none;border:none;font-size:2rem;color:#fff;">&times;</button>
+  <ul>
+    <li><a href="#balicky" onclick="toggleMobileMenu()">Balíčky</a></li>
+    <li><a href="#webnamiru" onclick="toggleMobileMenu()">Web na míru</a></li>
+    <li><a href="#onas" onclick="toggleMobileMenu()">O nás</a></li>
+    <li><a href="#kontakt" onclick="toggleMobileMenu()">Kontakt</a></li>
+  </ul>
+</div>
 </body>
 </html>
+
 
 
 
