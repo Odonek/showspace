@@ -730,6 +730,34 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
 }
 
 
+.hero-logo {
+  position: absolute;
+  top: 28px;
+  left: 38px;
+  height: 75px;
+  width: auto;
+  z-index: 2;
+  object-fit: contain;
+  /* jemná animace a hover efekt */
+  opacity: 0;
+  animation: fadeInLogo 0.8s 0.2s ease-out forwards;
+  transition: filter 0.3s, transform 0.3s;
+}
+.hero-logo:hover, .hero-logo:focus {
+  filter: drop-shadow(0 0 32px #cba13599);
+  transform: scale(1.08);
+}
+@keyframes fadeInLogo {
+  from { opacity: 0; transform: translateY(-12px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+/* mobilní úpravy */
+@media (max-width: 800px) {
+  .hero-logo { height: 36px; top: 14px; left: 10px;}
+}
+@media (max-width: 600px) {
+  .hero-logo { height: 28px; top: 6px; left: 6px;}
+}
 
 
   </style>
@@ -1139,6 +1167,7 @@ document.getElementById('menu-toggle').addEventListener('click', toggleMobileMen
 </div>
 </body>
 </html>
+
 
 
 
