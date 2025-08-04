@@ -668,10 +668,10 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
 
 .hero-logo {
   position: absolute;
-  top: 38px;        /* vzdálenost od horního okraje */
-  left: 3vw;        /* pěkně od kraje, ať není nalepené */
+  top: 12px;        /* vzdálenost od horního okraje */
+  left: 12px;        /* pěkně od kraje, ať není nalepené */
   height: 140px;    /* můžeš si zvolit 90–140px podle pocitu */
-  z-index: 3;
+  z-index: 20;
   /* Animace pro wow efekt */
   opacity: 0;
    animation: fadeInLogo 1s .3s ease-out forwards;
@@ -729,14 +729,14 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
 
 /* Mobilní úpravy */
 @media (max-width: 800px) {
-  .hero-logo { height: 48px; top: 18px; left: 5vw;}
+  .hero-logo { height: 64px; top: 8px; left: 10px;}
   .hero-center { max-width: 95vw; padding-top: 0.8rem;}
   .hero-center h1 { font-size: 1.2rem;}
   .hero-center p { font-size: 1rem;}
 }
 
 @media (max-width: 600px) {
-  .hero-logo { height: 36px; top: 10px; left: 3vw;}
+  .hero-logo { height: 54px; top: 7px; left: 8px;}
   .hero-center { max-width: 97vw; }
   .hero-center h1 { font-size: 1.08rem;}
   .hero-center p { font-size: 0.97rem;}
@@ -1151,6 +1151,7 @@ document.getElementById('menu-toggle').addEventListener('click', toggleMobileMen
 </div>
 </body>
 </html>
+
 
 
 
