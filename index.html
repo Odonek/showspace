@@ -498,11 +498,26 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
     0%, 100% { transform: scale(1); }
     50%      { transform: scale(1.1); }
   }
+    #preloader .loader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#preloader .loader-inner h2 {
+  margin-top: 1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--primary);
+  opacity: 0;
+}
   </style>
   </head>
 <body>
     <div id="preloader">
-    <img src="images/logo-showspace-white.png" alt="ShowSpace logo">
+    <div class="loader-inner">
+      <img src="images/logo-showspace-white.png" alt="ShowSpace logo">
+      <h2>Ukaž svůj prostor</h2>
+    </div>
   </div>
 <header>
 <h1>Virtuální prohlídky, které prodávají</h1>
@@ -849,13 +864,30 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
   });
 </script>
     <script>
+  // až se celý dokument načte
   window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    // krátké zpoždění, aby byl efekt vidět
-    setTimeout(() => preloader.classList.add('hidden'), 300);
+    const tl = gsap.timeline({
+      onComplete() {
+        // po animaci úplně odstraníme overlay
+        preloader.style.display = 'none';
+      }
+    });
+    // logo přiletí z malého měřítka
+    tl.from('#preloader img', {
+      scale: 0.3, opacity: 0, duration: 1.2, ease: 'power4.out'
+    });
+    // tagline se vyfadeuje
+    tl.to('#preloader .loader-inner h2', {
+      opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'
+    }, '-=0.6');
+    // chvíli počkáme
+    tl.to('#preloader', {
+      opacity: 0, duration: 0.6, delay: 0.5
+    });
   });
 </script>
 </body>
 </html>
+
 
 
