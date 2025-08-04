@@ -652,6 +652,53 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
     z-index: 10001;
   }
 }
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.header-logo {
+  height: 90px;
+  margin-right: 2.5rem;
+  flex-shrink: 0;
+  /* Animace pro jemný nájezd, pokud chceš */
+  opacity: 0;
+  animation: fadeInLogo 1.2s ease-out forwards;
+}
+@keyframes fadeInLogo {
+  from { opacity: 0; transform: translateY(-20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .header-content {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 2rem 1rem 1.2rem 1rem;
+  }
+  .header-logo {
+    height: 38px;
+    margin-right: 0.85rem;
+  }
+  .header-center h1 {
+    font-size: 1.2rem !important;
+  }
+  .header-center p {
+    font-size: 0.98rem !important;
+  }
+}
 
   </style>
   </head>
@@ -662,10 +709,18 @@ box-shadow: 0 0 10px rgba(203,161,53,0.5);
     </div>
   </div>
 <header>
-<h1>Virtuální prohlídky, které prodávají</h1>
-<p>Zaujměte klienty během 30 sekund ještě dříve, než vejdou. Od 2 990 Kč.</p>
-<button onclick="document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' })">Nezávazná poptávka</button>
+  <div class="header-content">
+    <img src="images/logonahoru.png" alt="ShowSpace logo" class="header-logo" />
+    <div class="header-center">
+      <h1>Virtuální prohlídky, které prodávají</h1>
+      <p>Zaujměte klienty během 30 sekund ještě dříve, než vejdou. Od 2 990 Kč.</p>
+      <button onclick="document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' })">
+        Nezávazná poptávka
+      </button>
+    </div>
+  </div>
 </header>
+
 <nav>
 <button aria-controls="menu-list" aria-expanded="false" aria-label="Otevřít menu" id="menu-toggle">
 <span></span>
@@ -1052,6 +1107,7 @@ document.getElementById('menu-toggle').addEventListener('click', toggleMobileMen
 </div>
 </body>
 </html>
+
 
 
 
