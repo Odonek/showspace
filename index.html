@@ -786,7 +786,7 @@
 }
 
     section[id] {
-  scroll-margin-top: 84px;  /* přizpůsob podle výšky navbaru, klidně 74–90px */
+  scroll-margin-top: 90px;  /* přizpůsob podle výšky navbaru, klidně 74–90px */
 }
 
 /* Underline efekt na menu odkazy */
@@ -936,7 +936,7 @@
     <div class="packages-list">
       <div class="package" onclick="togglePackage(this)">
         <div class="package-head">
-          <span class="package-name" data-aos="fade-up" data-aos-delay="200">START</span>
+          <span class="package-name" data-aos="fade-right" data-aos-delay="200">START</span>
           <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
         </div>
         <div class="package-desc">
@@ -945,7 +945,7 @@
       </div>
       <div class="package" onclick="togglePackage(this)">
         <div class="package-head">
-          <span class="package-name" data-aos="fade-up" data-aos-delay="300">PLUS</span>
+          <span class="package-name" data-aos="fade-left" data-aos-delay="300">PLUS</span>
           <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
         </div>
         <div class="package-desc">
@@ -954,7 +954,7 @@
       </div>
       <div class="package" onclick="togglePackage(this)">
         <div class="package-head">
-          <span class="package-name" data-aos="fade-up" data-aos-delay="400">PREMIUM</span>
+          <span class="package-name" data-aos="fade-right" data-aos-delay="400">PREMIUM</span>
           <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
         </div>
         <div class="package-desc">
@@ -963,7 +963,7 @@
       </div>
       <div class="package" onclick="togglePackage(this)">
         <div class="package-head">
-          <span class="package-name" data-aos="fade-up" data-aos-delay="500">CUSTOM</span>
+          <span class="package-name" data-aos="fade-left" data-aos-delay="500">CUSTOM</span>
           <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
         </div>
         <div class="package-desc">
@@ -1069,7 +1069,7 @@
   <h2 style="color:#142052; text-align:center; font-size:2.18rem; font-weight:800; margin-bottom:0.45rem; letter-spacing:-1px;">Kontakt</h2>
   <h3 style="color:#CBA135; text-align:center; font-size:1.28rem; margin-bottom:1.13rem; font-weight:700; letter-spacing:0.02em;">Zaujměte ještě dnes online</h3>
   <div class="kontakt-flex">
-    <div class="kontakt-form" data-aos="fade-up" data-aos-delay="200">
+    <div class="kontakt-form" data-aos="fade-right" data-aos-delay="200">
       <form action="https://formspree.io/f/mjkorjrk" method="POST">
         <input type="text" name="name" placeholder="Vaše jméno" required>
         <input type="email" name="email" placeholder="Váš e-mail" required>
@@ -1078,8 +1078,8 @@
         <button type="submit">Odeslat</button>
       </form>
     </div>
-    <div class="kontakt-box">
-      <div class="kontakt-box-desc" data-aos="fade-up" data-aos-delay="200">
+    <div class="kontakt-box" data-aos="fade-left" data-aos-delay="200">
+      <div class="kontakt-box-desc">
         Virtuální prohlídka je vaše digitální výloha – ozvěte se nám, odpovíme do 24 hodin.
       </div>
       <a class="kontakt-email" href="mailto:info@showspace.cz">info@showspace.cz</a>
@@ -1206,6 +1206,7 @@ window.addEventListener('scroll', function() {
 
 </body>
 </html>
+
 
 
 
