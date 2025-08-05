@@ -363,6 +363,81 @@
   .demo-frame-wrap, .demo-placeholder, .demo-frame-wrap iframe { height: 220px; min-height: 180px; }
 }
 
+
+    .works-section {
+  background: linear-gradient(115deg, #181C3A 0%, #232D5B 100%);
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  color: #fff;
+}
+.works-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #FFD86A;
+  margin-bottom: 1.5rem;
+}
+.works-desc {
+  text-align: center;
+  color: #e4eaf6;
+  font-size: 1.17rem;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+.works-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.work-card {
+  background: #fff;
+  color: #181C3A;
+  border-radius: 20px;
+  box-shadow: 0 8px 36px rgba(22,20,45,0.09);
+  overflow: hidden;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.23s, box-shadow 0.23s;
+  position: relative;
+  border: 1.7px solid #FFD86A10;
+}
+.work-card:hover {
+  transform: translateY(-7px) scale(1.04);
+  box-shadow: 0 18px 48px rgba(32,30,68,0.16);
+}
+.work-card img {
+  width: 100%;
+  height: 185px;
+  object-fit: cover;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  background: #F6F7FA;
+}
+.work-info {
+  padding: 1.1rem 1.1rem 1.4rem 1.1rem;
+  text-align: center;
+}
+.work-name {
+  font-weight: 800;
+  font-size: 1.14rem;
+  color: #142052;
+  margin-bottom: 0.6em;
+}
+.work-ref {
+  font-size: 0.99rem;
+  color: #444e6e;
+}
+@media (max-width: 1000px) {
+  .works-grid { flex-direction: column; align-items: center; }
+  .work-card { width: 90vw; }
+}
+
   </style>
 </head>
 <body>
@@ -526,6 +601,31 @@
   </div>
 </section>
 
+  <!--  reference  -->
+<section class="section works-section" id="reference">
+  <div class="works-title">Naše odvedená práce &amp; reference</div>
+  <div class="works-desc">
+    Vybrané ukázky realizovaných virtuálních prohlídek a projekty pro naše klienty.<br>
+    <span>Každá prohlídka vznikla na míru konkrétnímu prostoru i potřebám zákazníka.</span>
+  </div>
+  <div class="works-grid">
+    <div class="work-card">
+      <img src="images/fitkowel.png" alt="Fitness & Wellness" />
+      <div class="work-info">
+        <div class="work-name">Fitness & Wellness</div>
+        <div class="work-ref">Virtuální prezentace pro marketing a zvýšení důvěry.</div>
+      </div>
+    </div>
+    <div class="work-card">
+      <img src="images/galeriamuzea.png" alt="Galerie & Muzea" />
+      <div class="work-info">
+        <div class="work-name">Galerie & Muzea</div>
+        <div class="work-ref">Interaktivní online prohlídka s možností popisků a hotspotů.</div>
+      </div>
+    </div>
+    <!-- Přidej další reference stejně -->
+  </div>
+</section>
 
 
   
@@ -569,6 +669,7 @@
   </script>
 </body>
 </html>
+
 
 
 
