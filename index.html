@@ -789,6 +789,41 @@
   scroll-margin-top: 84px;  /* přizpůsob podle výšky navbaru, klidně 74–90px */
 }
 
+/* Underline efekt na menu odkazy */
+.nav-menu a {
+  position: relative;
+  overflow: hidden;
+}
+.nav-menu a::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.28s cubic-bezier(.87,.07,.43,.97);
+  transform-origin: right;
+}
+.nav-menu a:hover::after,
+.nav-menu a:focus::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Pop/scale efekt na karty, tlačítka */
+.service:hover,
+.package:hover,
+.work-card:hover,
+.cta-btn:hover,
+#scrollUp:hover,
+.kontakt-form button:hover {
+  transform: scale(1.05);
+  transition: transform 0.18s cubic-bezier(.44,.21,.08,.92);
+  z-index: 1;
+}
+
+    
   </style>
 </head>
 <body>
@@ -958,14 +993,14 @@
       <span>Každá prohlídka vznikla na míru konkrétnímu prostoru i potřebám zákazníka.</span>
     </div>
     <div class="works-grid">
-      <div class="work-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="work-card" data-aos="fade-up" data-aos-delay="300">
         <img src="images/fitkowel.png" alt="Fitness & Wellness" />
         <div class="work-info">
           <div class="work-name">Fitness & Wellness</div>
           <div class="work-ref">Virtuální prezentace pro marketing a zvýšení důvěry.</div>
         </div>
       </div>
-      <div class="work-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="work-card" data-aos="fade-up" data-aos-delay="300">
         <img src="images/galeriamuzea.png" alt="Galerie & Muzea" />
         <div class="work-info">
           <div class="work-name">Galerie & Muzea</div>
@@ -976,7 +1011,7 @@
     </div>
   </section>
   <!-- WEB NA MÍRU -->
-<section class="section customweb-section" id="web-na-miru" style="margin-top:3.5rem; margin-bottom:3.2rem;" data-aos="fade-up" data-aos-delay="300">
+<section class="section customweb-section" id="web-na-miru" style="margin-top:3.5rem; margin-bottom:3.2rem;" data-aos="fade-in" data-aos-delay="300">
   <div class="customweb-card"
     style="background:linear-gradient(120deg, #fffbe7 0%, #f7f8fb 100%);
            border:2.5px solid #cba13566;
@@ -1008,7 +1043,7 @@
 
 
   <!-- O NÁS -->
-  <section class="section about-section" id="onas">
+  <section class="section about-section" id="onas" data-aos="zoom-in" data-aos-delay="200">
     <div class="about-title">O nás</div>
     <div class="about-desc">
       Jsme tým mladých lidí, kteří milují technologie, design a kreativní prezentaci.  
@@ -1030,11 +1065,11 @@
   padding: 2.5rem 1.2rem 2.2rem 1.2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;">
+  align-items: center;" data-aos="zoom-in" data-aos-delay="200">
   <h2 style="color:#142052; text-align:center; font-size:2.18rem; font-weight:800; margin-bottom:0.45rem; letter-spacing:-1px;">Kontakt</h2>
   <h3 style="color:#CBA135; text-align:center; font-size:1.28rem; margin-bottom:1.13rem; font-weight:700; letter-spacing:0.02em;">Zaujměte ještě dnes online</h3>
   <div class="kontakt-flex">
-    <div class="kontakt-form">
+    <div class="kontakt-form" data-aos="fade-up" data-aos-delay="200">
       <form action="https://formspree.io/f/mjkorjrk" method="POST">
         <input type="text" name="name" placeholder="Vaše jméno" required>
         <input type="email" name="email" placeholder="Váš e-mail" required>
@@ -1044,7 +1079,7 @@
       </form>
     </div>
     <div class="kontakt-box">
-      <div class="kontakt-box-desc">
+      <div class="kontakt-box-desc" data-aos="fade-up" data-aos-delay="200">
         Virtuální prohlídka je vaše digitální výloha – ozvěte se nám, odpovíme do 24 hodin.
       </div>
       <a class="kontakt-email" href="mailto:info@showspace.cz">info@showspace.cz</a>
@@ -1141,6 +1176,13 @@
   });
 </script>
 
+  <script>// Parallax efekt pro .hero pozadí
+window.addEventListener('scroll', function() {
+  const hero = document.querySelector('.hero');
+  if (window.scrollY < 650 && hero) {
+    hero.style.backgroundPositionY = (window.scrollY * 0.38) + 'px';
+  }
+});  </script>
 
   
   <footer style="background: linear-gradient(120deg,#FFF8E2 0%,#FFD86A 80%,#CBA135 100%); border-top: 2px solid #CBA135; padding:2.2rem 0 1.2rem 0; margin-top:3rem;">
@@ -1164,6 +1206,7 @@
 
 </body>
 </html>
+
 
 
 
