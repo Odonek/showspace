@@ -206,16 +206,22 @@
     .service {
       position: relative;
       background: #fff;
-      border-radius: 15px;
+      border-radius: 18px;
       box-shadow: 0 2px 15px rgba(203,161,53,0.07);
-      width: 170px;
+      width: 340px;                /* stejně jako .target-tile */
+      min-height: 210px;           /* stejně jako .target-tile */
       text-align: center;
-      padding: 1.3rem 1rem 1rem 1rem;
+      padding: 2.1rem 1.4rem 1.3rem 1.4rem; /* větší padding, ladí s target-tile */
       cursor: pointer;
       transition: box-shadow 0.18s, transform 0.18s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
+
     .service:hover { box-shadow: 0 10px 24px rgba(203,161,53,0.17); transform: translateY(-4px) scale(1.035);}
-    .img-wrap img { height: 58px; margin-bottom: 0.7rem; user-drag: none; pointer-events: none;}
+    .img-wrap img { height: 84px; margin-bottom: 1.1rem; user-drag: none; pointer-events: none;}
     .service-name { font-weight: 700; font-size: 1.08rem; margin-bottom: 0.3em; color: var(--primary);}
     .arrow-btn {
       position: absolute;
@@ -1210,6 +1216,7 @@ window.addEventListener('scroll', function() {
 
 </body>
 </html>
+
 
 
 
