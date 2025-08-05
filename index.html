@@ -832,6 +832,25 @@
   z-index: 1;
 }
 
+/* Roztáhne pozadí přes celou šířku, obsah nechá max-width */
+.full-bg {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);   /* Zajistí fullwidth sekci i v max-width kontejneru */
+  margin-right: calc(50% - 50vw);
+  padding: 0;
+  border: none;
+}
+
+.section-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 3.8rem 2vw 2.7rem 2vw;
+}
+
+.what-section { background: #F6F7FA; }
+.white-bg    { background: #fff; }
+.packages-section { background: linear-gradient(115deg, #181C3A 0%, #232D5B 100%); }
+
     
   </style>
 </head>
@@ -930,7 +949,8 @@
     </div>
   </section>
   <!-- KOMU NABÍZÍME -->
-  <section class="section" id="komu-nabizime" data-aos="zoom-in" data-aos-delay="200">
+  <section class="full-bg what-section" id="komu-nabizime" data-aos="zoom-in" data-aos-delay="200">
+    <div class="section-inner">
     <div class="section-title">Komu nabízíme?</div>
     <div class="target-grid">
       <div class="target-tile"><img src="images/prodejnajm.png" alt="Prodeje a pronájmy nemovitostí" data-aos="fade-up" data-aos-delay="200"></div>
@@ -1217,6 +1237,7 @@ window.addEventListener('scroll', function() {
 
 </body>
 </html>
+
 
 
 
