@@ -130,7 +130,7 @@
       transform: scale(1.05);
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     }
-    /* Sekce Komu nabízíme */
+    /* SECTIONS */
     .section {
       max-width: 1160px;
       margin: 0 auto;
@@ -143,6 +143,10 @@
       margin-bottom: 2.2rem;
       text-align: center;
       letter-spacing: -0.5px;
+    }
+    /* Komu nabízíme */
+    #komu-nabizime {
+      background: #fff;
     }
     .target-grid {
       display: flex;
@@ -173,22 +177,330 @@
     .target-tile:hover img {
       filter: brightness(0.97);
     }
-    .target-label {
-      position: absolute;
-      left: 0; right: 0; top: 0; bottom: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.55rem;
-      font-weight: 700;
-      color: #fff;
-      text-shadow: 0 2px 22px rgba(0,0,0,0.31), 0 1px 2px #111;
-      z-index: 2;
-      pointer-events: none;
+    /* CO DĚLÁME symboly */
+    .what-we-do-grid { display: flex; flex-direction: column; gap: 2.2rem; }
+    .what-row { display: flex; justify-content: center; gap: 2.2rem; }
+    .service {
+      position: relative;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 2px 15px rgba(203,161,53,0.07);
+      width: 170px;
       text-align: center;
-      padding: 0 1.2rem;
+      padding: 1.3rem 1rem 1rem 1rem;
+      cursor: pointer;
+      transition: box-shadow 0.18s, transform 0.18s;
     }
-    /* Kotva = šipka nahoru */
+    .service:hover { box-shadow: 0 10px 24px rgba(203,161,53,0.17); transform: translateY(-4px) scale(1.035);}
+    .img-wrap img { height: 58px; margin-bottom: 0.7rem; user-drag: none; pointer-events: none;}
+    .service-name { font-weight: 700; font-size: 1.08rem; margin-bottom: 0.3em; color: var(--primary);}
+    .arrow-btn {
+      position: absolute;
+      top: 9px; right: 10px;
+      background: none; border: none; color: var(--accent); font-size: 1.18rem;
+      cursor: pointer; transition: transform 0.23s;
+      outline: none;
+    }
+    .service.open .arrow-btn span { transform: rotate(180deg);}
+    .service-desc {
+      display: none;
+      font-size: 0.97rem;
+      margin-top: 1rem;
+      color: var(--dark);
+      border-top: 1.2px solid #eee;
+      padding-top: 1.1em;
+      text-align: left;
+      min-height: 54px;
+      animation: fadeIn 0.38s;
+    }
+    .service.open .service-desc { display: block; }
+    /* BALÍČKY (gradient sekce!) */
+    .packages-section {
+      background: linear-gradient(115deg, #181C3A 0%, #232D5B 100%);
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+      color: #fff;
+    }
+    .packages-section .section-title {
+      color: #FFD86A;
+    }
+    .packages-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .package {
+      background: #fff;
+      color: #181C3A;
+      border-radius: 20px;
+      box-shadow: 0 8px 36px rgba(22,20,45,0.09);
+      overflow: hidden;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      transition: box-shadow 0.18s, transform 0.18s;
+      position: relative;
+      border: 1.7px solid #FFD86A10;
+      cursor: pointer;
+    }
+    .package:hover {
+      transform: translateY(-7px) scale(1.02);
+      box-shadow: 0 14px 48px rgba(32,30,68,0.13);
+    }
+    .package-head {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 1.25rem; font-weight: 700; color: #142052;
+      padding: 1.15rem 1.35rem 1.15rem 1.3rem;
+      letter-spacing: 0.1em;
+      background: transparent;
+      border-radius: 20px 20px 0 0;
+      transition: background 0.15s;
+    }
+    .package.open .package-head { background: #ede9d6; }
+    .arrow-btn {
+      background: none; border: none; color: #CBA135;
+      font-size: 1.3rem; cursor: pointer; outline: none;
+      transition: transform 0.23s;
+      margin-left: 1em;
+    }
+    .package.open .arrow-btn span { transform: rotate(180deg); display: inline-block;}
+    .package-desc {
+      display: none;
+      padding: 1rem 1.4rem 1.4rem 1.4rem;
+      font-size: 1.04rem;
+      color: #444;
+      animation: fadeIn 0.33s;
+      line-height: 1.5;
+      background: #f9f9fb;
+      border-top: 1px solid #ececec;
+    }
+    .package.open .package-desc { display: block; }
+    /* DEMO sekce */
+    .demo-section {
+      background: #f4f6fa;
+    }
+    .demo-desc {
+      text-align: center;
+      font-size: 1.13rem;
+      color: #222;
+      margin-bottom: 2.2rem;
+      font-weight: 400;
+    }
+    .demo-frame-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 330px;
+      max-width: 820px;
+      margin: 0 auto;
+      background: #f7f7fa;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(203,161,53,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .demo-frame-wrap iframe {
+      width: 100%;
+      height: 380px;
+      border: none;
+      border-radius: 16px;
+      background: #fff;
+    }
+    .demo-placeholder {
+      width: 100%;
+      height: 380px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #bbb;
+      font-size: 1.15rem;
+      background: #fff;
+      font-style: italic;
+      text-align: center;
+    }
+    /* REFERENCE sekce */
+    .works-section {
+      background: linear-gradient(115deg, #181C3A 0%, #232D5B 100%);
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+      color: #fff;
+    }
+    .works-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: #FFD86A;
+      margin-bottom: 1.5rem;
+    }
+    .works-desc {
+      text-align: center;
+      color: #e4eaf6;
+      font-size: 1.17rem;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+    .works-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.2rem;
+      justify-content: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .work-card {
+      background: #fff;
+      color: #181C3A;
+      border-radius: 20px;
+      box-shadow: 0 8px 36px rgba(22,20,45,0.09);
+      overflow: hidden;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.23s, box-shadow 0.23s;
+      position: relative;
+      border: 1.7px solid #FFD86A10;
+    }
+    .work-card:hover {
+      transform: translateY(-7px) scale(1.04);
+      box-shadow: 0 18px 48px rgba(32,30,68,0.16);
+    }
+    .work-card img {
+      width: 100%;
+      height: 185px;
+      object-fit: cover;
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+      background: #F6F7FA;
+    }
+    .work-info {
+      padding: 1.1rem 1.1rem 1.4rem 1.1rem;
+      text-align: center;
+    }
+    .work-name {
+      font-weight: 800;
+      font-size: 1.14rem;
+      color: #142052;
+      margin-bottom: 0.6em;
+    }
+    .work-ref {
+      font-size: 0.99rem;
+      color: #444e6e;
+    }
+    /* Web na míru sekce */
+    .customweb-section {
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 0;
+      padding-bottom: 3.5rem;
+    }
+    .customweb-card {
+      background: linear-gradient(120deg, #fffbe7 0%, #f7f8fb 100%);
+      border-radius: 32px;
+      box-shadow: 0 8px 36px rgba(22,20,45,0.07);
+      border: 2.5px solid #cba13533;
+      max-width: 680px;
+      width: 96vw;
+      margin: 0 auto;
+      padding: 0;
+      transition: box-shadow 0.19s, border-color 0.19s;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+    .customweb-card:hover {
+      box-shadow: 0 14px 44px rgba(32,30,68,0.13);
+      border-color: #cba13599;
+    }
+    .customweb-head {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 1.35rem; font-weight: 800; color: #142052;
+      padding: 1.33rem 1.5rem;
+      letter-spacing: 0.03em;
+      border-radius: 32px 32px 0 0;
+      background: transparent;
+    }
+    .customweb-title {
+      color: #142052;
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+    .customweb-card.open .arrow-btn span { transform: rotate(180deg);}
+    .customweb-desc {
+      display: none;
+      font-size: 1.11rem;
+      color: #36343a;
+      padding: 1.05em 1.7em 2em 1.7em;
+      border-top: 1px solid #e6d59b40;
+      animation: fadeIn 0.36s;
+      background: transparent;
+      line-height: 1.62;
+    }
+    .customweb-card.open .customweb-desc { display: block; }
+    /* O nás */
+    .about-section {
+      background: #f7f8fb;
+      border-radius: 22px;
+      margin: 0 auto 3.7rem auto;
+      max-width: 880px;
+      box-shadow: 0 4px 22px rgba(203,161,53,0.08);
+      padding: 2.5rem 2.3rem 2.3rem 2.3rem;
+    }
+    .about-title {
+      color: #142052;
+      font-size: 2.1rem;
+      font-weight: 800;
+      margin-bottom: 1.1rem;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+    .about-desc {
+      color: #222;
+      font-size: 1.17rem;
+      line-height: 1.66;
+      text-align: center;
+      font-weight: 400;
+    }
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .target-tile { width: 44vw; min-width: 200px; height: 30vw; max-height: 220px;}
+      .navbar .logo img { height: 44px;}
+    }
+    @media (max-width: 900px) {
+      .what-row { flex-direction: column; gap: 1.3rem; align-items: center; }
+      .service { width: 80vw; min-width: 150px; }
+    }
+    @media (max-width: 1000px) {
+      .works-grid { flex-direction: column; align-items: center; }
+      .work-card { width: 90vw; }
+    }
+    @media (max-width: 700px) {
+      .demo-frame-wrap, .demo-placeholder, .demo-frame-wrap iframe { height: 220px; min-height: 180px; }
+      .customweb-card { max-width: 99vw; border-radius: 19px;}
+      .customweb-head { font-size: 1.06rem; padding: 1.09rem 1em; }
+      .customweb-desc { font-size: 0.98rem; padding: 0.8em 0.8em 1.6em 0.8em; }
+      .about-section { padding: 1.4rem 0.8rem; }
+      .about-title { font-size: 1.22rem; }
+      .about-desc { font-size: 1rem; }
+    }
+    @media (max-width: 600px) {
+      .section { padding: 1.5rem 0.4rem 1.3rem 0.4rem;}
+      .target-tile { width: 94vw; min-width: 130px; height: 38vw; max-height: 190px;}
+      .section-title { font-size: 1.18rem;}
+      .navbar { flex-direction: column; align-items: flex-start;}
+      .navbar .contact { text-align: left; margin-top: 7px;}
+      .packages-list { max-width: 97vw; }
+      .package-head { font-size: 1rem; padding: 1.1rem 0.9rem; }
+      .package-desc { font-size: 0.98rem; padding: 1rem 1.1rem 1.3rem 1.1rem; }
+    }
+    /* KOTVA/ŠIPKA NAHORU */
     #scrollUp {
       display: none;
       position: fixed;
@@ -207,349 +519,6 @@
       transition: background 0.18s, transform 0.16s;
     }
     #scrollUp:hover { background: #bfa337; transform: scale(1.07);}
-    @media (max-width: 960px) {
-      .target-tile { width: 44vw; min-width: 200px; height: 30vw; max-height: 220px;}
-      .navbar .logo img { height: 44px;}
-    }
-    @media (max-width: 600px) {
-      .section { padding: 1.5rem 0.4rem 1.3rem 0.4rem;}
-      .target-tile { width: 94vw; min-width: 130px; height: 38vw; max-height: 190px;}
-      .section-title { font-size: 1.18rem;}
-      .navbar { flex-direction: column; align-items: flex-start;}
-      .navbar .contact { text-align: left; margin-top: 7px;}
-    }
-
-     /* --- SEKCÍ "CO DĚLÁME?" --- */
-    .what-we-do-grid { display: flex; flex-direction: column; gap: 2.2rem; }
-.what-row { display: flex; justify-content: center; gap: 2.2rem; }
-.service {
-  position: relative;
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 2px 15px rgba(203,161,53,0.07);
-  width: 170px;
-  text-align: center;
-  padding: 1.3rem 1rem 1rem 1rem;
-  cursor: pointer;
-  transition: box-shadow 0.18s, transform 0.18s;
-}
-.service:hover { box-shadow: 0 10px 24px rgba(203,161,53,0.17); transform: translateY(-4px) scale(1.035);}
-.img-wrap img { height: 58px; margin-bottom: 0.7rem; user-drag: none; pointer-events: none;}
-.service-name { font-weight: 700; font-size: 1.08rem; margin-bottom: 0.3em; color: var(--primary);}
-.arrow-btn {
-  position: absolute;
-  top: 9px; right: 10px;
-  background: none; border: none; color: var(--accent); font-size: 1.18rem;
-  cursor: pointer; transition: transform 0.23s;
-  outline: none;
-}
-.service.open .arrow-btn span { transform: rotate(180deg);}
-.service-desc {
-  display: none;
-  font-size: 0.97rem;
-  margin-top: 1rem;
-  color: var(--dark);
-  border-top: 1.2px solid #eee;
-  padding-top: 1.1em;
-  text-align: left;
-  min-height: 54px;
-  animation: fadeIn 0.38s;
-}
-.service.open .service-desc { display: block; }
-@media (max-width: 900px) {
-  .what-row { flex-direction: column; gap: 1.3rem; align-items: center; }
-  .service { width: 80vw; min-width: 150px; }
-}
-
-   /* --- balíčky" --- */
-   .packages-section  {
-  background: linear-gradient(115deg, #181C3A 0%, #232D5B 100%);
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  color: #fff;
-}
-    .packages-section .section-title {
-  color: #FFD86A;
-}
-.packages-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-  max-width: 600px;
-  margin: 0 auto;
-}
-.package {
-  background: #fff;
-  color: #181C3A;
-  border-radius: 20px;
-  box-shadow: 0 8px 36px rgba(22,20,45,0.09);
-  overflow: hidden;
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  transition: box-shadow 0.18s, transform 0.18s;
-  position: relative;
-  border: 1.7px solid #FFD86A10;
-  cursor: pointer;
-}
-.package:hover {
-  transform: translateY(-7px) scale(1.02);
-  box-shadow: 0 14px 48px rgba(32,30,68,0.13);
-}
-.package-head {
-  display: flex; align-items: center; justify-content: space-between;
-  font-size: 1.25rem; font-weight: 700; color: #142052;
-  padding: 1.15rem 1.35rem 1.15rem 1.3rem;
-  letter-spacing: 0.1em;
-  background: transparent;
-  border-radius: 20px 20px 0 0;
-  transition: background 0.15s;
-}
-.package.open .package-head { background: #ede9d6; }
-.arrow-btn {
-  background: none; border: none; color: #CBA135;
-  font-size: 1.3rem; cursor: pointer; outline: none;
-  transition: transform 0.23s;
-  margin-left: 1em;
-}
-.package.open .arrow-btn span { transform: rotate(180deg); display: inline-block;}
-.package-desc {
-  display: none;
-  padding: 1rem 1.4rem 1.4rem 1.4rem;
-  font-size: 1.04rem;
-  color: #444;
-  animation: fadeIn 0.33s;
-  line-height: 1.5;
-  background: #f9f9fb;
-  border-top: 1px solid #ececec;
-}
-.package.open .package-desc { display: block; }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@media (max-width: 600px) {
-  .packages-list { max-width: 97vw; }
-  .package-head { font-size: 1rem; padding: 1.1rem 0.9rem; }
-  .package-desc { font-size: 0.98rem; padding: 1rem 1.1rem 1.3rem 1.1rem; }
-}
-
-
-    
-.demo-section {
-   background: #f4f6fa;
-}
-.demo-desc {
-  text-align: center;
-  font-size: 1.13rem;
-  color: #222;
-  margin-bottom: 2.2rem;
-  font-weight: 400;
-}
-.demo-frame-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 330px;
-  max-width: 820px;
-  margin: 0 auto;
-  background: #f7f7fa;
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(203,161,53,0.06);
-  position: relative;
-  overflow: hidden;
-}
-.demo-frame-wrap iframe {
-  width: 100%;
-  height: 380px;
-  border: none;
-  border-radius: 16px;
-  background: #fff;
-}
-.demo-placeholder {
-  width: 100%;
-  height: 380px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #bbb;
-  font-size: 1.15rem;
-  background: #fff;
-  font-style: italic;
-  text-align: center;
-}
-@media (max-width: 700px) {
-  .demo-frame-wrap, .demo-placeholder, .demo-frame-wrap iframe { height: 220px; min-height: 180px; }
-}
-
-
-    .works-section {
-  background: linear-gradient(115deg, #181C3A 0%, #232D5B 100%);
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  color: #fff;
-}
-.works-title {
-  text-align: center;
-  font-size: 2.2rem;
-  font-weight: 800;
-  letter-spacing: -1px;
-  color: #FFD86A;
-  margin-bottom: 1.5rem;
-}
-.works-desc {
-  text-align: center;
-  color: #e4eaf6;
-  font-size: 1.17rem;
-  margin-bottom: 2.5rem;
-  font-weight: 400;
-}
-.works-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2.2rem;
-  justify-content: center;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.work-card {
-  background: #fff;
-  color: #181C3A;
-  border-radius: 20px;
-  box-shadow: 0 8px 36px rgba(22,20,45,0.09);
-  overflow: hidden;
-  width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.23s, box-shadow 0.23s;
-  position: relative;
-  border: 1.7px solid #FFD86A10;
-}
-.work-card:hover {
-  transform: translateY(-7px) scale(1.04);
-  box-shadow: 0 18px 48px rgba(32,30,68,0.16);
-}
-.work-card img {
-  width: 100%;
-  height: 185px;
-  object-fit: cover;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
-  background: #F6F7FA;
-}
-.work-info {
-  padding: 1.1rem 1.1rem 1.4rem 1.1rem;
-  text-align: center;
-}
-.work-name {
-  font-weight: 800;
-  font-size: 1.14rem;
-  color: #142052;
-  margin-bottom: 0.6em;
-}
-.work-ref {
-  font-size: 0.99rem;
-  color: #444e6e;
-}
-@media (max-width: 1000px) {
-  .works-grid { flex-direction: column; align-items: center; }
-  .work-card { width: 90vw; }
-}
-
-.customweb-section {
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 0; /* Navazuje na reference sekci */
-  padding-bottom: 3.5rem;
-}
-.customweb-card {
-  background: linear-gradient(120deg, #fffbe7 0%, #f7f8fb 100%);
-  border-radius: 32px;
-  box-shadow: 0 8px 36px rgba(22,20,45,0.07);
-  border: 2.5px solid #cba13533;
-  max-width: 680px;
-  width: 96vw;
-  margin: 0 auto;
-  padding: 0;
-  transition: box-shadow 0.19s, border-color 0.19s;
-  cursor: pointer;
-  overflow: hidden;
-  position: relative;
-}
-.customweb-card:hover {
-  box-shadow: 0 14px 44px rgba(32,30,68,0.13);
-  border-color: #cba13599;
-}
-.customweb-head {
-  display: flex; align-items: center; justify-content: space-between;
-  font-size: 1.35rem; font-weight: 800; color: #142052;
-  padding: 1.33rem 1.5rem;
-  letter-spacing: 0.03em;
-  border-radius: 32px 32px 0 0;
-  background: transparent;
-}
-.customweb-title {
-  color: #142052;
-  font-size: 1.4rem;
-  font-weight: 800;
-}
-.arrow-btn {
-  background: none; border: none; color: #CBA135;
-  font-size: 1.4rem; cursor: pointer; outline: none;
-  transition: transform 0.23s;
-  margin-left: 1em;
-}
-.customweb-card.open .arrow-btn span { transform: rotate(180deg);}
-.customweb-desc {
-  display: none;
-  font-size: 1.11rem;
-  color: #36343a;
-  padding: 1.05em 1.7em 2em 1.7em;
-  border-top: 1px solid #e6d59b40;
-  animation: fadeIn 0.36s;
-  background: transparent;
-  line-height: 1.62;
-}
-.customweb-card.open .customweb-desc { display: block; }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@media (max-width: 700px) {
-  .customweb-card { max-width: 99vw; border-radius: 19px;}
-  .customweb-head { font-size: 1.06rem; padding: 1.09rem 1em; }
-  .customweb-desc { font-size: 0.98rem; padding: 0.8em 0.8em 1.6em 0.8em; }
-}
-
-.about-section {
-  background: #f7f8fb;
-  border-radius: 22px;
-  margin: 0 auto 3.7rem auto;
-  max-width: 880px;
-  box-shadow: 0 4px 22px rgba(203,161,53,0.08);
-  padding: 2.5rem 2.3rem 2.3rem 2.3rem;
-}
-.about-title {
-  color: #142052;
-  font-size: 2.1rem;
-  font-weight: 800;
-  margin-bottom: 1.1rem;
-  text-align: center;
-  letter-spacing: -0.5px;
-}
-.about-desc {
-  color: #222;
-  font-size: 1.17rem;
-  line-height: 1.66;
-  text-align: center;
-  font-weight: 400;
-}
-@media (max-width: 700px) {
-  .about-section { padding: 1.4rem 0.8rem; }
-  .about-title { font-size: 1.22rem; }
-  .about-desc { font-size: 1rem; }
-}
-
-    
   </style>
 </head>
 <body>
@@ -579,229 +548,178 @@
     </div>
   </section>
   <!-- CO DĚLÁME (symboly) -->
-<section class="section what-section" style="background: #F6F7FA;" id="co-delame">
-  <div class="section-title">Co děláme?</div>
-  <div class="what-we-do-grid">
-    <div class="what-row">
-      <div class="service" onclick="toggleDesc(this)">
-        <div class="img-wrap"><img src="images/virtualpro.png" alt="Virtuální prohlídky"></div>
-        <div class="service-name">Virtuální prohlídky</div>
-        <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-        <div class="service-desc">Profesionální 360° prezentace prostoru, která zaujme a prodá.</div>
+  <section class="section what-section" style="background: #F6F7FA;" id="co-delame">
+    <div class="section-title">Co děláme?</div>
+    <div class="what-we-do-grid">
+      <div class="what-row">
+        <div class="service" onclick="toggleDesc(this)">
+          <div class="img-wrap"><img src="images/virtualpro.png" alt="Virtuální prohlídky"></div>
+          <div class="service-name">Virtuální prohlídky</div>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+          <div class="service-desc">Profesionální 360° prezentace prostoru, která zaujme a prodá.</div>
+        </div>
+        <div class="service" onclick="toggleDesc(this)">
+          <div class="img-wrap"><img src="images/marketing.png" alt="Marketing"></div>
+          <div class="service-name">Marketing</div>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+          <div class="service-desc">Online reklama na Google, Meta, správné zacílení na vaše zákazníky.</div>
+        </div>
+        <div class="service" onclick="toggleDesc(this)">
+          <div class="img-wrap"><img src="images/site.png" alt="Content + Sítě"></div>
+          <div class="service-name">Content &amp; Sítě</div>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+          <div class="service-desc">Správa obsahu a sociálních sítí – budování značky a komunit.</div>
+        </div>
       </div>
-      <div class="service" onclick="toggleDesc(this)">
-        <div class="img-wrap"><img src="images/marketing.png" alt="Marketing"></div>
-        <div class="service-name">Marketing</div>
-        <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-        <div class="service-desc">Online reklama na Google, Meta, správné zacílení na vaše zákazníky.</div>
-      </div>
-      <div class="service" onclick="toggleDesc(this)">
-        <div class="img-wrap"><img src="images/site.png" alt="Content + Sítě"></div>
-        <div class="service-name">Content &amp; Sítě</div>
-        <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-        <div class="service-desc">Správa obsahu a sociálních sítí – budování značky a komunit.</div>
-      </div>
-    </div>
-    <div class="what-row">
-      <div class="service" onclick="toggleDesc(this)">
-        <div class="img-wrap"><img src="images/pudorys.png" alt="Půdorysy"></div>
-        <div class="service-name">Půdorysy</div>
-        <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-        <div class="service-desc">Přehledné a profesionální půdorysy nemovitostí.</div>
-      </div>
-      <div class="service" onclick="toggleDesc(this)">
-        <div class="img-wrap"><img src="images/mapy.png" alt="Google Maps"></div>
-        <div class="service-name">Google Maps</div>
-        <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-        <div class="service-desc">Implementace vaší prohlídky přímo do Google Maps.</div>
-      </div>
-      <div class="service" onclick="toggleDesc(this)">
-        <div class="img-wrap"><img src="images/recenze.png" alt="Správa recenzí"></div>
-        <div class="service-name">Správa recenzí</div>
-        <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-        <div class="service-desc">Budování reputace a správa recenzí vašich klientů.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- KOMU NABÍZÍME -->
-  <section class="section packages-section" id="komu-nabizime">
-    <div class="section-title">Komu nabízíme?</div>
-    <div class="target-grid">
-      <div class="target-tile">
-        <img src="images/prodejnajm.png" alt="Prodeje a pronájmy nemovitostí">
-        
-      </div>
-      <div class="target-tile">
-        <img src="images/restaukav.png" alt="Restaurace, kavárny a bary">
-       
-      </div>
-      <div class="target-tile">
-        <img src="images/hotelpenzi.png" alt="Hotely a penziony">
-      
-      </div>
-      <div class="target-tile">
-        <img src="images/obchodysho.png" alt="Obchody a showroomy">
-       
-      </div>
-      <div class="target-tile">
-        <img src="images/fitkowel.png" alt="Fitness a wellness">
-        
-      </div>
-      <div class="target-tile">
-        <img src="images/galeriamuzea.png" alt="Galerie a muzea">
-        
+      <div class="what-row">
+        <div class="service" onclick="toggleDesc(this)">
+          <div class="img-wrap"><img src="images/pudorys.png" alt="Půdorysy"></div>
+          <div class="service-name">Půdorysy</div>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+          <div class="service-desc">Přehledné a profesionální půdorysy nemovitostí.</div>
+        </div>
+        <div class="service" onclick="toggleDesc(this)">
+          <div class="img-wrap"><img src="images/mapy.png" alt="Google Maps"></div>
+          <div class="service-name">Google Maps</div>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+          <div class="service-desc">Implementace vaší prohlídky přímo do Google Maps.</div>
+        </div>
+        <div class="service" onclick="toggleDesc(this)">
+          <div class="img-wrap"><img src="images/recenze.png" alt="Správa recenzí"></div>
+          <div class="service-name">Správa recenzí</div>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+          <div class="service-desc">Budování reputace a správa recenzí vašich klientů.</div>
+        </div>
       </div>
     </div>
   </section>
-
-  <!--balíčky-->
-<section class="section packages-section" style="background: #fff;" id="balicky">
-  <div class="section-title">Balíčky</div>
-  <div class="packages-list">
-    <div class="package" onclick="togglePackage(this)">
-      <div class="package-head">
-        <span class="package-name">START</span>
+  <!-- KOMU NABÍZÍME -->
+  <section class="section" id="komu-nabizime">
+    <div class="section-title">Komu nabízíme?</div>
+    <div class="target-grid">
+      <div class="target-tile"><img src="images/prodejnajm.png" alt="Prodeje a pronájmy nemovitostí"></div>
+      <div class="target-tile"><img src="images/restaukav.png" alt="Restaurace, kavárny a bary"></div>
+      <div class="target-tile"><img src="images/hotelpenzi.png" alt="Hotely a penziony"></div>
+      <div class="target-tile"><img src="images/obchodysho.png" alt="Obchody a showroomy"></div>
+      <div class="target-tile"><img src="images/fitkowel.png" alt="Fitness a wellness"></div>
+      <div class="target-tile"><img src="images/galeriamuzea.png" alt="Galerie a muzea"></div>
+    </div>
+  </section>
+  <!-- BALÍČKY -->
+  <section class="section packages-section" id="balicky">
+    <div class="section-title">Balíčky</div>
+    <div class="packages-list">
+      <div class="package" onclick="togglePackage(this)">
+        <div class="package-head">
+          <span class="package-name">START</span>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+        </div>
+        <div class="package-desc">
+          Ideální pro malé prostory a první zkušenost s virtuální prohlídkou. Získáte jednoduchou 360° prezentaci, která zaujme vaše klienty online.
+        </div>
+      </div>
+      <div class="package" onclick="togglePackage(this)">
+        <div class="package-head">
+          <span class="package-name">PLUS</span>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+        </div>
+        <div class="package-desc">
+          Nejčastější volba – vhodné pro byty, kanceláře a podniky, kteří chtějí maximální poměr cena/výkon a více možností úprav.
+        </div>
+      </div>
+      <div class="package" onclick="togglePackage(this)">
+        <div class="package-head">
+          <span class="package-name">PREMIUM</span>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+        </div>
+        <div class="package-desc">
+          Pro náročné klienty, luxusní nemovitosti nebo větší objekty – obsahuje nadstandardní funkce, precizní úpravy a maximální vizuální efekt.
+        </div>
+      </div>
+      <div class="package" onclick="togglePackage(this)">
+        <div class="package-head">
+          <span class="package-name">CUSTOM</span>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+        </div>
+        <div class="package-desc">
+          Individuální řešení pro vaše specifické potřeby, větší počet prostor nebo speciální požadavky. Vytvoříme vám nabídku přesně na míru.
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- VIRTUÁLNÍ PROHLÍDKA -->
+  <section class="section demo-section" style="background: #f4f6fa;" id="vzorova-prohlidka">
+    <div class="section-title">Vzorová prohlídka houseboatu</div>
+    <div class="demo-desc">
+      Vyzkoušejte si, jak vypadá virtuální prohlídka v praxi – prostor houseboatu v interaktivním 360° zobrazení.
+    </div>
+    <div class="demo-frame-wrap">
+      <!-- <iframe src="TVŮJ_ODKAZ_NA_PROHLÍDKU" frameborder="0" allowfullscreen></iframe> -->
+      <div class="demo-placeholder">
+        <span>Vizuální ukázka zde – <br>pro vložení prohlídky použijte iframe.</span>
+      </div>
+    </div>
+  </section>
+  <!-- REFERENCE -->
+  <section class="section works-section" id="reference">
+    <div class="works-title">Naše odvedená práce &amp; reference</div>
+    <div class="works-desc">
+      Vybrané ukázky realizovaných virtuálních prohlídek a projekty pro naše klienty.<br>
+      <span>Každá prohlídka vznikla na míru konkrétnímu prostoru i potřebám zákazníka.</span>
+    </div>
+    <div class="works-grid">
+      <div class="work-card">
+        <img src="images/fitkowel.png" alt="Fitness & Wellness" />
+        <div class="work-info">
+          <div class="work-name">Fitness & Wellness</div>
+          <div class="work-ref">Virtuální prezentace pro marketing a zvýšení důvěry.</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <img src="images/galeriamuzea.png" alt="Galerie & Muzea" />
+        <div class="work-info">
+          <div class="work-name">Galerie & Muzea</div>
+          <div class="work-ref">Interaktivní online prohlídka s možností popisků a hotspotů.</div>
+        </div>
+      </div>
+      <!-- Přidej další reference stejně -->
+    </div>
+  </section>
+  <!-- WEB NA MÍRU -->
+  <section class="section customweb-section" id="web-na-miru">
+    <div class="customweb-card" onclick="toggleWebDetail(this)">
+      <div class="customweb-head">
+        <span class="customweb-title">Web na míru</span>
         <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
       </div>
-      <div class="package-desc">
-        Ideální pro malé prostory a první zkušenost s virtuální prohlídkou. Získáte jednoduchou 360° prezentaci, která zaujme vaše klienty online.
+      <div class="customweb-desc">
+        Vytvoříme vám originální, rychlý a reprezentativní web, který skutečně zaujme vaši cílovou skupinu.  
+        Žádné šablony, ale <b>design od nuly</b> podle potřeb vašeho oboru, podnikání i osobních preferencí.
+        <ul style="margin-top:1em;margin-bottom:0;">
+          <li>Plně responzivní na všech zařízeních</li>
+          <li>Optimalizace pro Google a rychlé načítání</li>
+          <li>Moderní interaktivní prvky – efekty, animace, galerie</li>
+          <li>Jednoduchá správa obsahu i pro laiky</li>
+          <li>Možnost propojení s virtuální prohlídkou</li>
+        </ul>
+        <div style="margin-top:1em;">Chcete web, který vynikne a přivede vám klienty? Ozvěte se – rádi vám navrhneme řešení přesně na míru.</div>
       </div>
     </div>
-    <div class="package" onclick="togglePackage(this)">
-      <div class="package-head">
-        <span class="package-name">PLUS</span>
-        <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-      </div>
-      <div class="package-desc">
-        Nejčastější volba – vhodné pro byty, kanceláře a podniky, kteří chtějí maximální poměr cena/výkon a více možností úprav.
-      </div>
+  </section>
+  <!-- O NÁS -->
+  <section class="section about-section" id="onas">
+    <div class="about-title">O nás</div>
+    <div class="about-desc">
+      Jsme tým mladých lidí, kteří milují technologie, design a kreativní prezentaci.  
+      Specializujeme se na <b>virtuální prohlídky, moderní weby a vizuální marketing</b>, kde není prostor pro nudu nebo šablony.<br><br>
+      Propojili jsme know-how z oblasti IT, fotografie i marketingu. Každý projekt stavíme s důrazem na <b>detail, funkčnost i vizuální wow efekt</b>.<br>
+      <br>
+      Baví nás hledat nové způsoby, jak vaše podnikání posunout na vyšší úroveň.
     </div>
-    <div class="package" onclick="togglePackage(this)">
-      <div class="package-head">
-        <span class="package-name">PREMIUM</span>
-        <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-      </div>
-      <div class="package-desc">
-        Pro náročné klienty, luxusní nemovitosti nebo větší objekty – obsahuje nadstandardní funkce, precizní úpravy a maximální vizuální efekt.
-      </div>
-    </div>
-    <div class="package" onclick="togglePackage(this)">
-      <div class="package-head">
-        <span class="package-name">CUSTOM</span>
-        <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-      </div>
-      <div class="package-desc">
-        Individuální řešení pro vaše specifické potřeby, větší počet prostor nebo speciální požadavky. Vytvoříme vám nabídku přesně na míru.
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- VIRTUÁLNÍ PROHLÍDKOU -->
- <section class="section demo-section" style="background: #f4f6fa;" id="vzorova-prohlidka">
-  <div class="section-title">Vzorová prohlídka houseboatu</div>
-  <div class="demo-desc">
-    Vyzkoušejte si, jak vypadá virtuální prohlídka v praxi – prostor houseboatu v interaktivním 360° zobrazení.
-  </div>
-  <div class="demo-frame-wrap">
-    <!-- <iframe src="TVŮJ_ODKAZ_NA_PROHLÍDKU" frameborder="0" allowfullscreen></iframe> -->
-    <div class="demo-placeholder">
-      <span>Vizuální ukázka zde – <br>pro vložení prohlídky použijte iframe.</span>
-    </div>
-  </div>
-</section>
-
-  <!--  reference  -->
-<section class="section works-section" id="reference">
-  <div class="works-title">Naše odvedená práce &amp; reference</div>
-  <div class="works-desc">
-    Vybrané ukázky realizovaných virtuálních prohlídek a projekty pro naše klienty.<br>
-    <span>Každá prohlídka vznikla na míru konkrétnímu prostoru i potřebám zákazníka.</span>
-  </div>
-  <div class="works-grid">
-    <div class="work-card">
-      <img src="images/fitkowel.png" alt="Fitness & Wellness" />
-      <div class="work-info">
-        <div class="work-name">Fitness & Wellness</div>
-        <div class="work-ref">Virtuální prezentace pro marketing a zvýšení důvěry.</div>
-      </div>
-    </div>
-    <div class="work-card">
-      <img src="images/galeriamuzea.png" alt="Galerie & Muzea" />
-      <div class="work-info">
-        <div class="work-name">Galerie & Muzea</div>
-        <div class="work-ref">Interaktivní online prohlídka s možností popisků a hotspotů.</div>
-      </div>
-    </div>
-    <!-- Přidej další reference stejně -->
-  </div>
-</section>
-
-<!-- WEB NA MÍRU -->
-<section class="section customweb-section" id="web-na-miru">
-  <div class="customweb-card" onclick="toggleWebDetail(this)">
-    <div class="customweb-head">
-      <span class="customweb-title">Web na míru</span>
-      <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-    </div>
-    <div class="customweb-desc">
-      Vytvoříme vám originální, rychlý a reprezentativní web, který skutečně zaujme vaši cílovou skupinu.  
-      Žádné šablony, ale **design od nuly** podle potřeb vašeho oboru, podnikání i osobních preferencí.
-      <ul style="margin-top:1em;margin-bottom:0;">
-        <li>Plně responzivní na všech zařízeních</li>
-        <li>Optimalizace pro Google a rychlé načítání</li>
-        <li>Moderní interaktivní prvky – efekty, animace, galerie</li>
-        <li>Jednoduchá správa obsahu i pro laiky</li>
-        <li>Možnost propojení s virtuální prohlídkou</li>
-      </ul>
-      <div style="margin-top:1em;">Chcete web, který vynikne a přivede vám klienty? Ozvěte se – rádi vám navrhneme řešení přesně na míru.</div>
-    </div>
-  </div>
-</section>
-
-<!-- O NÁS -->
-<section class="section about-section" id="onas">
-  <div class="about-title">O nás</div>
-  <div class="about-desc">
-    Jsme tým mladých lidí, kteří milují technologie, design a kreativní prezentaci.  
-    Specializujeme se na **virtuální prohlídky, moderní weby a vizuální marketing**, kde není prostor pro nudu nebo šablony.<br><br>
-    Propojili jsme know-how z oblasti IT, fotografie i marketingu. Každý projekt stavíme s důrazem na **detail, funkčnost i vizuální wow efekt**.<br>
-    <br>
-    Baví nás hledat nové způsoby, jak vaše podnikání posunout na vyšší úroveň.
-  </div>
-</section>
-
-  
-  <script>
-  function toggleDesc(el) {
-  el.classList.toggle('open');
-  // Zavři ostatní, pokud chceš pouze jeden otevřený
-  document.querySelectorAll('.service').forEach(s => {
-    if (s !== el) s.classList.remove('open');
-  });
-}
-  </script>
-<script>
-    function toggleWebDetail(el) {
-  el.classList.toggle('open');
-      </script>
-<script>
-  function togglePackage(el) {
-  // Zavře ostatní, otevře kliknutý
-  if (el.classList.contains('open')) {
-    el.classList.remove('open');
-    return;
-  }
-  document.querySelectorAll('.package').forEach(p => p.classList.remove('open'));
-  el.classList.add('open');
-}
-
- 
-</script>
+  </section>
   <!-- KOTVA/ŠIPKA NAHORU -->
   <button id="scrollUp" title="Zpět nahoru" onclick="window.scrollTo({top:0,behavior:'smooth'});">↑</button>
+  <!-- SCRIPTS -->
   <script>
     // Preloader
     window.addEventListener('load', function() {
@@ -809,22 +727,31 @@
         document.getElementById('preloader').classList.add('hidden');
       }, 700);
     });
-    
     // Kotva nahoru
     window.addEventListener('scroll', function() {
       document.getElementById('scrollUp').style.display =
         window.scrollY > 350 ? 'block' : 'none';
     });
+    // CO DĚLÁME - rozklikávání
+    function toggleDesc(el) {
+      el.classList.toggle('open');
+      document.querySelectorAll('.service').forEach(s => {
+        if (s !== el) s.classList.remove('open');
+      });
+    }
+    // BALÍČKY - rozklikávání
+    function togglePackage(el) {
+      if (el.classList.contains('open')) {
+        el.classList.remove('open');
+        return;
+      }
+      document.querySelectorAll('.package').forEach(p => p.classList.remove('open'));
+      el.classList.add('open');
+    }
+    // WEB NA MÍRU - rozklikávání
+    function toggleWebDetail(el) {
+      el.classList.toggle('open');
+    }
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
