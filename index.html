@@ -438,6 +438,100 @@
   .work-card { width: 90vw; }
 }
 
+.customweb-section {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0; /* Navazuje na reference sekci */
+  padding-bottom: 3.5rem;
+}
+.customweb-card {
+  background: linear-gradient(120deg, #fffbe7 0%, #f7f8fb 100%);
+  border-radius: 32px;
+  box-shadow: 0 8px 36px rgba(22,20,45,0.07);
+  border: 2.5px solid #cba13533;
+  max-width: 680px;
+  width: 96vw;
+  margin: 0 auto;
+  padding: 0;
+  transition: box-shadow 0.19s, border-color 0.19s;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+.customweb-card:hover {
+  box-shadow: 0 14px 44px rgba(32,30,68,0.13);
+  border-color: #cba13599;
+}
+.customweb-head {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 1.35rem; font-weight: 800; color: #142052;
+  padding: 1.33rem 1.5rem;
+  letter-spacing: 0.03em;
+  border-radius: 32px 32px 0 0;
+  background: transparent;
+}
+.customweb-title {
+  color: #142052;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+.arrow-btn {
+  background: none; border: none; color: #CBA135;
+  font-size: 1.4rem; cursor: pointer; outline: none;
+  transition: transform 0.23s;
+  margin-left: 1em;
+}
+.customweb-card.open .arrow-btn span { transform: rotate(180deg);}
+.customweb-desc {
+  display: none;
+  font-size: 1.11rem;
+  color: #36343a;
+  padding: 1.05em 1.7em 2em 1.7em;
+  border-top: 1px solid #e6d59b40;
+  animation: fadeIn 0.36s;
+  background: transparent;
+  line-height: 1.62;
+}
+.customweb-card.open .customweb-desc { display: block; }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@media (max-width: 700px) {
+  .customweb-card { max-width: 99vw; border-radius: 19px;}
+  .customweb-head { font-size: 1.06rem; padding: 1.09rem 1em; }
+  .customweb-desc { font-size: 0.98rem; padding: 0.8em 0.8em 1.6em 0.8em; }
+}
+
+.about-section {
+  background: #f7f8fb;
+  border-radius: 22px;
+  margin: 0 auto 3.7rem auto;
+  max-width: 880px;
+  box-shadow: 0 4px 22px rgba(203,161,53,0.08);
+  padding: 2.5rem 2.3rem 2.3rem 2.3rem;
+}
+.about-title {
+  color: #142052;
+  font-size: 2.1rem;
+  font-weight: 800;
+  margin-bottom: 1.1rem;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+.about-desc {
+  color: #222;
+  font-size: 1.17rem;
+  line-height: 1.66;
+  text-align: center;
+  font-weight: 400;
+}
+@media (max-width: 700px) {
+  .about-section { padding: 1.4rem 0.8rem; }
+  .about-title { font-size: 1.22rem; }
+  .about-desc { font-size: 1rem; }
+}
+
+    
   </style>
 </head>
 <body>
@@ -627,6 +721,39 @@
   </div>
 </section>
 
+<!-- WEB NA MÍRU -->
+<section class="section customweb-section" id="web-na-miru">
+  <div class="customweb-card" onclick="toggleWebDetail(this)">
+    <div class="customweb-head">
+      <span class="customweb-title">Web na míru</span>
+      <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+    </div>
+    <div class="customweb-desc">
+      Vytvoříme vám originální, rychlý a reprezentativní web, který skutečně zaujme vaši cílovou skupinu.  
+      Žádné šablony, ale **design od nuly** podle potřeb vašeho oboru, podnikání i osobních preferencí.
+      <ul style="margin-top:1em;margin-bottom:0;">
+        <li>Plně responzivní na všech zařízeních</li>
+        <li>Optimalizace pro Google a rychlé načítání</li>
+        <li>Moderní interaktivní prvky – efekty, animace, galerie</li>
+        <li>Jednoduchá správa obsahu i pro laiky</li>
+        <li>Možnost propojení s virtuální prohlídkou</li>
+      </ul>
+      <div style="margin-top:1em;">Chcete web, který vynikne a přivede vám klienty? Ozvěte se – rádi vám navrhneme řešení přesně na míru.</div>
+    </div>
+  </div>
+</section>
+
+<!-- O NÁS -->
+<section class="section about-section" id="onas">
+  <div class="about-title">O nás</div>
+  <div class="about-desc">
+    Jsme tým mladých lidí, kteří milují technologie, design a kreativní prezentaci.  
+    Specializujeme se na **virtuální prohlídky, moderní weby a vizuální marketing**, kde není prostor pro nudu nebo šablony.<br><br>
+    Propojili jsme know-how z oblasti IT, fotografie i marketingu. Každý projekt stavíme s důrazem na **detail, funkčnost i vizuální wow efekt**.<br>
+    <br>
+    Baví nás hledat nové způsoby, jak vaše podnikání posunout na vyšší úroveň.
+  </div>
+</section>
 
   
   <script>
@@ -638,7 +765,10 @@
   });
 }
   </script>
-  
+  <script>
+    function toggleWebDetail(el) {
+  el.classList.toggle('open');
+      </script>
 <script>
   function togglePackage(el) {
   // Zavře ostatní, otevře kliknutý
@@ -669,6 +799,7 @@
   </script>
 </body>
 </html>
+
 
 
 
