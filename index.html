@@ -686,26 +686,43 @@
     </div>
   </section>
   <!-- WEB NA MÍRU -->
-  <section class="section customweb-section" id="web-na-miru">
-    <div class="customweb-card" onclick="toggleWebDetail(this)">
-      <div class="customweb-head">
-        <span class="customweb-title">Web na míru</span>
-        <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+ <section class="section customweb-section" id="web-na-miru">
+  <div class="customweb-card" style="
+    background: linear-gradient(112deg,#FFF8E2 50%,#f3e0b0 100%);
+    border-radius: 30px;
+    border: 3px solid #cba13580;
+    box-shadow: 0 10px 36px rgba(203,161,53,0.09);
+    max-width: 680px;
+    width: 95vw;
+    margin: 0 auto;
+    padding: 0;
+    transition: box-shadow 0.22s,border-color 0.22s,transform 0.22s;
+    position: relative;
+    overflow: hidden;
+  "
+  onmouseover="this.style.boxShadow='0 22px 56px rgba(203,161,53,0.18)';this.style.transform='translateY(-7px) scale(1.025)';this.style.borderColor='#CBA135'"
+  onmouseout="this.style.boxShadow='0 10px 36px rgba(203,161,53,0.09)';this.style.transform='none';this.style.borderColor='#cba13580'">
+    <div class="customweb-head" style="display:flex;align-items:center;gap:18px;padding:1.38rem 2rem;">
+     
+      <span class="customweb-title" style="color:#CBA135;font-size:1.38rem;font-weight:800;">Web na míru</span>
+    </div>
+    <div class="customweb-desc" style="display:block;padding:1.05em 2.2em 2.2em 2.2em;font-size:1.12rem;line-height:1.65;color:#242021;">
+      <div style="font-weight:700;font-size:1.17rem;margin-bottom:0.7em;color:#142052;">
+        Originální web, který vystřelí vaši prezentaci o úroveň výš.
       </div>
-      <div class="customweb-desc">
-        Vytvoříme vám originální, rychlý a reprezentativní web, který skutečně zaujme vaši cílovou skupinu.  
-        Žádné šablony, ale <b>design od nuly</b> podle potřeb vašeho oboru, podnikání i osobních preferencí.
-        <ul style="margin-top:1em;margin-bottom:0;">
-          <li>Plně responzivní na všech zařízeních</li>
-          <li>Optimalizace pro Google a rychlé načítání</li>
-          <li>Moderní interaktivní prvky – efekty, animace, galerie</li>
-          <li>Jednoduchá správa obsahu i pro laiky</li>
-          <li>Možnost propojení s virtuální prohlídkou</li>
-        </ul>
-        <div style="margin-top:1em;">Chcete web, který vynikne a přivede vám klienty? Ozvěte se – rádi vám navrhneme řešení přesně na míru.</div>
+      Vytvoříme pro vás <b>unikátní design od nuly</b>, žádné šablony. Přizpůsobíme vše vašemu oboru, cílovce i stylu. <br>
+      <ul style="margin:1.1em 0 0.7em 1.2em;padding-left:1.1em;">
+        <li>Moderní vizuál, interakce, plynulé animace</li>
+        <li>Rychlost, SEO, jednoduchá správa obsahu</li>
+        <li>Propojení s virtuální prohlídkou i fotkami</li>
+      </ul>
+      <div style="margin-top:1.15em;font-size:1.07rem;color:#CBA135;font-weight:600;">
+        Chcete web, který zaujme a přivede vám klienty? Napište nám – rádi navrhneme řešení na míru.
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
   <!-- O NÁS -->
   <section class="section about-section" id="onas">
     <div class="about-title">O nás</div>
@@ -794,5 +811,6 @@
 
 </body>
 </html>
+
 
 
