@@ -9,8 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" /> <!-- externí CSS pro přehlednost -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-
   <style>
     :root {
   --primary: #142052;
@@ -740,159 +738,169 @@ section[id] {
   margin: 0 auto;
 }
 
-/* FORMULÁŘ + BOX – JEDNOTNÝ VZHLED */
-.kontakt-form,
-.kontakt-box {
-  background: linear-gradient(90deg, #FFD86A 60%, #fff 100%);
-  border: none;
-  box-shadow: 0 12px 44px rgba(20,32,82,0.16), 0 1.5px 12px rgba(203,161,53,0.05);
-  border-radius: 24px;
-  transition: box-shadow 0.24s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1 1 0;
-  padding: 2.7rem 2.3rem 2rem 2.3rem;
-  margin: 0 0.7rem;
-  gap: 1rem;
-}
-.kontakt-form:hover, .kontakt-box:hover {
-  box-shadow: 0 24px 60px rgba(203,161,53,0.11), 0 2.5px 20px rgba(20,32,82,0.14);
+.kontakt-section {
+  background: #fff;
+  border: none !important;
+  max-width: 880px;
+  margin: 3.5rem auto 2.7rem auto;
+  box-shadow: 0 8px 40px rgba(203,161,53,0.11), 0 1.5px 14px rgba(20,32,82,0.05);
+  border-radius: 28px;
+  padding: 0;
 }
 
-/* FORMULÁŘOVÁ POLE */
-.kontakt-form form {
+.kontakt-card {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0;
+  width: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  background: linear-gradient(112deg, #FFF8E2 75%, #FFD86A 120%);
+  box-shadow: 0 8px 40px rgba(203,161,53,0.11);
+}
+
+.kontakt-left {
+  flex: 1 1 310px;
+  padding: 3.1rem 2.6rem 3.1rem 2.9rem;
+  background: none;
   display: flex;
   flex-direction: column;
-  gap: 0.8em;
-  width: 100%;
+  justify-content: center;
+  min-width: 220px;
+}
+
+.kontakt-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #142052;
+  margin-bottom: 1.09rem;
+  letter-spacing: -1px;
+}
+
+.kontakt-desc {
+  color: #444;
+  font-size: 1.13rem;
+  line-height: 1.6;
+  margin-bottom: 1.45rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+.kontakt-mailwrap, .kontakt-telwrap {
+  display: flex;
+  align-items: center;
+  gap: 0.68em;
+  margin-bottom: 0.35em;
+}
+
+.kontakt-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.kontakt-email, .kontakt-tel {
+  font-size: 1.13rem;
+  font-weight: 700;
+  color: #142052;
+  text-decoration: none;
+  background: #fff;
+  border-radius: 11px;
+  padding: 0.51em 1.3em;
+  box-shadow: 0 2px 10px #FFD86A19;
+  border: 1.5px solid #FFD86A;
+  transition: background 0.19s, color 0.18s, transform 0.17s;
+}
+.kontakt-email:hover, .kontakt-tel:hover {
+  background: linear-gradient(90deg, #FFD86A 70%, #CBA135 100%);
+  color: #142052;
+  transform: scale(1.06);
+}
+
+.kontakt-form {
+  flex: 1 1 340px;
+  background: #fff;
+  padding: 3.1rem 2.8rem 3.1rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.09em;
+  border-left: 1.7px solid #FFD86A77;
+  min-width: 260px;
 }
 
 .kontakt-form input,
 .kontakt-form textarea {
   background: #fff;
   border: 1.5px solid #cba13555;
-  border-radius: 11px;
-  padding: 0.93em 1em;
-  font-size: 1.05rem;
+  border-radius: 13px;
+  padding: 0.98em 1.1em;
+  font-size: 1.09rem;
   font-family: inherit;
-  box-shadow: 0 2px 10px rgba(203,161,53,0.08);
+  box-shadow: 0 2px 10px rgba(203,161,53,0.07);
   color: #142052;
-  margin-bottom: 0.13em;
+  margin-bottom: 0.09em;
   transition: border-color 0.16s, box-shadow 0.16s, background 0.19s;
   resize: vertical;
 }
 .kontakt-form input:focus,
 .kontakt-form textarea:focus {
   border-color: #FFD86A;
-  box-shadow: 0 4px 16px rgba(203,161,53,0.14);
+  box-shadow: 0 4px 18px #FFD86A19;
   outline: none;
   background: #fffef8;
 }
 .kontakt-form textarea {
-  min-height: 94px;
+  min-height: 100px;
   max-width: 100%;
 }
-
 .kontakt-form input::placeholder,
 .kontakt-form textarea::placeholder {
   color: #b3a570;
   opacity: 1;
   font-style: italic;
 }
-
 .kontakt-form button {
   width: 100%;
   background: linear-gradient(90deg, #FFD86A 65%, #CBA135 100%);
-  color: #142052;               /* VŽDY tmavý text */
+  color: #142052;
   font-weight: 800;
   border: none;
-  border-radius: 11px;
+  border-radius: 13px;
   padding: 1.09rem 0;
-  font-size: 1.16rem;
+  font-size: 1.15rem;
   cursor: pointer;
-  box-shadow: 0 2px 14px rgba(203,161,53,0.14);
+  box-shadow: 0 2px 14px #FFD86A23;
   letter-spacing: 0.01em;
-  transition: background 0.17s, transform 0.16s;
+  transition: background 0.19s, transform 0.17s;
 }
 .kontakt-form button:hover {
   background: linear-gradient(90deg, #CBA135 80%, #FFD86A 100%);
-  color: #142052;              /* POZOR: ZŮSTÁVÁ tmavý text */
-  transform: scale(1.07);
-  box-shadow: 0 6px 22px #FFD86A77;
-}
-
-.kontakt-email {
-  display: inline-block;
-  color: #142052;        /* VŽDY bílý text */
-  background: linear-gradient(90deg, #CBA135 65%, #FFD86A 100%);
-  font-weight: 700;
-  text-decoration: none;
-  font-size: 1.13rem;
-  padding: 0.75em 1.7em;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(203,161,53,0.09);
-  transition: background 0.18s, transform 0.13s;
-  margin-bottom: 0.18em;
-}
-.kontakt-email:hover {
-  background: linear-gradient(90deg, #FFD86A 80%, #CBA135 100%);
-  color: #142052;       /* ZŮSTÁVÁ bílý text */
-  transform: scale(1.07);
-}
-
-.kontakt-tel {
-  color: #47548B;
-  font-weight: 700;
-  font-size: 1.09rem;
-  padding: 0.67em 1.5em;
-  border-radius: 10px;
-  letter-spacing: 0.02em;
-  background: #fff;
-  border: 1px solid #FFD86A;
-  box-shadow: 0 1px 6px rgba(203,161,53,0.06);
-}
-
-.kontakt-box-desc {
-  text-align: center;
-  color: #47548B;
-  font-size: 1.07rem;
-  margin-bottom: 0.7em;
-  font-weight: 500;
-  margin-top: 0.15em;
-  line-height: 1.55;
-  max-width: 220px;
+  color: #fff;
+  transform: scale(1.04);
+  box-shadow: 0 8px 26px #FFD86A55;
 }
 
 /* Responsivita */
 @media (max-width: 900px) {
-  .kontakt-form,
-  .kontakt-box {
-    border-radius: 17px;
-    padding: 1.6rem 0.7rem 1.1rem 0.7rem;
-    margin: 0.6rem 0;
-    border: none;
-  }
-  .kontakt-flex {
-    flex-direction: column;
-    gap: 1.1rem;
-    max-width: 99vw;
-  }
+  .kontakt-section { max-width: 99vw; border-radius: 19px;}
+  .kontakt-card { flex-direction: column; border-radius: 19px;}
+  .kontakt-left, .kontakt-form { padding: 2.2rem 1.2rem;}
+  .kontakt-form { border-left: none; border-top: 1.7px solid #FFD86A55;}
 }
+
 @media (max-width: 600px) {
-  .kontakt-form,
-  .kontakt-box {
-    padding: 1.1rem 0.3rem;
-    border-radius: 12px;
-    margin: 0.4rem 0;
-    border: none;
-  }
-  .kontakt-section {
-    padding: 1.3rem 0.2rem 1.0rem 0.2rem;
-    border-radius: 12px;
-  }
+  .kontakt-section { border-radius: 13px; }
+  .kontakt-card { border-radius: 13px;}
+  .kontakt-left, .kontakt-form { padding: 1.08rem 0.3rem;}
+  .kontakt-form button { font-size: 1rem; }
 }
+
 
 
 /* ŠIPKA NAHORU */
@@ -1072,78 +1080,9 @@ section[id] {
   .bubble { display: none; }
 }
 
-
-    .background-shape {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(20px);
-  opacity: 0.18;
-  pointer-events: none;
-  z-index: 1;
-  transition: transform 0.8s cubic-bezier(.6,.2,.21,1);
-}
-.shape1 {
-  width: 270px; height: 180px; top: 6vw; left: 5vw; background: #FFD86A;
-  animation: shapeMove 24s infinite alternate;
-}
-.shape2 {
-  width: 190px; height: 160px; top: 18vw; right: 7vw; background: #CBA135;
-  animation: shapeMove2 28s infinite alternate;
-}
-@keyframes shapeMove {
-  0% {transform: translateY(0);}
-  100% {transform: translateY(-33px);}
-}
-@keyframes shapeMove2 {
-  0% {transform: translateY(0);}
-  100% {transform: translateY(23px);}
-}
-
-  
-
-    #mobile-cta {
-  display:none;
-}
-@media (max-width: 800px) {
-  #mobile-cta {
-    display: block;
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: linear-gradient(90deg,#FFD86A 65%,#CBA135 100%);
-    z-index: 10001;
-    padding: 0.4em 0;
-    box-shadow: 0 -4px 24px #FFD86A33;
-    text-align:center;
-  }
-  #mobile-cta button {
-    border: none;
-    background: none;
-    color: #142052;
-    font-size: 1.21rem;
-    font-weight: 800;
-    padding: 1.05em 2.6em;
-    border-radius: 17px;
-    background: #fff;
-    margin: 0 auto;
-    box-shadow: 0 4px 18px #CBA13514;
-    transition: background 0.16s, color 0.16s, transform 0.14s;
-  }
-  #mobile-cta button:hover {
-    background: #FFD86A;
-    color: #CBA135;
-    transform: scale(1.07);
-  }
-}
-
   </style>
 </head>
 <body>
-  <div id="mobile-cta">
-  <button onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Rychlá poptávka</button>
-</div>
-
- 
-
   <!-- PRELOADER -->
   <div id="preloader">
   <!-- ZAČÁTEK SVG -->
@@ -1183,10 +1122,7 @@ section[id] {
     <div class="bubble bubble4"></div>
     <div class="bubble bubble5"></div>
     <div class="bubble bubble6"></div>   
-    <div class="background-shape shape1"></div>
-    <div class="background-shape shape2"></div>
-    
-    <div class="hero-content">
+    <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
       <h1>Virtuální prohlídky, které prodávají</h1>
       <p>Zaujměte klienty během 30 sekund ještě dříve, než vejdou.</p>
       <p>Od 5 000 Kč.</p>
@@ -1196,24 +1132,24 @@ section[id] {
     </div>
   </section>
   <!-- CO DĚLÁME (symboly) -->
-  <section class="full-bg what-section" id="co-delame" style="background:#fff;">
+  <section class="full-bg what-section" id="co-delame" style="background:#fff;" data-aos="fade-up" data-aos-delay="300">
     <div class="section-inner">
       <div class="section-title">Co děláme?</div>
       <div class="what-we-do-grid">
         <div class="what-row">
-          <div class="service" onclick="toggleDesc(this)">
+          <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="200">
             <div class="img-wrap"><img src="images/virtualpro.png" alt="Virtuální prohlídky"></div>
             <div class="service-name">Virtuální prohlídky</div>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
             <div class="service-desc">Profesionální 360° prezentace prostoru, která zaujme a prodá.</div>
           </div>
-          <div class="service" onclick="toggleDesc(this)">
+          <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="400">
             <div class="img-wrap"><img src="images/marketing.png" alt="Marketing"></div>
             <div class="service-name">Marketing</div>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
             <div class="service-desc">Online reklama na Google, Meta, správné zacílení na vaše zákazníky.</div>
           </div>
-          <div class="service" onclick="toggleDesc(this)">
+          <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="600">
             <div class="img-wrap"><img src="images/site.png" alt="Content + Sítě"></div>
             <div class="service-name">Content &amp; Sítě</div>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
@@ -1221,19 +1157,19 @@ section[id] {
           </div>
         </div>
         <div class="what-row">
-          <div class="service" onclick="toggleDesc(this)">
+          <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="800">
             <div class="img-wrap"><img src="images/pudorys.png" alt="Půdorysy"></div>
             <div class="service-name">Půdorysy</div>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
             <div class="service-desc">Přehledné a profesionální půdorysy nemovitostí.</div>
           </div>
-          <div class="service" onclick="toggleDesc(this)">
+          <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="1000">
             <div class="img-wrap"><img src="images/mapy.png" alt="Google Maps"></div>
             <div class="service-name">Google Maps</div>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
             <div class="service-desc">Implementace vaší prohlídky přímo do Google Maps.</div>
           </div>
-          <div class="service" onclick="toggleDesc(this)">
+          <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="1200">
             <div class="img-wrap"><img src="images/recenze.png" alt="Správa recenzí"></div>
             <div class="service-name">Správa recenzí</div>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
@@ -1244,28 +1180,28 @@ section[id] {
     </div>
   </section>
   <!-- KOMU NABÍZÍME -->
-  <section class="full-bg what-section" id="komu-nabizime" style="background:#fff;">
+  <section class="full-bg what-section" id="komu-nabizime" style="background:#fff;" data-aos="zoom-in" data-aos-delay="200">
     <div class="section-inner">
       <div class="section-title">Komu nabízíme?</div>
       <div class="target-grid">
-        <div class="target-tile"><img src="images/prodejnajm.png" alt="Prodeje a pronájmy nemovitostí"></div>
-        <div class="target-tile"><img src="images/restaukav.png" alt="Restaurace, kavárny a bary"></div>
-        <div class="target-tile"><img src="images/hotelpenzi.png" alt="Hotely a penziony"></div>
-        <div class="target-tile"><img src="images/obchodysho.png" alt="Obchody a showroomy"></div>
-        <div class="target-tile"><img src="images/fitkowel.png" alt="Fitness a wellness"></div>
-        <div class="target-tile"><img src="images/galeriamuzea.png" alt="Galerie a muzea"></div>
+        <div class="target-tile"><img src="images/prodejnajm.png" alt="Prodeje a pronájmy nemovitostí" data-aos="fade-up" data-aos-delay="200"></div>
+        <div class="target-tile"><img src="images/restaukav.png" alt="Restaurace, kavárny a bary" data-aos="fade-up" data-aos-delay="400"></div>
+        <div class="target-tile"><img src="images/hotelpenzi.png" alt="Hotely a penziony" data-aos="fade-up" data-aos-delay="600"></div>
+        <div class="target-tile"><img src="images/obchodysho.png" alt="Obchody a showroomy" data-aos="fade-up" data-aos-delay="800"></div>
+        <div class="target-tile"><img src="images/fitkowel.png" alt="Fitness a wellness" data-aos="fade-up" data-aos-delay="1000"></div>
+        <div class="target-tile"><img src="images/galeriamuzea.png" alt="Galerie a muzea" data-aos="fade-up" data-aos-delay="1200"></div>
       </div>
     </div>
   </section>
   <!-- BALÍČKY – UŽ SVĚTLÉ -->
-  <section class="full-bg packages-section" id="balicky" style="background:#fff;">
+  <section class="full-bg packages-section" id="balicky" style="background:#fff;" data-aos="zoom-in" data-aos-delay="400">
     <div class="section-inner">
-      <div class="section-title">Balíčky</div>
+      <div class="section-title" data-aos="zoom-in" data-aos-delay="200">Balíčky</div>
       <div class="packages-list">
         <!-- ... obsah balíčků beze změny ... -->
         <div class="package" onclick="togglePackage(this)">
           <div class="package-head">
-            <span class="package-name">START</span>
+            <span class="package-name" data-aos="fade-right" data-aos-delay="200">START</span>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
           </div>
           <div class="package-desc">
@@ -1274,7 +1210,7 @@ section[id] {
         </div>
         <div class="package" onclick="togglePackage(this)">
           <div class="package-head">
-            <span class="package-name">PLUS</span>
+            <span class="package-name" data-aos="fade-left" data-aos-delay="300">PLUS</span>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
           </div>
           <div class="package-desc">
@@ -1283,7 +1219,7 @@ section[id] {
         </div>
         <div class="package" onclick="togglePackage(this)">
           <div class="package-head">
-            <span class="package-name">PREMIUM</span>
+            <span class="package-name" data-aos="fade-right" data-aos-delay="400">PREMIUM</span>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
           </div>
           <div class="package-desc">
@@ -1292,7 +1228,7 @@ section[id] {
         </div>
         <div class="package" onclick="togglePackage(this)">
           <div class="package-head">
-            <span class="package-name">CUSTOM</span>
+            <span class="package-name" data-aos="fade-left" data-aos-delay="500">CUSTOM</span>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
           </div>
           <div class="package-desc">
@@ -1303,7 +1239,7 @@ section[id] {
     </div>
   </section>
   <!-- DEMO sekce – SVĚTLÁ -->
-  <section class="full-bg demo-section" id="vzorova-prohlidka" style="background:#f9f9fb;">
+  <section class="full-bg demo-section" id="vzorova-prohlidka" style="background:#f9f9fb;" data-aos="fade-left" data-aos-delay="200">
     <div class="section-inner">
       <div class="section-title">Vzorová prohlídka houseboatu</div>
       <div class="demo-desc">
@@ -1317,7 +1253,7 @@ section[id] {
     </div>
   </section>
   <!-- REFERENCE sekce – SVĚTLÁ -->
-  <section class="full-bg works-section" id="reference" style="background:#f7f8fb;">
+  <section class="full-bg works-section" id="reference" style="background:#f7f8fb;" data-aos="fade-right" data-aos-delay="200">
     <div class="section-inner">
       <div class="works-title">Naše odvedená práce &amp; reference</div>
       <div class="works-desc">
@@ -1356,7 +1292,7 @@ section[id] {
 
 
   <!-- O NÁS -->
-  <section class="section about-section" id="onas">
+  <section class="section about-section" id="onas" data-aos="zoom-in" data-aos-delay="200">
     <div class="about-title">O nás</div>
     <div class="about-desc">
       Jsme tým mladých lidí, kteří milují technologie, design a kreativní prezentaci.  
@@ -1367,32 +1303,38 @@ section[id] {
     </div>
   </section>
   <!-- KONTAKT -->
-<section class="section kontakt-section" id="kontakt" style="background: #fff !important; border: none;">
-  <h2 style="color:#000; text-align:center; font-size:2.18rem; font-weight:800; margin-bottom:0.45rem; letter-spacing:-1px;">Kontakt</h2>
-  <h3 style="color:#FFD86A; text-align:center; font-size:1.28rem; margin-bottom:1.13rem; font-weight:700; letter-spacing:0.02em;">Ozvěte se – odpovíme do 24 hodin</h3>
-  <div class="kontakt-flex">
-    <div class="kontakt-form">
-      <form action="https://formspree.io/f/mjkorjrk" method="POST">
-        <input type="text" name="name" placeholder="Vaše jméno" required>
-        <input type="email" name="email" placeholder="Váš e-mail" required>
-        <input type="tel" name="phone" placeholder="Telefon (nepovinné)">
-        <textarea name="message" rows="4" placeholder="Vaše zpráva..." required></textarea>
-        <button type="submit">Odeslat</button>
-      </form>
-    </div>
-    <div class="kontakt-box">
-      <div class="kontakt-box-desc">
-        Nebojte se zeptat na cokoliv – jsme tu pro vás!
+<section class="section kontakt-section" id="kontakt">
+  <div class="kontakt-card">
+    <div class="kontakt-left">
+      <div class="kontakt-title">Kontaktujte nás</div>
+      <div class="kontakt-desc">
+        Jsme tu pro vás každý pracovní den.<br>
+        Rádi odpovíme do 24 hodin.<br>
+        <span class="kontakt-mailwrap">
+          <svg class="kontakt-icon" viewBox="0 0 24 24" width="22"><path fill="#CBA135" d="M2 4a2 2 0 012-2h16a2 2 0 012 2v16a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2 .5V20h16V4.5L12 13 4 4.5zm1.24-.91L12 10.58l6.76-6.99A.5.5 0 0018.5 3h-13a.5.5 0 00-.26.09z"></path></svg>
+          <a class="kontakt-email" href="mailto:info@showspace.cz">info@showspace.cz</a>
+        </span>
+        <span class="kontakt-telwrap">
+          <svg class="kontakt-icon" viewBox="0 0 24 24" width="22"><path fill="#CBA135" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1.004 1.004 0 011.01-.24c1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1A17 17 0 013 5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.59a1.004 1.004 0 01-.25 1.01l-2.2 2.19z"/></svg>
+          <a class="kontakt-tel" href="tel:+420777111222">+420 777 111 222</a>
+        </span>
       </div>
-      <a class="kontakt-email" href="mailto:info@showspace.cz">info@showspace.cz</a>
-      <span class="kontakt-tel">+420 777 111 222</span>
     </div>
+    <form class="kontakt-form" action="https://formspree.io/f/mjkorjrk" method="POST" autocomplete="on">
+      <input type="text" name="name" placeholder="Vaše jméno" required>
+      <input type="email" name="email" placeholder="Váš e-mail" required>
+      <input type="tel" name="phone" placeholder="Telefon (nepovinné)">
+      <textarea name="message" rows="4" placeholder="Vaše zpráva..." required></textarea>
+      <button type="submit">Odeslat</button>
+    </form>
   </div>
 </section>
 
 
+
+
   <!-- KOTVA/ŠIPKA NAHORU -->
-  <button id="scrollUp" title="Zpět nahoru" onclick="window.scrollTo({top:0,behavior:'smooth'});">↑</button>
+  <button id="scrollUp" title="Zpět nahoru" onclick="window.scrollTo({top:0,behavior:'smooth'});">^</button>
 
   <!-- FOOTER -->
   <footer style="background: linear-gradient(120deg,#FFF8E2 0%,#FFD86A 80%,#CBA135 100%); border-top: 2px solid #CBA135; padding:2.2rem 0 1.2rem 0; margin-top:3rem;">
@@ -1415,30 +1357,7 @@ section[id] {
   </footer>
 
   <!-- SCRIPTS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <script>
-window.addEventListener('DOMContentLoaded', () => {
-  gsap.utils.toArray('.section-inner, .about-section, .customweb-card, .hero-content, .service, .package, .target-tile, .work-card').forEach((el, i) => {
-    gsap.from(el, {
-      opacity: 0,
-      y: 60,
-      duration: 1.1,
-      ease: 'expo.out',
-      delay: 0.08 + i * 0.11,
-      scrollTrigger: {
-        trigger: el,
-        start: "top 80%",
-        toggleActions: "play none none none"
-      }
-    });
-  });
-});
-</script>
-
- 
-  
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     // Preloader
     window.addEventListener('load', function() {
@@ -1542,36 +1461,9 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  new Swiper('.works-grid', {
-    slidesPerView: 1.1,
-    spaceBetween: 22,
-    loop: true,
-    breakpoints: {
-      700: { slidesPerView: 2.3 },
-      1100: { slidesPerView: 3.2 }
-    },
-    pagination: { el: '.swiper-pagination', clickable: true }
-  });
-});
-</script>
-<div id="form-toast" style="display:none; position:fixed; top:30px; right:30px; background:#FFD86A; color:#142052; padding:1.2em 2.2em; border-radius:12px; box-shadow:0 8px 40px #CBA13544; font-weight:700; z-index:999999; font-size:1.09rem;">Děkujeme za zprávu! Ozveme se do 24 hodin.</div>
-<script>document.querySelector('.kontakt-form form').addEventListener('submit', function(e){
-  setTimeout(function(){
-    const toast = document.getElementById('form-toast');
-    toast.style.display = 'block';
-    gsap.fromTo(toast, {y:-30,opacity:0}, {y:0,opacity:1,duration:0.8,ease:"expo.out"});
-    setTimeout(()=>toast.style.display='none', 3800);
-  }, 50);
-});
-</script>
+  
 </body>
 </html>
-
-
-
 
 
 
