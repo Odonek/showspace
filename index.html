@@ -1101,64 +1101,6 @@ section[id] {
   .bubble { display: none; }
 }
 
-#cta-sticky {
-  display: none;  /* výchozí stav */
-  position: fixed;
-  top: 23px;     /* posuň podle vzhledu, případně 10px */
-  right: 2vw;
-  z-index: 10050;
-  background: linear-gradient(90deg, #FFD86A 65%, #CBA135 100%);
-  color: #142052;
-  font-weight: 800;
-  border: none;
-  border-radius: 13px;
-  padding: 1.05em 2.2em;
-  font-size: 1.07rem;
-  box-shadow: 0 4px 22px rgba(203,161,53,0.12);
-  cursor: pointer;
-  transition: background 0.19s, color 0.18s, transform 0.17s, opacity 0.4s, box-shadow 0.22s;
-  opacity: 0.97;
-}
-
-#cta-sticky.show {
-  display: block;
-  animation: stickyCtaIn 0.5s cubic-bezier(.61,.1,.51,1.3);
-}
-
-#cta-sticky:hover,
-#cta-sticky:focus {
-  background: linear-gradient(90deg, #CBA135 80%, #FFD86A 100%);
-  color: #fff;
-  transform: scale(1.06);
-  box-shadow: 0 8px 26px #FFD86A55;
-  outline: none;
-}
-
-#cta-sticky:active {
-  filter: brightness(0.97);
-  transform: scale(0.98);
-}
-
-@keyframes stickyCtaIn {
-  from { opacity:0; transform: translateY(-30px) scale(0.88);}
-  to   { opacity:1; transform: none;}
-}
-
-/* Responsivita - na mobilu raději vpravo dole */
-@media (max-width:700px) {
-  #cta-sticky {
-    display: none !important;
-    top: unset;
-    bottom: 18px;
-    right: 14px;
-    left: unset;
-    border-radius: 15px;
-    font-size: 1.03rem;
-    padding: 0.95em 1.8em;
-  }
-}
-
-    
   </style>
 </head>
 <body>
@@ -1193,9 +1135,6 @@ section[id] {
       <a href="mailto:info@showspace.cz">info@showspace.cz</a>
     </div>
   </div>
-   <button id="cta-sticky" class="cta-sticky-btn" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">
-  Chci nezávaznou konzultaci
-</button>
   <!-- HERO SEKCE -->
   <section class="hero" id="top">
     <div class="bubble bubble1"></div>
@@ -1775,33 +1714,9 @@ gsap.utils.toArray('footer a').forEach((el, i) => {
   el.addEventListener('mouseleave', () => gsap.to(el, { scale: 1, rotate: 0, duration:0.21 }));
 });
 </script>
-<script>
-(function() {
-  const cta = document.getElementById('cta-sticky');
-  const contact = document.querySelector('.contact');
-  let shown = false;
-  window.addEventListener('scroll', function() {
-    // Nepouštěj na malých displejích vůbec!
-    if (window.innerWidth < 700) return;
-    if (shown) return;
-    const coDelame = document.getElementById('co-delame');
-    if (!coDelame) return;
-    const rect = coDelame.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      cta.classList.add('show');
-      if (contact) contact.style.display = "none";
-      shown = true;
-    }
-  });
-})();
-
-
-
-</script>
   
 </body>
 </html>
-
 
 
 
