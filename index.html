@@ -7,8 +7,11 @@
   <meta name="description" content="Virtuální prohlídky, marketing, obsah, půdorysy, správa sítí a recenzí pro reality a podniky." />
   <link rel="icon" type="image/png" href="images/favicon2.png" sizes="64x64" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" /> <!-- externí CSS pro přehlednost -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
   <style>
     :root {
   --primary: #142052;
@@ -1362,7 +1365,7 @@ section[id] {
   </footer>
 
   <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  
   <script>
     // Preloader
     window.addEventListener('load', function() {
@@ -1465,10 +1468,200 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+  
+<script>
+// Registrace ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
 
+// === HERO SEKCE ===
+// Rozdělení headline na slova (split na span)
+const heroH1 = document.querySelector('.hero-content h1');
+if (heroH1) {
+  heroH1.innerHTML = heroH1.textContent.split(' ').map(w => `<span>${w}</span>`).join(' ');
+  gsap.from('.hero-content h1 span', {
+    opacity: 0,
+    y: 80,
+    scale: 0.85,
+    stagger: 0.10,
+    duration: 1.1,
+    ease: "back.out(1.7)",
+    delay: 0.3
+  });
+}
+
+// Hero CTA tlačítko animace při vstupu a při hoveru
+gsap.from('.hero .cta-btn', {
+  opacity: 0, y: 70, duration: 0.9, delay: 0.7, ease: "power3.out"
+});
+document.querySelectorAll('.cta-btn').forEach(btn => {
+  btn.addEventListener('mouseenter', () => {
+    gsap.to(btn, { scale: 1.08, boxShadow: "0 8px 32px rgba(203,161,53,0.20)", duration: 0.18 });
+  });
+  btn.addEventListener('mouseleave', () => {
+    gsap.to(btn, { scale: 1, boxShadow: "0 4px 22px rgba(0,0,0,0.10)", duration: 0.22 });
+  });
+});
+
+// Bubliny - parallax myší
+if(window.innerWidth > 700) {
+  document.addEventListener("mousemove", function(e) {
+    const x = (e.clientX / window.innerWidth - 0.5);
+    const y = (e.clientY / window.innerHeight - 0.5);
+    gsap.to(".bubble1", {x: x*35, y: y*28, duration: 0.7, ease: "power2.out"});
+    gsap.to(".bubble2", {x: -x*23, y: y*17, duration: 0.6, ease: "power2.out"});
+    gsap.to(".bubble3", {x: x*19, y: -y*12, duration: 0.7, ease: "power2.out"});
+    gsap.to(".bubble4", {x: -x*20, y: -y*10, duration: 0.6, ease: "power2.out"});
+    gsap.to(".bubble5", {x: x*27, y: y*22, duration: 0.75, ease: "power2.out"});
+    gsap.to(".bubble6", {x: -x*17, y: -y*8, duration: 0.7, ease: "power2.out"});
+  });
+}
+
+// === SEKCE "CO DĚLÁME" (služby) ===
+gsap.utils.toArray('.service').forEach((el, i) => {
+  gsap.from(el, {
+    opacity: 0,
+    y: 90,
+    scale: 0.93,
+    duration: 1,
+    delay: 0.08*i,
+    scrollTrigger: { trigger: el, start: "top 88%" }
+  });
+  // Hover animace obrázku
+  const img = el.querySelector('.img-wrap img');
+  if (img) {
+    img.addEventListener('mouseenter', () => gsap.to(img, { scale: 1.08, duration: 0.18 }));
+    img.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.22 }));
+  }
+});
+
+// Rozklikávání s bouncem
+window.toggleDesc = function(el) {
+  el.classList.toggle('open');
+  document.querySelectorAll('.service').forEach(s => {
+    if (s !== el) s.classList.remove('open');
+  });
+  gsap.fromTo(el, {scale: 0.98}, {scale: 1.035, duration: 0.33, ease: "back.out(1.7)"});
+}
+
+// === KOMU NABÍZÍME ===
+gsap.utils.toArray('.target-tile').forEach((el, i) => {
+  gsap.from(el, {
+    opacity: 0,
+    x: (i%2===0) ? -70 : 70,
+    scale: 0.94,
+    duration: 1,
+    delay: 0.07*i,
+    scrollTrigger: { trigger: el, start: "top 92%" }
+  });
+  el.addEventListener('mouseenter', () => gsap.to(el, { scale: 1.04, boxShadow:"0 8px 28px #FFD86A55", duration:0.19 }));
+  el.addEventListener('mouseleave', () => gsap.to(el, { scale: 1, boxShadow:"0 2px 16px rgba(203,161,53,0.08)", duration:0.21 }));
+});
+
+// === BALÍČKY ===
+gsap.utils.toArray('.package').forEach((el, i) => {
+  gsap.from(el, {
+    opacity: 0,
+    y: 100,
+    x: (i%2===0) ? -50 : 50,
+    scale: 0.92,
+    duration: 1,
+    delay: 0.1*i,
+    scrollTrigger: { trigger: el, start: "top 94%" }
+  });
+});
+window.togglePackage = function(el) {
+  if (el.classList.contains('open')) {
+    el.classList.remove('open');
+    return;
+  }
+  document.querySelectorAll('.package').forEach(p => p.classList.remove('open'));
+  el.classList.add('open');
+  gsap.fromTo(el, {scale: 0.97}, {scale: 1.03, duration: 0.31, ease: "back.out(1.7)"});
+}
+
+// === DEMO sekce ===
+gsap.from('.demo-section .section-inner', {
+  opacity: 0,
+  y: 80,
+  duration: 1,
+  scrollTrigger: { trigger: '.demo-section', start: "top 95%" }
+});
+
+// === REFERENCE ===
+gsap.utils.toArray('.work-card').forEach((el, i) => {
+  gsap.from(el, {
+    opacity: 0,
+    x: 80,
+    scale: 0.93,
+    duration: 1,
+    delay: 0.09*i,
+    scrollTrigger: { trigger: el, start: "top 97%" }
+  });
+  el.addEventListener('mouseenter', () => gsap.to(el, { scale: 1.06, boxShadow:"0 18px 48px rgba(203,161,53,0.18)", duration:0.16 }));
+  el.addEventListener('mouseleave', () => gsap.to(el, { scale: 1, boxShadow:"0 8px 36px rgba(203,161,53,0.09)", duration:0.19 }));
+});
+
+// === WEB NA MÍRU ===
+gsap.from('.customweb-card', {
+  opacity: 0,
+  y: 70,
+  scale: 0.92,
+  duration: 1,
+  scrollTrigger: { trigger: '.customweb-card', start: "top 93%" }
+});
+
+// === O NÁS ===
+gsap.from('.about-title', {
+  opacity: 0,
+  y: -60,
+  scale: 0.91,
+  duration: 1,
+  scrollTrigger: { trigger: '.about-section', start: "top 94%" }
+});
+gsap.from('.about-desc', {
+  opacity: 0,
+  x: -60,
+  duration: 1,
+  scrollTrigger: { trigger: '.about-desc', start: "top 96%" }
+});
+
+// === KONTAKT ===
+gsap.from('.kontakt-left', {
+  opacity: 0,
+  x: 70,
+  duration: 0.9,
+  scrollTrigger: { trigger: '.kontakt-section', start: "top 94%" }
+});
+gsap.from('.kontakt-form', {
+  opacity: 0,
+  x: -70,
+  duration: 0.9,
+  scrollTrigger: { trigger: '.kontakt-section', start: "top 94%" }
+});
+// Inputs animace
+document.querySelectorAll('.kontakt-form input, .kontakt-form textarea').forEach(inp => {
+  inp.addEventListener('focus', () => gsap.to(inp, {scale:1.03, boxShadow:"0 4px 18px #FFD86A19", duration:0.17}));
+  inp.addEventListener('blur', () => gsap.to(inp, {scale:1, boxShadow:"0 2px 10px rgba(203,161,53,0.07)", duration:0.21}));
+});
+
+// === FOOTER (ikony sítí) ===
+gsap.utils.toArray('footer a').forEach((el, i) => {
+  gsap.from(el, {
+    opacity: 0,
+    y: 38,
+    scale: 0.9,
+    duration: 0.7,
+    delay: 0.12*i,
+    scrollTrigger: { trigger: el, start: "top 97%" }
+  });
+  el.addEventListener('mouseenter', () => gsap.to(el, { scale: 1.13, rotate: -8, duration:0.15 }));
+  el.addEventListener('mouseleave', () => gsap.to(el, { scale: 1, rotate: 0, duration:0.21 }));
+});
+</script>
   
 </body>
 </html>
+
 
 
 
