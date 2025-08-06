@@ -52,7 +52,6 @@ body {
 section[id] {
   scroll-margin-top: 110px; /* aby odkazy fungovaly pod sticky navbar */
 }
-/* NAVBAR */
 .navbar {
   display: flex;
   align-items: center;
@@ -64,30 +63,18 @@ section[id] {
   top: 0; left: 0; right: 0;
   z-index: 10;
 }
-.navbar .logo img { height: 68px; margin-left: 0.5vw; }
-.navbar .contact { text-align: right; margin-right: 2vw; }
-.navbar .contact span {
-  display: block;
-  font-weight: 600;
-  font-size: 1.12rem;
-  color: var(--primary);
-}
-.navbar .contact a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
-  margin-left: 1.5em;
-  font-size: 1.08rem;
+
+.logo img {
+  height: 68px;
 }
 
-/* MENU */
 .nav-menu {
-  flex: 1 1 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 2.2rem;
   position: relative;
 }
+
 .nav-menu ul {
   display: flex;
   gap: 2.1rem;
@@ -95,18 +82,24 @@ section[id] {
   padding: 0;
   margin: 0;
 }
+
 .nav-menu li { display: block; }
+
 .nav-menu a {
   text-decoration: none;
   color: var(--primary);
   font-weight: 600;
   font-size: 1.09rem;
   padding: 0.35em 0.14em;
-  transition: color 0.15s;
   position: relative;
-  overflow: hidden;
+  transition: color 0.15s;
 }
-.nav-menu a:hover, .nav-menu a:focus { color: var(--accent); }
+
+.nav-menu a:hover,
+.nav-menu a:focus {
+  color: var(--accent);
+}
+
 .nav-menu a::after {
   content: '';
   display: block;
@@ -118,10 +111,12 @@ section[id] {
   transition: transform 0.28s cubic-bezier(.87,.07,.43,.97);
   transform-origin: right;
 }
-.nav-menu a:hover::after, .nav-menu a:focus::after {
+.nav-menu a:hover::after,
+.nav-menu a:focus::after {
   transform: scaleX(1);
   transform-origin: left;
 }
+
 #hamburger {
   display: none;
   background: none;
@@ -145,24 +140,78 @@ section[id] {
   transition: 0.28s;
 }
 
-/* RESPONSIVE NAV */
-@media (max-width: 980px) {
+/* Kontakt a CTA (vedle menu na desktopu, pod menu na mobilu) */
+.nav-extras {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  margin-left: 2rem;
+}
+.contact {
+  text-align: right;
+}
+.contact span {
+  display: block;
+  font-weight: 600;
+  font-size: 1.12rem;
+  color: var(--primary);
+}
+.contact a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 1.5em;
+  font-size: 1.08rem;
+}
+.cta-navbar {
+  background: linear-gradient(90deg, #FFD86A 65%, #CBA135 100%);
+  color: #142052;
+  font-weight: 800;
+  border: none;
+  border-radius: 13px;
+  padding: 0.72em 1.9em;
+  font-size: 1.09rem;
+  box-shadow: 0 2px 12px rgba(203,161,53,0.11);
+  cursor: pointer;
+  transition: box-shadow 0.16s, transform 0.16s;
+}
+
+.cta-navbar:hover {
+  background: linear-gradient(90deg, #CBA135 80%, #FFD86A 100%);
+  color: #fff;
+  transform: scale(1.07);
+  box-shadow: 0 12px 36px #FFD86A33;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .logo img { height: 48px; }
   .nav-menu ul { gap: 1.1rem; }
-  .navbar .logo img { height: 40px; }
+  .nav-extras { gap: 0.8rem; margin-left: 0.7rem; }
 }
-@media (max-width: 800px) {
-  .nav-menu ul { gap: 0.8rem; }
-  .navbar { padding: 0.6rem 2vw 0.5rem 2vw;}
+
+@media (max-width: 900px) {
+  .navbar { flex-direction: column; align-items: flex-start; padding: 0.6rem 2vw 0.5rem 2vw;}
+  .nav-menu { flex-direction: column; align-items: flex-end; width: 100%; gap: 0.6rem; }
+  .nav-extras { flex-direction: column; align-items: flex-end; width: 100%; margin-left: 0; gap: 0.25rem;}
+  .contact, .cta-navbar { width: 100%; text-align: right; margin: 0; }
+  .logo img { height: 38px; }
 }
+
 @media (max-width: 700px) {
-  .nav-menu { flex: unset; width: 100%; justify-content: flex-end; }
+  .nav-menu {
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    gap: 0.2rem;
+  }
   .nav-menu ul {
     flex-direction: column;
     position: fixed;
     top: 0; right: 0;
     height: 100vh;
     width: 70vw;
-    max-width: 300px;
+    max-width: 320px;
     background: #fff;
     box-shadow: -6px 0 24px rgba(203,161,53,0.14);
     padding: 5.7rem 1.7rem 1.7rem 1.7rem;
@@ -174,7 +223,6 @@ section[id] {
   }
   .nav-menu ul.open { transform: translateX(0%); }
   #hamburger { display: flex; position: relative; z-index: 10002; }
-  .navbar .contact { position: relative; z-index: 20; }
   .nav-menu li { width: 100%; }
   .nav-menu a {
     font-size: 1.19rem;
@@ -183,15 +231,31 @@ section[id] {
     display: block;
     padding: 0.7em 0;
   }
-  #hamburger.open span:nth-child(1) {
-    transform: translateY(7.5px) rotate(45deg) scaleX(1.13);
-    background: #CBA135;
+  .nav-extras {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.1rem;
+    margin-top: 0.7rem;
   }
-  #hamburger.open span:nth-child(2) { opacity: 0; }
-  #hamburger.open span:nth-child(3) {
-    transform: translateY(-7.5px) rotate(-45deg) scaleX(1.13);
-    background: #CBA135;
+  .contact, .cta-navbar {
+    width: 100%;
+    text-align: right;
+    margin: 0;
+    font-size: 1rem;
   }
+  .logo img { height: 34px; }
+}
+
+/* Hamburger icon animation */
+#hamburger.open span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg) scaleX(1.13);
+  background: #CBA135;
+}
+#hamburger.open span:nth-child(2) { opacity: 0; }
+#hamburger.open span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg) scaleX(1.13);
+  background: #CBA135;
 }
 
 /* HERO SEKCE */
@@ -1171,30 +1235,33 @@ section[id] {
   <!-- KONEC SVG -->
 </div>
     <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="/"><img src="images/logonejvic.png" alt="ShowSpace logo"></a>
-    </div>
-    <nav class="nav-menu">
-      <ul>
-        <li><a href="#co-delame">Služby</a></li>
-        <li><a href="#balicky">Balíčky</a></li>
-        <li><a href="#reference">Reference</a></li>
-        <li><a href="#web-na-miru">Web na míru</a></li>
-        <li><a href="#onas">O nás</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
-      </ul>
-      <button id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-   <div class="contact" id="contact-info">
-  <span>+420 777 111 222</span>
-  <a href="mailto:info@showspace.cz">info@showspace.cz</a>
-</div>
-<button class="cta-btn cta-navbar" id="cta-navbar-btn" style="display:none;margin-right:2vw;">Chci nezávaznou konzultaci</button>
-
+<div class="navbar">
+  <div class="logo">
+    <a href="/"><img src="images/logonejvic.png" alt="ShowSpace logo"></a>
   </div>
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="#co-delame">Služby</a></li>
+      <li><a href="#balicky">Balíčky</a></li>
+      <li><a href="#reference">Reference</a></li>
+      <li><a href="#web-na-miru">Web na míru</a></li>
+      <li><a href="#onas">O nás</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <button id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-extras">
+      <div class="contact" id="contact-info">
+        <span>+420 777 111 222</span>
+        <a href="mailto:info@showspace.cz">info@showspace.cz</a>
+      </div>
+      <button class="cta-btn cta-navbar" id="cta-navbar-btn">Chci nezávaznou konzultaci</button>
+    </div>
+  </nav>
+</div>
+
+
   <!-- HERO SEKCE -->
   <section class="hero" id="top">
     <div class="bubble bubble1"></div>
@@ -1810,6 +1877,7 @@ gsap.utils.toArray('footer a').forEach((el, i) => {
   
 </body>
 </html>
+
 
 
 
