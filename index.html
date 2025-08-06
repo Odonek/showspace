@@ -421,7 +421,244 @@ function toggleDesc(el) {
 }
 </style>
 
+  <section id="balicky" style="background:linear-gradient(115deg, #181C3A 0%, #232D5B 100%); padding:4rem 0;">
+  <div style="max-width:660px;margin:0 auto;">
+    <h2 style="color:#FFD86A;font-size:2.2rem;font-weight:800;text-align:center;margin-bottom:2.6rem;">
+      Balíčky
+    </h2>
+    <div class="packages-list">
+      <div class="package" onclick="togglePackage(this)">
+        <div class="package-head">
+          <span class="package-name">START</span>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+        </div>
+        <div class="package-desc">
+          Ideální pro malé prostory a první zkušenost s virtuální prohlídkou. Jednoduchá 360° prezentace, která zaujme klienty online.
+        </div>
+      </div>
+      <div class="package" onclick="togglePackage(this)">
+        <div class="package-head">
+          <span class="package-name">PLUS</span>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+        </div>
+        <div class="package-desc">
+          Nejčastější volba – vhodné pro byty, kanceláře a podniky, které chtějí maximum za rozumnou cenu a více možností úprav.
+        </div>
+      </div>
+      <div class="package" onclick="togglePackage(this)">
+        <div class="package-head">
+          <span class="package-name">PREMIUM</span>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+        </div>
+        <div class="package-desc">
+          Pro náročné klienty, luxusní nemovitosti nebo větší objekty – nadstandardní funkce, precizní úpravy a maximální vizuální efekt.
+        </div>
+      </div>
+      <div class="package" onclick="togglePackage(this)">
+        <div class="package-head">
+          <span class="package-name">CUSTOM</span>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+        </div>
+        <div class="package-desc">
+          Individuální řešení na míru, větší počet prostor nebo speciální požadavky. Připravíme nabídku přesně podle vašich potřeb.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<style>
+.packages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.package {
+  background: #fff;
+  color: #181C3A;
+  border-radius: 20px;
+  box-shadow: 0 8px 36px rgba(22,20,45,0.09);
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  transition: box-shadow 0.18s, transform 0.18s;
+  position: relative;
+  border: 1.7px solid #FFD86A10;
+  cursor: pointer;
+  z-index: 1;
+}
+.package-head {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 1.24rem; font-weight: 700; color: #142052;
+  padding: 1.12rem 1.35rem 1.12rem 1.3rem;
+  letter-spacing: 0.09em;
+  background: transparent;
+  border-radius: 20px 20px 0 0;
+  transition: background 0.15s;
+}
+.package.open .package-head { background: #ede9d6; }
+.arrow-btn {
+  background: none; border: none; color: #CBA135;
+  font-size: 1.3rem; cursor: pointer; outline: none;
+  transition: transform 0.23s;
+  margin-left: 1em;
+}
+.package.open .arrow-btn span { transform: rotate(180deg); display: inline-block;}
+.package-desc {
+  display: none;
+  padding: 1rem 1.4rem 1.4rem 1.4rem;
+  font-size: 1.07rem;
+  color: #444;
+  animation: fadeIn 0.33s;
+  line-height: 1.52;
+  background: #f9f9fb;
+  border-top: 1px solid #ececec;
+}
+.package.open .package-desc { display: block; }
+.package.open {
+  box-shadow: 0 14px 48px rgba(32,30,68,0.15);
+  z-index: 2;
+  transform: scale(1.03);
+}
+@media (max-width: 600px) {
+  .packages-list { max-width: 99vw; }
+  .package-head { font-size: 1.03rem; padding: 1.08rem 0.95rem; }
+  .package-desc { font-size: 0.99rem; padding: 0.8rem 1rem 1.1rem 1rem;}
+}
+</style>
+
+<script>
+function togglePackage(el) {
+  if (el.classList.contains('open')) {
+    el.classList.remove('open');
+    return;
+  }
+  document.querySelectorAll('.package').forEach(p => p.classList.remove('open'));
+  el.classList.add('open');
+}
+</script>
+
+<section id="vzorova-prohlidka" style="background:linear-gradient(115deg,#181C3A 0%,#232D5B 100%); padding:4rem 0;">
+  <div style="max-width:900px; margin:0 auto;">
+    <h2 style="color:#FFD86A;font-size:2.2rem;font-weight:800;text-align:center;margin-bottom:2.6rem;">
+      Vzorová prohlídka houseboatu
+    </h2>
+    <div style="color:#fff; text-align:center; font-size:1.17rem; font-weight:400; margin-bottom:2.2rem;">
+      Vyzkoušejte si, jak vypadá virtuální prohlídka v praxi – prostor houseboatu v interaktivním 360° zobrazení.
+    </div>
+    <div class="demo-frame-wrap" style="background:#fff; border-radius:16px; box-shadow:0 2px 12px rgba(203,161,53,0.06); padding: 0; display: flex;align-items: center;justify-content: center; min-height:330px;">
+      <!-- Zde nahraď odkazem na tvou prohlídku -->
+      <!-- <iframe src="ODKAZ_NA_TVOJI_PROHLIDKU" frameborder="0" allowfullscreen style="width:100%;height:380px;border-radius:16px;background:#fff;"></iframe> -->
+      <div class="demo-placeholder" style="width:100%;height:380px;display:flex;align-items:center;justify-content:center;font-size:1.18rem;color:#888;background:#fff;font-style:italic;text-align:center;">
+        Zde bude vizuální ukázka virtuální prohlídky
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reference" style="background:linear-gradient(115deg,#181C3A 0%,#232D5B 100%); padding:4rem 0;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <h2 style="color:#FFD86A;font-size:2.2rem;font-weight:800;text-align:center;margin-bottom:2.3rem;">
+      Naše odvedená práce & reference
+    </h2>
+    <div style="color:#e4eaf6;text-align:center;font-size:1.17rem;margin-bottom:2.1rem;">
+      Vybrané ukázky realizovaných virtuálních prohlídek a projektů pro klienty.<br>
+      Každá prohlídka vznikla na míru konkrétnímu prostoru i potřebám zákazníka.
+    </div>
+    <div class="works-grid">
+      <div class="work-card">
+        <img src="images/fitkowel.png" alt="Fitness & Wellness" />
+        <div class="work-info">
+          <div class="work-name">Fitness & Wellness</div>
+          <div class="work-ref">Virtuální prezentace pro marketing a zvýšení důvěry klientů.</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <img src="images/galeriamuzea.png" alt="Galerie & Muzea" />
+        <div class="work-info">
+          <div class="work-name">Galerie & Muzea</div>
+          <div class="work-ref">Interaktivní online prohlídka s možností popisků a hotspotů.</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <img src="images/restaukav.png" alt="Restaurace a bary" />
+        <div class="work-info">
+          <div class="work-name">Restaurace, kavárny a bary</div>
+          <div class="work-ref">Zvýšení rezervací díky vizuální prezentaci prostoru online.</div>
+        </div>
+      </div>
+      <div class="work-card">
+        <img src="images/hotelpenzi.png" alt="Hotely a penziony" />
+        <div class="work-info">
+          <div class="work-name">Hotely a penziony</div>
+          <div class="work-ref">Lepší obsazenost díky 360° prohlídkám a propojení s Google.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.works-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.work-card {
+  background: #fff;
+  color: #181C3A;
+  border-radius: 20px;
+  box-shadow: 0 8px 36px rgba(22,20,45,0.09);
+  overflow: hidden;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.23s, box-shadow 0.23s;
+  position: relative;
+  border: 1.7px solid #FFD86A10;
+}
+.work-card:hover {
+  transform: translateY(-7px) scale(1.04);
+  box-shadow: 0 18px 48px rgba(32,30,68,0.16);
+}
+.work-card img {
+  width: 100%;
+  height: 185px;
+  object-fit: cover;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  background: #F6F7FA;
+}
+.work-info {
+  padding: 1.1rem 1.1rem 1.4rem 1.1rem;
+  text-align: center;
+}
+.work-name {
+  font-weight: 800;
+  font-size: 1.14rem;
+  color: #142052;
+  margin-bottom: 0.6em;
+}
+.work-ref {
+  font-size: 0.99rem;
+  color: #444e6e;
+}
+@media (max-width: 1000px) {
+  .works-grid { flex-direction: column; align-items: center; }
+  .work-card { width: 92vw; }
+}
+</style>
+
+  
   <script>
     // Preloader
     window.addEventListener('load', function() {
@@ -432,6 +669,7 @@ function toggleDesc(el) {
   </script>
 </body>
 </html>
+
 
 
 
