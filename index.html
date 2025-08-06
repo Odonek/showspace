@@ -1101,6 +1101,27 @@ section[id] {
   .bubble { display: none; }
 }
 
+#contact-info, #cta-navbar-btn {
+  transition: opacity 0.17s;
+}
+#cta-navbar-btn {
+  opacity: 0;
+  font-size: 1.09rem;
+  padding: 0.72em 1.9em;
+  border-radius: 13px;
+  margin-left: 1em;
+  background: linear-gradient(90deg, #FFD86A 65%, #CBA135 100%);
+  color: #142052;
+  font-weight: 800;
+  border: none;
+  box-shadow: 0 2px 12px rgba(203,161,53,0.11);
+  cursor: pointer;
+}
+@media (max-width: 800px) {
+  #cta-navbar-btn { font-size: 1.04rem; padding: 0.6em 1.2em;}
+}
+
+    
   </style>
 </head>
 <body>
@@ -1130,10 +1151,12 @@ section[id] {
         <span></span><span></span><span></span>
       </button>
     </nav>
-    <div class="contact">
-      <span>+420 777 111 222</span>
-      <a href="mailto:info@showspace.cz">info@showspace.cz</a>
-    </div>
+   <div class="contact" id="contact-info">
+  <span>+420 777 111 222</span>
+  <a href="mailto:info@showspace.cz">info@showspace.cz</a>
+</div>
+<button class="cta-btn cta-navbar" id="cta-navbar-btn" style="display:none;margin-right:2vw;">Chci nezávaznou konzultaci</button>
+
   </div>
   <!-- HERO SEKCE -->
   <section class="hero" id="top">
@@ -1714,9 +1737,50 @@ gsap.utils.toArray('footer a').forEach((el, i) => {
   el.addEventListener('mouseleave', () => gsap.to(el, { scale: 1, rotate: 0, duration:0.21 }));
 });
 </script>
+
+<script>
+const ctaNavbarBtn = document.getElementById('cta-navbar-btn');
+const contactInfo = document.getElementById('contact-info');
+const coDelameSection = document.getElementById('co-delame');
+
+// Kliknutí na nové CTA – scroll na kontakt
+ctaNavbarBtn.addEventListener('click', function() {
+  document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});
+});
+
+// Funkce pro kontrolu, zda je "co-delame" vidět
+function isSectionInView(section) {
+  const rect = section.getBoundingClientRect();
+  // min. půlka sekce vidět
+  return rect.top < window.innerHeight*0.6 && rect.bottom > window.innerHeight*0.2;
+}
+
+window.addEventListener('scroll', function() {
+  if(isSectionInView(coDelameSection)) {
+    // zobraz CTA, schovej kontakty (s animací)
+    contactInfo.style.opacity = 0;
+    setTimeout(() => {
+      contactInfo.style.display = 'none';
+      ctaNavbarBtn.style.display = 'inline-block';
+      setTimeout(()=>{ctaNavbarBtn.style.opacity=1},10);
+    }, 160);
+  } else {
+    // zobraz kontakty, schovej CTA (s animací)
+    ctaNavbarBtn.style.opacity = 0;
+    setTimeout(() => {
+      ctaNavbarBtn.style.display = 'none';
+      contactInfo.style.display = 'block';
+      setTimeout(()=>{contactInfo.style.opacity=1},10);
+    }, 160);
+  }
+});
+
+  
+</script>
   
 </body>
 </html>
+
 
 
 
