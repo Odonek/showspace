@@ -731,7 +731,7 @@ section[id] {
 .kontakt-form,
 .kontakt-box {
   background: linear-gradient(90deg, #FFD86A 60%, #fff 100%);
-  border: 2.7px solid #FFD86A;
+  border: none;
   box-shadow: 0 12px 44px rgba(20,32,82,0.16), 0 1.5px 12px rgba(203,161,53,0.05);
   border-radius: 24px;
   transition: box-shadow 0.24s;
@@ -791,23 +791,25 @@ section[id] {
 
 .kontakt-form button {
   width: 100%;
-  background: linear-gradient(90deg, #FFD86A 60%, #CBA135 100%);
-  color: #142052;
-  font-weight: 700;
+  background: linear-gradient(90deg, #47548B 65%, #142052 100%);
+  color: #FFD86A;
+  font-weight: 800;
   border: none;
-  border-radius: 10px;
-  padding: 1.07rem 0;
+  border-radius: 11px;
+  padding: 1.09rem 0;
   font-size: 1.16rem;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(203,161,53,0.11);
-  transition: background 0.18s, transform 0.15s;
+  box-shadow: 0 2px 14px rgba(20,32,82,0.14);
   letter-spacing: 0.01em;
+  transition: background 0.17s, color 0.14s, transform 0.16s;
 }
 .kontakt-form button:hover {
-  background: linear-gradient(90deg, #CBA135 70%, #FFD86A 100%);
-  color: #142052;
-  transform: scale(1.05);
+  background: linear-gradient(90deg, #142052 70%, #47548B 100%);
+  color: #FFD86A;
+  transform: scale(1.07);
+  box-shadow: 0 6px 22px #47548B33;
 }
+
 
 /* KONTAKT BOX (vpravo) */
 .kontakt-email {
@@ -859,6 +861,7 @@ section[id] {
     border-radius: 17px;
     padding: 1.6rem 0.7rem 1.1rem 0.7rem;
     margin: 0.6rem 0;
+    border: none;
   }
   .kontakt-flex {
     flex-direction: column;
@@ -872,6 +875,7 @@ section[id] {
     padding: 1.1rem 0.3rem;
     border-radius: 12px;
     margin: 0.4rem 0;
+    border: none;
   }
   .kontakt-section {
     padding: 1.3rem 0.2rem 1.0rem 0.2rem;
@@ -1404,6 +1408,7 @@ section[id] {
   </script>
 </body>
 </html>
+
 
 
 
