@@ -6,14 +6,16 @@
   <title>ShowSpace.cz – Virtuální prohlídky</title>
   <meta name="description" content="Virtuální prohlídky, marketing, obsah, půdorysy, správa sítí a recenzí pro reality a podniky." />
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6GXGVQV909"></script>
-<script>
+<!-- Google tag (gtag.js) - blokováno do souhlasu s cookies -->
+<script type="text/plain" data-cookiecategory="analytics" id="gtagScript"
+  src="https://www.googletagmanager.com/gtag/js?id=G-6GXGVQV909"></script>
+<script id="gtagInit" type="text/plain" data-cookiecategory="analytics">
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-6GXGVQV909');
 </script>
+
 
   <link rel="icon" type="image/png" href="images/favicon2.png" sizes="64x64" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -1790,9 +1792,51 @@ stickyBtn.addEventListener('click', function() {
 
   
   </script>
+
+
+
+
+<!-- COOKIE LIŠTA - minimal GDPR compliance -->
+<div id="cookieBar" style="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#fffbe7;border-top:2px solid #FFD86A;padding:1.1em 1.6em;box-shadow:0 -2px 24px #FFD86A33;display:flex;justify-content:center;align-items:center;gap:1em;">
+  <span style="color:#143b74;font-size:1.11rem;">Používáme cookies pro měření návštěvnosti (Google Analytics). <a href="/gdpr" style="color:#cba135;text-decoration:underline;">Více informací</a>.</span>
+  <button id="cookieAccept" style="background:#CBA135;color:#fff;font-weight:700;border:none;border-radius:10px;padding:0.7em 1.6em;cursor:pointer;box-shadow:0 2px 8px #FFD86A22;">Souhlasím</button>
+  <button id="cookieDecline" style="background:#eee;color:#143b74;font-weight:700;border:none;border-radius:10px;padding:0.7em 1.6em;cursor:pointer;box-shadow:0 2px 8px #FFD86A12;">Odmítám</button>
+</div>
+<script>
+  // helper na spuštění blokovaných skriptů
+  function runConsentScripts(){
+    document.querySelectorAll('script[type="text/plain"][data-cookiecategory="analytics"]').forEach(s=>{
+      if(!s.getAttribute('data-activated')){
+        const clone = document.createElement('script');
+        Array.from(s.attributes).forEach(attr=>{if(attr.name!=='type'&&attr.name!=='data-cookiecategory'){clone.setAttribute(attr.name,attr.value)}});
+        clone.text = s.text;
+        s.parentNode.insertBefore(clone,s);
+        s.setAttribute('data-activated','true');
+      }
+    });
+  }
+  // načti z localStorage
+  if(localStorage.getItem('cookieConsent')==='accepted'){
+    runConsentScripts();
+    document.getElementById('cookieBar').style.display='none';
+  }else if(localStorage.getItem('cookieConsent')==='declined'){
+    document.getElementById('cookieBar').style.display='none';
+  }
+  document.getElementById('cookieAccept').onclick=function(){
+    localStorage.setItem('cookieConsent','accepted');
+    runConsentScripts();
+    document.getElementById('cookieBar').style.display='none';
+  };
+  document.getElementById('cookieDecline').onclick=function(){
+    localStorage.setItem('cookieConsent','declined');
+    document.getElementById('cookieBar').style.display='none';
+  };
+</script>
+
   
 </body>
 </html>
+
 
 
 
