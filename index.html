@@ -354,6 +354,73 @@ function toggleDesc(el) {
 }
 </script>
 
+  <section id="komu-nabizime" style="background:#fff; padding: 4rem 0;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <h2 style="color:#142052;font-size:2.4rem;font-weight:800;text-align:center;margin-bottom:2.8rem;letter-spacing:-0.5px;">
+      Komu nabízíme?
+    </h2>
+    <div class="komu-grid">
+      <div class="komu-tile"><img src="images/fitkowel.png" alt="Fitness a wellness"></div>
+      <div class="komu-tile"><img src="images/galeriamuzea.png" alt="Galerie a muzea"></div>
+      <div class="komu-tile"><img src="images/hotelpenzi.png" alt="Hotely a penziony"></div>
+      <div class="komu-tile"><img src="images/obchodysho.png" alt="Obchody a showroomy"></div>
+      <div class="komu-tile"><img src="images/prodejnajm.png" alt="Prodeje a pronájmy nemovitostí"></div>
+      <div class="komu-tile"><img src="images/restaukav.png" alt="Restaurace, kavárny a bary"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+.komu-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1100px;
+}
+.komu-tile {
+  position: relative;
+  width: 360px;
+  height: 210px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 2px 16px rgba(203,161,53,0.08);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+.komu-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.95);
+  transition: filter 0.2s;
+}
+.komu-tile:hover {
+  box-shadow: 0 8px 32px rgba(203,161,53,0.13);
+  transform: scale(1.04);
+}
+.komu-tile:hover img {
+  filter: brightness(1);
+}
+@media (max-width: 1200px) {
+  .komu-tile { width: 30vw; min-width: 220px; max-width: 380px; height: 20vw; max-height: 220px;}
+}
+@media (max-width: 900px) {
+  .komu-grid { gap: 1.3rem; }
+  .komu-tile { width: 42vw; min-width: 150px; height: 24vw; max-height: 180px; }
+}
+@media (max-width: 700px) {
+  .komu-grid { flex-direction: column; gap: 1.1rem;}
+  .komu-tile { width: 94vw; min-width: 100px; height: 36vw; max-height: 150px;}
+}
+</style>
+
 
   <script>
     // Preloader
@@ -365,6 +432,7 @@ function toggleDesc(el) {
   </script>
 </body>
 </html>
+
 
 
 
