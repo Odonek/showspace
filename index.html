@@ -1099,23 +1099,7 @@ section[id] {
   100% {transform: translateY(23px);}
 }
 
-    #custom-cursor {
-  position: fixed;
-  z-index: 99999;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  border: 2.5px solid #CBA135;
-  background: rgba(255,216,106,0.13);
-  pointer-events: none;
-  transform: translate(-50%,-50%);
-  transition: background .16s, border-color .16s, transform .09s cubic-bezier(.6,.2,.21,1);
-  mix-blend-mode: multiply;
-}
-body.cursor-hover #custom-cursor {
-  background: #CBA135;
-  border-color: #142052;
-  transform: scale(1.4) translate(-50%,-50%);
-}
+  
 
     #mobile-cta {
   display:none;
@@ -1158,7 +1142,7 @@ body.cursor-hover #custom-cursor {
   <button onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Rychlá poptávka</button>
 </div>
 
-  <div id="custom-cursor"></div>
+ 
 
   <!-- PRELOADER -->
   <div id="preloader">
@@ -1453,19 +1437,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-  <script>
-const cursor = document.getElementById('custom-cursor');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-});
-document.querySelectorAll('a, button, .service, .package').forEach(el => {
-  el.addEventListener('mouseenter', ()=>document.body.classList.add('cursor-hover'));
-  el.addEventListener('mouseleave', ()=>document.body.classList.remove('cursor-hover'));
-});
-</script>
-
-
+ 
   
   <script>
     // Preloader
@@ -1597,6 +1569,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
