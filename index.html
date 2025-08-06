@@ -1334,7 +1334,12 @@ section[id] {
 
 
   <!-- KOTVA/ŠIPKA NAHORU -->
-  <button id="scrollUp" title="Zpět nahoru" onclick="window.scrollTo({top:0,behavior:'smooth'});">^</button>
+ <button id="scrollUp" title="Zpět nahoru" onclick="window.scrollTo({top:0,behavior:'smooth'});">
+  <svg width="32" height="32" viewBox="0 0 32 32" style="display:block;margin:auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 20L16 12L24 20" stroke="currentColor" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
 
   <!-- FOOTER -->
   <footer style="background: linear-gradient(120deg,#FFF8E2 0%,#FFD86A 80%,#CBA135 100%); border-top: 2px solid #CBA135; padding:2.2rem 0 1.2rem 0; margin-top:3rem;">
@@ -1464,6 +1469,7 @@ window.addEventListener('DOMContentLoaded', function() {
   
 </body>
 </html>
+
 
 
 
