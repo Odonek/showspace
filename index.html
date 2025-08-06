@@ -9,6 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" /> <!-- externí CSS pro přehlednost -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
   <style>
     :root {
   --primary: #142052;
@@ -1070,9 +1072,94 @@ section[id] {
   .bubble { display: none; }
 }
 
+
+    .background-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.8s cubic-bezier(.6,.2,.21,1);
+}
+.shape1 {
+  width: 270px; height: 180px; top: 6vw; left: 5vw; background: #FFD86A;
+  animation: shapeMove 24s infinite alternate;
+}
+.shape2 {
+  width: 190px; height: 160px; top: 18vw; right: 7vw; background: #CBA135;
+  animation: shapeMove2 28s infinite alternate;
+}
+@keyframes shapeMove {
+  0% {transform: translateY(0);}
+  100% {transform: translateY(-33px);}
+}
+@keyframes shapeMove2 {
+  0% {transform: translateY(0);}
+  100% {transform: translateY(23px);}
+}
+
+    #custom-cursor {
+  position: fixed;
+  z-index: 99999;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2.5px solid #CBA135;
+  background: rgba(255,216,106,0.13);
+  pointer-events: none;
+  transform: translate(-50%,-50%);
+  transition: background .16s, border-color .16s, transform .09s cubic-bezier(.6,.2,.21,1);
+  mix-blend-mode: multiply;
+}
+body.cursor-hover #custom-cursor {
+  background: #CBA135;
+  border-color: #142052;
+  transform: scale(1.4) translate(-50%,-50%);
+}
+
+    #mobile-cta {
+  display:none;
+}
+@media (max-width: 800px) {
+  #mobile-cta {
+    display: block;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(90deg,#FFD86A 65%,#CBA135 100%);
+    z-index: 10001;
+    padding: 0.4em 0;
+    box-shadow: 0 -4px 24px #FFD86A33;
+    text-align:center;
+  }
+  #mobile-cta button {
+    border: none;
+    background: none;
+    color: #142052;
+    font-size: 1.21rem;
+    font-weight: 800;
+    padding: 1.05em 2.6em;
+    border-radius: 17px;
+    background: #fff;
+    margin: 0 auto;
+    box-shadow: 0 4px 18px #CBA13514;
+    transition: background 0.16s, color 0.16s, transform 0.14s;
+  }
+  #mobile-cta button:hover {
+    background: #FFD86A;
+    color: #CBA135;
+    transform: scale(1.07);
+  }
+}
+
   </style>
 </head>
 <body>
+  <div id="mobile-cta">
+  <button onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Rychlá poptávka</button>
+</div>
+
+  <div id="custom-cursor"></div>
+
   <!-- PRELOADER -->
   <div id="preloader">
   <!-- ZAČÁTEK SVG -->
@@ -1112,7 +1199,10 @@ section[id] {
     <div class="bubble bubble4"></div>
     <div class="bubble bubble5"></div>
     <div class="bubble bubble6"></div>   
-    <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+    <div class="background-shape shape1"></div>
+    <div class="background-shape shape2"></div>
+    
+    <div class="hero-content">
       <h1>Virtuální prohlídky, které prodávají</h1>
       <p>Zaujměte klienty během 30 sekund ještě dříve, než vejdou.</p>
       <p>Od 5 000 Kč.</p>
@@ -1122,24 +1212,24 @@ section[id] {
     </div>
   </section>
   <!-- CO DĚLÁME (symboly) -->
-  <section class="full-bg what-section" id="co-delame" style="background:#fff;" data-aos="fade-up" data-aos-delay="300">
+  <section class="full-bg what-section" id="co-delame" style="background:#fff;">
     <div class="section-inner">
       <div class="section-title">Co děláme?</div>
       <div class="what-we-do-grid">
         <div class="what-row">
-          <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="200">
+          <div class="service" onclick="toggleDesc(this)">
             <div class="img-wrap"><img src="images/virtualpro.png" alt="Virtuální prohlídky"></div>
             <div class="service-name">Virtuální prohlídky</div>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
             <div class="service-desc">Profesionální 360° prezentace prostoru, která zaujme a prodá.</div>
           </div>
-          <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="400">
+          <div class="service" onclick="toggleDesc(this)">
             <div class="img-wrap"><img src="images/marketing.png" alt="Marketing"></div>
             <div class="service-name">Marketing</div>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
             <div class="service-desc">Online reklama na Google, Meta, správné zacílení na vaše zákazníky.</div>
           </div>
-          <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="600">
+          <div class="service" onclick="toggleDesc(this)">
             <div class="img-wrap"><img src="images/site.png" alt="Content + Sítě"></div>
             <div class="service-name">Content &amp; Sítě</div>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
@@ -1147,19 +1237,19 @@ section[id] {
           </div>
         </div>
         <div class="what-row">
-          <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="800">
+          <div class="service" onclick="toggleDesc(this)">
             <div class="img-wrap"><img src="images/pudorys.png" alt="Půdorysy"></div>
             <div class="service-name">Půdorysy</div>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
             <div class="service-desc">Přehledné a profesionální půdorysy nemovitostí.</div>
           </div>
-          <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="1000">
+          <div class="service" onclick="toggleDesc(this)">
             <div class="img-wrap"><img src="images/mapy.png" alt="Google Maps"></div>
             <div class="service-name">Google Maps</div>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
             <div class="service-desc">Implementace vaší prohlídky přímo do Google Maps.</div>
           </div>
-          <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="1200">
+          <div class="service" onclick="toggleDesc(this)">
             <div class="img-wrap"><img src="images/recenze.png" alt="Správa recenzí"></div>
             <div class="service-name">Správa recenzí</div>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
@@ -1170,28 +1260,28 @@ section[id] {
     </div>
   </section>
   <!-- KOMU NABÍZÍME -->
-  <section class="full-bg what-section" id="komu-nabizime" style="background:#fff;" data-aos="zoom-in" data-aos-delay="200">
+  <section class="full-bg what-section" id="komu-nabizime" style="background:#fff;">
     <div class="section-inner">
       <div class="section-title">Komu nabízíme?</div>
       <div class="target-grid">
-        <div class="target-tile"><img src="images/prodejnajm.png" alt="Prodeje a pronájmy nemovitostí" data-aos="fade-up" data-aos-delay="200"></div>
-        <div class="target-tile"><img src="images/restaukav.png" alt="Restaurace, kavárny a bary" data-aos="fade-up" data-aos-delay="400"></div>
-        <div class="target-tile"><img src="images/hotelpenzi.png" alt="Hotely a penziony" data-aos="fade-up" data-aos-delay="600"></div>
-        <div class="target-tile"><img src="images/obchodysho.png" alt="Obchody a showroomy" data-aos="fade-up" data-aos-delay="800"></div>
-        <div class="target-tile"><img src="images/fitkowel.png" alt="Fitness a wellness" data-aos="fade-up" data-aos-delay="1000"></div>
-        <div class="target-tile"><img src="images/galeriamuzea.png" alt="Galerie a muzea" data-aos="fade-up" data-aos-delay="1200"></div>
+        <div class="target-tile"><img src="images/prodejnajm.png" alt="Prodeje a pronájmy nemovitostí"></div>
+        <div class="target-tile"><img src="images/restaukav.png" alt="Restaurace, kavárny a bary"></div>
+        <div class="target-tile"><img src="images/hotelpenzi.png" alt="Hotely a penziony"></div>
+        <div class="target-tile"><img src="images/obchodysho.png" alt="Obchody a showroomy"></div>
+        <div class="target-tile"><img src="images/fitkowel.png" alt="Fitness a wellness"></div>
+        <div class="target-tile"><img src="images/galeriamuzea.png" alt="Galerie a muzea"></div>
       </div>
     </div>
   </section>
   <!-- BALÍČKY – UŽ SVĚTLÉ -->
-  <section class="full-bg packages-section" id="balicky" style="background:#fff;" data-aos="zoom-in" data-aos-delay="400">
+  <section class="full-bg packages-section" id="balicky" style="background:#fff;">
     <div class="section-inner">
-      <div class="section-title" data-aos="zoom-in" data-aos-delay="200">Balíčky</div>
+      <div class="section-title">Balíčky</div>
       <div class="packages-list">
         <!-- ... obsah balíčků beze změny ... -->
         <div class="package" onclick="togglePackage(this)">
           <div class="package-head">
-            <span class="package-name" data-aos="fade-right" data-aos-delay="200">START</span>
+            <span class="package-name">START</span>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
           </div>
           <div class="package-desc">
@@ -1200,7 +1290,7 @@ section[id] {
         </div>
         <div class="package" onclick="togglePackage(this)">
           <div class="package-head">
-            <span class="package-name" data-aos="fade-left" data-aos-delay="300">PLUS</span>
+            <span class="package-name">PLUS</span>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
           </div>
           <div class="package-desc">
@@ -1209,7 +1299,7 @@ section[id] {
         </div>
         <div class="package" onclick="togglePackage(this)">
           <div class="package-head">
-            <span class="package-name" data-aos="fade-right" data-aos-delay="400">PREMIUM</span>
+            <span class="package-name">PREMIUM</span>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
           </div>
           <div class="package-desc">
@@ -1218,7 +1308,7 @@ section[id] {
         </div>
         <div class="package" onclick="togglePackage(this)">
           <div class="package-head">
-            <span class="package-name" data-aos="fade-left" data-aos-delay="500">CUSTOM</span>
+            <span class="package-name">CUSTOM</span>
             <button class="arrow-btn"><span>&#x25BC;</span></button>
           </div>
           <div class="package-desc">
@@ -1229,7 +1319,7 @@ section[id] {
     </div>
   </section>
   <!-- DEMO sekce – SVĚTLÁ -->
-  <section class="full-bg demo-section" id="vzorova-prohlidka" style="background:#f9f9fb;" data-aos="fade-left" data-aos-delay="200">
+  <section class="full-bg demo-section" id="vzorova-prohlidka" style="background:#f9f9fb;">
     <div class="section-inner">
       <div class="section-title">Vzorová prohlídka houseboatu</div>
       <div class="demo-desc">
@@ -1243,7 +1333,7 @@ section[id] {
     </div>
   </section>
   <!-- REFERENCE sekce – SVĚTLÁ -->
-  <section class="full-bg works-section" id="reference" style="background:#f7f8fb;" data-aos="fade-right" data-aos-delay="200">
+  <section class="full-bg works-section" id="reference" style="background:#f7f8fb;">
     <div class="section-inner">
       <div class="works-title">Naše odvedená práce &amp; reference</div>
       <div class="works-desc">
@@ -1282,7 +1372,7 @@ section[id] {
 
 
   <!-- O NÁS -->
-  <section class="section about-section" id="onas" data-aos="zoom-in" data-aos-delay="200">
+  <section class="section about-section" id="onas">
     <div class="about-title">O nás</div>
     <div class="about-desc">
       Jsme tým mladých lidí, kteří milují technologie, design a kreativní prezentaci.  
@@ -1341,7 +1431,42 @@ section[id] {
   </footer>
 
   <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+window.addEventListener('DOMContentLoaded', () => {
+  gsap.utils.toArray('.section-inner, .about-section, .customweb-card, .hero-content, .service, .package, .target-tile, .work-card').forEach((el, i) => {
+    gsap.from(el, {
+      opacity: 0,
+      y: 60,
+      duration: 1.1,
+      ease: 'expo.out',
+      delay: 0.08 + i * 0.11,
+      scrollTrigger: {
+        trigger: el,
+        start: "top 80%",
+        toggleActions: "play none none none"
+      }
+    });
+  });
+});
+</script>
+
+  <script>
+const cursor = document.getElementById('custom-cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a, button, .service, .package').forEach(el => {
+  el.addEventListener('mouseenter', ()=>document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', ()=>document.body.classList.remove('cursor-hover'));
+});
+</script>
+
+
+  
   <script>
     // Preloader
     window.addEventListener('load', function() {
@@ -1445,9 +1570,34 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-  
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  new Swiper('.works-grid', {
+    slidesPerView: 1.1,
+    spaceBetween: 22,
+    loop: true,
+    breakpoints: {
+      700: { slidesPerView: 2.3 },
+      1100: { slidesPerView: 3.2 }
+    },
+    pagination: { el: '.swiper-pagination', clickable: true }
+  });
+});
+</script>
+<div id="form-toast" style="display:none; position:fixed; top:30px; right:30px; background:#FFD86A; color:#142052; padding:1.2em 2.2em; border-radius:12px; box-shadow:0 8px 40px #CBA13544; font-weight:700; z-index:999999; font-size:1.09rem;">Děkujeme za zprávu! Ozveme se do 24 hodin.</div>
+<script>document.querySelector('.kontakt-form form').addEventListener('submit', function(e){
+  setTimeout(function(){
+    const toast = document.getElementById('form-toast');
+    toast.style.display = 'block';
+    gsap.fromTo(toast, {y:-30,opacity:0}, {y:0,opacity:1,duration:0.8,ease:"expo.out"});
+    setTimeout(()=>toast.style.display='none', 3800);
+  }, 50);
+});
+</script>
 </body>
 </html>
+
 
 
 
