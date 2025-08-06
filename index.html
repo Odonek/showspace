@@ -164,6 +164,149 @@
   padding-bottom: .35em;
 }
 
+    .service {
+  position: relative;
+  /* ...ostatní styly... */
+}
+
+.arrow-btn {
+  background: none;
+  border: none;
+  color: #CBA135; /* nebo jiná zlatá */
+  font-size: 1.3rem;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.23s;
+  margin-left: 1em;
+  padding: 0;
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  z-index: 2;
+}
+.service.open .arrow-btn span {
+  transform: rotate(180deg);
+  display: inline-block;
+}
+
+.service-desc {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.39s cubic-bezier(0.6,0.1,0.46,1.12), padding 0.17s, opacity 0.22s;
+  padding: 0 0.2em;
+  opacity: 0;
+  font-size: 0.97rem;
+  margin-top: 0.1rem;
+  color: #133059;
+  border-top: 1.1px solid #e6eaf3;
+  text-align: left;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+.service.open .service-desc {
+  max-height: 190px; /* Pokud bys měl delší text, zvyš */
+  padding: 1.05em 0 0.8em 0;
+  opacity: 1;
+}
+
+.service.open {
+  background: #d3e9fb;
+  box-shadow: 0 14px 38px rgba(44,115,215,0.16);
+  z-index: 2;
+}
+
+.package {
+  position: relative;
+  background: #fff;
+  color: #181C3A;
+  border-radius: 20px;
+  box-shadow: 0 8px 36px rgba(22,20,45,0.09);
+  overflow: visible;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  transition: box-shadow 0.18s, transform 0.18s;
+  border: 1.7px solid #FFD86A10;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.package-head {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 1.25rem; font-weight: 700; color: #142052;
+  padding: 1.15rem 1.35rem 1.15rem 1.3rem;
+  letter-spacing: 0.1em;
+  background: transparent;
+  border-radius: 20px 20px 0 0;
+  transition: background 0.15s;
+}
+
+.arrow-btn {
+  background: none;
+  border: none;
+  color: #CBA135;
+  font-size: 1.3rem;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.23s;
+  margin-left: 1em;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+.package.open .arrow-btn span {
+  transform: rotate(180deg);
+  display: inline-block;
+}
+
+.package-desc {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.39s cubic-bezier(0.6,0.1,0.46,1.12), padding 0.17s, opacity 0.22s;
+  padding: 0 1.4rem;
+  opacity: 0;
+  font-size: 1.04rem;
+  color: #444;
+  background: #f9f9fb;
+  border-top: 1px solid #ececec;
+  line-height: 1.5;
+}
+
+.package.open .package-desc {
+  max-height: 260px; /* nastav podle délky textu, případně navýš */
+  padding: 1rem 1.4rem 1.4rem 1.4rem;
+  opacity: 1;
+}
+
+.package.open {
+  box-shadow: 0 16px 48px rgba(203,161,53,0.13);
+  z-index: 3;
+  background: #fffcf3;
+  border-color: #FFD86A55;
+}
+
+@media (max-width: 900px) {
+  .package {
+    padding: 0;
+    width: 95vw;
+    max-width: 450px;
+  }
+  .package-desc {
+    font-size: 0.97rem;
+    padding: 0 0.8rem;
+  }
+  .package.open .package-desc {
+    max-height: 340px;
+    padding: 0.9em 0.8em 1.2em 0.8em;
+  }
+}
+
+    
   </style>
 </head>
 <body>
@@ -235,15 +378,45 @@
   </section>
 
   <!-- BALÍČKY -->
-  <section id="balicky" class="section">
-    <div class="section-title">Balíčky</div>
-    <div class="packages-list">
-      <div class="package" onclick="togglePackage(this)"><div class="package-head"><span class="package-name">START</span></div><div class="package-desc">Ideální pro malé prostory a první zkušenost s virtuální prohlídkou.</div></div>
-      <div class="package" onclick="togglePackage(this)"><div class="package-head"><span class="package-name">PLUS</span></div><div class="package-desc">Maximální poměr cena/výkon a více možností úprav.</div></div>
-      <div class="package" onclick="togglePackage(this)"><div class="package-head"><span class="package-name">PREMIUM</span></div><div class="package-desc">Pro náročné klienty, luxusní nemovitosti nebo větší objekty.</div></div>
-      <div class="package" onclick="togglePackage(this)"><div class="package-head"><span class="package-name">CUSTOM</span></div><div class="package-desc">Individuální řešení pro vaše specifické potřeby.</div></div>
+ <div class="packages-list">
+  <div class="package" onclick="togglePackage(this)">
+    <div class="package-head">
+      <span class="package-name" data-aos="fade-right" data-aos-delay="200">START</span>
+      <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
     </div>
-  </section>
+    <div class="package-desc">
+      Ideální pro malé prostory a první zkušenost s virtuální prohlídkou. Získáte jednoduchou 360° prezentaci, která zaujme vaše klienty online.
+    </div>
+  </div>
+  <div class="package" onclick="togglePackage(this)">
+    <div class="package-head">
+      <span class="package-name" data-aos="fade-left" data-aos-delay="300">PLUS</span>
+      <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+    </div>
+    <div class="package-desc">
+      Nejčastější volba – vhodné pro byty, kanceláře a podniky, kteří chtějí maximální poměr cena/výkon a více možností úprav.
+    </div>
+  </div>
+  <div class="package" onclick="togglePackage(this)">
+    <div class="package-head">
+      <span class="package-name" data-aos="fade-right" data-aos-delay="400">PREMIUM</span>
+      <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+    </div>
+    <div class="package-desc">
+      Pro náročné klienty, luxusní nemovitosti nebo větší objekty – obsahuje nadstandardní funkce, precizní úpravy a maximální vizuální efekt.
+    </div>
+  </div>
+  <div class="package" onclick="togglePackage(this)">
+    <div class="package-head">
+      <span class="package-name" data-aos="fade-left" data-aos-delay="500">CUSTOM</span>
+      <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+    </div>
+    <div class="package-desc">
+      Individuální řešení pro vaše specifické potřeby, větší počet prostor nebo speciální požadavky. Vytvoříme vám nabídku přesně na míru.
+    </div>
+  </div>
+</div>
+
 
   <!-- VZOROVÁ PROHLÍDKA -->
   <section id="vzorova-prohlidka" class="section">
@@ -307,6 +480,19 @@
 };
 </script>
 
+  <script>
+    function toggleDesc(el) {
+  if (el.classList.contains('open')) {
+    el.classList.remove('open');
+    return;
+  }
+  document.querySelectorAll('.service').forEach(s => s.classList.remove('open'));
+  el.classList.add('open');
+}
+
+</script>
+
+
   <!-- FOOTER -->
   <footer>
     <div>© 2025 ShowSpace.cz – Veškerá práva vyhrazena.</div>
@@ -314,6 +500,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
