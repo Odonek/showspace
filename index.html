@@ -3,38 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ShowSpace.cz Clone</title>
+  <title>White Background Template with Animations & Footer</title>
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/favicon2.png" sizes="64x64" />
-  <!-- AOS CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <style>
     :root {
-      --primary: #142052;
       --accent: #CBA135;
       --white: #fff;
       --dark: #111;
       --shadow: 0 4px 24px rgba(0,0,0,0.08);
     }
     /* PRELOADER */
-    #preloader {position:fixed;top:0;left:0;right:0;bottom:0;background:var(--white);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s;}
-    #preloader.hidden {opacity:0;pointer-events:none;}
-    #preloader img {width:165px;animation:pulse 2s infinite;}
-    @keyframes pulse {0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
-    body {margin:0;padding:0;font-family:'Inter',Arial,sans-serif;background:var(--white);color:var(--dark);}
+    #preloader {position: fixed;top:0;left:0;right:0;bottom:0;background:var(--white);
+      display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s;
+    }
+    #preloader.hidden{opacity:0;pointer-events:none;}
+    #preloader img{width:165px;animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+    body{margin:0;padding:0;font-family:'Inter',Arial,sans-serif;background:var(--white);color:var(--dark);}
     /* NAVBAR */
-    .navbar {display:flex;align-items:center;justify-content:space-between;padding:.85rem 2vw .7rem 2vw;background:var(--white);border-bottom:1.5px solid #eee;position:sticky;top:0;z-index:10;}
-    .logo img {height:68px;margin-left:.5vw;}
-    .nav-menu ul {display:flex;gap:2.1rem;list-style:none;margin:0;padding:0;}
-    .nav-menu a {text-decoration:none;color:var(--primary);font-weight:600;font-size:1.09rem;position:relative;}
-    .nav-menu a::after {content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .28s cubic-bezier(.87,.07,.43,.97);}
-    .nav-menu a:hover::after,.nav-menu a:focus::after {transform:scaleX(1);transform-origin:left;}
-    #hamburger {display:none;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;background:none;border:none;cursor:pointer;gap:4px;}
-    #hamburger span {width:25px;height:3px;background:var(--primary);border-radius:2px;transition:transform .3s,background .3s,opacity .3s;}
-    #hamburger.open span:nth-child(1) {transform:translateY(7.5px) rotate(45deg) scaleX(1.13);background:var(--accent);}
-    #hamburger.open span:nth-child(2) {opacity:0;}
-    #hamburger.open span:nth-child(3) {transform:translateY(-7.5px) rotate(-45deg) scaleX(1.13);background:var(--accent);}
-    @media(max-width:800px){#hamburger{display:flex;} .nav-menu ul{position:fixed;top:0;right:-100%;height:100vh;width:70vw;background:var(--white);flex-direction:column;gap:1.5rem;padding:5rem 1.5rem;transition:right .3s;} .nav-menu ul.open{right:0;}}
+    .navbar{display:flex;align-items:center;justify-content:space-between;
+      padding:.85rem 2vw .7rem 2vw;background:var(--white);border-bottom:1.5px solid #eee;position:sticky;top:0;z-index:10;
+    }
+    .logo img{height:68px;margin-left:.5vw;}
+    .contact span{display:block;font-weight:600;font-size:1.12rem;color:var(--dark);}
+    .contact a{color:var(--accent);text-decoration:none;font-weight:600;margin-left:1.5em;font-size:1.08rem;}
+    .nav-menu ul{display:flex;gap:2.1rem;list-style:none;margin:0;padding:0;}
+    .nav-menu a{text-decoration:none;color:var(--dark);font-weight:600;font-size:1.09rem;position:relative;}
+    .nav-menu a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;
+      background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .28s cubic-bezier(.87,.07,.43,.97);
+    }
+    .nav-menu a:hover::after,.nav-menu a:focus::after{transform:scaleX(1);transform-origin:left;}
+    #hamburger{display:none;background:none;border:none;flex-direction:column;
+      justify-content:center;align-items:center;height:40px;width:40px;cursor:pointer;margin-left:10px;z-index:20;
+    }
+    #hamburger span{width:25px;height:3px;margin:3.6px 0;background:var(--dark);border-radius:2px;transition:.28s;}
+    #hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg) scaleX(1.13);background:var(--accent);}
+    #hamburger.open span:nth-child(2){opacity:0;}
+    #hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg) scaleX(1.13);background:var(--accent);}
+    @media(max-width:800px){#hamburger{display:flex;} .nav-menu ul{flex-direction:column;position:fixed;top:0;right:-100%;height:100vh;width:70vw;
+      background:var(--white);padding:5.7rem 1.7rem 1.7rem 1.7rem;gap:1.45rem;transition:transform .23s;transform:translateX(110%);
+    } .nav-menu ul.open{transform:translateX(0);} }
     /* BUBBLES */
     .bubble{position:absolute;border-radius:50%;background:rgba(255,216,106,0.09);pointer-events:none;z-index:2;animation:bubbleMove 18s infinite linear alternate;}
     .bubble1{width:130px;height:130px;left:8vw;top:14vh;animation-delay:0s;}
@@ -44,32 +53,38 @@
     .bubble5{width:110px;height:110px;left:13vw;top:5vh;animation-delay:7s;}
     .bubble6{width:50px;height:50px;right:12vw;top:20vh;animation-delay:6s;}
     @keyframes bubbleMove{0%{transform:translateY(0) scale(1);}50%{transform:translateY(-36px) scale(1.09);}100%{transform:translateY(24px) scale(0.92);}}
-    /* SCROLL UP BUTTON */
-    #scrollUp {display:none;position:fixed;right:22px;bottom:28px;background:var(--accent);color:#fff;border:none;border-radius:50%;width:54px;height:54px;font-size:2.25rem;box-shadow:0 4px 22px rgba(203,161,53,0.12);cursor:pointer;z-index:20;transition:background .18s,transform .16s;}    
-    #scrollUp:hover {background:#FFD86A;color:var(--primary);transform:scale(1.14) rotate(-6deg);box-shadow:0 10px 40px #FFD86A77;}
-    @keyframes scrollUpAppear{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
-    @keyframes scrollUpPulse{0%,100%{filter:brightness(1);}60%{filter:brightness(1.17);}}
     /* SECTIONS */
-    .hero{position:relative;min-height:490px;background:url('images/pozadi1.png') center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6.2rem 1.5rem 4.5rem;overflow:hidden;}
-    .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(110deg,rgba(10,10,35,0.72) 0%,rgba(203,161,53,0.16) 65%,rgba(10,10,35,0.79) 100%);z-index:1;pointer-events:none;}
+    .hero{position:relative;min-height:490px;background:url('images/pozadi1.png') center/cover no-repeat;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;text-align:center;padding:6.2rem 1.5rem 4.5rem 1.5rem;overflow:hidden;
+    }
+    .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(110deg,rgba(10,10,35,0.72) 0%,rgba(203,161,53,0.16) 65%,rgba(10,10,35,0.79) 100%);
+      z-index:1;pointer-events:none;
+    }
     .hero-content{position:relative;z-index:2;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,0.26),0 0 1px #000;max-width:720px;margin:0 auto;}
     .hero-content h1{font-size:2.9rem;font-weight:700;margin-bottom:.7rem;}
     .hero-content p{font-size:1.25rem;margin:.8rem 0;}
-    .cta-btn{margin-top:2.1rem;background:var(--accent);color:#fff;font-weight:600;font-size:1.18rem;border:none;border-radius:12px;padding:1.12em 2.3em;cursor:pointer;box-shadow:0 4px 22px rgba(0,0,0,0.15);transition:transform .18s,box-shadow .18s;}
+    .cta-btn{margin-top:2.1rem;background:var(--accent);color:#fff;font-weight:600;font-size:1.18rem;border:none;border-radius:12px;
+      padding:1.12em 2.3em;cursor:pointer;box-shadow:0 4px 22px rgba(0,0,0,0.15);transition:transform .18s,box-shadow .18s;
+    }
     .cta-btn:hover{transform:scale(1.05);box-shadow:0 8px 32px rgba(0,0,0,0.18);}
-    .section{max-width:1160px;margin:0 auto;padding:3.8rem 2vw 2.7rem;background:var(--white);}
-    .section-title{font-size:2.05rem;font-weight:700;color:var(--primary);text-align:center;margin-bottom:2.2rem;}
-    /* Grid containers */
-    .what-we-do-grid,.target-grid,.packages-list,.works-grid,.kontakt-flex{display:flex;flex-wrap:wrap;gap:2.2rem;justify-content:center;}
-    /* Cards */
+    .section{max-width:1160px;margin:0 auto;padding:3.8rem 2vw 2.7rem 2vw;background:var(--white);}
+    .section-title{font-size:2.05rem;font-weight:700;color:var(--dark);text-align:center;margin-bottom:2.2rem;}
+    .what-we-do-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem; margin-bottom: 2.2rem; }
+.target-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem; }
     .service,.package,.work-card,.kontakt-form,.kontakt-box{background:var(--white);border:1.5px solid #eee;border-radius:18px;box-shadow:var(--shadow);padding:1.4rem;}
     .service img,.target-tile img,.work-card img{width:100%;border-radius:12px;}
-    /* Contact form */
-    .kontakt-form form{display:flex;flex-direction:column;gap:1rem;}    
-    .kontakt-form input,.kontakt-form input[name="phone"],.kontakt-form textarea{width:100%;padding:.72rem .9rem;border-radius:9px;border:1.2px solid #e7c86a;font-size:1.05rem;}
+    .service-name{font-weight:700;font-size:1.08rem;color:var(--dark);margin-bottom:.5rem;}
+    .service-desc{font-size:.97rem;color:#133059;}
+    .package-head{display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:1.25rem;color:var(--dark);padding-bottom:1rem;border-bottom:1px solid #eee;}
+    .package-desc{font-size:1rem;color:#444;line-height:1.5;margin-top:1rem;}
+    .work-info{padding:1rem;text-align:center;}
+    .work-name{font-weight:800;font-size:1.14rem;color:var(--dark);margin-bottom:.6em;}
+    .work-ref{font-size:.99rem;color:#444e6e;}
+    .about-desc{font-size:1.17rem;line-height:1.66;color:#222;text-align:center;}
+    .kontakt-form form{display:flex;flex-direction:column;gap:1rem;}
+    .kontakt-form input,.kontakt-form textarea{width:100%;padding:.72rem .9rem;border-radius:9px;border:1.2px solid #e7c86a;font-size:1.05rem;}
     .kontakt-form button{background:var(--accent);color:#fff;font-weight:700;padding:1.05rem 0;border:none;border-radius:9px;cursor:pointer;}
-    /* Footer */
-    footer{background:linear-gradient(120deg,#FFF8E2 0%,#FFD86A 80%,#CBA135 100%);border-top:2px solid var(--accent);padding:2.2rem 0 1.2rem;margin-top:3rem;}
+    footer{background:linear-gradient(120deg,#FFF8E2 0%,#FFD86A 80%,#CBA135 100%);border-top:2px solid var(--accent);padding:2.2rem 0 1.2rem 0;margin-top:3rem;}
     footer div{text-align:center;color:#222;font-size:1.04rem;font-weight:500;margin-bottom:.5rem;}
     footer small{color:#666;font-size:.98rem;}
   </style>
@@ -79,7 +94,6 @@
   <div id="preloader">
     <img src="images/logoshowspace.png" alt="ShowSpace loader">
   </div>
-
   <!-- NAVBAR -->
   <div class="navbar">
     <div class="logo"><img src="images/logonejvic.png" alt="ShowSpace logo"></div>
@@ -102,6 +116,7 @@
 
   <!-- HERO -->
   <section class="hero" id="co-delame" data-aos="fade-up" data-aos-delay="200">
+    <!-- BUBBLES -->
     <div class="bubble bubble1"></div>
     <div class="bubble bubble2"></div>
     <div class="bubble bubble3"></div>
@@ -120,7 +135,12 @@
   <section id="co-delame" class="section">
     <div class="section-title">Co děláme?</div>
     <div class="what-we-do-grid">
-      <!-- services here -->
+      <div class="service" onclick="toggleDesc(this)"><img src="images/virtualpro.png" alt="Virtuální prohlídky"><div class="service-name">Virtuální prohlídky</div><div class="service-desc">Profesionální 360° prezentace prostoru, která zaujme a prodá.</div></div>
+      <div class="service" onclick="toggleDesc(this)"><img src="images/marketing.png" alt="Marketing"><div class="service-name">Marketing</div><div class="service-desc">Online reklama na Google, Meta, správné zacílení na vaše zákazníky.</div></div>
+      <div class="service" onclick="toggleDesc(this)"><img src="images/site.png" alt="Content & Sítě"><div class="service-name">Content & Sítě</div><div class="service-desc">Správa obsahu a sociálních sítí – budování značky a komunit.</div></div>
+      <div class="service" onclick="toggleDesc(this)"><img src="images/pudorys.png" alt="Půdorysy"><div class="service-name">Půdorysy</div><div class="service-desc">Přehledné a profesionální půdorysy nemovitostí.</div></div>
+      <div class="service" onclick="toggleDesc(this)"><img src="images/mapy.png" alt="Google Maps"><div class="service-name">Google Maps</div><div class="service-desc">Implementace vaší prohlídky přímo do Google Maps.</div></div>
+      <div class="service" onclick="toggleDesc(this)"><img src="images/recenze.png" alt="Správa recenzí"><div class="service-name">Správa recenzí</div><div class="service-desc">Budování reputace a správa recenzí vašich klientů.</div></div>
     </div>
   </section>
 
@@ -128,7 +148,12 @@
   <section id="komu-nabizime" class="section">
     <div class="section-title">Komu nabízíme?</div>
     <div class="target-grid">
-      <!-- targets here -->
+      <div class="target-tile"><img src="images/prodejnajm.png" alt="Prodeje a pronájmy nemovitostí"></div>
+      <div class="target-tile"><img src="images/restaukav.png" alt="Restaurace, kavárny a bary"></div>
+      <div class="target-tile"><img src="images/hotelpenzi.png" alt="Hotely a penziony"></div>
+      <div class="target-tile"><img src="images/obchodysho.png" alt="Obchody a showroomy"></div>
+      <div class="target-tile"><img src="images/fitkowel.png" alt="Fitness a wellness"></div>
+      <div class="target-tile"><img src="images/galeriamuzea.png" alt="Galerie a muzea"></div>
     </div>
   </section>
 
@@ -136,87 +161,63 @@
   <section id="balicky" class="section">
     <div class="section-title">Balíčky</div>
     <div class="packages-list">
-      <!-- packages here -->
+      <div class="package" onclick="togglePackage(this)"><div class="package-head"><span class="package-name">START</span></div><div class="package-desc">Ideální pro malé prostory a první zkušenost s virtuální prohlídkou.</div></div>
+      <div class="package" onclick="togglePackage(this)"><div class="package-head"><span class="package-name">PLUS</span></div><div class="package-desc">Maximální poměr cena/výkon a více možností úprav.</div></div>
+      <div class="package" onclick="togglePackage(this)"><div class="package-head"><span class="package-name">PREMIUM</span></div><div class="package-desc">Pro náročné klienty, luxusní nemovitosti nebo větší objekty.</div></div>
+      <div class="package" onclick="togglePackage(this)"><div class="package-head"><span class="package-name">CUSTOM</span></div><div class="package-desc">Individuální řešení pro vaše specifické potřeby.</div></div>
     </div>
   </section>
 
   <!-- VZOROVÁ PROHLÍDKA -->
   <section id="vzorova-prohlidka" class="section">
-    <div class="section-title">Vzorová prohlídka houseboatu</div>
-    <div class="demo-desc">Vyzkoušejte si, jak vypadá virtuální prohlídka v praxi – prostor houseboatu v interaktivním 360° zobrazení.</div>
-    <div class="demo-frame-wrap">
-      <div class="demo-placeholder">Vizuální ukázka zde.</div>
-    </div>
+    <div class="section-title">Vzorová prohlídka</div>
+    <div class="demo-desc">Vyzkoušejte si interaktivní 360° ukázku.</div>
+    <div class="demo-frame-wrap"><div class="demo-placeholder">Vizuální ukázka zde.</div></div>
   </section>
 
   <!-- REFERENCE -->
   <section id="reference" class="section">
-    <div class="section-title">Naše odvedená práce & reference</div>
+    <div class="section-title">Naše reference</div>
     <div class="works-grid">
-      <!-- references here -->
+      <div class="work-card"><img src="images/fitkowel.png" alt="Fitness & Wellness"><div class="work-info"><div class="work-name">Fitness & Wellness</div><div class="work-ref">Virtuální prezentace pro marketing.</div></div></div>
+      <div class="work-card"><img src="images/galeriamuzea.png" alt="Galerie & Muzea"><div class="work-info"><div class="work-name">Galerie &amp; Muzea</div><div class="work-ref">Online prohlídka s hotspoty.</div></div></div>
     </div>
   </section>
 
   <!-- WEB NA MÍRU -->
   <section id="web-na-miru" class="section">
     <div class="section-title">Web na míru</div>
-    <div class="customweb-card" onclick="toggleWebDetail(this)"><div class="customweb-head"><div class="customweb-title">Originální weby pro vaši prezentaci i podnikání</div></div><div class="customweb-desc">Vytvoříme vám moderní, responzivní a rychlý web, který skutečně zaujme – bez šablon a kompromisů.</div></div>
+    <div class="customweb-card" onclick="toggleWebDetail(this)"><div class="customweb-head"><div class="customweb-title">Originální weby</div></div><div class="customweb-desc">Plně responzivní a rychlý web podle vašich potřeb.</div></div>
   </section>
 
   <!-- O NÁS -->
   <section id="onas" class="section">
     <div class="about-title">O nás</div>
-    <div class="about-desc">Jsme tým mladých lidí, kteří milují technologie, design a kreativní prezentaci. Specializujeme se na <b>virtuální prohlídky, moderní weby a vizuální marketing</b>.</div>
+    <div class="about-desc">Jsme tým mladých lidí, kteří milují technologie, design a kreativní prezentaci.</div>
   </section>
 
   <!-- KONTAKT -->
   <section id="kontakt" class="section kontakt-section">
     <div class="section-title">Kontakt</div>
-    <h3 class="section-subtitle">Zaujměte ještě dnes online</h3>
     <div class="kontakt-flex">
-      <div class="kontakt-form">
-        <form action="https://formspree.io/f/mjkorjrk" method="POST">
-          <input type="text" name="name" placeholder="Vaše jméno" required>
-          <input type="email" name="email" placeholder="Váš e-mail" required>
-          <input type="tel" name="phone" placeholder="Telefon (nepovinné)">
-          <textarea name="message" rows="4" placeholder="Vaše zpráva..." required></textarea>
-          <button type="submit">Odeslat</button>
-        </form>
-      </div>
-      <div class="kontakt-box">
-        <div class="kontakt-box-desc">Virtuální prohlídka je vaše digitální výloha – ozvěte se nám, odpovíme do 24 hodin.</div>
-        <a class="kontakt-email" href="mailto:info@showspace.cz">info@showspace.cz</a>
-        <span class="kontakt-tel">+420 777 111 222</span>
-      </div>
+      <div class="kontakt-form"><form action="https://formspree.io/f/mjkorjrk" method="POST"><input type="text" placeholder="Vaše jméno"><input type="email" placeholder="E-mail"><textarea rows="4" placeholder="Zpráva"></textarea><button type="submit">Odeslat</button></form></div>
+      <div class="kontakt-box"><div class="kontakt-box-desc">Odpovíme do 24 hodin.</div><a class="kontakt-email" href="mailto:info@showspace.cz">info@showspace.cz</a><span class="kontakt-tel">+420 777 111 222</span></div>
     </div>
   </section>
 
   <!-- SCROLL UP BUTTON -->
-  <button id="scrollUp" title="Zpět nahoru">↑</button>
+  <button id="scrollUp" title="Zpět nahoru" onclick="scrollToSection('top')">↑</button>
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 820, easing: 'cubic-bezier(.61,.1,.51,1.3)', once: true });
-    window.addEventListener('load', () => { setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 700); });
-    window.addEventListener('scroll', () => {
-      document.getElementById('scrollUp').style.display = window.scrollY > 350 ? 'block' : 'none';
-      const hero = document.querySelector('.hero');
-      if (window.scrollY < 650 && hero) hero.style.backgroundPositionY = (window.scrollY * 0.38) + 'px';
-    });
-    document.getElementById('scrollUp').addEventListener('click', () => scrollToSection('top'));
-    const hamburger = document.getElementById('hamburger'), navUl = document.querySelector('.nav-menu ul');
-    hamburger.addEventListener('click', e => { e.stopPropagation(); hamburger.classList.toggle('open'); navUl.classList.toggle('open'); document.body.classList.toggle('menu-open'); });
-    window.addEventListener('click', e => { if (window.innerWidth < 800 && navUl.classList.contains('open')) {
-      if (!navUl.contains(e.target) && !hamburger.contains(e.target)) { hamburger.classList.remove('open'); navUl.classList.remove('open'); document.body.classList.remove('menu-open'); }
-    }});
-    document.querySelectorAll('.nav-menu a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => { const tgt = document.getElementById(link.getAttribute('href').substring(1)); if (tgt) { e.preventDefault(); scrollToSection(tgt.id); hamburger.classList.remove('open'); navUl.classList.remove('open'); document.body.classList.remove('menu-open'); } });
-    });
-    function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
-    function toggleDesc(el) { el.classList.toggle('open'); document.querySelectorAll('.service').forEach(s => { if (s !== el) s.classList.remove('open'); }); }
-    function togglePackage(el) { el.classList.toggle('open'); document.querySelectorAll('.package').forEach(p => { if (p !== el) p.classList.remove('open'); }); }
-    function toggleWebDetail(el) { el.classList.toggle('open'); }
+    AOS.init({ duration:820,easing:'cubic-bezier(.61,.1,.51,1.3)',once:true });
+    window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('preloader').classList.add('hidden'),700);});
+    window.addEventListener('scroll',()=>{document.getElementById('scrollUp').style.display = window.scrollY>350?'block':'none';const hero=document.querySelector('.hero');if(window.scrollY<650&&hero)hero.style.backgroundPositionY=(window.scrollY*0.38)+'px';});
+    const hamburger=document.getElementById('hamburger'),navUl=document.querySelector('.nav-menu ul');hamburger.addEventListener('click',e=>{e.stopPropagation();hamburger.classList.toggle('open');navUl.classList.toggle('open');document.body.classList.toggle('menu-open');});
+    window.addEventListener('click',e=>{if(window.innerWidth<800&&navUl.classList.contains('open')){if(!navUl.contains(e.target)&&!hamburger.contains(e.target)){hamburger.classList.remove('open');navUl.classList.remove('open');document.body.classList.remove('menu-open');}}});
+    document.querySelectorAll('.nav-menu a[href^="#"]').forEach(link=>{link.addEventListener('click',e=>{const target=document.getElementById(link.getAttribute('href').substring(1));if(target){e.preventDefault();scrollToSection(target.id);hamburger.classList.remove('open');navUl.classList.remove('open');document.body.classList.remove('menu-open');}});});
+    function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}function toggleDesc(el){el.classList.toggle('open');document.querySelectorAll('.service').forEach(s=>{if(s!==el)s.classList.remove('open');});}function togglePackage(el){if(el.classList.contains('open'))return void el.classList.remove('open');document.querySelectorAll('.package').forEach(p=>p.classList.remove('open'));el.classList.add('open');}function toggleWebDetail(el){el.classList.toggle('open');}
   </script>
 
   <!-- FOOTER -->
