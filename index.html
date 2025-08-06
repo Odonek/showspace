@@ -98,6 +98,39 @@
     footer{background:linear-gradient(120deg,#FFF8E2 0%,#FFD86A 80%,#CBA135 100%);border-top:2px solid var(--accent);padding:2.2rem 0 1.2rem 0;margin-top:3rem;}
     footer div{text-align:center;color:#222;font-size:1.04rem;font-weight:500;margin-bottom:.5rem;}
     footer small{color:#666;font-size:.98rem;}
+
+    #scrollUp {
+  position: fixed;
+  right: 2.2rem;
+  bottom: 2.3rem;
+  width: 54px;
+  height: 54px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 2.15rem;
+  font-weight: bold;
+  box-shadow: 0 4px 16px rgba(203,161,53,0.13), 0 2px 8px rgba(0,0,0,0.09);
+  cursor: pointer;
+  z-index: 99;
+  display: none;
+  transition: background 0.23s, color 0.23s, box-shadow 0.22s, transform 0.2s;
+  outline: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  text-align: center;
+}
+#scrollUp:hover, #scrollUp:focus {
+  background: #e3c35e; /* světlejší zlatá */
+  color: #111; /* černá šipka */
+  box-shadow: 0 6px 24px rgba(203,161,53,0.18), 0 4px 12px rgba(0,0,0,0.12);
+  transform: scale(1.07);
+}
+
+    
   </style>
 </head>
 <body>
@@ -217,7 +250,11 @@
   </section>
 
   <!-- SCROLL UP BUTTON -->
-  <button id="scrollUp" title="Zpět nahoru" onclick="scrollToSection('top')">↑</button>
+ <button id="scrollUp" title="Zpět nahoru" onclick="scrollToSection('top')" aria-label="Zpět nahoru">
+  <svg width="26" height="26" viewBox="0 0 26 26" style="display:block;margin:auto;" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M13 21V5M13 5L6 12M13 5L20 12" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -238,4 +275,5 @@
   </footer>
 </body>
 </html>
+
 
