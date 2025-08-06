@@ -9,7 +9,7 @@
   <style>
     body {
       font-family: 'Inter', Arial, sans-serif;
-      background: #ffff !important;
+     background: #f7fafc; !important;
       color: #111;
       margin: 0;
       padding: 0;
@@ -140,9 +140,7 @@
     }
 
 
-.section-blue-bg {
-  background: #ecf4fb !important;
-}
+
 .webmiru-box {
   background: #fff;
   box-shadow: 0 8px 30px rgba(22,20,45,0.12);
@@ -263,7 +261,36 @@
   }
 }
 
-    
+    .section-blue-bg {
+  background: linear-gradient(135deg, #ecf4fb 0%, #FFEDB0 100%);
+  position: relative;
+  z-index: 1;
+}
+.section-white-bg {
+  background: #fff;
+  position: relative;
+  z-index: 1;
+}
+.wave-bottom {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  width: 100%;
+  height: 65px;
+  z-index: 2;
+  pointer-events: none;
+}
+.wave-top {
+  position: absolute;
+  left: 0; right: 0; top: -1px;
+  width: 100%;
+  height: 65px;
+  z-index: 2;
+  pointer-events: none;
+  transform: rotate(180deg);
+}
+.bubble-sunglow {
+  background: rgba(255, 216, 106, 0.19) !important;
+}
   </style>
 </head>
 <body>
@@ -284,13 +311,13 @@
   </div>
 
   <!-- HERO SEKCE -->
-  <section class="hero" id="top">
+  <section class="hero section-blue-bg" id="top">
     <!-- Dekorativní bubliny -->
-    <div class="bubble bubble1"></div>
+    <div class="bubble bubble1 bubble-sunglow"></div>
     <div class="bubble bubble2"></div>
-    <div class="bubble bubble3"></div>
+    <div class="bubble bubble3 bubble-sunglow"></div>
     <div class="bubble bubble4"></div>
-    <div class="bubble bubble5"></div>
+    <div class="bubble bubble5 bubble-sunglow"></div>
     <div class="bubble bubble6"></div>
     <div class="hero-content">
       <h1>Virtuální prohlídky, které prodávají</h1>
@@ -300,9 +327,14 @@
         Nezávazná poptávka
       </button>
     </div>
+     <div class="wave-bottom">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style="display:block;width:100%;height:65px;">
+      <path d="M0,0 C350,90 850,10 1200,100 L1200,0 L0,0 Z" fill="#FFEDB0"></path>
+    </svg>
+  </div>
   </section>
 
-  <section id="co-delame" style="background:#fff; padding: 4rem 0;">
+  <section class="section-white-bg" id="co-delame" padding: 4rem 0;">
   <div style="max-width:1200px; margin:0 auto;">
     <h2 style="color:#142052;font-size:2.4rem;font-weight:800;text-align:center;margin-bottom:2.8rem;letter-spacing:-0.5px;">
       Co děláme?
@@ -361,6 +393,11 @@
         </div>
       </div>
     </div>
+  </div>
+    <div class="wave-bottom">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style="display:block;width:100%;height:65px;">
+      <path d="M0,0 C350,90 850,10 1200,100 L1200,0 L0,0 Z" fill="#FFEDB0"></path>
+    </svg>
   </div>
 </section>
 
@@ -480,7 +517,7 @@ function toggleDesc(el) {
 }
 </script>
 
-  <section id="komu-nabizime" style="background:#fff; padding:4rem 0;">
+  <section class="section-blue-bg" id="komu-nabizime"  padding:4rem 0;">
   <div style="max-width:1200px; margin:0 auto;">
     <h2 style="color:#142052;font-size:2.4rem;font-weight:800;text-align:center;margin-bottom:2.8rem;letter-spacing:-0.5px;">
       Komu nabízíme?
@@ -493,6 +530,11 @@ function toggleDesc(el) {
       <div class="komu-tile"><img src="images/prodejnajm.png" alt="Prodeje a pronájmy"></div>
       <div class="komu-tile"><img src="images/restaukav.png" alt="Restaurace, kavárny a bary"></div>
     </div>
+  </div>
+    <div class="wave-top">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style="display:block;width:100%;height:65px;">
+      <path d="M0,0 C350,90 850,10 1200,100 L1200,0 L0,0 Z" fill="#FFEDB0"></path>
+    </svg>
   </div>
 </section>
 
@@ -555,7 +597,7 @@ function toggleDesc(el) {
 </style>
 
 
-  <section id="balicky" style="background:#ecf4fb; padding:4rem 0;">
+  <section class="section-blue-bg" id="balicky"  padding:4rem 0;">
   <div style="max-width:660px;margin:0 auto;">
     <h2 style="color:#142052;font-size:2.2rem;font-weight:800;text-align:center;margin-bottom:2.6rem;">
       Balíčky
@@ -598,6 +640,11 @@ function toggleDesc(el) {
         </div>
       </div>
     </div>
+  </div>
+    <div class="wave-bottom">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style="display:block;width:100%;height:65px;">
+      <path d="M0,0 C350,90 850,10 1200,100 L1200,0 L0,0 Z" fill="#FFEDB0"></path>
+    </svg>
   </div>
 </section>
 
@@ -678,7 +725,7 @@ function togglePackage(el) {
 }
 </script>
 
-<section id="vzorova-prohlidka" style="background:#ecf4fb; padding:4rem 0;">
+<section class="section-white-bg" id="vzorova-prohlidka" padding:4rem 0;">
   <div style="max-width:900px; margin:0 auto;">
     <h2 style="color:#142052;font-size:2.2rem;font-weight:800;text-align:center;margin-bottom:2.6rem;">
       Vzorová prohlídka houseboatu
@@ -693,10 +740,15 @@ function togglePackage(el) {
       </div>
     </div>
   </div>
+  <div class="wave-bottom">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style="display:block;width:100%;height:65px;">
+      <path d="M0,0 C350,90 850,10 1200,100 L1200,0 L0,0 Z" fill="#FFEDB0"></path>
+    </svg>
+  </div>
 </section>
 
 
-<section id="reference" style="background:#ecf4fb; padding:4rem 0;">
+<section class="section-blue-bg" id="reference" padding:4rem 0;">
   <div style="max-width:1100px; margin:0 auto;">
     <h2 style="color:#142052;font-size:2.2rem;font-weight:800;text-align:center;margin-bottom:2.3rem;">
       Naše odvedená práce & reference
@@ -728,6 +780,11 @@ function togglePackage(el) {
         </div>
       </div>
     </div>
+  </div>
+  <div class="wave-top">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style="display:block;width:100%;height:65px;">
+      <path d="M0,0 C350,90 850,10 1200,100 L1200,0 L0,0 Z" fill="#FFEDB0"></path>
+    </svg>
   </div>
 </section>
 
@@ -809,10 +866,15 @@ function togglePackage(el) {
       Chcete web, který bude vidět a přivede vám zákazníky? Ozvěte se nám pro nezávaznou konzultaci.
     </div>
   </div>
+   <div class="wave-bottom">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style="display:block;width:100%;height:65px;">
+      <path d="M0,0 C350,90 850,10 1200,100 L1200,0 L0,0 Z" fill="#FFEDB0"></path>
+    </svg>
+  </div>
 </section>
 
 
-<section id="o-nas" class="section-blue-bg" style="padding:4rem 0;">
+<section id="o-nas" class="section-white-bg" style="padding:4rem 0;">
   <div class="webmiru-box" style="max-width:800px;">
     <h2 style="font-size:2.15rem;font-weight:800;margin-bottom:0.85rem;text-align:center;">
       O nás
@@ -824,6 +886,11 @@ function togglePackage(el) {
       Každý projekt stavíme s důrazem na <b>detail, funkčnost i vizuální wow efekt</b>.<br>
       Baví nás hledat nové způsoby, jak vaše podnikání posunout na vyšší úroveň.
     </div>
+  </div>
+  <div class="wave-bottom">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style="display:block;width:100%;height:65px;">
+      <path d="M0,0 C350,90 850,10 1200,100 L1200,0 L0,0 Z" fill="#FFEDB0"></path>
+    </svg>
   </div>
 </section>
 
@@ -842,6 +909,11 @@ function togglePackage(el) {
     <div style="margin-top:1.8rem;text-align:center;font-size:1.05rem;font-weight:500;">
       Nebo nám napište na <a href="mailto:info@showspace.cz">info@showspace.cz</a> nebo volejte <span>+420 777 111 222</span>
     </div>
+  </div>
+   <div class="wave-top">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="none" style="display:block;width:100%;height:65px;">
+      <path d="M0,0 C350,90 850,10 1200,100 L1200,0 L0,0 Z" fill="#FFEDB0"></path>
+    </svg>
   </div>
 </section>
 
@@ -875,3 +947,4 @@ function togglePackage(el) {
   
 </body>
 </html>
+
