@@ -792,7 +792,7 @@ section[id] {
 .kontakt-form button {
   width: 100%;
   background: linear-gradient(90deg, #FFD86A 65%, #CBA135 100%);
-  color: #142052;
+  color: #142052;               /* VŽDY tmavý text */
   font-weight: 800;
   border: none;
   border-radius: 11px;
@@ -801,21 +801,18 @@ section[id] {
   cursor: pointer;
   box-shadow: 0 2px 14px rgba(203,161,53,0.14);
   letter-spacing: 0.01em;
-  transition: background 0.17s, color 0.14s, transform 0.16s;
+  transition: background 0.17s, transform 0.16s;
 }
 .kontakt-form button:hover {
   background: linear-gradient(90deg, #CBA135 80%, #FFD86A 100%);
-  color: #fff;
+  color: #142052;              /* POZOR: ZŮSTÁVÁ tmavý text */
   transform: scale(1.07);
   box-shadow: 0 6px 22px #FFD86A77;
 }
 
-
-
-/* KONTAKT BOX (vpravo) */
 .kontakt-email {
   display: inline-block;
-  color: #fff !important;
+  color: #fff !important;        /* VŽDY bílý text */
   background: linear-gradient(90deg, #CBA135 65%, #FFD86A 100%);
   font-weight: 700;
   text-decoration: none;
@@ -828,7 +825,7 @@ section[id] {
 }
 .kontakt-email:hover {
   background: linear-gradient(90deg, #FFD86A 80%, #CBA135 100%);
-  color: #142052 !important;
+  color: #fff !important;       /* ZŮSTÁVÁ bílý text */
   transform: scale(1.07);
 }
 
@@ -1409,6 +1406,7 @@ section[id] {
   </script>
 </body>
 </html>
+
 
 
 
