@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <title>Zásady ochrany osobních údajů | ShowSpace.cz</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Jak chráníme vaše data na ShowSpace.cz – zásady GDPR a cookies.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: #fffbe7;
+      color: #142052;
+      margin: 0;
+      padding: 0;
+    }
+    .gdpr-container {
+      max-width: 800px;
+      margin: 48px auto 48px auto;
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: 0 4px 28px #FFD86A33;
+      padding: 2.8em 2.2em 2.3em 2.2em;
+      border: 1.7px solid #FFD86A33;
+    }
+    h1, h2, h3 {
+      color: #CBA135;
+      font-weight: 800;
+      margin-bottom: 0.7em;
+      letter-spacing: -0.5px;
+    }
+    h1 { font-size: 2.1em; margin-top: 0.2em; }
+    h2 { font-size: 1.25em; margin-top: 2.1em; }
+    a { color: #CBA135; text-decoration: underline; font-weight: 600; }
+    ul, ol { margin-left: 1.4em; }
+    .gdpr-box {
+      background: #fffbe7;
+      border-left: 5px solid #CBA135;
+      border-radius: 11px;
+      padding: 1.1em 1.6em;
+      margin-bottom: 2em;
+      color: #826c2e;
+      font-size: 1.08em;
+    }
+    @media (max-width: 700px){
+      .gdpr-container{padding:1.2em 0.5em;}
+      h1{font-size:1.2em;}
+    }
+  </style>
+</head>
+<body>
+  <div class="gdpr-container">
+    <h1>Zásady ochrany osobních údajů a cookies</h1>
+    <div class="gdpr-box">
+      Chráníme vaše soukromí. Respektujeme platnou legislativu a zpracováváme pouze ty údaje, které jsou nezbytné pro poskytování našich služeb, komunikaci a měření návštěvnosti.
+    </div>
+
+    <h2>1. Správce údajů</h2>
+    <p>
+      ShowSpace.cz<br>
+      Kontakt: <a href="mailto:info@showspace.cz">info@showspace.cz</a>
+    </p>
+
+    <h2>2. Jaké údaje zpracováváme?</h2>
+    <ul>
+      <li><b>Kontaktní údaje:</b> Pouze pokud nám sami napíšete přes kontaktní formulář (jméno, e-mail, telefon, zpráva).</li>
+      <li><b>Cookies pro měření návštěvnosti:</b> Jen s vaším souhlasem používáme <a href="https://support.google.com/analytics/answer/6004245?hl=cs" target="_blank">Google Analytics</a> – anonymně sledujeme, jak web používáte.</li>
+    </ul>
+
+    <h2>3. K čemu data využíváme?</h2>
+    <ul>
+      <li>Odpověď na vaši zprávu, obchodní komunikace.</li>
+      <li>Zlepšování webu díky anonymní analýze provozu.</li>
+      <li>Dodržování zákonných povinností.</li>
+    </ul>
+
+    <h2>4. Kdo má k údajům přístup?</h2>
+    <ul>
+      <li>Správci ShowSpace.cz (nikomu údaje neprodáváme, nepředáváme třetím stranám).</li>
+      <li>Při používání Google Analytics se některá anonymní data o chování uživatelů zpracovávají společností <a href="https://policies.google.com/privacy?hl=cs" target="_blank">Google Ireland Ltd.</a></li>
+    </ul>
+
+    <h2>5. Jak dlouho data uchováváme?</h2>
+    <ul>
+      <li>Kontaktní údaje maximálně po dobu vyřízení dotazu, nejdéle 12 měsíců.</li>
+      <li>Cookies pro analytiku dle nastavení vašeho prohlížeče, maximálně však 26 měsíců (Google Analytics).</li>
+    </ul>
+
+    <h2>6. Vaše práva</h2>
+    <ul>
+      <li>Máte právo vědět, jaká data o vás evidujeme, žádat o opravu nebo výmaz.</li>
+      <li>Můžete kdykoliv odvolat souhlas se zpracováním cookies (vlevo dole znovu otevřete lištu nebo smažte cookies v prohlížeči).</li>
+      <li>Pokud máte pochybnosti, můžete se obrátit na <a href="https://www.uoou.cz/" target="_blank">Úřad pro ochranu osobních údajů</a>.</li>
+    </ul>
+
+    <h2>7. Cookies</h2>
+    <p>
+      Cookies pro měření návštěvnosti (Google Analytics) používáme pouze s vaším souhlasem. Tyto cookies nám pomáhají lépe pochopit, jak je náš web využíván. Sběr analytických cookies můžete odmítnout v liště při první návštěvě, nebo změnit nastavení kdykoli později.
+    </p>
+    <p>
+      Podrobné informace najdete na stránkách <a href="https://policies.google.com/privacy?hl=cs" target="_blank">Google</a>.
+    </p>
+    <br>
+    <div style="text-align:center;font-size:1.03em;color:#826c2e;margin-top:2.7em;">
+      Poslední aktualizace: srpen 2025
+    </div>
+  </div>
+</body>
+</html>
