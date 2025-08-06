@@ -990,6 +990,23 @@
   box-shadow: 0 4px 36px rgba(22,20,45,0.09);
 }
 
+/* --- PŘIDAT NA KONEC VAŠEHO CSS --- */
+/* základní barva, okamžitě vykreslená před gradientem */
+.packages-section {
+  background-color: #181C3A;
+  background-image: linear-gradient(115deg, #181C3A 0%, #232D5B 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* pokud chcete mít jistotu, že i tyto 3 id nikdy „nevyskočí“ bíle */
+#balicky,
+#vzorova-prohlidka,
+#reference {
+  background-color: #181C3A !important;
+}
+
+    
   </style>
 </head>
 <body>
@@ -1382,3 +1399,4 @@ window.addEventListener('scroll', function() {
 
 </body>
 </html>
+
