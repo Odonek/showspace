@@ -33,6 +33,38 @@
       0%,100% { transform: scale(1);}
       50% { transform: scale(1.08);}
     }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 2vw 0.7rem 2vw;
+      background: #fff;
+      border-bottom: 1.5px solid #eee;
+      position: sticky;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+    }
+    .navbar .logo img {
+      height: 68px;
+      margin-left: 0.5vw;
+    }
+    .navbar .contact {
+      text-align: right;
+      margin-right: 2vw;
+    }
+    .navbar .contact span {
+      display: block;
+      font-weight: 600;
+      font-size: 1.12rem;
+      color: #142052;
+    }
+    .navbar .contact a {
+      color: #CBA135;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 1.5em;
+      font-size: 1.08rem;
+    }
     .hero {
       position: relative;
       min-height: 490px;
@@ -87,7 +119,6 @@
       transform: scale(1.05);
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     }
-    /* Dekorativní bubliny */
     .bubble {
       position: absolute;
       border-radius: 50%;
@@ -113,6 +144,17 @@
   <!-- PRELOADER -->
   <div id="preloader">
     <img src="images/logoshowspace.png" alt="ShowSpace loader">
+  </div>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="logo">
+      <a href="/"><img src="images/logonejvic.png" alt="ShowSpace logo"></a>
+    </div>
+    <div class="contact">
+      <span>+420 777 111 222</span>
+      <a href="mailto:info@showspace.cz">info@showspace.cz</a>
+    </div>
   </div>
 
   <!-- HERO SEKCE -->
