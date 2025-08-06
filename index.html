@@ -727,50 +727,66 @@ section[id] {
   margin: 0 auto;
 }
 
-.kontakt-form, .kontakt-box {
-  background: #fff;
-  border-radius: 24px;
-  border: 2.7px solid #FFD86A;
-  box-shadow: 0 12px 44px rgba(20,32,82,0.16), 0 1.5px 12px rgba(203,161,53,0.05);
-  flex: 1 1 0;
-  padding: 2.7rem 2.3rem 2rem 2.3rem;
-  margin: 0 0.7rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: box-shadow 0.24s;
-}
-.kontakt-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-}
-
-.kontakt-form {
-  align-items: center;
-  gap: 1rem;
+/* FORMULÁŘ + BOX – JEDNOTNÝ VZHLED */
+.kontakt-form,
+.kontakt-box {
   background: linear-gradient(90deg, #FFD86A 60%, #fff 100%);
   border: 2.7px solid #FFD86A;
   box-shadow: 0 12px 44px rgba(20,32,82,0.16), 0 1.5px 12px rgba(203,161,53,0.05);
-  justify-content: center;
   border-radius: 24px;
   transition: box-shadow 0.24s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   flex: 1 1 0;
   padding: 2.7rem 2.3rem 2rem 2.3rem;
   margin: 0 0.7rem;
-  display: flex;
-  flex-direction: column;
+  gap: 1rem;
 }
-.kontakt-form:hover {
+.kontakt-form:hover, .kontakt-box:hover {
   box-shadow: 0 24px 60px rgba(203,161,53,0.11), 0 2.5px 20px rgba(20,32,82,0.14);
 }
 
-.kontakt-form input:focus, .kontakt-form textarea:focus {
-  border-color: #47548B;
+/* FORMULÁŘOVÁ POLE */
+.kontakt-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  width: 100%;
+}
+
+.kontakt-form input,
+.kontakt-form textarea {
   background: #fff;
+  border: 1.5px solid #cba13555;
+  border-radius: 11px;
+  padding: 0.93em 1em;
+  font-size: 1.05rem;
+  font-family: inherit;
+  box-shadow: 0 2px 10px rgba(203,161,53,0.08);
+  color: #142052;
+  margin-bottom: 0.13em;
+  transition: border-color 0.16s, box-shadow 0.16s, background 0.19s;
+  resize: vertical;
+}
+.kontakt-form input:focus,
+.kontakt-form textarea:focus {
+  border-color: #FFD86A;
+  box-shadow: 0 4px 16px rgba(203,161,53,0.14);
   outline: none;
+  background: #fffef8;
+}
+.kontakt-form textarea {
+  min-height: 94px;
+  max-width: 100%;
+}
+
+.kontakt-form input::placeholder,
+.kontakt-form textarea::placeholder {
+  color: #b3a570;
+  opacity: 1;
+  font-style: italic;
 }
 
 .kontakt-form button {
@@ -787,30 +803,13 @@ section[id] {
   transition: background 0.18s, transform 0.15s;
   letter-spacing: 0.01em;
 }
-    .kontakt-form:hover, .kontakt-box:hover {
-  box-shadow: 0 24px 60px rgba(203,161,53,0.11), 0 2.5px 20px rgba(20,32,82,0.14);
-}
 .kontakt-form button:hover {
   background: linear-gradient(90deg, #CBA135 70%, #FFD86A 100%);
   color: #142052;
   transform: scale(1.05);
 }
 
-.kontakt-box {
-  align-items: center;
-  gap: 1rem;
-  background: linear-gradient(90deg, #FFD86A 60%, #fff 100%);
-  border: 2.7px solid #FFD86A;
-  box-shadow: 0 12px 44px rgba(20,32,82,0.16), 0 1.5px 12px rgba(203,161,53,0.05);
-  justify-content: center;
-  border-radius: 24px;
-  transition: box-shadow 0.24s;
-}
-.kontakt-box:hover {
-  box-shadow: 0 24px 60px rgba(203,161,53,0.11), 0 2.5px 20px rgba(20,32,82,0.14);
-}
-
-
+/* KONTAKT BOX (vpravo) */
 .kontakt-email {
   display: inline-block;
   color: #fff !important;
@@ -855,19 +854,31 @@ section[id] {
 
 /* Responsivita */
 @media (max-width: 900px) {
-  .kontakt-form, .kontakt-box {
+  .kontakt-form,
+  .kontakt-box {
     border-radius: 17px;
     padding: 1.6rem 0.7rem 1.1rem 0.7rem;
     margin: 0.6rem 0;
   }
+  .kontakt-flex {
+    flex-direction: column;
+    gap: 1.1rem;
+    max-width: 99vw;
+  }
 }
 @media (max-width: 600px) {
-  .kontakt-form, .kontakt-box {
+  .kontakt-form,
+  .kontakt-box {
     padding: 1.1rem 0.3rem;
     border-radius: 12px;
     margin: 0.4rem 0;
   }
+  .kontakt-section {
+    padding: 1.3rem 0.2rem 1.0rem 0.2rem;
+    border-radius: 12px;
+  }
 }
+
 
 /* ŠIPKA NAHORU */
 #scrollUp {
@@ -1393,6 +1404,7 @@ section[id] {
   </script>
 </body>
 </html>
+
 
 
 
