@@ -1345,10 +1345,19 @@ section[id] {
   <script>
     // Preloader
     window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('preloader').classList.add('hidden');
-      }, 700);
-    });
+  const loader = document.getElementById('preloader');
+  const minTime = 900;
+  const showTime = Date.now();
+  setTimeout(function() {
+    const elapsed = Date.now() - showTime;
+    if (elapsed < minTime) {
+      setTimeout(() => loader.classList.add('hidden'), minTime - elapsed);
+    } else {
+      loader.classList.add('hidden');
+    }
+  }, 0); // v podstatě se ujistíš, že loader bude vždy minTime ms vidět
+});
+
     // Kotva nahoru
     window.addEventListener('scroll', function() {
       document.getElementById('scrollUp').style.display =
@@ -1439,6 +1448,7 @@ window.addEventListener('DOMContentLoaded', function() {
   
 </body>
 </html>
+
 
 
 
