@@ -990,21 +990,14 @@
   box-shadow: 0 4px 36px rgba(22,20,45,0.09);
 }
 
-/* --- PŘIDAT NA KONEC VAŠEHO CSS --- */
-/* základní barva, okamžitě vykreslená před gradientem */
-.packages-section {
-  background-color: #181C3A;
-  background-image: linear-gradient(115deg, #181C3A 0%, #232D5B 100%);
-  background-repeat: no-repeat;
-  background-size: cover;
+/* na konec stylů */
+.full-bg.packages-section {
+  /* fallback, vykreslí se okamžitě před gradientem */
+  background: #181C3A;
+  /* pak gradient */
+  background: linear-gradient(115deg, #181C3A 0%, #232D5B 100%);
 }
 
-/* pokud chcete mít jistotu, že i tyto 3 id nikdy „nevyskočí“ bíle */
-#balicky,
-#vzorova-prohlidka,
-#reference {
-  background-color: #181C3A !important;
-}
 
     
   </style>
@@ -1058,7 +1051,7 @@
     </div>
   </section>
   <!-- CO DĚLÁME (symboly) -->
-  <section class="full-bg what-section" style="background:#fff; id="co-delame" data-aos="fade-up" data-aos-delay="300">
+  <section class="full-bg what-section" id="co-delame" style="background:#fff; data-aos="fade-up" data-aos-delay="300">
     <div class="section-inner">
     <div class="section-title">Co děláme?</div>
     <div class="what-we-do-grid">
@@ -1105,7 +1098,7 @@
     </div>
   </section>
   <!-- KOMU NABÍZÍME -->
-  <section class="full-bg what-section" style="background:#fff; id="komu-nabizime" data-aos="zoom-in" data-aos-delay="200">
+  <section class="full-bg what-section" id="komu-nabizime" style="background:#fff;  data-aos="zoom-in" data-aos-delay="200">
     <div class="section-inner">
     <div class="section-title">Komu nabízíme?</div>
     <div class="target-grid">
@@ -1399,4 +1392,5 @@ window.addEventListener('scroll', function() {
 
 </body>
 </html>
+
 
