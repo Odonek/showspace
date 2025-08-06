@@ -176,6 +176,185 @@
     </div>
   </section>
 
+  <section id="co-delame" style="background:#fff; padding: 4rem 0;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <h2 style="color:#142052;font-size:2.4rem;font-weight:800;text-align:center;margin-bottom:2.8rem;letter-spacing:-0.5px;">
+      Co děláme?
+    </h2>
+    <div class="what-we-do-grid">
+      <div class="what-row">
+        <div class="service-box" onclick="toggleDesc(this)">
+          <div class="service-icon"><img src="images/virtualpro.png" alt="Virtuální prohlídky"></div>
+          <div class="service-title">Virtuální prohlídky</div>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+          <div class="service-desc">
+            Profesionální 360° prezentace prostoru, která zaujme a prodá.
+          </div>
+        </div>
+        <div class="service-box" onclick="toggleDesc(this)">
+          <div class="service-icon"><img src="images/marketing.png" alt="Marketing"></div>
+          <div class="service-title">Marketing</div>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+          <div class="service-desc">
+            Online reklama na Google, Meta, správné zacílení na vaše zákazníky.
+          </div>
+        </div>
+        <div class="service-box" onclick="toggleDesc(this)">
+          <div class="service-icon"><img src="images/site.png" alt="Sítě a obsah"></div>
+          <div class="service-title">Content &amp; Sítě</div>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+          <div class="service-desc">
+            Správa obsahu a sociálních sítí – budování značky a komunit.
+          </div>
+        </div>
+      </div>
+      <div class="what-row">
+        <div class="service-box" onclick="toggleDesc(this)">
+          <div class="service-icon"><img src="images/pudorys.png" alt="Půdorysy"></div>
+          <div class="service-title">Půdorysy</div>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+          <div class="service-desc">
+            Přehledné a profesionální půdorysy nemovitostí.
+          </div>
+        </div>
+        <div class="service-box" onclick="toggleDesc(this)">
+          <div class="service-icon"><img src="images/mapy.png" alt="Google Maps"></div>
+          <div class="service-title">Google Maps</div>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+          <div class="service-desc">
+            Implementace vaší prohlídky přímo do Google Maps.
+          </div>
+        </div>
+        <div class="service-box" onclick="toggleDesc(this)">
+          <div class="service-icon"><img src="images/recenze.png" alt="Správa recenzí"></div>
+          <div class="service-title">Správa recenzí</div>
+          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
+          <div class="service-desc">
+            Budování reputace a správa recenzí vašich klientů.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.what-we-do-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+.what-row {
+  display: flex;
+  justify-content: center;
+  gap: 2.2rem;
+}
+.service-box {
+  position: relative;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 15px rgba(44,115,215,0.10);
+  border: 1.5px solid #d3e9fb;
+  color: #143b74;
+  width: 250px;
+  min-height: 200px;
+  text-align: center;
+  padding: 2.1rem 1.4rem 1.3rem 1.4rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: box-shadow 0.18s, transform 0.18s, background 0.2s, z-index 0.15s;
+  z-index: 1;
+  overflow: visible;
+}
+.service-box .service-icon img {
+  height: 80px;
+  margin-bottom: 1.1rem;
+  user-drag: none;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 7px rgba(203,161,53,0.04));
+}
+.service-title {
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 0.25em;
+  color: #164075;
+}
+.arrow-btn {
+  position: absolute;
+  top: 10px;
+  right: 13px;
+  background: none;
+  border: none;
+  color: #CBA135;
+  font-size: 1.34rem;
+  cursor: pointer;
+  transition: transform 0.23s;
+  outline: none;
+  z-index: 10;
+  padding: 0;
+}
+.service-box.open .arrow-btn span {
+  transform: rotate(180deg);
+  display: inline-block;
+}
+.service-desc {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.36s cubic-bezier(.7,.1,.25,1), padding 0.19s, opacity 0.19s;
+  padding: 0 0;
+  opacity: 0;
+  font-size: 1rem;
+  margin-top: 0.15rem;
+  color: #133059;
+  border-top: 1.1px solid #e6eaf3;
+  text-align: left;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+}
+.service-box.open .service-desc {
+  max-height: 200px;
+  padding: 1.1em 0 1em 0;
+  opacity: 1;
+}
+.service-box.open {
+  background: #f8fafc;
+  box-shadow: 0 14px 38px rgba(44,115,215,0.17), 0 0 0 3px #CBA13533;
+  z-index: 2;
+  transform: scale(1.15);
+}
+@media (max-width: 1100px) {
+  .service-box { width: 26vw; min-width: 160px; }
+}
+@media (max-width: 900px) {
+  .what-row { flex-direction: column; gap: 1.3rem; align-items: center; }
+  .service-box { width: 85vw; min-width: 150px; }
+}
+@media (max-width: 600px) {
+  .what-we-do-grid { gap: 1.2rem; }
+  .what-row { gap: 1.1rem; }
+  .service-box { width: 96vw; min-width: 120px; padding: 1.2rem 0.7rem 0.8rem 0.7rem;}
+  .service-box .service-icon img { height: 52px; }
+  .service-title { font-size: 1.05rem; }
+}
+</style>
+
+<script>
+function toggleDesc(el) {
+  if(el.classList.contains('open')) {
+    el.classList.remove('open');
+    return;
+  }
+  document.querySelectorAll('.service-box').forEach(s => s.classList.remove('open'));
+  el.classList.add('open');
+}
+</script>
+
+
   <script>
     // Preloader
     window.addEventListener('load', function() {
@@ -186,3 +365,4 @@
   </script>
 </body>
 </html>
+
