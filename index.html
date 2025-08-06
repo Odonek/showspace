@@ -7,13 +7,25 @@
   <link rel="icon" type="image/png" href="images/favicon2.png" sizes="64x64" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background: #ffff !important;
-      color: #111;
-      margin: 0;
-      padding: 0;
-    }
+
+    :root {
+  --main-blue: #ecf4fb;
+  --alt-blue: #e8f1fb;
+  --white-blue: #f9fafc;
+  --soft-grey: #f6f7fa;
+  --warm-beige: #ede9d6;
+  --gold: #CBA135;
+  --dark-blue: #181c3a;
+}
+
+  body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: linear-gradient(120deg, var(--main-blue) 0%, var(--white-blue) 100%);
+  color: #181c3a;
+  margin: 0;
+  padding: 0;
+}
+
     #preloader {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -263,6 +275,29 @@
   }
 }
 
+
+    .section-main-hero {
+  background: linear-gradient(115deg, var(--main-blue) 40%, var(--alt-blue) 100%);
+}
+.section-white-blue {
+  background: var(--white-blue);
+}
+.section-main-blue {
+  background: var(--main-blue);
+}
+.section-soft-grey {
+  background: var(--soft-grey);
+}
+.glass-bg {
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 8px 36px rgba(24,28,58,0.08);
+  border: 1.5px solid rgba(203,161,53,0.08);
+  backdrop-filter: blur(9px);
+}
+
+.section-wave { line-height: 0; }
+.section-wave svg { display: block; width: 100%; height: 64px; }
+
     
   </style>
 </head>
@@ -302,7 +337,7 @@
     </div>
   </section>
 
-  <section id="co-delame" style="background:#fff; padding: 4rem 0;">
+  <section id="co-delame" class="section section-main-hero" padding: 4rem 0;">
   <div style="max-width:1200px; margin:0 auto;">
     <h2 style="color:#142052;font-size:2.4rem;font-weight:800;text-align:center;margin-bottom:2.8rem;letter-spacing:-0.5px;">
       Co děláme?
@@ -363,6 +398,13 @@
     </div>
   </div>
 </section>
+  <div class="section-wave">
+  <svg width="100%" height="64" viewBox="0 0 1440 64" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 0H1440V64H0V0Z" fill="#ecf4fb"/>
+    <path d="M0 22C149 22 324 62 453 62C654 62 765 0 1105 0C1280 0 1420 24 1440 29V64H0V22Z" fill="#f9fafc"/>
+  </svg>
+</div>
+
 
 <style>
 .what-we-do-grid {
@@ -480,7 +522,7 @@ function toggleDesc(el) {
 }
 </script>
 
-  <section id="komu-nabizime" style="background:#fff; padding:4rem 0;">
+  <section id="komu-nabizime" class="section section-white-blue" padding:4rem 0;">
   <div style="max-width:1200px; margin:0 auto;">
     <h2 style="color:#142052;font-size:2.4rem;font-weight:800;text-align:center;margin-bottom:2.8rem;letter-spacing:-0.5px;">
       Komu nabízíme?
@@ -495,6 +537,13 @@ function toggleDesc(el) {
     </div>
   </div>
 </section>
+  <div class="section-wave">
+  <svg width="100%" height="64" viewBox="0 0 1440 64" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 0H1440V64H0V0Z" fill="#ecf4fb"/>
+    <path d="M0 22C149 22 324 62 453 62C654 62 765 0 1105 0C1280 0 1420 24 1440 29V64H0V22Z" fill="#f9fafc"/>
+  </svg>
+</div>
+
 
 <style>
 .komu-grid {
@@ -555,7 +604,7 @@ function toggleDesc(el) {
 </style>
 
 
-  <section id="balicky" style="background:#ecf4fb; padding:4rem 0;">
+  <section id="balicky" class="section section-main-blue" padding:4rem 0;">
   <div style="max-width:660px;margin:0 auto;">
     <h2 style="color:#142052;font-size:2.2rem;font-weight:800;text-align:center;margin-bottom:2.6rem;">
       Balíčky
@@ -600,6 +649,13 @@ function toggleDesc(el) {
     </div>
   </div>
 </section>
+  <div class="section-wave">
+  <svg width="100%" height="64" viewBox="0 0 1440 64" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 0H1440V64H0V0Z" fill="#ecf4fb"/>
+    <path d="M0 22C149 22 324 62 453 62C654 62 765 0 1105 0C1280 0 1420 24 1440 29V64H0V22Z" fill="#f9fafc"/>
+  </svg>
+</div>
+
 
 
 <style>
@@ -678,7 +734,7 @@ function togglePackage(el) {
 }
 </script>
 
-<section id="vzorova-prohlidka" style="background:#ecf4fb; padding:4rem 0;">
+<section id="vzorova-prohlidka" class="section section-soft-grey"> padding:4rem 0;">
   <div style="max-width:900px; margin:0 auto;">
     <h2 style="color:#142052;font-size:2.2rem;font-weight:800;text-align:center;margin-bottom:2.6rem;">
       Vzorová prohlídka houseboatu
@@ -694,9 +750,16 @@ function togglePackage(el) {
     </div>
   </div>
 </section>
+  <div class="section-wave">
+  <svg width="100%" height="64" viewBox="0 0 1440 64" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 0H1440V64H0V0Z" fill="#ecf4fb"/>
+    <path d="M0 22C149 22 324 62 453 62C654 62 765 0 1105 0C1280 0 1420 24 1440 29V64H0V22Z" fill="#f9fafc"/>
+  </svg>
+</div>
 
 
-<section id="reference" style="background:#ecf4fb; padding:4rem 0;">
+
+<section id="reference" class="section section-white-blue" padding:4rem 0;">
   <div style="max-width:1100px; margin:0 auto;">
     <h2 style="color:#142052;font-size:2.2rem;font-weight:800;text-align:center;margin-bottom:2.3rem;">
       Naše odvedená práce & reference
@@ -730,6 +793,12 @@ function togglePackage(el) {
     </div>
   </div>
 </section>
+<div class="section-wave">
+  <svg width="100%" height="64" viewBox="0 0 1440 64" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 0H1440V64H0V0Z" fill="#ecf4fb"/>
+    <path d="M0 22C149 22 324 62 453 62C654 62 765 0 1105 0C1280 0 1420 24 1440 29V64H0V22Z" fill="#f9fafc"/>
+  </svg>
+</div>
 
 
 <style>
@@ -787,7 +856,7 @@ function togglePackage(el) {
 }
 </style>
 
-<section id="web-na-miru" class="section-blue-bg" style="padding:4rem 0;">
+<section id="web-na-miru" class="section glass-bg" style="padding:4rem 0;">
   <div class="webmiru-box">
     <h2 style="font-size:2.2rem; font-weight:800; text-align:center; margin-bottom:0.85rem;">
       Web na míru
@@ -810,9 +879,15 @@ function togglePackage(el) {
     </div>
   </div>
 </section>
+<div class="section-wave">
+  <svg width="100%" height="64" viewBox="0 0 1440 64" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 0H1440V64H0V0Z" fill="#ecf4fb"/>
+    <path d="M0 22C149 22 324 62 453 62C654 62 765 0 1105 0C1280 0 1420 24 1440 29V64H0V22Z" fill="#f9fafc"/>
+  </svg>
+</div>
 
 
-<section id="o-nas" class="section-blue-bg" style="padding:4rem 0;">
+<section id="o-nas" class="section section-main-blue" style="padding:4rem 0;">
   <div class="webmiru-box" style="max-width:800px;">
     <h2 style="font-size:2.15rem;font-weight:800;margin-bottom:0.85rem;text-align:center;">
       O nás
@@ -826,9 +901,15 @@ function togglePackage(el) {
     </div>
   </div>
 </section>
+<div class="section-wave">
+  <svg width="100%" height="64" viewBox="0 0 1440 64" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 0H1440V64H0V0Z" fill="#ecf4fb"/>
+    <path d="M0 22C149 22 324 62 453 62C654 62 765 0 1105 0C1280 0 1420 24 1440 29V64H0V22Z" fill="#f9fafc"/>
+  </svg>
+</div>
 
 
- <section id="kontakt" class="section-blue-bg" style="padding:4.2rem 0;">
+ <section id="kontakt" class="section section-soft-grey" style="padding:4.2rem 0;">
   <div class="kontakt-box-dark" style="max-width:850px; margin:0 auto; border-radius:22px; padding:2.7rem 1.6rem 2.2rem 1.6rem;">
     <h2 style="text-align:center; font-size:2.15rem; font-weight:800; margin-bottom:0.45rem;">Kontakt</h2>
     <h3 style="text-align:center; font-size:1.18rem; margin-bottom:1.05rem; font-weight:700;">Ozvěte se ještě dnes</h3>
@@ -844,6 +925,12 @@ function togglePackage(el) {
     </div>
   </div>
 </section>
+<div class="section-wave">
+  <svg width="100%" height="64" viewBox="0 0 1440 64" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 0H1440V64H0V0Z" fill="#ecf4fb"/>
+    <path d="M0 22C149 22 324 62 453 62C654 62 765 0 1105 0C1280 0 1420 24 1440 29V64H0V22Z" fill="#f9fafc"/>
+  </svg>
+</div>
 
 
   
@@ -875,6 +962,7 @@ function togglePackage(el) {
   
 </body>
 </html>
+
 
 
 
