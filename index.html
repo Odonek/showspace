@@ -974,19 +974,52 @@ footer {
   padding:2.2rem 0 1.2rem 0;
   margin-top:3rem;
 }
-footer a {
+
+/* Ikony sítí – NE všechny odkazy ve footeru! */
+.footer-social {
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:44px;height:44px;
+  width:44px; height:44px;
   border-radius:11px;
   background:#fff;
   border:1.5px solid #CBA135;
   transition:transform .21s;
+  margin: 0 9px;
 }
-footer a:hover { transform: scale(1.14) rotate(-8deg); }
+.footer-social:hover { 
+  transform: scale(1.14) rotate(-8deg);
+  border-color: #b8902d;
+}
+
+/* SVG zarovnání – pokud nutné */
 footer svg { vertical-align:middle; }
-footer .works-title, footer .works-desc { color: #CBA135 !important; }
+
+/* GDPR, email, atd. – normální textový odkaz */
+.footer-link {
+  color: #CBA135;
+  font-weight:700;
+  text-decoration: underline;
+  transition: color 0.18s;
+  display: inline;
+  background: none;
+  border: none;
+  border-radius:0;
+  width:auto;
+  height:auto;
+  padding:0;
+  margin:0;
+  align-items:unset;
+  justify-content:unset;
+}
+.footer-link:hover { color: #b8902d; text-decoration:underline; }
+
+/* Pokud máš ve footeru speciální texty */
+footer .works-title,
+footer .works-desc {
+  color: #CBA135 !important;
+}
+
 /* FULL-WIDTH SEKCE */
 .full-bg {
   width: 100vw;
@@ -1446,29 +1479,44 @@ section[id] {
 
 
   <!-- FOOTER -->
-  <footer style="background: linear-gradient(120deg,#FFF8E2 0%,#FFD86A 80%,#CBA135 100%); border-top: 2px solid #CBA135; padding:2.2rem 0 1.2rem 0; margin-top:3rem;">
-    <div style="display:flex;justify-content:center;align-items:center;gap:28px;margin-bottom:1rem;">
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/show_space_/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;background:#fff;border:1.5px solid #CBA135;transition:transform .21s;">
-        <svg fill="#E1306C" width="26" height="26" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm4.75-.88a1.13 1.13 0 110 2.25 1.13 1.13 0 010-2.25z"></path></svg>
-      </a>
-      <!-- TikTok -->
-      <a href="https://www.tiktok.com/@show.space360" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;background:#fff;border:1.5px solid #CBA135;transition:transform .21s;">
-        <svg width="24" height="24" viewBox="0 0 256 256" fill="none"><path d="M104.91 93.41v51.84c0 14.49-11.87 25.76-26.46 25.76-14.59 0-26.46-11.27-26.46-25.76 0-13.92 10.96-25.18 25.15-25.72v-16.2c-23.15.81-41.76 20.74-41.76 45.68 0 25.35 20.78 45.92 46.42 45.92 25.64 0 46.42-20.57 46.42-45.92V86.47h22.49v6.94c0 15.5 11.68 28.15 27.46 29.15v-27.09c-7.37-.7-14.24-3.8-19.1-9.6-5.07-5.87-7.82-13.87-7.82-22.28V43.35h-22.49z" fill="#25F4EE"></path><path d="M167.64 97.43c3.66 2.38 8.01 3.34 12.36 2.86v-19.87a34.26 34.26 0 01-12.36-3.57z" fill="#FE2C55"></path></svg>
-      </a>
-    </div>
-    <div style="text-align:center; font-size:1.04rem; color:#222; margin-bottom:0.2em; font-weight:500;">
-      © 2025 ShowSpace.cz &ndash; Veškerá práva vyhrazena.
-    </div>
-    <div style="text-align:center; font-size:0.98rem; color:#666; margin-top:0.14em;">
-      Virtuální prohlídky a webové prezentace | info@showspace.cz
-      <span style="margin-left:1.1em;">
+ <footer style="background: linear-gradient(120deg,#FFF8E2 0%,#FFD86A 80%,#CBA135 100%); border-top: 2px solid #CBA135; padding:2.2rem 0 1.2rem 0; margin-top:3rem;">
+  <!-- Sítě -->
+  <div style="display:flex;justify-content:center;align-items:center;gap:28px;margin-bottom:1rem;">
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/show_space_/" class="footer-social" target="_blank" rel="noopener"
+      style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;background:#fff;border:1.5px solid #CBA135;transition:transform .21s;">
+      <svg fill="#E1306C" width="26" height="26" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm4.75-.88a1.13 1.13 0 110 2.25 1.13 1.13 0 010-2.25z"></path></svg>
+    </a>
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@show.space360" class="footer-social" target="_blank" rel="noopener"
+      style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;background:#fff;border:1.5px solid #CBA135;transition:transform .21s;">
+      <svg width="24" height="24" viewBox="0 0 256 256" fill="none"><path d="M104.91 93.41v51.84c0 14.49-11.87 25.76-26.46 25.76-14.59 0-26.46-11.27-26.46-25.76 0-13.92 10.96-25.18 25.15-25.72v-16.2c-23.15.81-41.76 20.74-41.76 45.68 0 25.35 20.78 45.92 46.42 45.92 25.64 0 46.42-20.57 46.42-45.92V86.47h22.49v6.94c0 15.5 11.68 28.15 27.46 29.15v-27.09c-7.37-.7-14.24-3.8-19.1-9.6-5.07-5.87-7.82-13.87-7.82-22.28V43.35h-22.49z" fill="#25F4EE"></path><path d="M167.64 97.43c3.66 2.38 8.01 3.34 12.36 2.86v-19.87a34.26 34.26 0 01-12.36-3.57z" fill="#FE2C55"></path></svg>
+    </a>
+    <!-- LinkedIn (pokud máš) -->
+    <!--
+    <a href="https://www.linkedin.com/company/showspace360/" target="_blank" rel="noopener"
+      style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;background:#fff;border:1.5px solid #CBA135;transition:transform .21s;">
+      <svg fill="#0077B5" width="24" height="24" viewBox="0 0 24 24"><path d="M..." /></svg>
+    </a>
+    -->
+  </div>
+
+  <!-- Hlavní info -->
+  <div style="text-align:center; font-size:1.04rem; color:#222; margin-bottom:0.2em; font-weight:500;">
+    © 2025 ShowSpace.cz &ndash; Veškerá práva vyhrazena.
+  </div>
+
+  <!-- Kontaktní info + GDPR v jednom řádku -->
+  <div style="text-align:center; font-size:0.98rem; color:#666; margin-top:0.14em;">
+    Virtuální prohlídky a webové prezentace | info@showspace.cz
+    <span style="margin-left:1.2em;">
       <a href="/gdpr.html" style="color:#CBA135; font-weight:700; text-decoration:underline;">
         Ochrana osobních údajů (GDPR)
       </a>
     </span>
-    </div>
-  </footer>
+  </div>
+</footer>
+
 
   <!-- SCRIPTS -->
   
@@ -1870,6 +1918,7 @@ stickyBtn.addEventListener('click', function() {
   
 </body>
 </html>
+
 
 
 
