@@ -580,30 +580,48 @@ section[id] {
   color: #826c2e;
 }
 
-/* O nás */
 .about-section {
-  background: #fffbe7;
-  border-radius: 22px;
-  margin: 0 auto 3.7rem auto;
-  max-width: 880px;
-  box-shadow: 0 4px 22px rgba(203,161,53,0.08);
-  padding: 2.5rem 2.3rem 2.3rem 2.3rem;
+  background: linear-gradient(120deg, #f6f3e9 0%, #fff7d1 93%, #ffe085 100%);
+  border-radius: 32px;
+  margin: 0 auto 5.2rem auto;   /* větší mezera dole */
+  max-width: 940px;
+  box-shadow: 0 16px 44px 0 rgba(203,161,53,0.15), 0 1.5px 13px #FFD86A22;
+  padding: 3.3rem 2.7rem 3.2rem 2.7rem;  /* více prostoru ze všech stran */
+  border: 2.7px solid #CBA13522;
+  position: relative;
+  z-index: 4;
+  margin-top: 70px;           /* větší mezera shora */
 }
 .about-title {
-  color: #142052;
-  font-size: 2.1rem;
+  color: #CBA135;
+  font-size: 2.32rem;
   font-weight: 800;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.32rem;
   text-align: center;
-  letter-spacing: -0.5px;
+  letter-spacing: -1.5px;
+  text-shadow: 0 3px 22px #fff8e233;
 }
 .about-desc {
   color: #222;
-  font-size: 1.17rem;
+  font-size: 1.21rem;
   line-height: 1.66;
   text-align: center;
   font-weight: 400;
+  letter-spacing: 0.02em;
 }
+
+/* Responsivita – mobile friendly */
+@media (max-width: 700px) {
+  .about-section {
+    padding: 1.4rem 0.4rem 1.5rem 0.4rem;
+    margin-bottom: 3.2rem;
+    margin-top: 38px;
+    border-radius: 17px;
+  }
+  .about-title { font-size: 1.24rem; }
+  .about-desc { font-size: 1rem; }
+}
+
 
 
 .customweb-section {
@@ -1295,16 +1313,23 @@ section[id] {
 
 
   <!-- O NÁS -->
-  <section class="section about-section" id="onas" data-aos="zoom-in" data-aos-delay="200">
-    <div class="about-title">O nás</div>
-    <div class="about-desc">
-      Jsme tým mladých lidí, kteří milují technologie, design a kreativní prezentaci.  
-      Specializujeme se na <b>virtuální prohlídky, moderní weby a vizuální marketing</b>, kde není prostor pro nudu nebo šablony.<br><br>
-      Propojili jsme know-how z oblasti IT, fotografie i marketingu. Každý projekt stavíme s důrazem na <b>detail, funkčnost i vizuální wow efekt</b>.<br>
-      <br>
-      Baví nás hledat nové způsoby, jak vaše podnikání posunout na vyšší úroveň.
-    </div>
-  </section>
+ <!-- O NÁS -->
+<section class="section about-section" id="onas">
+  <div class="about-title">O nás</div>
+  <div class="about-desc">
+    Jsme tým mladých lidí, kteří milují technologie, design a kreativní prezentaci.<br>
+    Specializujeme se na <b>virtuální prohlídky, moderní weby a vizuální marketing</b>, kde není prostor pro nudu nebo šablony.<br><br>
+    Propojili jsme know-how z oblasti IT, fotografie i marketingu. Každý projekt stavíme s důrazem na <b>detail, funkčnost i vizuální wow efekt</b>.<br><br>
+    Baví nás hledat nové způsoby, jak vaše podnikání posunout na vyšší úroveň.
+  </div>
+</section>
+  <div style="margin-top:-42px;margin-bottom:-12px;z-index:3;position:relative;">
+  <svg viewBox="0 0 1440 90" width="100%" height="90" preserveAspectRatio="none" style="display:block;">
+    <path fill="#fff" fill-opacity="1" d="M0,44 C380,130 1060,-20 1440,44 L1440,90 L0,90 Z"></path>
+  </svg>
+</div>
+
+
   <!-- KONTAKT -->
 <section class="section kontakt-section" id="kontakt">
   <div class="kontakt-card">
@@ -1661,6 +1686,7 @@ gsap.utils.toArray('footer a').forEach((el, i) => {
   
 </body>
 </html>
+
 
 
 
