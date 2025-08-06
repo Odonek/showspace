@@ -792,11 +792,17 @@ section[id] {
 .kontakt-box {
   align-items: center;
   gap: 1rem;
-  background: #F7FAFE;
-  border: 1.6px solid #D3E2F8;
-  box-shadow: 0 1px 7px rgba(54,76,135,0.07);
+  background: linear-gradient(90deg, #FFD86A 60%, #fff 100%);
+  border: 2.7px solid #FFD86A;
+  box-shadow: 0 12px 44px rgba(20,32,82,0.16), 0 1.5px 12px rgba(203,161,53,0.05);
   justify-content: center;
+  border-radius: 24px;
+  transition: box-shadow 0.24s;
 }
+.kontakt-box:hover {
+  box-shadow: 0 24px 60px rgba(203,161,53,0.11), 0 2.5px 20px rgba(20,32,82,0.14);
+}
+
 
 .kontakt-email {
   display: inline-block;
@@ -1380,6 +1386,7 @@ section[id] {
   </script>
 </body>
 </html>
+
 
 
 
