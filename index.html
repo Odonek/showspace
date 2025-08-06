@@ -138,6 +138,46 @@
       50% { transform: translateY(-36px) scale(1.09);}
       100% { transform: translateY(24px) scale(0.92);}
     }
+
+.section-yellow-bg {
+  background: #FFFCE8 !important;
+}
+
+.kontakt-box-dark {
+  background: #181C3A !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 6px 32px rgba(24,28,58,0.13);
+}
+.kontakt-box-dark h2,
+.kontakt-box-dark h3 {
+  color: #FFD86A !important;
+}
+.kontakt-box-dark input,
+.kontakt-box-dark textarea {
+  background: #fff !important;
+  color: #181C3A !important;
+  border: 1.2px solid #FFD86A !important;
+}
+.kontakt-box-dark input::placeholder,
+.kontakt-box-dark textarea::placeholder {
+  color: #aaa !important;
+}
+.kontakt-box-dark button[type="submit"] {
+  background: #CBA135;
+  color: #fff;
+}
+.kontakt-box-dark a {
+  color: #FFD86A;
+  font-weight: 700;
+  text-decoration: none;
+}
+.kontakt-box-dark span {
+  color: #FFD86A;
+  font-weight: 700;
+}
+
+    
   </style>
 </head>
 <body>
@@ -661,7 +701,7 @@ function togglePackage(el) {
 }
 </style>
 
-<section id="web-na-miru" style="background:#181C3A; padding:4rem 0;">
+<section id="web-na-miru" class="section-yellow-bg" style="padding:4rem 0;">
   <div style="max-width:700px;margin:0 auto;border-radius:28px;box-shadow:0 8px 30px rgba(22,20,45,0.12);background:rgba(255,255,255,0.03);padding:2.2rem;">
     <h2 style="color:#FFD86A; font-size:2.2rem; font-weight:800; text-align:center; margin-bottom:0.85rem;">
       Web na míru
@@ -685,7 +725,7 @@ function togglePackage(el) {
   </div>
 </section>
 
-  <section id="o-nas" style="background:#FFF8E2; padding:4rem 0;">
+ <section id="o-nas" class="section-yellow-bg" style="padding:4rem 0;">
   <div style="max-width:800px; margin:0 auto; border-radius:20px; box-shadow:0 4px 24px rgba(203,161,53,0.09); padding:2.5rem 2.3rem;">
     <h2 style="color:#142052;font-size:2.15rem;font-weight:800;margin-bottom:0.85rem;text-align:center;">
       O nás
@@ -700,8 +740,8 @@ function togglePackage(el) {
   </div>
 </section>
 
-  <section id="kontakt" style="background:#181C3A; padding:4.2rem 0;">
-  <div style="max-width:850px; margin:0 auto; border-radius:22px; box-shadow:0 6px 32px rgba(203,161,53,0.12); background:linear-gradient(135deg, #FFF8E2 0%, #FFD86A 80%, #CBA135 100%); border:3px solid #CBA135; padding:2.7rem 1.6rem 2.2rem 1.6rem;">
+  <section id="kontakt" class="section-yellow-bg" style="padding:4.2rem 0;">
+  <div class="kontakt-box-dark" style="max-width:850px; margin:0 auto; border-radius:22px; padding:2.7rem 1.6rem 2.2rem 1.6rem;">
     <h2 style="color:#142052; text-align:center; font-size:2.15rem; font-weight:800; margin-bottom:0.45rem;">Kontakt</h2>
     <h3 style="color:#CBA135; text-align:center; font-size:1.18rem; margin-bottom:1.05rem; font-weight:700;">Ozvěte se ještě dnes</h3>
     <form action="https://formspree.io/f/mjkorjrk" method="POST" style="display:flex;flex-direction:column;gap:1rem;max-width:480px;margin:0 auto;">
@@ -728,6 +768,7 @@ function togglePackage(el) {
   </script>
 </body>
 </html>
+
 
 
 
