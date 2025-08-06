@@ -1857,7 +1857,7 @@ stickyBtn.addEventListener('click', function() {
   background:#fffbe7;border-top:2.5px solid #FFD86A;
   padding:1.1em 2vw 1.1em 2vw;
   box-shadow:0 -2px 28px #FFD86A22, 0 1.5px 8px #CBA13533;
-  display:flex;justify-content:center;align-items:center;gap:1.2em;
+  display:none;justify-content:center;align-items:center;gap:1.2em;
   border-radius: 20px 20px 0 0;
   font-family:'Inter',Arial,sans-serif;">
   <span style="color:#142052;font-size:1.09rem;line-height:1.5;">
@@ -1882,7 +1882,19 @@ stickyBtn.addEventListener('click', function() {
     Odmítnout
   </button>
 </div>
-<script>
+
+  <script>
+  function showCookieBarIfNeeded() {
+    if(localStorage.getItem('cookieConsent')==='accepted'){
+      runConsentScripts();
+      document.getElementById('cookieBar').style.display='none';
+    } else if(localStorage.getItem('cookieConsent')==='declined'){
+      document.getElementById('cookieBar').style.display='none';
+    } else {
+      document.getElementById('cookieBar').style.display='flex'; // až po preloaderu!
+    }
+  }
+
   // Helper na spuštění blokovaných skriptů
   function runConsentScripts(){
     document.querySelectorAll('script[type="text/plain"][data-cookiecategory="analytics"]').forEach(s=>{
@@ -1897,13 +1909,7 @@ stickyBtn.addEventListener('click', function() {
       }
     });
   }
-  // Načti z localStorage
-  if(localStorage.getItem('cookieConsent')==='accepted'){
-    runConsentScripts();
-    document.getElementById('cookieBar').style.display='none';
-  }else if(localStorage.getItem('cookieConsent')==='declined'){
-    document.getElementById('cookieBar').style.display='none';
-  }
+
   document.getElementById('cookieAccept').onclick=function(){
     localStorage.setItem('cookieConsent','accepted');
     runConsentScripts();
@@ -1913,11 +1919,25 @@ stickyBtn.addEventListener('click', function() {
     localStorage.setItem('cookieConsent','declined');
     document.getElementById('cookieBar').style.display='none';
   };
+
+  // Počkej na schování preloaderu, pak zobraz cookieBar (pokud je potřeba)
+  window.addEventListener('load', function(){
+    const loader = document.getElementById('preloader');
+    function afterLoaderHidden() {
+      if (loader.classList.contains('hidden')) {
+        showCookieBarIfNeeded();
+      } else {
+        setTimeout(afterLoaderHidden, 150);
+      }
+    }
+    afterLoaderHidden();
+  });
 </script>
 
   
 </body>
 </html>
+
 
 
 
