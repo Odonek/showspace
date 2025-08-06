@@ -1116,13 +1116,27 @@ section[id] {
   font-size: 1.07rem;
   box-shadow: 0 4px 22px rgba(203,161,53,0.12);
   cursor: pointer;
-  transition: background 0.19s, color 0.18s, transform 0.17s, opacity 0.4s;
+  transition: background 0.19s, color 0.18s, transform 0.17s, opacity 0.4s, box-shadow 0.22s;
   opacity: 0.97;
 }
 
 #cta-sticky.show {
   display: block;
   animation: stickyCtaIn 0.5s cubic-bezier(.61,.1,.51,1.3);
+}
+
+#cta-sticky:hover,
+#cta-sticky:focus {
+  background: linear-gradient(90deg, #CBA135 80%, #FFD86A 100%);
+  color: #fff;
+  transform: scale(1.06);
+  box-shadow: 0 8px 26px #FFD86A55;
+  outline: none;
+}
+
+#cta-sticky:active {
+  filter: brightness(0.97);
+  transform: scale(0.98);
 }
 
 @keyframes stickyCtaIn {
@@ -1133,6 +1147,7 @@ section[id] {
 /* Responsivita - na mobilu raději vpravo dole */
 @media (max-width:700px) {
   #cta-sticky {
+    display: none !important;
     top: unset;
     bottom: 18px;
     right: 14px;
@@ -1762,26 +1777,32 @@ gsap.utils.toArray('footer a').forEach((el, i) => {
 });
 </script>
 <script>
-// CTA tlačítko – zobraz až při scrollnutí na #co-delame
 (function() {
   const cta = document.getElementById('cta-sticky');
+  const contact = document.querySelector('.contact');
   let shown = false;
   window.addEventListener('scroll', function() {
-    if (shown) return; // už je zobrazené
+    // Nepouštěj na malých displejích vůbec!
+    if (window.innerWidth < 700) return;
+    if (shown) return;
     const coDelame = document.getElementById('co-delame');
     if (!coDelame) return;
     const rect = coDelame.getBoundingClientRect();
-    // pokud je sekce aspoň trochu vidět na obrazovce
     if (rect.top < window.innerHeight && rect.bottom > 0) {
       cta.classList.add('show');
+      if (contact) contact.style.display = "none";
       shown = true;
     }
   });
 })();
+
+
+
 </script>
   
 </body>
 </html>
+
 
 
 
