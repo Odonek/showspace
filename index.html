@@ -1776,29 +1776,41 @@ gsap.utils.toArray('footer a').forEach((el, i) => {
 </script>
 
 <script>
+  // --- NASTAV PROMĚNNÉ ---
+  const ctaNavbarBtn = document.getElementById('cta-navbar-btn');
+  const contactInfo = document.getElementById('contact-info');
+  const kontaktSection = document.getElementById('kontakt');
 
-  window.addEventListener('scroll', function() {
-  if(window.scrollY > 120 && !isContactSectionInView()) {
-    ctaNavbarBtn.classList.add('fixed');
-    ctaNavbarBtn.style.display = 'inline-block';
-    setTimeout(()=>{ctaNavbarBtn.style.opacity=1},10);
-    contactInfo.style.display = 'none';
-  } else {
-    ctaNavbarBtn.classList.remove('fixed');
-    ctaNavbarBtn.style.opacity = 0;
-    setTimeout(() => {
-      ctaNavbarBtn.style.display = 'none';
-      contactInfo.style.display = 'block';
-      setTimeout(()=>{contactInfo.style.opacity=1},10);
-    }, 160);
+  // --- POMOCNÁ FUNKCE: je sekce kontakt vidět na obrazovce? ---
+  function isContactSectionInView() {
+    const rect = kontaktSection.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 120; // můžeš doladit hranici
   }
-});
 
+  // --- LOGIKA STICKY BUTTONU ---
+  window.addEventListener('scroll', function() {
+    if(window.scrollY > 120 && !isContactSectionInView()) {
+      ctaNavbarBtn.classList.add('fixed');
+      ctaNavbarBtn.style.display = 'inline-block';
+      setTimeout(()=>{ctaNavbarBtn.style.opacity=1},10);
+      contactInfo.style.display = 'none';
+    } else {
+      ctaNavbarBtn.classList.remove('fixed');
+      ctaNavbarBtn.style.opacity = 0;
+      setTimeout(() => {
+        ctaNavbarBtn.style.display = 'none';
+        contactInfo.style.display = 'block';
+        setTimeout(()=>{contactInfo.style.opacity=1},10);
+      }, 180);
+    }
+  });
 </script>
+
 
   
 </body>
 </html>
+
 
 
 
