@@ -250,11 +250,12 @@
   </section>
 
   <!-- SCROLL UP BUTTON -->
- <button id="scrollUp" title="Zpět nahoru" onclick="scrollToSection('top')" aria-label="Zpět nahoru">
+<button id="scrollUp" title="Zpět nahoru" aria-label="Zpět nahoru">
   <svg width="26" height="26" viewBox="0 0 26 26" style="display:block;margin:auto;" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M13 21V5M13 5L6 12M13 5L20 12" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 </button>
+
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -268,6 +269,11 @@
     function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}function toggleDesc(el){el.classList.toggle('open');document.querySelectorAll('.service').forEach(s=>{if(s!==el)s.classList.remove('open');});}function togglePackage(el){if(el.classList.contains('open'))return void el.classList.remove('open');document.querySelectorAll('.package').forEach(p=>p.classList.remove('open'));el.classList.add('open');}function toggleWebDetail(el){el.classList.toggle('open');}
   </script>
 
+  <script>document.getElementById('scrollUp').onclick = function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+</script>
+
   <!-- FOOTER -->
   <footer>
     <div>© 2025 ShowSpace.cz – Veškerá práva vyhrazena.</div>
@@ -275,5 +281,6 @@
   </footer>
 </body>
 </html>
+
 
 
