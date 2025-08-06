@@ -1101,9 +1101,6 @@ section[id] {
   .bubble { display: none; }
 }
 
-#contact-info, #cta-navbar-btn {
-  transition: opacity 0.17s;
-}
 #cta-navbar-btn {
   opacity: 0;
   font-size: 1.09rem;
@@ -1116,10 +1113,50 @@ section[id] {
   border: none;
   box-shadow: 0 2px 12px rgba(203,161,53,0.11);
   cursor: pointer;
+  transition: opacity 0.17s, box-shadow 0.16s, transform 0.17s;
+  display: none; /* bude display:inline-block při zobrazení */
+  position: static; /* defaultně statický, mění se pomocí JS */
+  z-index: 2001;
 }
+
+/* Efekt, když je sticky/fixed */
+#cta-navbar-btn.fixed {
+  position: fixed;
+  top: 18px;
+  right: 2vw;
+  margin-left: 0; /* už nepotřebuješ margin vlevo */
+  box-shadow: 0 8px 30px #FFD86A22, 0 2px 12px rgba(203,161,53,0.11);
+  opacity: 1 !important;
+  display: inline-block !important;
+  animation: ctaFadeIn 0.33s;
+}
+
+@keyframes ctaFadeIn {
+  from { opacity: 0; transform: translateY(-18px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* Hover efekt */
+#cta-navbar-btn:hover, #cta-navbar-btn.fixed:hover {
+  background: linear-gradient(90deg, #CBA135 80%, #FFD86A 100%);
+  color: #fff;
+  transform: scale(1.07);
+  box-shadow: 0 12px 36px #FFD86A33;
+}
+
+/* Mobilní velikost */
 @media (max-width: 800px) {
-  #cta-navbar-btn { font-size: 1.04rem; padding: 0.6em 1.2em;}
+  #cta-navbar-btn,
+  #cta-navbar-btn.fixed {
+    font-size: 1.04rem;
+    padding: 0.6em 1.2em;
+    top: 13px;
+    right: 3vw;
+    border-radius: 13px;
+    /* případně větší tap area */
+  }
 }
+
 
     
   </style>
@@ -1739,33 +1776,15 @@ gsap.utils.toArray('footer a').forEach((el, i) => {
 </script>
 
 <script>
-const ctaNavbarBtn = document.getElementById('cta-navbar-btn');
-const contactInfo = document.getElementById('contact-info');
-const coDelameSection = document.getElementById('co-delame');
 
-// Kliknutí na nové CTA – scroll na kontakt
-ctaNavbarBtn.addEventListener('click', function() {
-  document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});
-});
-
-// Funkce pro kontrolu, zda je "co-delame" vidět
-function isSectionInView(section) {
-  const rect = section.getBoundingClientRect();
-  // min. půlka sekce vidět
-  return rect.top < window.innerHeight*0.6 && rect.bottom > window.innerHeight*0.2;
-}
-
-window.addEventListener('scroll', function() {
-  if(isSectionInView(coDelameSection)) {
-    // zobraz CTA, schovej kontakty (s animací)
-    contactInfo.style.opacity = 0;
-    setTimeout(() => {
-      contactInfo.style.display = 'none';
-      ctaNavbarBtn.style.display = 'inline-block';
-      setTimeout(()=>{ctaNavbarBtn.style.opacity=1},10);
-    }, 160);
+  window.addEventListener('scroll', function() {
+  if(window.scrollY > 120 && !isContactSectionInView()) {
+    ctaNavbarBtn.classList.add('fixed');
+    ctaNavbarBtn.style.display = 'inline-block';
+    setTimeout(()=>{ctaNavbarBtn.style.opacity=1},10);
+    contactInfo.style.display = 'none';
   } else {
-    // zobraz kontakty, schovej CTA (s animací)
+    ctaNavbarBtn.classList.remove('fixed');
     ctaNavbarBtn.style.opacity = 0;
     setTimeout(() => {
       ctaNavbarBtn.style.display = 'none';
@@ -1775,11 +1794,12 @@ window.addEventListener('scroll', function() {
   }
 });
 
-  
 </script>
+
   
 </body>
 </html>
+
 
 
 
