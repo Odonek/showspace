@@ -593,31 +593,121 @@ section[id] {
 
 
 .customweb-section {
-  padding: 0;
   background: linear-gradient(120deg, #142052 70%, #47548B 100%) !important;
+  padding: 0;
+  margin: 0;
 }
+
 .customweb-card {
   background: #fff;
-  border-radius: 22px;
+  border-radius: 24px;
   margin: 0 auto;
-  max-width: 610px;
-  box-shadow: 0 8px 36px rgba(20,32,82,0.12);
-  margin-top: -70px;
+  max-width: 620px;
+  box-shadow: 0 12px 44px rgba(20,32,82,0.16), 0 1.5px 12px rgba(203,161,53,0.05);
   position: relative;
-  z-index: 2;
+  top: -60px;
+  border: 2.7px solid #FFD86A;
+  z-index: 3;
+  transition: box-shadow 0.24s;
 }
-@media (max-width: 700px) {
-  .customweb-card { margin-top: 0; border-radius: 16px; }
+
+.customweb-card:hover {
+  box-shadow: 0 24px 60px rgba(203,161,53,0.11), 0 2.5px 20px rgba(20,32,82,0.14);
 }
+
+.customweb-content {
+  padding: 2.7rem 2.3rem 2rem 2.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.customweb-title {
+  color: #142052;
+  font-size: 2.15rem;
+  font-weight: 800;
+  margin-bottom: 0.7rem;
+  text-align: center;
+  letter-spacing: -1.5px;
+}
+
+.customweb-subtitle {
+  color: #CBA135;
+  text-align: center;
+  font-size: 1.21rem;
+  font-weight: 700;
+  margin-bottom: 1.09rem;
+  letter-spacing: 0.01em;
+}
+
+.customweb-desc {
+  text-align: center;
+  color: #2B3564;
+  font-size: 1.14rem;
+  font-weight: 400;
+  margin-bottom: 1.4rem;
+  line-height: 1.55;
+}
+
+.customweb-list {
+  margin: 0 0 1.18em 1.2em;
+  padding: 0;
+  list-style: disc;
+  color: #47548B;
+  font-size: 1.07rem;
+  text-align: left;
+  max-width: 430px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.customweb-cta {
+  margin-top: 1.4em;
+  text-align: center;
+}
+
+.customweb-cta .cta-btn {
+  background: linear-gradient(90deg, #FFD86A 65%, #CBA135 100%);
+  color: #142052;
+  font-weight: 800;
+  border: none;
+  border-radius: 11px;
+  padding: 1.13em 2.4em;
+  font-size: 1.14rem;
+  box-shadow: 0 2px 12px rgba(203,161,53,0.11);
+  cursor: pointer;
+  transition: background 0.17s, color 0.16s, transform 0.16s;
+}
+
+.customweb-cta .cta-btn:hover {
+  background: linear-gradient(90deg, #CBA135 75%, #FFD86A 100%);
+  color: #fff;
+  transform: scale(1.06);
+}
+
+/* Responsivita */
+@media (max-width: 900px) {
+  .customweb-card { max-width: 97vw; border-radius: 17px; top: 0; }
+  .customweb-content { padding: 1.6rem 0.7rem 1.1rem 0.7rem; }
+  .customweb-title { font-size: 1.31rem; }
+}
+
+@media (max-width: 600px) {
+  .customweb-content { padding: 1.1rem 0.3rem; }
+  .customweb-title { font-size: 1.09rem; }
+  .customweb-list { font-size: 0.97rem; }
+}
+
 
 /* KONTAKT sekce – svěží modro-bílý styl */
 .kontakt-section {
-  background: linear-gradient(130deg, #F7F8FA 70%, #E8F1FD 100%) !important;
-  border: 2.2px solid #B2C4E1 !important;
+  background: linear-gradient(120deg, #142052 75%, #47548B 100%) !important;
+  border: none !important;
   border-radius: 22px;
   max-width: 900px;
   margin: 3.7rem auto 2.5rem auto;
-  box-shadow: 0 6px 38px rgba(93,133,186,0.10);
+  box-shadow: 0 8px 32px rgba(20,32,82,0.19);
   padding: 2.5rem 1.2rem 2.2rem 1.2rem;
   display: flex;
   flex-direction: column;
@@ -637,8 +727,8 @@ section[id] {
 .kontakt-form, .kontakt-box {
   background: #fff;
   border-radius: 16px;
-  border: 1.7px solid #E5EAF4 !important;
-  box-shadow: 0 3px 18px rgba(124, 146, 193, 0.09);
+  border: 1.5px solid #E5EAF4;
+  box-shadow: 0 3px 18px rgba(54, 76, 135, 0.10);
   flex: 1 1 0;
   padding: 2.2rem 1.5rem 1.6rem 1.5rem;
   display: flex;
@@ -655,85 +745,86 @@ section[id] {
 
 .kontakt-form input, .kontakt-form textarea {
   width: 100%;
-  padding: 0.78rem 1.08rem;
+  padding: 0.8rem 1.1rem;
   border-radius: 10px;
-  border: 1.3px solid #BDD1E9;
-  font-size: 1.07rem;
+  border: 1.2px solid #B3C7F2;
+  font-size: 1.08rem;
   font-weight: 500;
   background: #F7FAFE;
-  color: #15315B;
+  color: #142052;
   transition: border-color 0.18s, background 0.18s;
   box-sizing: border-box;
 }
 .kontakt-form input:focus, .kontakt-form textarea:focus {
-  border-color: #4B77C1;
+  border-color: #47548B;
   background: #fff;
   outline: none;
 }
 
 .kontakt-form button {
   width: 100%;
-  background: linear-gradient(90deg, #4B77C1 40%, #47548B 100%);
-  color: #fff;
+  background: linear-gradient(90deg, #FFD86A 60%, #CBA135 100%);
+  color: #142052;
   font-weight: 700;
   border: none;
   border-radius: 10px;
   padding: 1.07rem 0;
-  font-size: 1.15rem;
+  font-size: 1.16rem;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(124, 146, 193, 0.10);
+  box-shadow: 0 2px 10px rgba(203,161,53,0.11);
   transition: background 0.18s, transform 0.15s;
   letter-spacing: 0.01em;
 }
 .kontakt-form button:hover {
-  background: linear-gradient(90deg, #385795 60%, #263263 100%);
+  background: linear-gradient(90deg, #CBA135 70%, #FFD86A 100%);
+  color: #142052;
   transform: scale(1.05);
 }
 
 .kontakt-box {
   align-items: center;
   gap: 1rem;
-  background: #F4F8FF !important;
-  border: 1.6px solid #D3E2F8 !important;
-  box-shadow: 0 1px 7px rgba(94,132,182,0.10);
+  background: #F7FAFE;
+  border: 1.6px solid #D3E2F8;
+  box-shadow: 0 1px 7px rgba(54,76,135,0.07);
   justify-content: center;
 }
 
 .kontakt-email {
   display: inline-block;
   color: #fff !important;
-  background: linear-gradient(90deg, #CBA135 60%, #FFD86A 100%);
+  background: linear-gradient(90deg, #CBA135 65%, #FFD86A 100%);
   font-weight: 700;
   text-decoration: none;
   font-size: 1.13rem;
   padding: 0.75em 1.7em;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(203,161,53,0.10);
-  transition: background 0.19s, transform 0.13s;
+  box-shadow: 0 2px 8px rgba(203,161,53,0.09);
+  transition: background 0.18s, transform 0.13s;
   margin-bottom: 0.18em;
 }
 .kontakt-email:hover {
-  background: linear-gradient(90deg, #BCA135 70%, #FFE18A 100%);
-  color: #fff !important;
+  background: linear-gradient(90deg, #FFD86A 80%, #CBA135 100%);
+  color: #142052 !important;
   transform: scale(1.07);
 }
 
 .kontakt-tel {
-  color: #234078;
+  color: #47548B;
   font-weight: 700;
   font-size: 1.09rem;
   padding: 0.67em 1.5em;
   border-radius: 10px;
   letter-spacing: 0.02em;
-  background: #F7F8FA;
-  border: 1px solid #C2D6F1;
-  box-shadow: 0 1px 6px rgba(124,146,193,0.06);
+  background: #fff;
+  border: 1px solid #FFD86A;
+  box-shadow: 0 1px 6px rgba(203,161,53,0.06);
 }
 
 .kontakt-box-desc {
   text-align: center;
-  color: #4B5C8C;
-  font-size: 1.06rem;
+  color: #47548B;
+  font-size: 1.07rem;
   margin-bottom: 0.7em;
   font-weight: 500;
   margin-top: 0.15em;
@@ -752,7 +843,6 @@ section[id] {
   .kontakt-form, .kontakt-box { padding: 1rem 0.5rem; }
   .kontakt-box-desc { max-width: 100%; }
 }
-
 
 /* ŠIPKA NAHORU */
 #scrollUp {
@@ -1113,33 +1203,30 @@ section[id] {
     </div>
   </section>
   <!-- WEB NA MÍRU -->
-  <section class="full-bg customweb-section" id="web-na-miru" style="background:linear-gradient(120deg,#142052 70%,#47548B 100%);">
+  <section class="full-bg customweb-section" id="web-na-miru">
   <div class="customweb-card">
-    <div style="padding:2.4rem 2.6rem 1rem 2.6rem;">
-      <h2 style="color:#fff; font-size:2.3rem; font-weight:800; margin-bottom:0.7rem; text-align:center; letter-spacing:-1.5px;">
-        Web na míru
-      </h2>
-      <div style="color:#CBA135; text-align:center; font-size:1.18rem; font-weight:700; margin-bottom:1.2rem;">
-        Moderní weby pro vaši prezentaci i podnikání
-      </div>
-      <div style="text-align:center; color:#fff; font-size:1.13rem; font-weight:400; margin-bottom:1.6rem; line-height:1.6;">
+    <div class="customweb-content">
+      <h2 class="customweb-title">Web na míru</h2>
+      <div class="customweb-subtitle">Moderní weby pro vaši prezentaci i podnikání</div>
+      <div class="customweb-desc">
         Tvoříme originální, responzivní a rychlé weby, které prodávají.<br>
         Žádné šablony, jen poctivý design, technologie a funkce přesně na míru vám.
       </div>
-      <ul style="margin:0 0 1.1em 1.4em; padding:0; list-style:disc; color:#FFD86A; font-size:1.08rem; text-align:left; max-width:430px; margin:auto;">
+      <ul class="customweb-list">
         <li>Plně responzivní web (mobil, tablet, PC)</li>
         <li>SEO optimalizace a rychlost</li>
         <li>Možnost propojení s virtuální prohlídkou</li>
         <li>Moderní design a interaktivní efekty</li>
       </ul>
-      <div style="margin-top:1.3em; text-align:center;">
-        <button class="cta-btn" style="background:#CBA135; color:#142052; font-weight:800;" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">
+      <div class="customweb-cta">
+        <button class="cta-btn" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">
           Nezávazná konzultace
         </button>
       </div>
     </div>
   </div>
 </section>
+
 
   <!-- O NÁS -->
   <section class="section about-section" id="onas" data-aos="zoom-in" data-aos-delay="200">
@@ -1153,28 +1240,29 @@ section[id] {
     </div>
   </section>
   <!-- KONTAKT -->
- <section class="section kontakt-section" id="kontakt" style="background:linear-gradient(130deg,#F7F8FA 65%,#E8F1FD 100%); border: 2px solid #B2C4E1; border-radius:22px;">
-  <h2 style="color:#142052; text-align:center; font-size:2.18rem; font-weight:800; margin-bottom:0.45rem; letter-spacing:-1px;">Kontakt</h2>
-  <h3 style="color:#47548B; text-align:center; font-size:1.28rem; margin-bottom:1.13rem; font-weight:700; letter-spacing:0.02em;">Ozvěte se – odpovíme do 24 hodin</h3>
+<section class="section kontakt-section" id="kontakt" style="background: linear-gradient(120deg, #142052 75%, #47548B 100%); border: none;">
+  <h2 style="color:#fff; text-align:center; font-size:2.18rem; font-weight:800; margin-bottom:0.45rem; letter-spacing:-1px;">Kontakt</h2>
+  <h3 style="color:#FFD86A; text-align:center; font-size:1.28rem; margin-bottom:1.13rem; font-weight:700; letter-spacing:0.02em;">Ozvěte se – odpovíme do 24 hodin</h3>
   <div class="kontakt-flex">
-    <div class="kontakt-form" style="background:#fff; border:1.5px solid #E5EAF4;">
+    <div class="kontakt-form">
       <form action="https://formspree.io/f/mjkorjrk" method="POST">
         <input type="text" name="name" placeholder="Vaše jméno" required>
         <input type="email" name="email" placeholder="Váš e-mail" required>
         <input type="tel" name="phone" placeholder="Telefon (nepovinné)">
         <textarea name="message" rows="4" placeholder="Vaše zpráva..." required></textarea>
-        <button type="submit" style="background:#47548B; color:#fff;">Odeslat</button>
+        <button type="submit">Odeslat</button>
       </form>
     </div>
-    <div class="kontakt-box" style="background:#F4F8FF; border:1.5px solid #E5EAF4;">
-      <div class="kontakt-box-desc" style="color:#4B5C8C;">
+    <div class="kontakt-box">
+      <div class="kontakt-box-desc">
         Nebojte se zeptat na cokoliv – jsme tu pro vás!
       </div>
-      <a class="kontakt-email" href="mailto:info@showspace.cz" style="background:#CBA135; color:#fff;">info@showspace.cz</a>
-      <span class="kontakt-tel" style="background:#fff; border:1px solid #CBA135; color:#142052;">+420 777 111 222</span>
+      <a class="kontakt-email" href="mailto:info@showspace.cz">info@showspace.cz</a>
+      <span class="kontakt-tel">+420 777 111 222</span>
     </div>
   </div>
 </section>
+
 
   <!-- KOTVA/ŠIPKA NAHORU -->
   <button id="scrollUp" title="Zpět nahoru" onclick="window.scrollTo({top:0,behavior:'smooth'});">↑</button>
@@ -1280,6 +1368,7 @@ section[id] {
   </script>
 </body>
 </html>
+
 
 
 
