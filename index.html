@@ -300,11 +300,18 @@ section[id] {
   /* DŮLEŽITÉ: */
   align-self: flex-start;
   /* Pokud tě bude štvát příliš velké poskakování, nastav tady min-height na větší hodnotu nebo použij max-height v .service.open pro hladký růst */
+  min-height: 170px; /* klidně zvýš, když chceš menší poskakování */
+  transition: 
+    box-shadow 0.18s, 
+    transform 0.18s, 
+    background 0.2s, 
+    max-height 0.36s;
 }
 
 .service:hover {
   box-shadow: 0 8px 32px rgba(203,161,53,0.15);
   background: #fff9ce;
+   transform: translateY(-7px) scale(1.04); /* NOVÉ! */
 }
 .img-wrap img { height: 160px; margin-bottom: 1.3rem; pointer-events: none; }
 .service-name {
@@ -355,6 +362,7 @@ section[id] {
   background: #fff3ba;
   box-shadow: 0 14px 38px rgba(203,161,53,0.14);
   z-index: 2;
+  transform: scale(1.035); /* NOVÉ! */
 }
 
 /* KOMU NABÍZÍME – GRID */
@@ -1409,6 +1417,7 @@ section[id] {
   </script>
 </body>
 </html>
+
 
 
 
