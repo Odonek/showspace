@@ -3,1388 +3,226 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ShowSpace.cz – Virtuální prohlídky</title>
-  <meta name="description" content="Virtuální prohlídky, marketing, obsah, půdorysy, správa sítí a recenzí pro reality a podniky." />
+  <title>White Background Template with Animations & Footer</title>
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/favicon2.png" sizes="64x64" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- AOS Animate On Scroll CSS -->
-<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <style>
     :root {
-      --primary: #142052;
       --accent: #CBA135;
-      
       --white: #fff;
       --dark: #111;
-      --shadow: 0 4px 24px rgba(203,161,53,0.08);
-    }
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background: #fff;
-      color: var(--dark);
-      margin: 0;
-      padding: 0;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
     }
     /* PRELOADER */
-#preloader {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: #fff;      /* ← TADY ZMĚNIT! */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  transition: opacity 0.5s ease;
-}
-
-    #preloader.hidden { opacity: 0; pointer-events: none; }
-    #preloader img {
-      width: 165px;
-      animation: pulse 2s infinite;
+    #preloader {position: fixed;top:0;left:0;right:0;bottom:0;background:var(--white);
+      display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s;
     }
-    @keyframes pulse {
-      0%,100% { transform: scale(1);}
-      50% { transform: scale(1.08);}
-    }
-
+    #preloader.hidden{opacity:0;pointer-events:none;}
+    #preloader img{width:165px;animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+    body{margin:0;padding:0;font-family:'Inter',Arial,sans-serif;background:var(--white);color:var(--dark);}
     /* NAVBAR */
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.85rem 2vw 0.7rem 2vw;
-      background: var(--white);
-      border-bottom: 1.5px solid #eee;
-      position: sticky;
-      top: 0; left: 0; right: 0;
-      z-index: 10;
+    .navbar{display:flex;align-items:center;justify-content:space-between;
+      padding:.85rem 2vw .7rem 2vw;background:var(--white);border-bottom:1.5px solid #eee;position:sticky;top:0;z-index:10;
     }
-    .navbar .logo img {
-      height: 68px;
-      margin-left: 0.5vw;
+    .logo img{height:68px;margin-left:.5vw;}
+    .contact span{display:block;font-weight:600;font-size:1.12rem;color:var(--dark);}
+    .contact a{color:var(--accent);text-decoration:none;font-weight:600;margin-left:1.5em;font-size:1.08rem;}
+    .nav-menu ul{display:flex;gap:2.1rem;list-style:none;margin:0;padding:0;}
+    .nav-menu a{text-decoration:none;color:var(--dark);font-weight:600;font-size:1.09rem;position:relative;}
+    .nav-menu a::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;
+      background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .28s cubic-bezier(.87,.07,.43,.97);
     }
-    .navbar .contact {
-      text-align: right;
-      margin-right: 2vw;
+    .nav-menu a:hover::after,.nav-menu a:focus::after{transform:scaleX(1);transform-origin:left;}
+    #hamburger{display:none;background:none;border:none;flex-direction:column;
+      justify-content:center;align-items:center;height:40px;width:40px;cursor:pointer;margin-left:10px;z-index:20;
     }
-    .navbar .contact span {
-      display: block;
-      font-weight: 600;
-      font-size: 1.12rem;
-      color: var(--primary);
-    }
-    .navbar .contact a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      margin-left: 1.5em;
-      font-size: 1.08rem;
-    }
-    /* HERO s pozadím */
-    .bubble {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255,216,106,0.09);
-  pointer-events: none;
-  z-index: 2;
-  animation: bubbleMove 18s infinite linear alternate;
-}
-.bubble1 { width: 130px; height: 130px; left: 8vw; top: 14vh; animation-delay: 0s;}
-.bubble2 { width: 90px; height: 90px; right: 6vw; top: 24vh; animation-delay: 3s;}
-.bubble3 { width: 60px; height: 60px; left: 18vw; top: 35vh; animation-delay: 2s;}
-.bubble4 { width: 70px; height: 70px; right: 20vw; top: 15vh; animation-delay: 5s;}
-  .bubble5 { width: 110px; height: 110px; left: 13vw; top: 5vh; animation-delay: 7s;}
- .bubble6 { width: 50px; height: 50px; right: 12vw; top: 20vh; animation-delay: 6s;}
-@keyframes bubbleMove {
-  0% { transform: translateY(0) scale(1);}
-  50% { transform: translateY(-36px) scale(1.09);}
-  100% { transform: translateY(24px) scale(0.92);}
-}
-
-    .hero {
-      position: relative;
-      min-height: 490px;
-      background: url('images/pozadi1.png') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 6.2rem 1.5rem 4.5rem 1.5rem;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top:0;left:0;right:0;bottom:0;
-      background: linear-gradient(110deg, rgba(10,10,35,0.72) 0%, rgba(203,161,53,0.16) 65%, rgba(10,10,35,0.79) 100%);
-      z-index: 1;
-      pointer-events: none;
-    }
-    .hero .hero-content {
-      position: relative;
-      z-index: 2;
-      color: #fff;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.26), 0 0 1px #000;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .hero .hero-content h1 {
-      font-size: 2.9rem;
-      font-weight: 700;
-      margin-bottom: 0.7rem;
-    }
-    .hero .hero-content p {
-      font-size: 1.25rem;
-      margin: 0.8rem 0;
-    }
-    .hero .cta-btn {
-      margin-top: 2.1rem;
-      background: var(--accent);
-      color: #fff;
-      font-weight: 600;
-      font-size: 1.18rem;
-      border: none;
-      border-radius: 12px;
-      padding: 1.12em 2.3em;
-      cursor: pointer;
-      box-shadow: 0 4px 22px rgba(0,0,0,0.15);
-      transition: transform 0.18s, box-shadow 0.18s;
-    }
-    .hero .cta-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-    }
+    #hamburger span{width:25px;height:3px;margin:3.6px 0;background:var(--dark);border-radius:2px;transition:.28s;}
+    #hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg) scaleX(1.13);background:var(--accent);}
+    #hamburger.open span:nth-child(2){opacity:0;}
+    #hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg) scaleX(1.13);background:var(--accent);}
+    @media(max-width:800px){#hamburger{display:flex;} .nav-menu ul{flex-direction:column;position:fixed;top:0;right:-100%;height:100vh;width:70vw;
+      background:var(--white);padding:5.7rem 1.7rem 1.7rem 1.7rem;gap:1.45rem;transition:transform .23s;transform:translateX(110%);
+    } .nav-menu ul.open{transform:translateX(0);} }
+    /* BUBBLES */
+    .bubble{position:absolute;border-radius:50%;background:rgba(255,216,106,0.09);pointer-events:none;z-index:2;animation:bubbleMove 18s infinite linear alternate;}
+    .bubble1{width:130px;height:130px;left:8vw;top:14vh;animation-delay:0s;}
+    .bubble2{width:90px;height:90px;right:6vw;top:24vh;animation-delay:3s;}
+    .bubble3{width:60px;height:60px;left:18vw;top:35vh;animation-delay:2s;}
+    .bubble4{width:70px;height:70px;right:20vw;top:15vh;animation-delay:5s;}
+    .bubble5{width:110px;height:110px;left:13vw;top:5vh;animation-delay:7s;}
+    .bubble6{width:50px;height:50px;right:12vw;top:20vh;animation-delay:6s;}
+    @keyframes bubbleMove{0%{transform:translateY(0) scale(1);}50%{transform:translateY(-36px) scale(1.09);}100%{transform:translateY(24px) scale(0.92);}}
     /* SECTIONS */
-    .section {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 3.8rem 2vw 2.7rem 2vw;
+    .hero{position:relative;min-height:490px;background:url('images/pozadi1.png') center/cover no-repeat;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;text-align:center;padding:6.2rem 1.5rem 4.5rem 1.5rem;overflow:hidden;
     }
-    .section-title {
-      color: var(--primary);
-      font-size: 2.05rem;
-      font-weight: 700;
-      margin-bottom: 2.2rem;
-      text-align: center;
-      letter-spacing: -0.5px;
+    .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(110deg,rgba(10,10,35,0.72) 0%,rgba(203,161,53,0.16) 65%,rgba(10,10,35,0.79) 100%);
+      z-index:1;pointer-events:none;
     }
-    /* Komu nabízíme */
-    #komu-nabizime {
-      background: #fff;
+    .hero-content{position:relative;z-index:2;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,0.26),0 0 1px #000;max-width:720px;margin:0 auto;}
+    .hero-content h1{font-size:2.9rem;font-weight:700;margin-bottom:.7rem;}
+    .hero-content p{font-size:1.25rem;margin:.8rem 0;}
+    .cta-btn{margin-top:2.1rem;background:var(--accent);color:#fff;font-weight:600;font-size:1.18rem;border:none;border-radius:12px;
+      padding:1.12em 2.3em;cursor:pointer;box-shadow:0 4px 22px rgba(0,0,0,0.15);transition:transform .18s,box-shadow .18s;
     }
-    .target-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.2rem;
-      justify-content: center;
-      margin-bottom: 1.2rem;
-    }
-    .target-tile {
-      position: relative;
-      width: 340px;
-      height: 210px;
-      overflow: hidden;
-      border-radius: 18px;
-      box-shadow: 0 2px 16px rgba(203,161,53,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #fff;
-    }
-    .target-tile img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.78);
-      transition: filter 0.22s;
-    }
-    .target-tile:hover img {
-      filter: brightness(0.97);
-    }
-    /* CO DĚLÁME symboly */
-    
-    /* Sekce CO DĚLÁME */
-.what-section {
-  background: #fff;
-  padding: 3.8rem 2vw 2.7rem 2vw;
-}
-
-.section-title {
-  color: #142052;
-  font-size: 2.05rem;
-  font-weight: 700;
-  margin-bottom: 2.2rem;
-  text-align: center;
-  letter-spacing: -0.5px;
-}
-
-/* GRID na služby */
-.what-we-do-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2.2rem;
-}
-
-.what-row {
-  display: flex;
-  justify-content: center;
-  gap: 2.2rem;
-}
-
-@media (max-width: 900px) {
-  .what-row {
-    flex-direction: column;
-    gap: 1.3rem;
-    align-items: center;
-  }
-}
-
-/* JEDNOTLIVÁ SLUŽBA */
-.service {
-  position: relative;
-  background: #ecf4fb;
-  border-radius: 18px;
-  box-shadow: 0 2px 15px rgba(44,115,215,0.10);
-  border: 1.5px solid #d3e9fb;
-  color: #143b74;
-  width: 200px;
-  min-height: 170px;
-  text-align: center;
-  padding: 2.1rem 1.4rem 1.3rem 1.4rem;
-  cursor: pointer;
-  transition: box-shadow 0.18s, transform 0.18s, background 0.2s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.service:hover {
-  box-shadow: 0 8px 32px rgba(44,115,215,0.16);
-  background: #e6f2fd;
-}
-
-.img-wrap img {
-  height: 120px;
-  margin-bottom: 1.1rem;
-  user-drag: none;
-  pointer-events: none;
-}
-
-.service-name {
-  font-weight: 700;
-  font-size: 1.08rem;
-  margin-bottom: 0.2em;
-  color: #164075;
-}
-
-/* Šipka */
-.arrow-btn {
-  position: absolute;
-  top: 9px;
-  right: 10px;
-  background: none;
-  border: none;
-  color: #3b6fb3;
-  font-size: 1.22rem;
-  cursor: pointer;
-  transition: transform 0.23s;
-  outline: none;
-  z-index: 10;
-  padding: 0;
-}
-
-.service.open .arrow-btn span {
-  transform: rotate(180deg);
-  display: inline-block;
-}
-
-/* POPIS SLUŽBY – animace, žádné deformace */
-.service-desc {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.36s cubic-bezier(.7,.1,.25,1), padding 0.19s, opacity 0.19s;
-  padding: 0 0;
-  opacity: 0;
-  font-size: 0.97rem;
-  margin-top: 0.1rem;
-  color: #133059;
-  border-top: 1.1px solid #e6eaf3;
-  text-align: left;
-  min-height: 0;
-  width: 100%;
-  box-sizing: border-box;
-  background: transparent;
-}
-
-/* Po otevření se objeví plynule, box zůstává pěkně zarovnaný */
-.service.open .service-desc {
-  max-height: 190px; /* Pokud bys někde měl delší text, můžeš zvýšit */
-  padding: 1.05em 0 0.8em 0;
-  opacity: 1;
-}
-
-.service.open {
-  background: #d3e9fb;
-  box-shadow: 0 14px 38px rgba(44,115,215,0.16);
-  z-index: 2;
-}
-
-/* RESPONSIVITA */
-@media (max-width: 900px) {
-  .service {
-    width: 85vw;
-    min-width: 140px;
-    max-width: 350px;
-    padding: 1.6rem 0.9rem 1rem 0.9rem;
-  }
-  .img-wrap img {
-    height: 90px;
-  }
-  .service-desc {
-    font-size: 0.93rem;
-    padding: 0 0;
-  }
-  .service.open .service-desc {
-    max-height: 340px;
-    padding: 0.82em 0 0.7em 0;
-  }
-}
-
-@media (max-width: 600px) {
-  .what-section {
-    padding: 1.5rem 0.4rem 1.3rem 0.4rem;
-  }
-  .section-title {
-    font-size: 1.22rem;
-  }
-  .service {
-    padding: 1.1rem 0.6rem 0.9rem 0.6rem;
-  }
-  .img-wrap img {
-    height: 60px;
-  }
-}
-
-   
-    /* BALÍČKY (gradient sekce!) */
-    .packages-section {
-      background: linear-gradient(115deg, #181C3A 0%, #232D5B 100%);
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-      color: #fff;
-    }
-    .packages-section .section-title {
-      color: #FFD86A;
-    }
-    .packages-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.6rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .package {
-      background: #fff;
-      color: #181C3A;
-      border-radius: 20px;
-      box-shadow: 0 8px 36px rgba(22,20,45,0.09);
-      overflow: hidden;
-      width: 100%;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      transition: box-shadow 0.18s, transform 0.18s;
-      position: relative;
-      border: 1.7px solid #FFD86A10;
-      cursor: pointer;
-    }
-    .package:hover {
-      transform: translateY(-7px) scale(1.02);
-      box-shadow: 0 14px 48px rgba(32,30,68,0.13);
-    }
-    .package-head {
-      display: flex; align-items: center; justify-content: space-between;
-      font-size: 1.25rem; font-weight: 700; color: #142052;
-      padding: 1.15rem 1.35rem 1.15rem 1.3rem;
-      letter-spacing: 0.1em;
-      background: transparent;
-      border-radius: 20px 20px 0 0;
-      transition: background 0.15s;
-    }
-    .package.open .package-head { background: #ede9d6; }
-    .arrow-btn {
-      background: none; border: none; color: #CBA135;
-      font-size: 1.3rem; cursor: pointer; outline: none;
-      transition: transform 0.23s;
-      margin-left: 1em;
-    }
-    .package.open .arrow-btn span { transform: rotate(180deg); display: inline-block;}
-    .package-desc {
-      display: none;
-      padding: 1rem 1.4rem 1.4rem 1.4rem;
-      font-size: 1.04rem;
-      color: #444;
-      animation: fadeIn 0.33s;
-      line-height: 1.5;
-      background: #f9f9fb;
-      border-top: 1px solid #ececec;
-    }
-    .package.open .package-desc { display: block; }
-    /* DEMO sekce */
-    .demo-section {
-      background: #f4f6fa;
-    }
-    .demo-desc {
-      text-align: center;
-      font-size: 1.13rem;
-      color: #222;
-      margin-bottom: 2.2rem;
-      font-weight: 400;
-    }
-    .demo-frame-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 330px;
-      max-width: 820px;
-      margin: 0 auto;
-      background: #f7f7fa;
-      border-radius: 16px;
-      box-shadow: 0 2px 12px rgba(203,161,53,0.06);
-      position: relative;
-      overflow: hidden;
-    }
-    .demo-frame-wrap iframe {
-      width: 100%;
-      height: 380px;
-      border: none;
-      border-radius: 16px;
-      background: #fff;
-    }
-    .demo-placeholder {
-      width: 100%;
-      height: 380px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #bbb;
-      font-size: 1.15rem;
-      background: #fff;
-      font-style: italic;
-      text-align: center;
-    }
-    /* REFERENCE sekce */
-    .works-section {
-      background: linear-gradient(115deg, #181C3A 0%, #232D5B 100%);
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-      color: #fff;
-    }
-    .works-title {
-      text-align: center;
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: -1px;
-      color: #FFD86A;
-      margin-bottom: 1.5rem;
-    }
-    .works-desc {
-      text-align: center;
-      color: #e4eaf6;
-      font-size: 1.17rem;
-      margin-bottom: 2.5rem;
-      font-weight: 400;
-    }
-    .works-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.2rem;
-      justify-content: center;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .work-card {
-      background: #fff;
-      color: #181C3A;
-      border-radius: 20px;
-      box-shadow: 0 8px 36px rgba(22,20,45,0.09);
-      overflow: hidden;
-      width: 320px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.23s, box-shadow 0.23s;
-      position: relative;
-      border: 1.7px solid #FFD86A10;
-    }
-    .work-card:hover {
-      transform: translateY(-7px) scale(1.04);
-      box-shadow: 0 18px 48px rgba(32,30,68,0.16);
-    }
-    .work-card img {
-      width: 100%;
-      height: 185px;
-      object-fit: cover;
-      border-top-left-radius: 18px;
-      border-top-right-radius: 18px;
-      background: #F6F7FA;
-    }
-    .work-info {
-      padding: 1.1rem 1.1rem 1.4rem 1.1rem;
-      text-align: center;
-    }
-    .work-name {
-      font-weight: 800;
-      font-size: 1.14rem;
-      color: #142052;
-      margin-bottom: 0.6em;
-    }
-    .work-ref {
-      font-size: 0.99rem;
-      color: #444e6e;
-    }
-    /* Web na míru sekce */
-    .customweb-section {
-      background: transparent;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-top: 0;
-      padding-bottom: 3.5rem;
-    }
-    .customweb-card {
-      background: linear-gradient(120deg, #fffbe7 0%, #f7f8fb 100%);
-      border-radius: 32px;
-      box-shadow: 0 8px 36px rgba(22,20,45,0.07);
-      border: 2.5px solid #cba13533;
-      max-width: 680px;
-      width: 96vw;
-      margin: 0 auto;
-      padding: 0;
-      transition: box-shadow 0.19s, border-color 0.19s;
-      cursor: pointer;
-      overflow: hidden;
-      position: relative;
-    }
-    .customweb-card:hover {
-      box-shadow: 0 14px 44px rgba(32,30,68,0.13);
-      border-color: #cba13599;
-    }
-    .customweb-head {
-      display: flex; align-items: center; justify-content: space-between;
-      font-size: 1.35rem; font-weight: 800; color: #142052;
-      padding: 1.33rem 1.5rem;
-      letter-spacing: 0.03em;
-      border-radius: 32px 32px 0 0;
-      background: transparent;
-    }
-    .customweb-title {
-      color: #142052;
-      font-size: 1.4rem;
-      font-weight: 800;
-    }
-    .customweb-card.open .arrow-btn span { transform: rotate(180deg);}
-    .customweb-desc {
-      display: none;
-      font-size: 1.11rem;
-      color: #36343a;
-      padding: 1.05em 1.7em 2em 1.7em;
-      border-top: 1px solid #e6d59b40;
-      animation: fadeIn 0.36s;
-      background: transparent;
-      line-height: 1.62;
-    }
-    .customweb-card.open .customweb-desc { display: block; }
-    /* O nás */
-    .about-section {
-      background: #f7f8fb;
-      border-radius: 22px;
-      margin: 0 auto 3.7rem auto;
-      max-width: 880px;
-      box-shadow: 0 4px 22px rgba(203,161,53,0.08);
-      padding: 2.5rem 2.3rem 2.3rem 2.3rem;
-    }
-    .about-title {
-      color: #142052;
-      font-size: 2.1rem;
-      font-weight: 800;
-      margin-bottom: 1.1rem;
-      text-align: center;
-      letter-spacing: -0.5px;
-    }
-    .about-desc {
-      color: #222;
-      font-size: 1.17rem;
-      line-height: 1.66;
-      text-align: center;
-      font-weight: 400;
-    }
-    /* RESPONSIVE */
-    @media (max-width: 960px) {
-      .target-tile { width: 44vw; min-width: 200px; height: 30vw; max-height: 220px;}
-      .navbar .logo img { height: 44px;}
-    }
-    @media (max-width: 900px) {
-      .what-row { flex-direction: column; gap: 1.3rem; align-items: center; }
-      .service { width: 80vw; min-width: 150px; }
-    }
-    @media (max-width: 1000px) {
-      .works-grid { flex-direction: column; align-items: center; }
-      .work-card { width: 90vw; }
-    }
-    @media (max-width: 700px) {
-      .demo-frame-wrap, .demo-placeholder, .demo-frame-wrap iframe { height: 220px; min-height: 180px; }
-      .customweb-card { max-width: 99vw; border-radius: 19px;}
-      .customweb-head { font-size: 1.06rem; padding: 1.09rem 1em; }
-      .customweb-desc { font-size: 0.98rem; padding: 0.8em 0.8em 1.6em 0.8em; }
-      .about-section { padding: 1.4rem 0.8rem; }
-      .about-title { font-size: 1.22rem; }
-      .about-desc { font-size: 1rem; }
-    }
-    @media (max-width: 600px) {
-      .section { padding: 1.5rem 0.4rem 1.3rem 0.4rem;}
-      .target-tile { width: 94vw; min-width: 130px; height: 38vw; max-height: 190px;}
-      .section-title { font-size: 1.18rem;}
-      .navbar { flex-direction: column; align-items: flex-start;}
-      .navbar .contact { text-align: left; margin-top: 7px;}
-      .packages-list { max-width: 97vw; }
-      .package-head { font-size: 1rem; padding: 1.1rem 0.9rem; }
-      .package-desc { font-size: 0.98rem; padding: 1rem 1.1rem 1.3rem 1.1rem; }
-    }
-    /* KOTVA/ŠIPKA NAHORU */
-   #scrollUp {
-  display: none;
-  position: fixed;
-  right: 22px;
-  bottom: 28px;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 54px;
-  height: 54px;
-  font-size: 2.25rem;
-  box-shadow: 0 4px 22px rgba(203,161,53,0.12);
-  cursor: pointer;
-  z-index: 20;
-  transition: background 0.18s, transform 0.16s;
-  animation: scrollUpAppear 0.7s;
-}
-#scrollUp:hover {
-  background: #FFD86A;
-  color: var(--primary);
-  transform: scale(1.14) rotate(-6deg);
-  box-shadow: 0 10px 40px #FFD86A77;
-  animation: scrollUpPulse 1.3s infinite;
-}
-@keyframes scrollUpAppear {
-  from { opacity:0; transform:translateY(28px);}
-  to {opacity:1; transform:translateY(0);}
-}
-@keyframes scrollUpPulse {
-  0%,100% { filter:brightness(1);}
-  60% { filter:brightness(1.17);}
-}
-
-
-.kontakt-flex {
-  display: flex;
-  gap: 2.2rem;
-  width: 100%;
-  max-width: 740px;
-  justify-content: center;
-  align-items: stretch;
-  margin: 0 auto;
-}
-.kontakt-form, .kontakt-box {
-  background: #fffbe7;
-  border-radius: 16px;
-  border: 1.2px solid #e7c86a;
-  box-shadow: 0 3px 14px rgba(203,161,53,0.10);
-  flex: 1 1 0;
-  padding: 2.2rem 1.5rem 1.6rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.kontakt-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-}
-.kontakt-form input,
-.kontakt-form textarea {
-  width: 100%;
-  padding: 0.72rem 0.9rem;
-  border-radius: 9px;
-  border: 1.2px solid #e7c86a;
-  font-size: 1.05rem;
-  font-weight: 500;
-  background: #fff;
-  transition: border-color 0.16s;
-  box-sizing: border-box;
-}
-.kontakt-form input:focus,
-.kontakt-form textarea:focus {
-  border-color: #CBA135;
-  outline: none;
-}
-.kontakt-form button {
-  width: 100%;
-  background: #CBA135;
-  color: #fff;
-  font-weight: 700;
-  border: none;
-  border-radius: 9px;
-  padding: 1.05rem 0;
-  font-size: 1.13rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(203,161,53,0.10);
-  transition: background 0.18s, transform 0.15s;
-}
-.kontakt-form button:hover { background: #bfa337; transform: scale(1.04); }
-.kontakt-box {
-  align-items: center;
-  gap: 0.7rem;
-  justify-content: center;
-}
-.kontakt-email {
-  display: inline-block;
-  color: #fff;
-  background: #CBA135;
-  font-weight: 700;
-  text-decoration: none;
-  font-size: 1.13rem;
-  padding: 0.72em 1.7em;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(203,161,53,0.11);
-  transition: background 0.21s;
-  margin-bottom: 0.21em;
-}
-.kontakt-email:hover { background: #bfa337; }
-.kontakt-tel {
-  color: #142052;
-  font-weight: 700;
-  font-size: 1.09rem;
-  padding: 0.65em 1.5em;
-  border-radius: 10px;
-  letter-spacing: 0.02em;
-  background: #fff;
-  border: 1px solid #e7c86a;
-  box-shadow: 0 1px 6px rgba(203,161,53,0.06);
-}
-.kontakt-box-desc {
-  text-align: center;
-  color: #444;
-  font-size: 1.03rem;
-  margin-bottom: 0.7em;
-  font-weight: 500;
-  margin-top: 0.15em;
-  line-height: 1.5;
-  max-width: 210px;
-}
-@media (max-width: 900px) {
-  .kontakt-flex {
-    flex-direction: column;
-    gap: 1.1rem;
-    max-width: 99vw;
-  }
-  .kontakt-form, .kontakt-box {
-    padding: 1.2rem 0.6rem 1rem 0.6rem;
-    border-radius: 11px;
-  }
-  .kontakt-box-desc { max-width: 100%; }
-}
-
-
-.nav-menu {
-  flex: 1 1 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.nav-menu ul {
-  display: flex;
-  gap: 2.1rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.nav-menu li {
-  display: block;
-}
-.nav-menu a {
-  text-decoration: none;
-  color: var(--primary);
-  font-weight: 600;
-  font-size: 1.09rem;
-  padding: 0.35em 0.14em;
-  transition: color 0.15s;
-  position: relative;
-}
-.nav-menu a:hover, .nav-menu a:focus {
-  color: var(--accent);
-}
-#hamburger {
-  display: none;
-  background: none;
-  border: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
-  margin-left: 10px;
-  z-index: 20;
-}
-#hamburger span {
-  display: block;
-  width: 25px;
-  height: 3px;
-  margin: 3.6px 0;
-  background: var(--primary);
-  border-radius: 2px;
-  transition: 0.28s;
-}
-@media (max-width: 980px) {
-  .nav-menu ul {
-    gap: 1.1rem;
-  }
-  .navbar .logo img { height: 40px; }
-}
-@media (max-width: 800px) {
-  .nav-menu ul {
-    gap: 0.8rem;
-  }
-  .navbar { padding: 0.6rem 2vw 0.5rem 2vw;}
-}
-@media (max-width: 700px) {
-  .nav-menu {
-    flex: unset;
-    width: 100%;
-    justify-content: flex-end;
-  }
-  .nav-menu ul {
-    flex-direction: column;
-    position: fixed;
-    top: 0; right: 0;
-    height: 100vh;
-    width: 70vw;
-    max-width: 300px;
-    background: #fff;
-    box-shadow: -6px 0 24px rgba(203,161,53,0.14);
-    padding: 5.7rem 1.7rem 1.7rem 1.7rem;
-    gap: 1.45rem;
-    transform: translateX(110%);
-    transition: transform 0.23s cubic-bezier(.44,.21,.08,.92);
-    z-index: 9001;
-    align-items: flex-start;
-  }
-  .nav-menu ul.open {
-    transform: translateX(0%);
-  }
-  #hamburger {
-    display: flex;
-    position: relative;
-    z-index: 10002;
-  }
-  .navbar .contact { position: relative; z-index: 20; }
-  .nav-menu li { width: 100%; }
-  .nav-menu a {
-    font-size: 1.19rem;
-    color: var(--primary);
-    width: 100%;
-    display: block;
-    padding: 0.7em 0;
-  }
-  /* Hamburger animation */
- #hamburger.open span:nth-child(1) {
-  transform: translateY(7.5px) rotate(45deg) scaleX(1.13);
-  background: #CBA135;
-}
-#hamburger.open span:nth-child(2) {
-  opacity: 0;
-}
-#hamburger.open span:nth-child(3) {
-  transform: translateY(-7.5px) rotate(-45deg) scaleX(1.13);
-  background: #CBA135;
-}
-
-}
-
-    section[id] {
-  scroll-margin-top: 110px;  /* přizpůsob podle výšky navbaru, klidně 74–90px */
-}
-
-/* Underline efekt na menu odkazy */
-.nav-menu a {
-  position: relative;
-  overflow: hidden;
-}
-.nav-menu a::after {
-  content: '';
-  display: block;
-  position: absolute;
-  left: 0; bottom: 0;
-  width: 100%; height: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transition: transform 0.28s cubic-bezier(.87,.07,.43,.97);
-  transform-origin: right;
-}
-.nav-menu a:hover::after,
-.nav-menu a:focus::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-/* Pop/scale efekt na karty, tlačítka */
-.service:hover,
-.package:hover,
-.work-card:hover,
-.cta-btn:hover,
-#scrollUp:hover,
-.kontakt-form button:hover {
-  transform: scale(1.05);
-  transition: transform 0.18s cubic-bezier(.44,.21,.08,.92);
-  z-index: 1;
-}
-
-/* Roztáhne pozadí přes celou šířku, obsah nechá max-width */
-.full-bg {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);   /* Zajistí fullwidth sekci i v max-width kontejneru */
-  margin-right: calc(50% - 50vw);
-  padding: 0;
-  border: none;
-}
-
-.section-inner {
-  max-width: 1160px;
-  margin: 0 auto;
-  padding: 3.8rem 2vw 2.7rem 2vw;
-}
-
-
-
-.full-bg.what-section, 
-.full-bg.white-bg,
-#komu-nabizime,
-#co-delame {
-  background: #fff !important;
-}
-
-    
-
-
-/* dej to na úplný konec svého CSS */
-.full-bg.packages-section,
-.full-bg.demo-section,
-.full-bg.works-section {
-  /* fallback barva, okamžitě vykreslená před čímkoliv */
-  background-color: #181C3A !important;
-}
-
-    
+    .cta-btn:hover{transform:scale(1.05);box-shadow:0 8px 32px rgba(0,0,0,0.18);}
+    .section{max-width:1160px;margin:0 auto;padding:3.8rem 2vw 2.7rem 2vw;background:var(--white);}
+    .section-title{font-size:2.05rem;font-weight:700;color:var(--dark);text-align:center;margin-bottom:2.2rem;}
+    .what-we-do-grid,.target-grid,.packages-list,.works-grid,.kontakt-flex{display:flex;flex-wrap:wrap;gap:2.2rem;justify-content:center;}
+    .service,.package,.work-card,.kontakt-form,.kontakt-box{background:var(--white);border:1.5px solid #eee;border-radius:18px;box-shadow:var(--shadow);padding:1.4rem;}
+    .service img,.target-tile img,.work-card img{width:100%;border-radius:12px;}
+    .service-name{font-weight:700;font-size:1.08rem;color:var(--dark);margin-bottom:.5rem;}
+    .service-desc{font-size:.97rem;color:#133059;}
+    .package-head{display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:1.25rem;color:var(--dark);padding-bottom:1rem;border-bottom:1px solid #eee;}
+    .package-desc{font-size:1rem;color:#444;line-height:1.5;margin-top:1rem;}
+    .work-info{padding:1rem;text-align:center;}
+    .work-name{font-weight:800;font-size:1.14rem;color:var(--dark);margin-bottom:.6em;}
+    .work-ref{font-size:.99rem;color:#444e6e;}
+    .about-desc{font-size:1.17rem;line-height:1.66;color:#222;text-align:center;}
+    .kontakt-form form{display:flex;flex-direction:column;gap:1rem;}
+    .kontakt-form input,.kontakt-form textarea{width:100%;padding:.72rem .9rem;border-radius:9px;border:1.2px solid #e7c86a;font-size:1.05rem;}
+    .kontakt-form button{background:var(--accent);color:#fff;font-weight:700;padding:1.05rem 0;border:none;border-radius:9px;cursor:pointer;}
+    footer{background:linear-gradient(120deg,#FFF8E2 0%,#FFD86A 80%,#CBA135 100%);border-top:2px solid var(--accent);padding:2.2rem 0 1.2rem 0;margin-top:3rem;}
+    footer div{text-align:center;color:#222;font-size:1.04rem;font-weight:500;margin-bottom:.5rem;}
+    footer small{color:#666;font-size:.98rem;}
   </style>
 </head>
 <body>
   <!-- PRELOADER -->
-<div id="preloader">
-  <img src="images/logoshowspace.png" alt="ShowSpace loader">
-</div>
-
+  <div id="preloader">
+    <img src="images/logoshowspace.png" alt="ShowSpace loader">
+  </div>
   <!-- NAVBAR -->
   <div class="navbar">
-    <div class="logo">
-      <a href="/"><img src="images/logonejvic.png" alt="ShowSpace logo"></a>
-    </div>
+    <div class="logo"><img src="images/logonejvic.png" alt="ShowSpace logo"></div>
     <nav class="nav-menu">
-  <ul>
-    <li><a href="#co-delame">Služby</a></li>
-    <li><a href="#balicky">Balíčky</a></li>
-    <li><a href="#reference">Reference</a></li>
-    <li><a href="#web-na-miru">Web na míru</a></li>
-    <li><a href="#onas">O nás</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-  </ul>
-  <button id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
+      <ul>
+        <li><a href="#co-delame">Služby</a></li>
+        <li><a href="#balicky">Balíčky</a></li>
+        <li><a href="#reference">Reference</a></li>
+        <li><a href="#web-na-miru">Web na míru</a></li>
+        <li><a href="#onas">O nás</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <button id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
     <div class="contact">
       <span>+420 777 111 222</span>
       <a href="mailto:info@showspace.cz">info@showspace.cz</a>
     </div>
   </div>
-  <!-- HERO SEKCE -->
-  <section class="hero" id="top">
-    <!-- Dekorativní bubliny -->
-<div class="bubble bubble1"></div>
-<div class="bubble bubble2"></div>
-<div class="bubble bubble3"></div>
-<div class="bubble bubble4"></div>
-<div class="bubble bubble5"></div>
-<div class="bubble bubble6"></div>   
-    <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+
+  <!-- HERO -->
+  <section class="hero" id="co-delame" data-aos="fade-up" data-aos-delay="200">
+    <!-- BUBBLES -->
+    <div class="bubble bubble1"></div>
+    <div class="bubble bubble2"></div>
+    <div class="bubble bubble3"></div>
+    <div class="bubble bubble4"></div>
+    <div class="bubble bubble5"></div>
+    <div class="bubble bubble6"></div>
+    <div class="hero-content">
       <h1>Virtuální prohlídky, které prodávají</h1>
       <p>Zaujměte klienty během 30 sekund ještě dříve, než vejdou.</p>
       <p>Od 5 000 Kč.</p>
-      <button class="cta-btn" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">
-        Nezávazná poptávka
-      </button>
+      <button class="cta-btn" onclick="scrollToSection('kontakt')">Nezávazná poptávka</button>
     </div>
   </section>
-  <!-- CO DĚLÁME (symboly) -->
-  <section class="full-bg what-section" id="co-delame" style="background:#fff; data-aos="fade-up" data-aos-delay="300">
-    <div class="section-inner">
+
+  <!-- CO DĚLÁME -->
+  <section id="co-delame" class="section">
     <div class="section-title">Co děláme?</div>
     <div class="what-we-do-grid">
-      <div class="what-row">
-        <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="200">
-          <div class="img-wrap"><img src="images/virtualpro.png" alt="Virtuální prohlídky"></div>
-          <div class="service-name">Virtuální prohlídky</div>
-          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-          <div class="service-desc">Profesionální 360° prezentace prostoru, která zaujme a prodá.</div>
-        </div>
-        <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="400">
-          <div class="img-wrap"><img src="images/marketing.png" alt="Marketing"></div>
-          <div class="service-name">Marketing</div>
-          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-          <div class="service-desc">Online reklama na Google, Meta, správné zacílení na vaše zákazníky.</div>
-        </div>
-        <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="600">
-          <div class="img-wrap"><img src="images/site.png" alt="Content + Sítě"></div>
-          <div class="service-name">Content &amp; Sítě</div>
-          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-          <div class="service-desc">Správa obsahu a sociálních sítí – budování značky a komunit.</div>
-        </div>
-      </div>
-      <div class="what-row">
-        <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="800">
-          <div class="img-wrap"><img src="images/pudorys.png" alt="Půdorysy"></div>
-          <div class="service-name">Půdorysy</div>
-          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-          <div class="service-desc">Přehledné a profesionální půdorysy nemovitostí.</div>
-        </div>
-        <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="1000">
-          <div class="img-wrap"><img src="images/mapy.png" alt="Google Maps"></div>
-          <div class="service-name">Google Maps</div>
-          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-          <div class="service-desc">Implementace vaší prohlídky přímo do Google Maps.</div>
-        </div>
-        <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="1200">
-          <div class="img-wrap"><img src="images/recenze.png" alt="Správa recenzí"></div>
-          <div class="service-name">Správa recenzí</div>
-          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-          <div class="service-desc">Budování reputace a správa recenzí vašich klientů.</div>
-        </div>
-      </div>
+      <div class="service" onclick="toggleDesc(this)"><img src="images/virtualpro.png" alt="Virtuální prohlídky"><div class="service-name">Virtuální prohlídky</div><div class="service-desc">Profesionální 360° prezentace prostoru, která zaujme a prodá.</div></div>
+      <div class="service" onclick="toggleDesc(this)"><img src="images/marketing.png" alt="Marketing"><div class="service-name">Marketing</div><div class="service-desc">Online reklama na Google, Meta, správné zacílení na vaše zákazníky.</div></div>
+      <div class="service" onclick="toggleDesc(this)"><img src="images/site.png" alt="Content & Sítě"><div class="service-name">Content & Sítě</div><div class="service-desc">Správa obsahu a sociálních sítí – budování značky a komunit.</div></div>
+      <div class="service" onclick="toggleDesc(this)"><img src="images/pudorys.png" alt="Půdorysy"><div class="service-name">Půdorysy</div><div class="service-desc">Přehledné a profesionální půdorysy nemovitostí.</div></div>
+      <div class="service" onclick="toggleDesc(this)"><img src="images/mapy.png" alt="Google Maps"><div class="service-name">Google Maps</div><div class="service-desc">Implementace vaší prohlídky přímo do Google Maps.</div></div>
+      <div class="service" onclick="toggleDesc(this)"><img src="images/recenze.png" alt="Správa recenzí"><div class="service-name">Správa recenzí</div><div class="service-desc">Budování reputace a správa recenzí vašich klientů.</div></div>
     </div>
   </section>
+
   <!-- KOMU NABÍZÍME -->
-  <section class="full-bg what-section" id="komu-nabizime" style="background:#fff;  data-aos="zoom-in" data-aos-delay="200">
-    <div class="section-inner">
+  <section id="komu-nabizime" class="section">
     <div class="section-title">Komu nabízíme?</div>
     <div class="target-grid">
-      <div class="target-tile"><img src="images/prodejnajm.png" alt="Prodeje a pronájmy nemovitostí" data-aos="fade-up" data-aos-delay="200"></div>
-      <div class="target-tile"><img src="images/restaukav.png" alt="Restaurace, kavárny a bary" data-aos="fade-up" data-aos-delay="400"></div>
-      <div class="target-tile"><img src="images/hotelpenzi.png" alt="Hotely a penziony" data-aos="fade-up" data-aos-delay="600"></div>
-      <div class="target-tile"><img src="images/obchodysho.png" alt="Obchody a showroomy" data-aos="fade-up" data-aos-delay="800"></div>
-      <div class="target-tile"><img src="images/fitkowel.png" alt="Fitness a wellness" data-aos="fade-up" data-aos-delay="1000"></div>
-      <div class="target-tile"><img src="images/galeriamuzea.png" alt="Galerie a muzea" data-aos="fade-up" data-aos-delay="1200"></div>
+      <div class="target-tile"><img src="images/prodejnajm.png" alt="Prodeje a pronájmy nemovitostí"></div>
+      <div class="target-tile"><img src="images/restaukav.png" alt="Restaurace, kavárny a bary"></div>
+      <div class="target-tile"><img src="images/hotelpenzi.png" alt="Hotely a penziony"></div>
+      <div class="target-tile"><img src="images/obchodysho.png" alt="Obchody a showroomy"></div>
+      <div class="target-tile"><img src="images/fitkowel.png" alt="Fitness a wellness"></div>
+      <div class="target-tile"><img src="images/galeriamuzea.png" alt="Galerie a muzea"></div>
     </div>
   </section>
+
   <!-- BALÍČKY -->
-  <section class="full-bg packages-section" id="balicky" data-aos="zoom-in" data-aos-delay="400">
-    <div class="section-inner">
-    <div class="section-title" data-aos="zoom-in" data-aos-delay="200">Balíčky</div>
+  <section id="balicky" class="section">
+    <div class="section-title">Balíčky</div>
     <div class="packages-list">
-      <div class="package" onclick="togglePackage(this)">
-        <div class="package-head">
-          <span class="package-name" data-aos="fade-right" data-aos-delay="200">START</span>
-          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-        </div>
-        <div class="package-desc">
-          Ideální pro malé prostory a první zkušenost s virtuální prohlídkou. Získáte jednoduchou 360° prezentaci, která zaujme vaše klienty online.
-        </div>
-      </div>
-      <div class="package" onclick="togglePackage(this)">
-        <div class="package-head">
-          <span class="package-name" data-aos="fade-left" data-aos-delay="300">PLUS</span>
-          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-        </div>
-        <div class="package-desc">
-          Nejčastější volba – vhodné pro byty, kanceláře a podniky, kteří chtějí maximální poměr cena/výkon a více možností úprav.
-        </div>
-      </div>
-      <div class="package" onclick="togglePackage(this)">
-        <div class="package-head">
-          <span class="package-name" data-aos="fade-right" data-aos-delay="400">PREMIUM</span>
-          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-        </div>
-        <div class="package-desc">
-          Pro náročné klienty, luxusní nemovitosti nebo větší objekty – obsahuje nadstandardní funkce, precizní úpravy a maximální vizuální efekt.
-        </div>
-      </div>
-      <div class="package" onclick="togglePackage(this)">
-        <div class="package-head">
-          <span class="package-name" data-aos="fade-left" data-aos-delay="500">CUSTOM</span>
-          <button class="arrow-btn" tabindex="-1"><span>&#x25BC;</span></button>
-        </div>
-        <div class="package-desc">
-          Individuální řešení pro vaše specifické potřeby, větší počet prostor nebo speciální požadavky. Vytvoříme vám nabídku přesně na míru.
-        </div>
-      </div>
+      <div class="package" onclick="togglePackage(this)"><div class="package-head"><span class="package-name">START</span></div><div class="package-desc">Ideální pro malé prostory a první zkušenost s virtuální prohlídkou.</div></div>
+      <div class="package" onclick="togglePackage(this)"><div class="package-head"><span class="package-name">PLUS</span></div><div class="package-desc">Maximální poměr cena/výkon a více možností úprav.</div></div>
+      <div class="package" onclick="togglePackage(this)"><div class="package-head"><span class="package-name">PREMIUM</span></div><div class="package-desc">Pro náročné klienty, luxusní nemovitosti nebo větší objekty.</div></div>
+      <div class="package" onclick="togglePackage(this)"><div class="package-head"><span class="package-name">CUSTOM</span></div><div class="package-desc">Individuální řešení pro vaše specifické potřeby.</div></div>
     </div>
   </section>
-  <!-- VIRTUÁLNÍ PROHLÍDKA -->
- <section class="full-bg packages-section" id="vzorova-prohlidka" data-aos="fade-left" data-aos-delay="200">
-  <div class="section-inner">
-    <div class="section-title">Vzorová prohlídka houseboatu</div>
-    <div class="demo-desc">
-      Vyzkoušejte si, jak vypadá virtuální prohlídka v praxi – prostor houseboatu v interaktivním 360° zobrazení.
-    </div>
-    <div class="demo-frame-wrap">
-      <!-- <iframe src="TVŮJ_ODKAZ_NA_PROHLÍDKU" frameborder="0" allowfullscreen></iframe> -->
-      <div class="demo-placeholder">
-        <span>Vizuální ukázka zde.</span>
-      </div>
-    </div>
-  </div>
-</section>
+
+  <!-- VZOROVÁ PROHLÍDKA -->
+  <section id="vzorova-prohlidka" class="section">
+    <div class="section-title">Vzorová prohlídka</div>
+    <div class="demo-desc">Vyzkoušejte si interaktivní 360° ukázku.</div>
+    <div class="demo-frame-wrap"><div class="demo-placeholder">Vizuální ukázka zde.</div></div>
+  </section>
 
   <!-- REFERENCE -->
-  <section class="full-bg works-section" id="reference" data-aos="fade-right" data-aos-delay="200">
-    <div class="section-inner">
-    <div class="works-title">Naše odvedená práce &amp; reference</div>
-    <div class="works-desc">
-      Vybrané ukázky realizovaných virtuálních prohlídek a projekty pro naše klienty.<br>
-      <span>Každá prohlídka vznikla na míru konkrétnímu prostoru i potřebám zákazníka.</span>
-    </div>
+  <section id="reference" class="section">
+    <div class="section-title">Naše reference</div>
     <div class="works-grid">
-      <div class="work-card" data-aos="fade-up" data-aos-delay="300">
-        <img src="images/fitkowel.png" alt="Fitness & Wellness" />
-        <div class="work-info">
-          <div class="work-name">Fitness & Wellness</div>
-          <div class="work-ref">Virtuální prezentace pro marketing a zvýšení důvěry.</div>
-        </div>
-      </div>
-      <div class="work-card" data-aos="fade-up" data-aos-delay="300">
-        <img src="images/galeriamuzea.png" alt="Galerie & Muzea" />
-        <div class="work-info">
-          <div class="work-name">Galerie & Muzea</div>
-          <div class="work-ref">Interaktivní online prohlídka s možností popisků a hotspotů.</div>
-        </div>
-      </div>
-      <!-- Přidej další reference stejně -->
+      <div class="work-card"><img src="images/fitkowel.png" alt="Fitness & Wellness"><div class="work-info"><div class="work-name">Fitness & Wellness</div><div class="work-ref">Virtuální prezentace pro marketing.</div></div></div>
+      <div class="work-card"><img src="images/galeriamuzea.png" alt="Galerie & Muzea"><div class="work-info"><div class="work-name">Galerie &amp; Muzea</div><div class="work-ref">Online prohlídka s hotspoty.</div></div></div>
     </div>
   </section>
-  <!-- WEB NA MÍRU -->
-<section class="section customweb-section" id="web-na-miru" style="margin-top:3.5rem; margin-bottom:3.2rem;" data-aos="fade-in" data-aos-delay="300">
-  <div class="customweb-card"
-    style="background:linear-gradient(120deg, #fffbe7 0%, #f7f8fb 100%);
-           border:2.5px solid #cba13566;
-           border-radius:22px;
-           box-shadow:0 8px 30px rgba(22,20,45,0.09);
-           max-width:670px; margin:0 auto;
-           padding:0; transition:box-shadow .18s, border-color .18s;">
-    <div style="padding:2.1rem 2.3rem 0.5rem 2.3rem;">
-      <h2 style="color:#142052; font-size:2.05rem; font-weight:800; margin-bottom:0.65rem; text-align:center;">Web na míru</h2>
-      <div style="color:#CBA135; text-align:center; font-size:1.16rem; font-weight:700; margin-bottom:1.08rem;">Originální weby pro vaši prezentaci i podnikání</div>
-      <div style="text-align:center; color:#333; font-size:1.12rem; font-weight:500; margin-bottom:1.4rem; line-height:1.6;">
-        Vytvoříme vám moderní, responzivní a rychlý web, který skutečně zaujme – bez šablon a kompromisů. Navrhneme ho přesně podle vašich potřeb i vizuální identity.
-      </div>
-    </div>
-    <div style="border-top:1.2px solid #e6d59b40; padding:1.4em 2.3em 2.1em 2.3em; background:transparent; font-size:1.08rem; color:#36343a; line-height:1.62;">
-      <ul style="margin:0 0 1.1em 1.1em; padding:0; list-style:disc;">
-        <li>Plně responzivní a rychlý web (na mobil, tablet, PC)</li>
-        <li>Optimalizace pro Google i jednoduchou správu obsahu</li>
-        <li>Interaktivní prvky – galerie, efekty, animace</li>
-        <li>Možnost propojení s virtuální prohlídkou</li>
-        <li>Moderní design, který vynikne</li>
-      </ul>
-      <div style="margin-top:1.1em;">
-        Chcete web, který bude vidět a přivede vám zákazníky? Ozvěte se nám pro nezávaznou konzultaci.
-      </div>
-    </div>
-  </div>
-</section>
 
+  <!-- WEB NA MÍRU -->
+  <section id="web-na-miru" class="section">
+    <div class="section-title">Web na míru</div>
+    <div class="customweb-card" onclick="toggleWebDetail(this)"><div class="customweb-head"><div class="customweb-title">Originální weby</div></div><div class="customweb-desc">Plně responzivní a rychlý web podle vašich potřeb.</div></div>
+  </section>
 
   <!-- O NÁS -->
-  <section class="section about-section" id="onas" data-aos="zoom-in" data-aos-delay="200">
+  <section id="onas" class="section">
     <div class="about-title">O nás</div>
-    <div class="about-desc">
-      Jsme tým mladých lidí, kteří milují technologie, design a kreativní prezentaci.  
-      Specializujeme se na <b>virtuální prohlídky, moderní weby a vizuální marketing</b>, kde není prostor pro nudu nebo šablony.<br><br>
-      Propojili jsme know-how z oblasti IT, fotografie i marketingu. Každý projekt stavíme s důrazem na <b>detail, funkčnost i vizuální wow efekt</b>.<br>
-      <br>
-      Baví nás hledat nové způsoby, jak vaše podnikání posunout na vyšší úroveň.
+    <div class="about-desc">Jsme tým mladých lidí, kteří milují technologie, design a kreativní prezentaci.</div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="section kontakt-section">
+    <div class="section-title">Kontakt</div>
+    <div class="kontakt-flex">
+      <div class="kontakt-form"><form action="https://formspree.io/f/mjkorjrk" method="POST"><input type="text" placeholder="Vaše jméno"><input type="email" placeholder="E-mail"><textarea rows="4" placeholder="Zpráva"></textarea><button type="submit">Odeslat</button></form></div>
+      <div class="kontakt-box"><div class="kontakt-box-desc">Odpovíme do 24 hodin.</div><a class="kontakt-email" href="mailto:info@showspace.cz">info@showspace.cz</a><span class="kontakt-tel">+420 777 111 222</span></div>
     </div>
   </section>
 
-  
-<section class="section kontakt-section" id="kontakt" style="
-  background: linear-gradient(135deg, #FFF8E2 0%, #FFD86A 80%, #CBA135 100%);
-  border: 3px solid #CBA135;
-  border-radius: 22px;
-  max-width: 900px;
-  margin: 3.7rem auto 2.5rem auto;
-  box-shadow: 0 6px 32px rgba(203,161,53,0.12);
-  padding: 2.5rem 1.2rem 2.2rem 1.2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;" data-aos="zoom-in" data-aos-delay="200">
-  <h2 style="color:#142052; text-align:center; font-size:2.18rem; font-weight:800; margin-bottom:0.45rem; letter-spacing:-1px;">Kontakt</h2>
-  <h3 style="color:#CBA135; text-align:center; font-size:1.28rem; margin-bottom:1.13rem; font-weight:700; letter-spacing:0.02em;">Zaujměte ještě dnes online</h3>
-  <div class="kontakt-flex">
-    <div class="kontakt-form" data-aos="fade-right" data-aos-delay="200">
-      <form action="https://formspree.io/f/mjkorjrk" method="POST">
-        <input type="text" name="name" placeholder="Vaše jméno" required>
-        <input type="email" name="email" placeholder="Váš e-mail" required>
-        <input type="tel" name="phone" placeholder="Telefon (nepovinné)">
-        <textarea name="message" rows="4" placeholder="Vaše zpráva..." required></textarea>
-        <button type="submit">Odeslat</button>
-      </form>
-    </div>
-    <div class="kontakt-box" data-aos="fade-left" data-aos-delay="200">
-      <div class="kontakt-box-desc">
-        Virtuální prohlídka je vaše digitální výloha – ozvěte se nám, odpovíme do 24 hodin.
-      </div>
-      <a class="kontakt-email" href="mailto:info@showspace.cz">info@showspace.cz</a>
-      <span class="kontakt-tel">+420 777 111 222</span>
-    </div>
-  </div>
-</section>
+  <!-- SCROLL UP BUTTON -->
+  <button id="scrollUp" title="Zpět nahoru" onclick="scrollToSection('top')">↑</button>
 
-
-
-
-  <!-- KOTVA/ŠIPKA NAHORU -->
-  <button id="scrollUp" title="Zpět nahoru" onclick="window.scrollTo({top:0,behavior:'smooth'});">↑</button>
   <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    // Preloader
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('preloader').classList.add('hidden');
-      }, 700);
-    });
-    // Kotva nahoru
-    window.addEventListener('scroll', function() {
-      document.getElementById('scrollUp').style.display =
-        window.scrollY > 350 ? 'block' : 'none';
-    });
-   // CO DĚLÁME - rozklikávání (ponech, je správně)
-function toggleDesc(el) {
-  el.classList.toggle('open');
-  document.querySelectorAll('.service').forEach(s => {
-    if (s !== el) s.classList.remove('open');
-  });
-}
-
-    // BALÍČKY - rozklikávání
-    function togglePackage(el) {
-      if (el.classList.contains('open')) {
-        el.classList.remove('open');
-        return;
-      }
-      document.querySelectorAll('.package').forEach(p => p.classList.remove('open'));
-      el.classList.add('open');
-    }
-    // WEB NA MÍRU - rozklikávání
-    function toggleWebDetail(el) {
-      el.classList.toggle('open');
-    }
+    AOS.init({ duration:820,easing:'cubic-bezier(.61,.1,.51,1.3)',once:true });
+    window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('preloader').classList.add('hidden'),700);});
+    window.addEventListener('scroll',()=>{document.getElementById('scrollUp').style.display = window.scrollY>350?'block':'none';const hero=document.querySelector('.hero');if(window.scrollY<650&&hero)hero.style.backgroundPositionY=(window.scrollY*0.38)+'px';});
+    const hamburger=document.getElementById('hamburger'),navUl=document.querySelector('.nav-menu ul');hamburger.addEventListener('click',e=>{e.stopPropagation();hamburger.classList.toggle('open');navUl.classList.toggle('open');document.body.classList.toggle('menu-open');});
+    window.addEventListener('click',e=>{if(window.innerWidth<800&&navUl.classList.contains('open')){if(!navUl.contains(e.target)&&!hamburger.contains(e.target)){hamburger.classList.remove('open');navUl.classList.remove('open');document.body.classList.remove('menu-open');}}});
+    document.querySelectorAll('.nav-menu a[href^="#"]').forEach(link=>{link.addEventListener('click',e=>{const target=document.getElementById(link.getAttribute('href').substring(1));if(target){e.preventDefault();scrollToSection(target.id);hamburger.classList.remove('open');navUl.classList.remove('open');document.body.classList.remove('menu-open');}});});
+    function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}function toggleDesc(el){el.classList.toggle('open');document.querySelectorAll('.service').forEach(s=>{if(s!==el)s.classList.remove('open');});}function togglePackage(el){if(el.classList.contains('open'))return void el.classList.remove('open');document.querySelectorAll('.package').forEach(p=>p.classList.remove('open'));el.classList.add('open');}function toggleWebDetail(el){el.classList.toggle('open');}
   </script>
 
-<script>
-  // Hamburger
-  const hamburger = document.getElementById('hamburger');
-  const navUl = document.querySelector('.nav-menu ul');
-  hamburger.addEventListener('click', function(e){
-    e.stopPropagation();
-    hamburger.classList.toggle('open');
-    navUl.classList.toggle('open');
-    document.body.classList.toggle('menu-open');
-  });
-  // Zavření při kliku mimo menu (mobile)
-  window.addEventListener('click', function(e){
-    if(window.innerWidth < 800 && navUl.classList.contains('open')) {
-      if(!navUl.contains(e.target) && !hamburger.contains(e.target)) {
-        hamburger.classList.remove('open');
-        navUl.classList.remove('open');
-        document.body.classList.remove('menu-open');
-      }
-    }
-  });
-  // Smooth scroll pro anchor odkazy
-  document.querySelectorAll('.nav-menu a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function(e){
-      const targetId = this.getAttribute('href').substring(1);
-      const section = document.getElementById(targetId);
-      if(section) {
-        e.preventDefault();
-        section.scrollIntoView({ behavior: 'smooth' });
-        if(window.innerWidth < 800) {
-          hamburger.classList.remove('open');
-          navUl.classList.remove('open');
-          document.body.classList.remove('menu-open');
-        }
-      }
-    });
-  });
-</script>
-
-  <!-- AOS Animate On Scroll JS -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 820,
-    easing: "cubic-bezier(.61,.1,.51,1.3)",
-    once: true,
-  });
-</script>
-
-  <script>// Parallax efekt pro .hero pozadí
-window.addEventListener('scroll', function() {
-  const hero = document.querySelector('.hero');
-  if (window.scrollY < 650 && hero) {
-    hero.style.backgroundPositionY = (window.scrollY * 0.38) + 'px';
-  }
-});  </script>
-
-  
-  <footer style="background: linear-gradient(120deg,#FFF8E2 0%,#FFD86A 80%,#CBA135 100%); border-top: 2px solid #CBA135; padding:2.2rem 0 1.2rem 0; margin-top:3rem;">
-  <div style="display:flex;justify-content:center;align-items:center;gap:28px;margin-bottom:1rem;">
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/show_space_/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;background:#fff;border:1.5px solid #CBA135;transition:transform .21s;">
-      <svg fill="#E1306C" width="26" height="26" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm4.75-.88a1.13 1.13 0 110 2.25 1.13 1.13 0 010-2.25z"></path></svg>
-    </a>
-    <!-- TikTok -->
-    <a href="https://www.tiktok.com/@show.space360" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;background:#fff;border:1.5px solid #CBA135;transition:transform .21s;">
-      <svg width="24" height="24" viewBox="0 0 256 256" fill="none"><path d="M104.91 93.41v51.84c0 14.49-11.87 25.76-26.46 25.76-14.59 0-26.46-11.27-26.46-25.76 0-13.92 10.96-25.18 25.15-25.72v-16.2c-23.15.81-41.76 20.74-41.76 45.68 0 25.35 20.78 45.92 46.42 45.92 25.64 0 46.42-20.57 46.42-45.92V86.47h22.49v6.94c0 15.5 11.68 28.15 27.46 29.15v-27.09c-7.37-.7-14.24-3.8-19.1-9.6-5.07-5.87-7.82-13.87-7.82-22.28V43.35h-22.49z" fill="#25F4EE"></path><path d="M167.64 97.43c3.66 2.38 8.01 3.34 12.36 2.86v-19.87a34.26 34.26 0 01-12.36-3.57z" fill="#FE2C55"></path></svg>
-    </a>
-  </div>
-  <div style="text-align:center; font-size:1.04rem; color:#222; margin-bottom:0.2em; font-weight:500;">
-    © 2025 ShowSpace.cz &ndash; Veškerá práva vyhrazena.
-  </div>
-  <div style="text-align:center; font-size:0.98rem; color:#666; margin-top:0.14em;">
-    Virtuální prohlídky a webové prezentace | info@showspace.cz
-  </div>
-</footer>
-
+  <!-- FOOTER -->
+  <footer>
+    <div>© 2025 ShowSpace.cz – Veškerá práva vyhrazena.</div>
+    <small>Virtuální prohlídky a webové prezentace | info@showspace.cz</small>
+  </footer>
 </body>
 </html>
-
-
-
-
