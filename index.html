@@ -1254,6 +1254,22 @@ section[id] {
   transition: background 0.19s, color 0.18s, transform 0.17s;
   display: inline-block;
   vertical-align: middle;
+  z-index: 2000;
+}
+    @media (max-width: 700px) {
+  .nav-cta-btn {
+    position: fixed;
+    bottom: 18px;
+    right: 16px;
+    left: auto;
+    margin: 0;
+    padding: 1.13em 2.4em;
+    font-size: 1.08rem;
+    border-radius: 14px;
+    box-shadow: 0 6px 24px #FFD86A45;
+    display: none; /* bude zapínat JS! */
+    z-index: 2002;
+  }
 }
 
 .nav-cta-btn:hover {
@@ -1429,11 +1445,12 @@ body {
   <!-- Původní kontakt schovej JS -->
   <span class="contact-info">+420 777 111 222</span>
   <a class="contact-info" href="mailto:info@showspace.cz">info@showspace.cz</a>
-  <button class="cta-btn nav-cta-btn" id="stickyCtaBtn" style="display:none;">
-    Chci nezávaznou konzultaci
-  </button>
 </div>
-
+</div>
+<button class="cta-btn nav-cta-btn" id="stickyCtaBtn" style="display:none;">
+  Chci nezávaznou konzultaci
+</button>
+  
   </div>
   <!-- HERO SEKCE -->
   <section class="hero" id="top">
@@ -2038,25 +2055,30 @@ gsap.utils.toArray('footer a').forEach((el, i) => {
 <script>
 
 // --- Dynamická změna kontaktu na sticky tlačítko ---
-const stickyBtn = document.getElementById('stickyCtaBtn');
-const contactInfos = document.querySelectorAll('.contact-info');
-const coDelameSection = document.getElementById('co-delame');
-let btnVisible = false;
-
 function checkScrollForCtaBtn() {
+  const isMobile = window.innerWidth <= 700;
   const rect = coDelameSection.getBoundingClientRect();
-  if (rect.top <= 80 && !btnVisible) {
-    // Už je sekce vidět – ukážeme tlačítko, schováme kontakty
-    stickyBtn.style.display = 'inline-block';
-    contactInfos.forEach(el => el.style.display = 'none');
-    btnVisible = true;
-  } else if (rect.top > 80 && btnVisible) {
-    // Ještě jsme nahoře – schováme tlačítko, ukážeme kontakty
-    stickyBtn.style.display = 'none';
-    contactInfos.forEach(el => el.style.display = '');
-    btnVisible = false;
+
+  if (isMobile) {
+    // Na mobilu sticky tlačítko jen DOLŮ při scrollu
+    if (rect.top <= 30) {
+      stickyBtn.style.display = 'block';
+    } else {
+      stickyBtn.style.display = 'none';
+    }
+    // Kontakty stejně nejsou na mobilu vidět, neřešíš.
+  } else {
+    // Na desktopu zobraz sticky tlačítko místo kontaktů
+    if (rect.top <= 80) {
+      stickyBtn.style.display = 'inline-block';
+      contactInfos.forEach(el => el.style.display = 'none');
+    } else {
+      stickyBtn.style.display = 'none';
+      contactInfos.forEach(el => el.style.display = '');
+    }
   }
 }
+
 window.addEventListener('scroll', checkScrollForCtaBtn);
 
 // Načtení stránky – hned zkontroluj (např. F5 na půlce stránky)
@@ -2156,6 +2178,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
