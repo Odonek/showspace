@@ -1942,15 +1942,29 @@ stickyBtn.addEventListener('click', function() {
     });
   }
 
-  document.getElementById('cookieAccept').onclick=function(){
-    localStorage.setItem('cookieConsent','accepted');
+  function deleteAnalyticsCookies() {
+  // Smaže všechny cookies s prefixem _ga, _gid, _gat
+  const cookies = document.cookie.split(';');
+  cookies.forEach(cookie => {
+    const name = cookie.split('=')[0].trim();
+    if (name.startsWith('_ga') || name === '_gid' || name === '_gat') {
+      document.cookie = name + '=; Max-Age=0; path=/;';
+      document.cookie = name + '=; Max-Age=0; path=/; domain=' + window.location.hostname + ';';
+    }
+  });
+}
+
+document.getElementById('cookieAccept').onclick = function() {
+    localStorage.setItem('cookieConsent', 'accepted');
     runConsentScripts();
-    document.getElementById('cookieBar').style.display='none';
-  };
-  document.getElementById('cookieDecline').onclick=function(){
-    localStorage.setItem('cookieConsent','declined');
-    document.getElementById('cookieBar').style.display='none';
-  };
+    document.getElementById('cookieBar').style.display = 'none';
+};
+document.getElementById('cookieDecline').onclick = function() {
+    localStorage.setItem('cookieConsent', 'declined');
+    deleteAnalyticsCookies();
+    document.getElementById('cookieBar').style.display = 'none';
+};
+
 
   // Počkej na schování preloaderu, pak zobraz cookieBar (pokud je potřeba)
   window.addEventListener('load', function(){
@@ -1969,6 +1983,7 @@ stickyBtn.addEventListener('click', function() {
   
 </body>
 </html>
+
 
 
 
