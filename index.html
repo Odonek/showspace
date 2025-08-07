@@ -813,12 +813,12 @@ section[id] {
 @media (max-width: 900px) {
   .customweb-section { margin-top: 70px; margin-bottom: 55px; }
   .customweb-card { max-width: 97vw; border-radius: 17px; top: 0; }
-  .customweb-content { padding: 1.6rem 0.7rem 1.1rem 0.7rem; }
+  .customweb-content { padding: 1.3rem 1.1rem 1.1rem 1.1rem; }
   .customweb-title { font-size: 1.31rem; }
 }
 
 @media (max-width: 600px) {
-  .customweb-content { padding: 1.1rem 0.3rem; }
+ .customweb-content { padding: 1rem 1.1rem; }
   .customweb-title { font-size: 1.09rem; }
   .customweb-list { font-size: 0.97rem; }
 }
@@ -1000,14 +1000,14 @@ section[id] {
 @media (max-width: 900px) {
   .kontakt-section { max-width: 99vw; border-radius: 19px;}
   .kontakt-card { flex-direction: column; border-radius: 19px;}
-  .kontakt-left, .kontakt-form { padding: 2.2rem 1.2rem;}
+  .kontakt-left, .kontakt-form { padding: 1.6rem 1.1rem;}
   .kontakt-form { border-left: none; border-top: 1.7px solid #FFD86A55;}
 }
 
 @media (max-width: 600px) {
   .kontakt-section { border-radius: 13px; }
   .kontakt-card { border-radius: 13px;}
-  .kontakt-left, .kontakt-form { padding: 1.08rem 0.3rem;}
+  .kontakt-left, .kontakt-form { padding: 1.1rem 1.1rem;}
   .kontakt-form button { font-size: 1rem; }
 }
 
@@ -1152,7 +1152,14 @@ section[id] {
 }
 
 @media (max-width: 900px) {
-  .service { width: 85vw; min-width: 140px; max-width: 350px; padding: 1.6rem 0.9rem 1rem 0.9rem; }
+ .service { 
+    width: 85vw; 
+    min-width: 140px; 
+    max-width: 350px; 
+    padding: 1.6rem 0.9rem 1rem 0.9rem; 
+    margin: 0 auto;          /* DŮLEŽITÉ! zarovná boxy na střed */
+    align-self: center;      /* místo flex-start – aby to bylo uprostřed */
+  }
   .img-wrap img { height: 90px; }
   .service-desc { font-size: 0.93rem; padding: 0 0;}
   .service.open .service-desc { max-height: 340px; padding: 0.82em 0 0.7em 0; }
@@ -1210,13 +1217,13 @@ section[id] {
   .customweb-card { max-width: 99vw; border-radius: 19px;}
   .customweb-head { font-size: 1.06rem; padding: 1.09rem 1em; }
   .customweb-desc { font-size: 0.98rem; padding: 0.8em 0.8em 1.6em 0.8em; }
-  .about-section { padding: 1.4rem 0.8rem; }
+  .about-section { padding: 1.3rem 1.1rem; }
   .about-title { font-size: 1.22rem; }
   .about-desc { font-size: 1rem; }
 }
 
 @media (max-width: 600px) {
-  .section { padding: 1.5rem 0.4rem 1.3rem 0.4rem;}
+  .section { padding: 1.3rem 1.1rem 1.2rem 1.1rem;}
   .target-tile { width: 94vw; min-width: 130px; height: 38vw; max-height: 190px;}
   .section-title { font-size: 1.18rem;}
   .navbar { flex-direction: column; align-items: flex-start;}
@@ -2101,6 +2108,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
