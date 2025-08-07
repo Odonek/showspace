@@ -1193,11 +1193,29 @@ section[id] {
   transition: padding 0.22s;
 }
 
-#cookieBar button {
+#cookieBar .cta-btn {
+  background: linear-gradient(90deg, #FFD86A 65%, #CBA135 100%);
+  color: #142052;
+  font-weight: 800;
+  border: none;
+  border-radius: 13px;
+  padding: 1.09rem 2.2em;
+  font-size: 1.09rem;
+  box-shadow: 0 2px 14px #FFD86A23;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background 0.19s, color 0.18s, transform 0.17s;
+  display: inline-block;
+  vertical-align: middle;
   margin-left: 0.2em;
   margin-right: 0.2em;
-  margin-top: 0;
-  margin-bottom: 0;
+}
+
+#cookieBar .cta-btn:hover {
+  background: linear-gradient(90deg, #CBA135 80%, #FFD86A 100%);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 8px 26px #FFD86A55;
 }
 
 @media (max-width: 700px) {
@@ -1214,7 +1232,7 @@ section[id] {
     text-align: left;
     font-size: 0.97rem;
   }
-  #cookieBar button {
+  #cookieBar .cta-btn {
     width: 100%;
     margin: 0.19em 0;
     font-size: 1.05rem;
@@ -1983,6 +2001,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
