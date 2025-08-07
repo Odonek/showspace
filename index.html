@@ -70,143 +70,178 @@ section[id] {
   scroll-margin-top: 110px; /* aby odkazy fungovaly pod sticky navbar */
 }
 /* NAVBAR */
+:root {
+  --primary: #111;
+  --accent: #CBA135;
+}
+
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 2vw 0.7rem 2vw;
-  background: #fff;
-  border-bottom: 1.5px solid #eee;
   position: sticky;
-  top: 0; left: 0; right: 0;
-  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 62px;
+  background: #fff;
+  z-index: 1000;
+  padding: 0.8rem 2vw;
+  box-shadow: 0 2px 16px #CBA13508;
 }
-  
 
-.navbar .logo img { height: 68px; margin-left: 0.5vw; }
-.navbar .contact { text-align: right; margin-right: 2vw; }
-.navbar .contact span {
+.logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  z-index: 15;
+}
+.logo img {
+  height: 38px;
   display: block;
-  font-weight: 600;
-  font-size: 1.12rem;
-  color: var(--primary);
-}
-.navbar .contact a {
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 600;
-  margin-left: 1.5em;
-  font-size: 1.08rem;
 }
 
-/* MENU */
 .nav-menu {
-  flex: 1 1 0;
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 }
+
 .nav-menu ul {
   display: flex;
-  gap: 2.1rem;
-  list-style: none;
-  padding: 0;
+  gap: 1.3rem;
+  align-items: center;
   margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: none;
 }
+
 .nav-menu li { display: block; }
 .nav-menu a {
-  text-decoration: none;
   color: var(--primary);
-  font-weight: 600;
-  font-size: 1.09rem;
-  padding: 0.35em 0.14em;
-  transition: color 0.15s;
-  position: relative;
-  overflow: hidden;
+  font-size: 1.11rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .17s;
+  padding: 0.66em 0.12em;
 }
-.nav-menu a:hover, .nav-menu a:focus { color: var(--accent); }
-.nav-menu a::after {
-  content: '';
-  display: block;
-  position: absolute;
-  left: 0; bottom: 0;
-  width: 100%; height: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transition: transform 0.28s cubic-bezier(.87,.07,.43,.97);
-  transform-origin: right;
+.nav-menu a:hover, .nav-menu a:focus {
+  color: var(--accent);
 }
-.nav-menu a:hover::after, .nav-menu a:focus::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+
 #hamburger {
   display: none;
-  background: none;
-  border: none;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  height: 40px;
-  width: 40px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
   cursor: pointer;
-  margin-left: 10px;
-  z-index: 20;
+  z-index: 1002;
+  margin-left: 18px;
 }
 #hamburger span {
   display: block;
-  width: 25px;
   height: 3px;
-  margin: 3.6px 0;
+  width: 100%;
   background: var(--primary);
+  margin: 6px 0;
   border-radius: 2px;
-  transition: 0.28s;
+  transition: .25s cubic-bezier(.44,.21,.08,.92);
 }
 
-/* RESPONSIVE NAV */
-@media (max-width: 980px) {
-  .nav-menu ul { gap: 1.1rem; }
-  .navbar .logo img { height: 40px; }
+.contact {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.1em;
+  margin-left: 1.2em;
 }
-@media (max-width: 800px) {
-  .nav-menu ul { gap: 0.8rem; }
-  .navbar { padding: 0.6rem 2vw 0.5rem 2vw;}
+.contact-info {
+  font-size: 1.03em;
+  color: var(--primary);
+  text-decoration: none;
+  opacity: 0.84;
 }
+.cta-btn.nav-cta-btn {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.06rem;
+  border-radius: 10px;
+  padding: 0.7em 1.6em;
+  box-shadow: 0 2px 10px #FFD86A25;
+  border: none;
+  transition: background .18s, color .18s, box-shadow .13s;
+  cursor: pointer;
+}
+.cta-btn.nav-cta-btn:hover,
+.cta-btn.nav-cta-btn:focus {
+  background: #ffd86a;
+  color: var(--primary);
+  box-shadow: 0 4px 20px #FFD86A45;
+}
+
 @media (max-width: 700px) {
   .navbar {
-    display: flex;
     flex-direction: row;
     align-items: center;
     padding: 0.8rem 2vw;
+    min-height: 62px;
+    background: #fff;
+    z-index: 1000;
     position: sticky;
     top: 0; left: 0; right: 0;
-    min-height: 62px;
-    background: #fff; /* Pro kontrast sticky nav */
-    z-index: 1000;
   }
-  .navbar .logo {
+
+  .logo {
     position: absolute;
     left: 0; right: 0;
     margin: 0 auto;
-    display: flex;
     justify-content: center;
     z-index: 15;
     width: 100%;
-    pointer-events: none; /* Logo je neklikací */
+    pointer-events: none;
   }
-  .navbar .logo a {
+  .logo a {
     pointer-events: auto;
     display: inline-block;
   }
-  .navbar .logo img {
-    height: 38px;
-    margin: 0 auto !important;
-    display: block;
+  .logo img {
+    margin: 0 auto;
   }
 
-  .navbar .contact {
+  .contact {
+    /* Na mobilu kontakt pod menu, pouze tlačítko */
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    margin: 0;
+    gap: 0;
+    z-index: 10004;
+    display: flex !important;
+    align-items: center;
+    background: none;
+    box-shadow: none;
+  }
+  .contact-info {
     display: none !important;
+  }
+  .cta-btn.nav-cta-btn {
+    display: inline-block !important;
+    min-width: 128px;
+    max-width: 90vw;
+    font-size: 1.09rem;
+    padding: 0.65em 1.5em;
+    border-radius: 11px;
+    box-shadow: 0 3px 14px #FFD86A28;
+    margin: 0;
+    float: none;
+    text-align: center;
   }
 
   .nav-menu {
@@ -215,6 +250,7 @@ section[id] {
     align-items: center;
     width: 100%;
     min-width: unset;
+    z-index: 10;
   }
   .nav-menu ul {
     flex-direction: column;
@@ -259,6 +295,19 @@ section[id] {
     transform: translateY(-7.5px) rotate(-45deg) scaleX(1.13);
     background: #CBA135;
   }
+}
+
+/* --- Animace pro mobilní menu (volitelné, pro jemnost) --- */
+.nav-menu ul {
+  will-change: transform;
+}
+
+/* --- Skrytí mobilního menu mimo open stav --- */
+@media (max-width: 700px) {
+  .nav-menu ul:not(.open) {
+    pointer-events: none;
+  }
+}
 
   /* --- CTA BUTTON vždy viditelný i na mobilu --- */
   .nav-cta-btn {
@@ -1360,31 +1409,32 @@ body {
   <!-- KONEC SVG -->
 </div>
     <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">
-      <a href="/"><img src="images/logonejvic.png" alt="ShowSpace logo"></a>
-    </div>
-    <nav class="nav-menu">
-      <ul>
-        <li><a href="#co-delame">Služby</a></li>
-        <li><a href="#balicky">Balíčky</a></li>
-        <li><a href="#reference">Reference</a></li>
-        <li><a href="#web-na-miru">Web na míru</a></li>
-        <li><a href="#onas">O nás</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
-      </ul>
-      <button id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-   <div class="contact" id="navContact">
-  <!-- Původní kontakt schovej JS -->
-  <span class="contact-info">+420 777 111 222</span>
-  <a class="contact-info" href="mailto:info@showspace.cz">info@showspace.cz</a>
-  <button class="cta-btn nav-cta-btn" id="stickyCtaBtn" style="display:none;">
-    Chci nezávaznou konzultaci
-  </button>
+<div class="navbar">
+  <div class="logo">
+    <a href="/"><img src="images/logonejvic.png" alt="ShowSpace logo"></a>
+  </div>
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="#co-delame">Služby</a></li>
+      <li><a href="#balicky">Balíčky</a></li>
+      <li><a href="#reference">Reference</a></li>
+      <li><a href="#web-na-miru">Web na míru</a></li>
+      <li><a href="#onas">O nás</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <button id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="contact" id="navContact">
+    <span class="contact-info">+420 777 111 222</span>
+    <a class="contact-info" href="mailto:info@showspace.cz">info@showspace.cz</a>
+    <button class="cta-btn nav-cta-btn" id="stickyCtaBtn">
+      Chci nezávaznou konzultaci
+    </button>
+  </div>
 </div>
+
 
   </div>
   <!-- HERO SEKCE -->
@@ -1733,23 +1783,20 @@ body {
     }
     // Hamburger menu
     const hamburger = document.getElementById('hamburger');
-    const navUl = document.querySelector('.nav-menu ul');
-    hamburger.addEventListener('click', function(e){
-      e.stopPropagation();
-      hamburger.classList.toggle('open');
-      navUl.classList.toggle('open');
-      document.body.classList.toggle('menu-open');
+  const navMenu = document.querySelector('.nav-menu ul');
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+    document.body.classList.toggle('nav-opened', navMenu.classList.contains('open'));
+  });
+  // Kliknutí na link menu zavře menu
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.classList.remove('nav-opened');
     });
-    // Zavření při kliku mimo menu (mobile)
-    window.addEventListener('click', function(e){
-      if(window.innerWidth < 800 && navUl.classList.contains('open')) {
-        if(!navUl.contains(e.target) && !hamburger.contains(e.target)) {
-          hamburger.classList.remove('open');
-          navUl.classList.remove('open');
-          document.body.classList.remove('menu-open');
-        }
-      }
-    });
+  });
     // Smooth scroll pro anchor odkazy
     document.querySelectorAll('.nav-menu a[href^="#"]').forEach(link => {
       link.addEventListener('click', function(e){
@@ -2108,3 +2155,4 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
