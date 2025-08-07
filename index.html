@@ -1345,6 +1345,37 @@ body {
   position: relative;
 }
 
+@media (max-width: 700px) {
+  .about-section,
+  .customweb-card,
+  .customweb-content,
+  .kontakt-section,
+  .kontakt-card,
+  .kontakt-left,
+  .kontakt-form {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  /* Nepoužívej max-width: 99vw, místo toho 100% */
+  .customweb-card,
+  .kontakt-card {
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+@media (max-width: 500px) {
+  .about-section,
+  .customweb-card,
+  .customweb-content,
+  .kontakt-section,
+  .kontakt-card,
+  .kontakt-left,
+  .kontakt-form {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+}
 
     
   </style>
@@ -2107,5 +2138,6 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
