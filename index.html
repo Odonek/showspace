@@ -813,12 +813,12 @@ section[id] {
 @media (max-width: 900px) {
   .customweb-section { margin-top: 70px; margin-bottom: 55px; }
   .customweb-card { max-width: 97vw; border-radius: 17px; top: 0; }
-  .customweb-content { padding: 1.3rem 1.1rem 1.1rem 1.1rem; }
+  .customweb-content { padding: 1.3rem 4vw 1.1rem 4vw; }
   .customweb-title { font-size: 1.31rem; }
 }
 
 @media (max-width: 600px) {
- .customweb-content { padding: 1rem 1.1rem; }
+ .customweb-content { padding: 1.1rem 5vw 1.1rem 5vw; }
   .customweb-title { font-size: 1.09rem; }
   .customweb-list { font-size: 0.97rem; }
 }
@@ -1000,14 +1000,14 @@ section[id] {
 @media (max-width: 900px) {
   .kontakt-section { max-width: 99vw; border-radius: 19px;}
   .kontakt-card { flex-direction: column; border-radius: 19px;}
-  .kontakt-left, .kontakt-form { padding: 1.6rem 1.1rem;}
+  .kontakt-form, .kontakt-box { padding: 1.2rem 5vw 1rem 5vw; border-radius: 11px; }
   .kontakt-form { border-left: none; border-top: 1.7px solid #FFD86A55;}
 }
 
 @media (max-width: 600px) {
   .kontakt-section { border-radius: 13px; }
   .kontakt-card { border-radius: 13px;}
-  .kontakt-left, .kontakt-form { padding: 1.1rem 1.1rem;}
+  .kontakt-form, .kontakt-box { padding: 1.2rem 5vw 1rem 5vw; border-radius: 11px; }
   .kontakt-form button { font-size: 1rem; }
 }
 
@@ -1217,13 +1217,16 @@ section[id] {
   .customweb-card { max-width: 99vw; border-radius: 19px;}
   .customweb-head { font-size: 1.06rem; padding: 1.09rem 1em; }
   .customweb-desc { font-size: 0.98rem; padding: 0.8em 0.8em 1.6em 0.8em; }
-  .about-section { padding: 1.3rem 1.1rem; }
+  .about-section {
+    padding: 1.4rem 5vw 1.5rem 5vw;
+    /* ... */
+  }
   .about-title { font-size: 1.22rem; }
   .about-desc { font-size: 1rem; }
 }
 
 @media (max-width: 600px) {
-  .section { padding: 1.3rem 1.1rem 1.2rem 1.1rem;}
+  .section { padding: 1.3rem 5vw 1.2rem 5vw;}
   .target-tile { width: 94vw; min-width: 130px; height: 38vw; max-height: 190px;}
   .section-title { font-size: 1.18rem;}
   .navbar { flex-direction: column; align-items: flex-start;}
@@ -2108,6 +2111,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
