@@ -282,6 +282,45 @@ section[id] {
   }
 }
 
+    /* CTA pod logem – defaultně skryté */
+.cta-btn.mobile-center-cta {
+  display: none;
+}
+
+/* Zobrazit pouze na mobilu */
+@media (max-width: 700px) {
+  .cta-btn.mobile-center-cta {
+    display: block;
+    margin: 0.15em auto 1.15em auto;
+    width: 90vw;
+    max-width: 350px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 1.08rem;
+    font-weight: 700;
+    border-radius: 13px;
+    border: none;
+    padding: 0.84em 0;
+    box-shadow: 0 4px 14px 0 rgba(203,161,53,0.14);
+    transition: box-shadow 0.22s, background 0.18s;
+    cursor: pointer;
+    z-index: 20;
+    position: relative;
+  }
+  .cta-btn.mobile-center-cta:active {
+    box-shadow: 0 1px 7px 0 rgba(203,161,53,0.11);
+    background: #b89334;
+  }
+
+  /* Uprav pozici loga, pokud je potřeba víc místa kvůli CTA */
+  .navbar .logo {
+    margin-top: 0.05em;
+    margin-bottom: 0.6em;
+  }
+}
+
+/* Desktop varianty CTA řeš odděleně (pokud potřebuješ) */
+
 
 /* HERO SEKCE */
 .hero {
@@ -1355,6 +1394,7 @@ body {
     <div class="logo">
       <a href="/"><img src="images/logonejvic.png" alt="ShowSpace logo"></a>
     </div>
+    <button class="cta-btn mobile-center-cta">Chci nezávaznou konzultaci</button>
     <nav class="nav-menu">
       <ul>
         <li><a href="#co-delame">Služby</a></li>
@@ -1372,7 +1412,7 @@ body {
   <!-- Původní kontakt schovej JS -->
   <span class="contact-info">+420 777 111 222</span>
   <a class="contact-info" href="mailto:info@showspace.cz">info@showspace.cz</a>
-  <button class="cta-btn nav-cta-btn" id="stickyCtaBtn" style="display:none;">
+  <button class="cta-btn nav-cta-btn desktop-only" id="stickyCtaBtn" style="display:none;">
     Chci nezávaznou konzultaci
   </button>
 </div>
@@ -2099,6 +2139,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
