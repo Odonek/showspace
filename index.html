@@ -1258,19 +1258,29 @@ section[id] {
 }
     @media (max-width: 700px) {
   .nav-cta-btn {
-    position: fixed;
-    bottom: 18px;
-    right: 16px;
-    left: auto;
-    margin: 0;
-    padding: 1.13em 2.4em;
-    font-size: 1.08rem;
-    border-radius: 14px;
-    box-shadow: 0 6px 24px #FFD86A45;
-    display: none; /* bude zapínat JS! */
-    z-index: 2002;
+    position: static !important;
+    width: 100%;
+    max-width: 280px;
+    margin: 10px auto 0 auto;
+    display: block !important;
+    border-radius: 15px;
+    box-shadow: 0 4px 16px #FFD86A33;
+    font-size: 1.11rem;
+    z-index: 30;
   }
 }
+@media (min-width: 701px) {
+  .nav-cta-btn {
+    position: absolute;
+    right: 2vw;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    z-index: 1001;
+    /* shadow, radius atd. jak máš */
+  }
+}
+
 
 .nav-cta-btn:hover {
   background: linear-gradient(90deg, #CBA135 80%, #FFD86A 100%);
@@ -1428,6 +1438,9 @@ body {
     <div class="logo">
       <a href="/"><img src="images/logonejvic.png" alt="ShowSpace logo"></a>
     </div>
+    <button class="cta-btn nav-cta-btn" id="stickyCtaBtn" style="display:none;">
+  Chci nezávaznou konzultaci
+</button>
     <nav class="nav-menu">
       <ul>
         <li><a href="#co-delame">Služby</a></li>
@@ -2055,34 +2068,56 @@ gsap.utils.toArray('footer a').forEach((el, i) => {
 <script>
 
 // --- Dynamická změna kontaktu na sticky tlačítko ---
+const stickyBtn = document.getElementById('stickyCtaBtn');
+const coDelameSection = document.getElementById('co-delame');
+const navBar = document.querySelector('.navbar');
+const logo = navBar.querySelector('.logo');
+const navContact = document.getElementById('navContact');
+
 function checkScrollForCtaBtn() {
   const isMobile = window.innerWidth <= 700;
   const rect = coDelameSection.getBoundingClientRect();
 
-  if (isMobile) {
-    // Na mobilu sticky tlačítko jen DOLŮ při scrollu
-    if (rect.top <= 30) {
-      stickyBtn.style.display = 'block';
+  if (rect.top <= 50) {
+    stickyBtn.style.display = 'block';
+
+    if (isMobile) {
+      // Přesuň tlačítko pod logo do navBaru, pokud tam ještě není
+      if (stickyBtn.parentNode !== navBar) {
+        navBar.insertBefore(stickyBtn, navContact); // nebo hned za logo, podle potřeby
+      }
+      stickyBtn.style.position = 'static';
+      stickyBtn.style.margin = '12px auto 0 auto';
+      stickyBtn.style.width = '100%';
     } else {
-      stickyBtn.style.display = 'none';
+      // Přesuň tlačítko za kontakt do navBaru
+      if (stickyBtn.parentNode !== navBar) {
+        navBar.appendChild(stickyBtn);
+      }
+      stickyBtn.style.position = 'absolute';
+      stickyBtn.style.right = '2vw';
+      stickyBtn.style.top = '50%';
+      stickyBtn.style.transform = 'translateY(-50%)';
+      stickyBtn.style.width = 'auto';
+      stickyBtn.style.margin = '0';
+      // Skryj kontakty
+      navContact.style.display = 'none';
     }
-    // Kontakty stejně nejsou na mobilu vidět, neřešíš.
   } else {
-    // Na desktopu zobraz sticky tlačítko místo kontaktů
-    if (rect.top <= 80) {
-      stickyBtn.style.display = 'inline-block';
-      contactInfos.forEach(el => el.style.display = 'none');
-    } else {
-      stickyBtn.style.display = 'none';
-      contactInfos.forEach(el => el.style.display = '');
-    }
+    stickyBtn.style.display = 'none';
+    navContact.style.display = '';
   }
 }
 
 window.addEventListener('scroll', checkScrollForCtaBtn);
+window.addEventListener('resize', checkScrollForCtaBtn);
+window.addEventListener('DOMContentLoaded', checkScrollForCtaBtn);
+
+
+
 
 // Načtení stránky – hned zkontroluj (např. F5 na půlce stránky)
-window.addEventListener('DOMContentLoaded', checkScrollForCtaBtn);
+
 
 // Akce tlačítka
 stickyBtn.addEventListener('click', function() {
@@ -2178,6 +2213,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
