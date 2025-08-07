@@ -371,8 +371,26 @@ section[id] {
 .what-we-do-grid { display: flex; flex-direction: column; gap: 2.2rem; }
 .what-row { display: flex; justify-content: center; gap: 2.2rem; align-items: flex-start;}
 @media (max-width: 900px) {
-  .what-row { flex-direction: column; gap: 1.3rem; align-items: center; }
+  .what-row {
+    flex-direction: column;
+    gap: 1.3rem;
+    align-items: center;
+    max-width: 440px;
+    margin: 0 auto;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+  }
 }
+@media (max-width: 600px) {
+  .what-row {
+    max-width: 99vw;
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+}
+
 .service {
   position: relative;
   background: #fffbe7;
@@ -1389,28 +1407,8 @@ body {
   }
 }
 
-@media (max-width: 900px) {
-  .service {
-    width: 95vw;
-    max-width: 370px;
-    min-width: 150px;
-    margin: 0 auto;
-    padding-left: 18px;
-    padding-right: 18px;
-  }
-}
 
-@media (max-width: 600px) {
-  .service {
-    width: 98vw;
-    max-width: 99vw;
-    min-width: 110px;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-}
-    
-    
+  
   </style>
 </head>
 <body>
@@ -2171,6 +2169,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
