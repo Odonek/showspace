@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ShowSpace.cz – Virtuální prohlídky</title>
   <meta name="description" content="Virtuální prohlídky, marketing, obsah, půdorysy, správa sítí a recenzí pro reality a podniky." />
-  <!-- Google tag (gtag.js) -->
-<!-- Google tag (gtag.js) - blokováno do souhlasu s cookies -->
-<!-- Google tag (gtag.js) – blokováno do souhlasu s cookies -->
 <script type="text/plain" data-cookiecategory="analytics" id="gtagScript"
   src="https://www.googletagmanager.com/gtag/js?id=G-6GXGVQV909"></script>
 <script id="gtagInit" type="text/plain" data-cookiecategory="analytics">
@@ -1403,40 +1400,35 @@ body {
 }
 
 /* === MOBILNÍ VERZE === */
-/* === MOBILNÍ VERZE === */
 @media (max-width:700px){
-  /* menší navbar, protože CTA je kompaktnější */
   .navbar.navbar-cta-visible{
-    min-height: 96px; /* bylo 110px */
+    min-height: 96px;
   }
 
-  /* CTA jako „lišta“ přes téměř celou šířku, 1 řádek */
   #mobileStickyCtaBtn{
     position: absolute;
-    left: 12px;
-    right: 12px;
-    top: 50px;                 /* jemně pod logo – můžeš doladit */
-    transform: none;           /* zrušíme translateX */
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    top: 64px;                 /* větší mezera od loga (dřív 50px) */
+    width: calc(100% - 24px);  /* hezky doprostřed s postranními okraji */
+    max-width: 520px;          /* nepřesáhne moc široké mobily */
     z-index: 10004;
-    display: none;             /* ukáže se až s .is-visible (JS) */
-    padding: 0.6em 0.9em;      /* nižší */
-    font-size: 0.98rem;
-    line-height: 1;
+    display: none;
+    padding: 0.72em 1.05em;    /* o chlup vyšší/čitelnější */
+    font-size: 1rem;
+    line-height: 1.05;
     text-align: center;
-    white-space: nowrap;       /* nezalamovat text */
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;   /* oříznout na úzkých mobilech */
+    text-overflow: ellipsis;
   }
 
-  #mobileStickyCtaBtn.is-visible{
-    display: block !important;
-  }
+  #mobileStickyCtaBtn.is-visible{ display: block !important; }
 
-  /* když je otevřené menu, CTA schovat */
-  body.menu-open #mobileStickyCtaBtn{
-    display: none !important;
-  }
+  body.menu-open #mobileStickyCtaBtn{ display: none !important; }
 }
+
 
 
     
@@ -2101,8 +2093,24 @@ function showMobileCta(show){
 function checkScrollForCtaBtn() {
   if (!coDelameSection) return;
 
+  const atTop = window.scrollY < 10; // úplně nahoře?
   const rect = coDelameSection.getBoundingClientRect();
   const pastTrigger = rect.top <= 80;
+
+  // Když jsem úplně nahoře: všechno vrať do původního stavu a resetni "už jsme ukázali"
+  if (atTop) {
+    ctaShownOnce = false;
+
+    // desktop
+    if (stickyBtn) stickyBtn.style.display = 'none';
+    contactInfos.forEach(el => el.style.display = '');
+
+    btnVisible = false;
+
+    // mobil
+    showMobileCta(false);
+    return; // stačí, dál už neřešíme
+  }
 
   // --- DESKTOP ---
   if (pastTrigger && !btnVisible) {
@@ -2110,13 +2118,12 @@ function checkScrollForCtaBtn() {
     contactInfos.forEach(el => el.style.display = 'none');
     btnVisible = true;
   } else if (!pastTrigger && btnVisible && !ctaShownOnce) {
-    // dokud jsme ještě nikdy nepřejeli trigger, drž se původního chování
     stickyBtn.style.display = 'none';
     contactInfos.forEach(el => el.style.display = '');
     btnVisible = false;
   }
 
-  // Jakmile jednou přejedu trigger, nech to už zapnuté (desktop i mobil)
+  // Jakmile jednou přejedu trigger, nech to už zapnuté (dokud se nevrátím úplně nahoru)
   if (pastTrigger) ctaShownOnce = true;
 
   // --- MOBIL ---
@@ -2130,6 +2137,7 @@ function checkScrollForCtaBtn() {
     showMobileCta(false);
   }
 }
+
 
 window.addEventListener('scroll', checkScrollForCtaBtn);
 window.addEventListener('resize', checkScrollForCtaBtn);
@@ -2232,83 +2240,4 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
