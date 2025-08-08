@@ -1429,7 +1429,7 @@ body {
   }
 
   #mobileStickyCtaBtn.is-visible{
-    display: block;
+    display: block !important;
   }
 
   /* když je otevřené menu, CTA schovat */
@@ -1456,7 +1456,7 @@ body {
     <div class="logo">
       <a href="/"><img src="images/logonejvic.png" alt="ShowSpace logo"></a>
     </div>
-    <button id="mobileStickyCtaBtn" class="cta-btn nav-cta-btn mobile-only" style="display:none;">
+    <button id="mobileStickyCtaBtn" class="cta-btn nav-cta-btn mobile-only">
   Chci nezávaznou konzultaci
 </button>
     <nav class="nav-menu">
@@ -2089,6 +2089,7 @@ let ctaShownOnce = false;        // NOVÉ: po dosažení zůstane
 function showMobileCta(show){
   if (!mobileStickyBtn || !navbar) return;
   if (show){
+    mobileStickyBtn.style.display = '';      // ← přidat
     mobileStickyBtn.classList.add('is-visible');
     navbar.classList.add('navbar-cta-visible');
   } else {
@@ -2231,6 +2232,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
