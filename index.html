@@ -1396,6 +1396,30 @@ body {
   }
 }
 
+/* defaultně schovat */
+.mobile-only { display: none; }
+
+/* Viditelnost a pozice na mobilu */
+@media (max-width:700px){
+  /* Když je tlačítko viditelné, navbar bude vyšší, aby nic nepřekrýval */
+  .navbar.navbar-cta-visible{
+    min-height: 110px; /* rezerva místa pod logo na tlačítko */
+  }
+
+  #mobileStickyCtaBtn.mobile-only{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 48px;                  /* pod logo */
+    z-index: 10004;
+    display: none;              /* JS přepíná na block */
+    padding: 0.7em 1.2em;       /* mírně menší než desktop */
+    font-size: 1rem;
+    /* využívá .nav-cta-btn styly, takže barvy/hover už máš sjednocené */
+  }
+}
+
+    
   </style>
 </head>
 <body>
@@ -1412,6 +1436,9 @@ body {
     <div class="logo">
       <a href="/"><img src="images/logonejvic.png" alt="ShowSpace logo"></a>
     </div>
+    <button id="mobileStickyCtaBtn" class="cta-btn nav-cta-btn mobile-only" style="display:none;">
+  Chci nezávaznou konzultaci
+</button>
     <nav class="nav-menu">
       <ul>
         <li><a href="#co-delame">Služby</a></li>
@@ -2031,33 +2058,58 @@ gsap.utils.toArray('footer a').forEach((el, i) => {
 <script>
 
 // --- Dynamická změna kontaktu na sticky tlačítko ---
-const stickyBtn = document.getElementById('stickyCtaBtn');
-const contactInfos = document.querySelectorAll('.contact-info');
-const coDelameSection = document.getElementById('co-delame');
-let btnVisible = false;
+// --- Dynamická změna kontaktu na sticky tlačítko (desktop) + mobilní verze pod logem ---
+const stickyBtn = document.getElementById('stickyCtaBtn');           // desktop tlačítko vpravo
+const contactInfos = document.querySelectorAll('.contact-info');     // tel + e-mail v headeru
+const coDelameSection = document.getElementById('co-delame');        // sekce "Co děláme"
+const mobileStickyBtn = document.getElementById('mobileStickyCtaBtn'); // NOVÉ: mobilní tlačítko pod logem
+const navbar = document.querySelector('.navbar');                    // pro navýšení výšky na mobilu
+let btnVisible = false; // stav pro desktop
 
 function checkScrollForCtaBtn() {
+  // může být null, když nejsi na homepage — ošetříme
+  if (!coDelameSection) return;
+
   const rect = coDelameSection.getBoundingClientRect();
-  if (rect.top <= 80 && !btnVisible) {
-    // Už je sekce vidět – ukážeme tlačítko, schováme kontakty
+  const pastTrigger = rect.top <= 80; // kdy "dojede" k headeru
+
+  // --- DESKTOP logika (původní) ---
+  if (pastTrigger && !btnVisible) {
     stickyBtn.style.display = 'inline-block';
     contactInfos.forEach(el => el.style.display = 'none');
     btnVisible = true;
-  } else if (rect.top > 80 && btnVisible) {
-    // Ještě jsme nahoře – schováme tlačítko, ukážeme kontakty
+  } else if (!pastTrigger && btnVisible) {
     stickyBtn.style.display = 'none';
     contactInfos.forEach(el => el.style.display = '');
     btnVisible = false;
   }
-}
-window.addEventListener('scroll', checkScrollForCtaBtn);
 
-// Načtení stránky – hned zkontroluj (např. F5 na půlce stránky)
+  // --- MOBILNÍ logika (≤700 px) ---
+  if (window.innerWidth <= 700) {
+    if (pastTrigger) {
+      if (mobileStickyBtn) mobileStickyBtn.style.display = 'block';   // ukaž pod logem
+      if (navbar) navbar.classList.add('navbar-cta-visible');         // přidej místo v headeru
+    } else {
+      if (mobileStickyBtn) mobileStickyBtn.style.display = 'none';
+      if (navbar) navbar.classList.remove('navbar-cta-visible');
+    }
+  } else {
+    // při přechodu na desktop schovej mobilní verzi a zruš třídu
+    if (mobileStickyBtn) mobileStickyBtn.style.display = 'none';
+    if (navbar) navbar.classList.remove('navbar-cta-visible');
+  }
+}
+
+window.addEventListener('scroll', checkScrollForCtaBtn);
+window.addEventListener('resize', checkScrollForCtaBtn); // ať to funguje i při otočení telefonu
 window.addEventListener('DOMContentLoaded', checkScrollForCtaBtn);
 
-// Akce tlačítka
-stickyBtn.addEventListener('click', function() {
-  document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});
+// Akce tlačítek
+stickyBtn?.addEventListener('click', () => {
+  document.getElementById('kontakt')?.scrollIntoView({behavior:'smooth'});
+});
+mobileStickyBtn?.addEventListener('click', () => {
+  document.getElementById('kontakt')?.scrollIntoView({behavior:'smooth'});
 });
 
   
@@ -2149,6 +2201,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
