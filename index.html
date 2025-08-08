@@ -1431,7 +1431,36 @@ body {
 
 
 
-    
+    /* --- Co děláme: krátké benefity pod názvy --- */
+.service-bullets{
+  list-style:none;
+  padding:0;
+  margin:0.45rem 0 0.6rem;
+  font-size:0.93rem;
+  color:#47548B;
+}
+.service-bullets li{
+  position:relative;
+  padding-left:1.2rem;
+  margin-bottom:0.28rem;
+}
+.service-bullets li::before{
+  content:"✔";
+  position:absolute;
+  left:0;
+  top:0;
+  line-height:1;
+  color:var(--accent);
+  font-size:0.9rem;
+}
+
+/* jemné vyvážení spacingu uvnitř .service */
+.service .service-name{ margin-bottom:0.1rem; }
+.service .arrow-btn{ top:8px; right:10px; }
+
+/* když je otevřený detail, udržuj vizuální rytmus */
+.service.open .service-bullets{ margin-bottom:0.4rem; }
+
   </style>
 </head>
 <body>
@@ -1495,75 +1524,134 @@ body {
 
   </section>
   <!-- CO DĚLÁME (symboly) -->
- <section class="full-bg what-section" id="co-delame" style="background:#fff;" data-aos="fade-up" data-aos-delay="300">
+<section class="full-bg what-section" id="co-delame" style="background:#fff;" data-aos="fade-up" data-aos-delay="300">
   <div class="section-inner">
     <div class="section-title">Co děláme?</div>
-    <p style="text-align:center; max-width:720px; margin:0 auto 2rem; color:#47548B;">
-      Tvoříme vizuální prezentace na <strong>nejmodernější technologii Matterport</strong> – realistické 3D, plynulý pohyb, pohled z ptačí perspektivy a přesné měření.
-    </p>
 
     <div class="what-we-do-grid">
       <div class="what-row">
 
+        <!-- Virtuální prohlídky -->
         <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="200">
-          <div class="img-wrap"><img src="images/virtualpro.png" alt="Virtuální prohlídky"></div>
+          <div class="img-wrap">
+            <img src="images/virtualpro.png" alt="Virtuální prohlídky">
+          </div>
           <div class="service-name">Virtuální prohlídky</div>
-          <button class="arrow-btn"><span>&#x25BC;</span></button>
+
+          <ul class="service-bullets">
+            <li>Nejmodernější Matterport 3D</li>
+            <li>Plynulá navigace + měření</li>
+            <li>Dollhouse (řez modelem)</li>
+          </ul>
+
+          <button class="arrow-btn" aria-label="Rozbalit detail"><span>&#x25BC;</span></button>
           <div class="service-desc">
-            Interaktivní 3D prohlídky na <strong>Matterportu</strong> – plynulá navigace, <em>dollhouse</em> pohled, popisky, měření a snadné sdílení. 
-            Ideální pro reality, hotely i firemní prostory.
+            Tvoříme interaktivní 3D prohlídky na <strong>Matterportu</strong>, které prodají dřív, než klient přijde na místo.
+            Plynulé ovládání, <em>dollhouse</em> a řezy, přesné měření vzdáleností, popisky bodů zájmu, brandování a snadné sdílení na webu, sociálních sítích i v inzerci.
+            Ideální pro reality, hotely, showroomy i firemní prostory.
           </div>
         </div>
 
+        <!-- Marketing -->
         <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="400">
-          <div class="img-wrap"><img src="images/marketing.png" alt="Marketing"></div>
+          <div class="img-wrap">
+            <img src="images/marketing.png" alt="Marketing">
+          </div>
           <div class="service-name">Marketing</div>
-          <button class="arrow-btn"><span>&#x25BC;</span></button>
+
+          <ul class="service-bullets">
+            <li>Google &amp; Meta kampaně</li>
+            <li>Chytré lokální cílení</li>
+            <li>Měřitelné výsledky</li>
+          </ul>
+
+          <button class="arrow-btn" aria-label="Rozbalit detail"><span>&#x25BC;</span></button>
           <div class="service-desc">
-            Z prohlídky vytvoříme kampaň, která prodává. <strong>Google Ads, Meta Ads</strong>, lokální cílení, remarketing a měření výsledků – vše pro maximum poptávek.
+            Připravíme výkonové kampaně (Google Ads, Meta Ads), které dovedou správné publikum přímo do vaší virtuální prohlídky.
+            Využíváme lokální i zájmové cílení, A/B testy a jasné metriky (CPC, CTR, konverze), aby se každá koruna vracela.
           </div>
         </div>
 
+        <!-- Content & Sítě -->
         <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="600">
-          <div class="img-wrap"><img src="images/site.png" alt="Content + Sítě"></div>
+          <div class="img-wrap">
+            <img src="images/site.png" alt="Content a sítě">
+          </div>
           <div class="service-name">Content &amp; Sítě</div>
-          <button class="arrow-btn"><span>&#x25BC;</span></button>
+
+          <ul class="service-bullets">
+            <li>Reels, Stories, posty</li>
+            <li>Konzistentní vizuál</li>
+            <li>Plán publikace</li>
+          </ul>
+
+          <button class="arrow-btn" aria-label="Rozbalit detail"><span>&#x25BC;</span></button>
           <div class="service-desc">
-            Uděláme obsah pro sociální sítě – videa, Reels, Stories i posty. 
-            Plán publikace a konzistentní vizuál pro budování značky a komunity.
+            Vytvoříme obsah, který láká ke kliknutí: krátká videa, carousel posty, články i highlighty z prohlídek.
+            Držíme tone-of-voice a vizuál značky, plánujeme kalendář publikace a průběžně vyhodnocujeme výkon.
           </div>
         </div>
 
       </div>
       <div class="what-row">
 
+        <!-- Půdorysy -->
         <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="800">
-          <div class="img-wrap"><img src="images/pudorys.png" alt="Půdorysy"></div>
+          <div class="img-wrap">
+            <img src="images/pudorys.png" alt="Půdorysy">
+          </div>
           <div class="service-name">Půdorysy</div>
-          <button class="arrow-btn"><span>&#x25BC;</span></button>
+
+          <ul class="service-bullets">
+            <li>2D i 3D varianty</li>
+            <li>Přesné rozměry</li>
+            <li>Připravené pro inzerci</li>
+          </ul>
+
+          <button class="arrow-btn" aria-label="Rozbalit detail"><span>&#x25BC;</span></button>
           <div class="service-desc">
-            Přehledné 2D i 3D půdorysy generované z přesného skenu. 
-            Včetně rozměrů a měřítek – ideální pro reality, developerské projekty i pronájmy.
+            Připravíme čitelné a přesné půdorysy (2D/3D) včetně metráží a popisů místností.
+            Ideální k inzerci, na web i sociální sítě – rychlé schválení, jednotný styl a export do více formátů.
           </div>
         </div>
 
+        <!-- Google Maps -->
         <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="1000">
-          <div class="img-wrap"><img src="images/mapy.png" alt="Google Maps"></div>
+          <div class="img-wrap">
+            <img src="images/mapy.png" alt="Google Maps">
+          </div>
           <div class="service-name">Google Maps</div>
-          <button class="arrow-btn"><span>&#x25BC;</span></button>
+
+          <ul class="service-bullets">
+            <li>Street View integrace</li>
+            <li>Lepší lokální SEO</li>
+            <li>Více prokliků na web</li>
+          </ul>
+
+          <button class="arrow-btn" aria-label="Rozbalit detail"><span>&#x25BC;</span></button>
           <div class="service-desc">
-            Umístíme vaši prohlídku přímo do <strong>Google Street View</strong> a na profil firmy. 
-            Zlepšíte lokální SEO, důvěryhodnost a přivedete více zákazníků.
+            Napojíme prohlídku do Google Street View a optimalizujeme firemní profil.
+            Získáte vyšší viditelnost v Mapách, více prokliků na web a lepší konverze z lokálního vyhledávání.
           </div>
         </div>
 
+        <!-- Správa recenzí -->
         <div class="service" onclick="toggleDesc(this)" data-aos="fade-up" data-aos-delay="1200">
-          <div class="img-wrap"><img src="images/recenze.png" alt="Správa recenzí"></div>
+          <div class="img-wrap">
+            <img src="images/recenze.png" alt="Správa recenzí">
+          </div>
           <div class="service-name">Správa recenzí</div>
-          <button class="arrow-btn"><span>&#x25BC;</span></button>
+
+          <ul class="service-bullets">
+            <li>Automatický sběr recenzí</li>
+            <li>Rychlé odpovědi</li>
+            <li>Zvýšení důvěry</li>
+          </ul>
+
+          <button class="arrow-btn" aria-label="Rozbalit detail"><span>&#x25BC;</span></button>
           <div class="service-desc">
-            Pomůžeme získat a spravovat recenze vašich klientů. 
-            Automatizujeme sběr, odpovědi i zobrazení na webu – pro silnou reputaci značky.
+            Pomůžeme získávat více (a lepších) hodnocení, automatizujeme výzvy ke zpětné vazbě a nastavíme odpovídání.
+            Zvedneme průměrné skóre i objem recenzí – klíčové pro rozhodování zákazníků.
           </div>
         </div>
 
@@ -1571,6 +1659,7 @@ body {
     </div>
   </div>
 </section>
+
 
   <!-- KOMU NABÍZÍME -->
   <section class="full-bg what-section" id="komu-nabizime" style="background:#fff;" data-aos="zoom-in" data-aos-delay="200">
@@ -2270,6 +2359,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
