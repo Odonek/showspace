@@ -262,7 +262,7 @@ section[id] {
 
   /* --- CTA BUTTON vždy viditelný i na mobilu --- */
   .nav-cta-btn {
-    display: inline-block !important;
+    
     margin-left: 1em;
     font-size: 1.06rem;
     padding: 0.7em 1.5em;
@@ -1403,34 +1403,41 @@ body {
 }
 
 /* === MOBILNÍ VERZE === */
+/* === MOBILNÍ VERZE === */
 @media (max-width:700px){
-  /* Když se CTA ukáže, nav bar dostane víc místa pod logo */
+  /* menší navbar, protože CTA je kompaktnější */
   .navbar.navbar-cta-visible{
-    min-height: 110px; /* doladíš podle výšky loga */
+    min-height: 96px; /* bylo 110px */
   }
 
-  /* Samotné CTA pod logem, uprostřed */
+  /* CTA jako „lišta“ přes téměř celou šířku, 1 řádek */
   #mobileStickyCtaBtn{
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 52px;            /* pod logo – případně uprav */
-    z-index: 800;         /* pod off-canvas menu (to má ~9001) */
-    padding: 0.7em 1.2em; /* menší než desktop */
-    font-size: 1rem;
-    /* vizuál dědí z .nav-cta-btn (barvy, rádius, hover...) */
+    left: 12px;
+    right: 12px;
+    top: 50px;                 /* jemně pod logo – můžeš doladit */
+    transform: none;           /* zrušíme translateX */
+    z-index: 10004;
+    display: none;             /* ukáže se až s .is-visible (JS) */
+    padding: 0.6em 0.9em;      /* nižší */
+    font-size: 0.98rem;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;       /* nezalamovat text */
+    overflow: hidden;
+    text-overflow: ellipsis;   /* oříznout na úzkých mobilech */
   }
 
-  /* Viditelnost řídí JS – jen přidá/odebere .is-visible */
   #mobileStickyCtaBtn.is-visible{
     display: block;
   }
 
-  /* Když je otevřený hamburger (přidáváš body.menu-open), neschovávat */
+  /* když je otevřené menu, CTA schovat */
   body.menu-open #mobileStickyCtaBtn{
     display: none !important;
   }
 }
+
 
     
   </style>
@@ -2224,6 +2231,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
