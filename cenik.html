@@ -9,7 +9,7 @@
     :root{--primary:#142052;--accent:#CBA135;--muted:#f7f7fb}
     *{box-sizing:border-box}
     body{font-family:Inter,system-ui,Arial,sans-serif;margin:0;background:#fff;color:var(--primary)}
-    header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #eee}
+    header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #eee}
     .wrap{max-width:1100px;margin:0 auto;padding:1rem 2rem}
     .brand{display:flex;align-items:center;gap:.8rem}
     .brand img{height:44px}
@@ -29,19 +29,92 @@
     .pill{display:inline-block;background:#FFF8E2;border:1px solid #FFD86A;color:#5a4a16;padding:.25rem .6rem;border-radius:999px;font-size:.88rem;font-weight:700}
     footer{padding:2rem 0;background:linear-gradient(120deg,#FFF8E2 0%,#FFD86A 80%,#CBA135 100%);border-top:2px solid #CBA135;margin-top:2rem}
     .back{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-weight:700;color:var(--primary)}
-    @media (max-width:600px){.wrap{padding:1rem}}
+
+    /* ====== HAMBURGER NAV ====== */
+    .header-row{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .site-nav{display:flex;align-items:center;gap:1rem}
+    .hamburger{
+      display:none; /* zobrazíme až na mobilu */
+      background:transparent;border:0;padding:.5rem;margin:0;cursor:pointer;
+      border-radius:10px;
+    }
+    .hamburger:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .hamburger-box{width:28px;height:20px;position:relative;display:block}
+    .hamburger-line{
+      position:absolute;left:0;right:0;height:2px;background:var(--primary);border-radius:2px;
+      transition:transform .25s ease, opacity .2s ease, top .25s ease;
+    }
+    .hamburger-line:nth-child(1){top:0}
+    .hamburger-line:nth-child(2){top:9px}
+    .hamburger-line:nth-child(3){top:18px}
+
+    /* mobilní panel */
+    .mobile-panel{
+      position:fixed;inset:0 0 auto 0; /* nahoře full šířka */
+      top:64px; /* pod headerem */
+      background:#fff;border-top:1px solid #eee;
+      transform:translateY(-8px);opacity:0;pointer-events:none;
+      transition:transform .25s ease, opacity .25s ease;
+      box-shadow:0 16px 40px rgba(20,32,82,.1);
+    }
+    .mobile-panel .nav-col{display:flex;flex-direction:column;padding:1rem 1.25rem;gap:.75rem}
+    .mobile-panel a{margin:0 !important;padding:.6rem .8rem;border-radius:10px}
+    .mobile-panel a:hover{background:#f9f9fc}
+    .mobile-panel a.cta{display:inline-block;text-align:center}
+
+    /* otevřený stav */
+    .nav-open .mobile-panel{transform:translateY(0);opacity:1;pointer-events:auto}
+    .nav-open .hamburger-line:nth-child(1){top:9px;transform:rotate(45deg)}
+    .nav-open .hamburger-line:nth-child(2){opacity:0}
+    .nav-open .hamburger-line:nth-child(3){top:9px;transform:rotate(-45deg)}
+    .nav-open{overflow:hidden} /* zamkneme scroll body */
+
+    /* Breakpointy */
+    @media (max-width:900px){
+      nav.site-nav{display:none}        /* desktopové odkazy schovat */
+      .hamburger{display:inline-flex}   /* tlačítko ukázat */
+      header{position:sticky}           /* držet navrchu */
+    }
+    @media (max-width:600px){
+      .wrap{padding:1rem}
+    }
+    /* Na desktopu je mobilní panel vypnutý úplně */
+    @media (min-width:901px){
+      .mobile-panel{display:none}
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:1rem">
+    <div class="wrap header-row">
       <a class="brand back" href="index.html"><img src="images/logonejvic.png" alt="ShowSpace logo"><span>Zpět na web</span></a>
-      <nav>
+
+      <!-- Desktop nav -->
+      <nav class="site-nav" aria-label="Hlavní navigace">
         <a href="index.html#co-delame">Služby</a>
         <a href="index.html#balicky">Balíčky</a>
         <a href="index.html#web-na-miru">Web na míru</a>
         <a class="cta" href="index.html#kontakt">Kontakt</a>
       </nav>
+
+      <!-- Hamburger button (mobil) -->
+      <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-controls="mobile-menu" aria-expanded="false">
+        <span class="hamburger-box" aria-hidden="true">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </span>
+      </button>
+    </div>
+
+    <!-- Mobile panel -->
+    <div class="mobile-panel" id="mobile-menu">
+      <div class="nav-col" role="menu">
+        <a role="menuitem" href="index.html#co-delame">Služby</a>
+        <a role="menuitem" href="index.html#balicky">Balíčky</a>
+        <a role="menuitem" href="index.html#web-na-miru">Web na míru</a>
+        <a role="menuitem" class="cta" href="index.html#kontakt">Kontakt</a>
+      </div>
     </div>
   </header>
 
@@ -87,41 +160,40 @@
       </div>
     </section>
 
-<!-- Web na míru -->
-<section id="web-na-miru">
-  <h2>Web na míru</h2>
-  <p class="lead">Moderní weby optimalizované pro rychlost, design a konverze. Přizpůsobíme je přesně vašemu podnikání.</p>
-  <div class="grid">
-    
-    <!-- Start -->
-    <div class="card">
-      <h3 style="margin-top:0;">Start</h3>
-      <table aria-label="Ceník webu Start">
-        <tbody>
-          <tr><th>Typ</th><td>Jednoduchý one-page web</td></tr>
-          <tr><th>Cena</th><td>od 18 000 Kč</td></tr>
-          <tr><th>Obsah</th><td>Moderní design, mobilní verze, základní SEO</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <!-- Web na míru -->
+    <section id="web-na-miru">
+      <h2>Web na míru</h2>
+      <p class="lead">Moderní weby optimalizované pro rychlost, design a konverze. Přizpůsobíme je přesně vašemu podnikání.</p>
+      <div class="grid">
 
-    <!-- Profi -->
-    <div class="card" style="border:2px solid var(--accent);box-shadow:0 8px 26px rgba(203,161,53,.15);">
-      <h3 style="margin-top:0;color:var(--accent)">Profi <span class="pill">doporučujeme</span></h3>
-      <table aria-label="Ceník webu Profi">
-        <tbody>
-          <tr><th>Typ</th><td>Vícestránkový web (např. ShowSpace.cz)</td></tr>
-          <tr><th>Cena</th><td>od 28 000 Kč</td></tr>
-          <tr><th>Obsah</th><td>Více podstránek, animace, kontaktní formulář, základní SEO</td></tr>
-        </tbody>
-      </table>
-    </div>
+        <!-- Start -->
+        <div class="card">
+          <h3 style="margin-top:0;">Start</h3>
+          <table aria-label="Ceník webu Start">
+            <tbody>
+              <tr><th>Typ</th><td>Jednoduchý one-page web</td></tr>
+              <tr><th>Cena</th><td>od 18 000 Kč</td></tr>
+              <tr><th>Obsah</th><td>Moderní design, mobilní verze, základní SEO</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-  </div>
-  <p class="note">Ceny jsou orientační – konečná částka závisí na rozsahu a funkcích.</p>
-</section>
+        <!-- Profi -->
+        <div class="card" style="border:2px solid var(--accent);box-shadow:0 8px 26px rgba(203,161,53,.15);">
+          <h3 style="margin-top:0;color:var(--accent)">Profi <span class="pill">doporučujeme</span></h3>
+          <table aria-label="Ceník webu Profi">
+            <tbody>
+              <tr><th>Typ</th><td>Vícestránkový web (např. ShowSpace.cz)</td></tr>
+              <tr><th>Cena</th><td>od 28 000 Kč</td></tr>
+              <tr><th>Obsah</th><td>Více podstránek, animace, kontaktní formulář, základní SEO</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-    
+      </div>
+      <p class="note">Ceny jsou orientační – konečná částka závisí na rozsahu a funkcích.</p>
+    </section>
+
     <!-- Ostatní služby -->
     <section id="ostatni">
       <h2>Ostatní služby</h2>
@@ -171,5 +243,55 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Hamburger toggle + UX drobnosti
+    (function(){
+      const btn = document.getElementById('hamburger');
+      const panel = document.getElementById('mobile-menu');
+      const html = document.documentElement;
+
+      function openNav(){
+        html.classList.add('nav-open');
+        btn.setAttribute('aria-expanded','true');
+        btn.setAttribute('aria-label','Zavřít menu');
+      }
+      function closeNav(){
+        html.classList.remove('nav-open');
+        btn.setAttribute('aria-expanded','false');
+        btn.setAttribute('aria-label','Otevřít menu');
+      }
+      function toggleNav(){
+        const isOpen = html.classList.contains('nav-open');
+        isOpen ? closeNav() : openNav();
+      }
+
+      btn.addEventListener('click', toggleNav);
+
+      // Zavřít po kliknutí na odkaz
+      panel.addEventListener('click', (e)=>{
+        const a = e.target.closest('a');
+        if(a){ closeNav(); }
+      });
+
+      // ESC zavře
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape'){ closeNav(); }
+      });
+
+      // Klik mimo panel zavře (jen na mobilu, když je otevřeno)
+      document.addEventListener('click', (e)=>{
+        if(!document.documentElement.classList.contains('nav-open')) return;
+        const clickInsideHeader = e.target.closest('header');
+        if(!clickInsideHeader){ closeNav(); }
+      });
+
+      // Ochrana proti FOUC po resize – když přejdeš na desktop
+      const mq = window.matchMedia('(min-width: 901px)');
+      mq.addEventListener('change', (e)=>{
+        if(e.matches){ closeNav(); }
+      });
+    })();
+  </script>
 </body>
 </html>
