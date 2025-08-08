@@ -58,9 +58,32 @@
       box-shadow:0 16px 40px rgba(20,32,82,.1);
     }
     .mobile-panel .nav-col{display:flex;flex-direction:column;padding:1rem 1.25rem;gap:.75rem}
-    .mobile-panel a{margin:0 !important;padding:.6rem .8rem;border-radius:10px}
-    .mobile-panel a:hover{background:#f9f9fc}
-    .mobile-panel a.cta{display:inline-block;text-align:center}
+    .mobile-panel a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 700;
+}
+    .mobile-panel a:visited {
+  color: var(--primary);
+}
+    .mobile-panel a:hover {
+  background: rgba(203, 161, 53, 0.08); /* jemný zlatavý podklad */
+  color: var(--primary);
+}
+    .mobile-panel a:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent);
+}
+    /* CTA tlačítko v mobilním menu */
+.mobile-panel a.cta {
+  background: linear-gradient(90deg,#FFD86A 65%,#CBA135 100%);
+  color: var(--primary);
+  border: none;
+}
+
+.mobile-panel a.cta:hover {
+  background: linear-gradient(90deg,#ffdf85 65%,#d5af4f 100%);
+}
 
     /* otevřený stav */
     .nav-open .mobile-panel{transform:translateY(0);opacity:1;pointer-events:auto}
