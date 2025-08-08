@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ceník – ShowSpace.cz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--primary:#142052;--accent:#CBA135;--muted:#f7f7fb}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Arial,sans-serif;margin:0;background:#fff;color:var(--primary)}
+    header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #eee}
+    .wrap{max-width:1100px;margin:0 auto;padding:1rem 2rem}
+    .brand{display:flex;align-items:center;gap:.8rem}
+    .brand img{height:44px}
+    nav a{color:var(--primary);text-decoration:none;font-weight:700;margin-left:1rem}
+    nav a.cta{background:linear-gradient(90deg,#FFD86A 65%,#CBA135 100%);color:#142052;padding:.6rem 1rem;border-radius:10px}
+    h1{font-size:2.2rem;margin:1.2rem 0 0.3rem}
+    p.lead{color:#47548B;font-size:1.05rem;margin:0 0 1.4rem}
+    section{padding:2rem 0;border-bottom:1px solid #f0f0f0}
+    h2{font-size:1.6rem;margin:0 0 .9rem;color:#CBA135}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+    .card{background:#fff;border:1.5px solid #FFD86A30;border-radius:16px;box-shadow:0 8px 26px rgba(203,161,53,.08);padding:1.1rem}
+    table{width:100%;border-collapse:separate;border-spacing:0}
+    th,td{text-align:left;padding:.7rem .6rem;border-bottom:1px dashed #ececec}
+    th{font-size:.95rem;color:#47548B}
+    td{font-weight:700}
+    .note{font-size:.95rem;color:#666;margin-top:.6rem}
+    .pill{display:inline-block;background:#FFF8E2;border:1px solid #FFD86A;color:#5a4a16;padding:.25rem .6rem;border-radius:999px;font-size:.88rem;font-weight:700}
+    footer{padding:2rem 0;background:linear-gradient(120deg,#FFF8E2 0%,#FFD86A 80%,#CBA135 100%);border-top:2px solid #CBA135;margin-top:2rem}
+    .back{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-weight:700;color:var(--primary)}
+    @media (max-width:600px){.wrap{padding:1rem}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:1rem">
+      <a class="brand back" href="index.html"><img src="images/logonejvic.png" alt="ShowSpace logo"><span>Zpět na web</span></a>
+      <nav>
+        <a href="index.html#co-delame">Služby</a>
+        <a href="index.html#balicky">Balíčky</a>
+        <a href="index.html#web-na-miru">Web na míru</a>
+        <a class="cta" href="index.html#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1>Ceník</h1>
+    <p class="lead">Orientační ceny. Rádi připravíme nabídku přesně pro váš prostor a cíl kampaní.</p>
+
+    <!-- Virtuální prohlídky -->
+    <section id="virtualni-prohlidky">
+      <h2>Virtuální prohlídky <span class="pill">cena dle m²</span></h2>
+      <div class="grid">
+        <div class="card">
+          <table aria-label="Ceník virtuálních prohlídek">
+            <thead><tr><th>Rozsah plochy</th><th>Cena</th></tr></thead>
+            <tbody>
+              <tr><td>0 – 69 m²</td><td>60 Kč / m²</td></tr>
+              <tr><td>70 – 149 m²</td><td>50 Kč / m²</td></tr>
+              <tr><td>150 – 299 m²</td><td>40 Kč / m²</td></tr>
+              <tr><td>300 – 499 m²</td><td>30 Kč / m²</td></tr>
+              <tr><td>500 – 999 m²</td><td>25 Kč / m²</td></tr>
+              <tr><td>&gt; 1000 m²</td><td>cena dohodou</td></tr>
+            </tbody>
+          </table>
+          <div class="note">Foto a video: <b>po domluvě</b>.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marketing -->
+    <section id="marketing">
+      <h2>Marketing</h2>
+      <div class="grid">
+        <div class="card">
+          <table aria-label="Ceník marketingu">
+            <tbody>
+              <tr><th>Google Ads</th><td>od 5 000 Kč / měsíc</td></tr>
+              <tr><th>Meta Ads</th><td>od 5 000 Kč / měsíc</td></tr>
+              <tr><th>Google + Meta</th><td>od 8 000 Kč / měsíc</td></tr>
+              <tr><th>Ostatní platformy</th><td>cena dohodou</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ostatní služby -->
+    <section id="ostatni">
+      <h2>Ostatní služby</h2>
+      <div class="grid">
+        <div class="card">
+          <table aria-label="Implementace a půdorysy">
+            <thead><tr><th>Služba</th><th>Cena</th></tr></thead>
+            <tbody>
+              <tr><td>Implementace do Google Street View</td><td>500 Kč</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <table aria-label="Půdorys – ceník">
+            <thead><tr><th>Rozsah plochy</th><th>Cena</th></tr></thead>
+            <tbody>
+              <tr><td>0 – 69 m²</td><td>500 Kč</td></tr>
+              <tr><td>70 – 149 m²</td><td>1 000 Kč</td></tr>
+              <tr><td>150 – 299 m²</td><td>1 500 Kč</td></tr>
+              <tr><td>300 – 499 m²</td><td>2 000 Kč</td></tr>
+              <tr><td>500 – 999 m²</td><td>2 500 Kč</td></tr>
+              <tr><td>&gt; 1000 m²</td><td>cena dohodou</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <table aria-label="Správy a provoz">
+            <tbody>
+              <tr><th>Správa recenzí</th><td>od 1 500 Kč</td></tr>
+              <tr><th>Správa sociálních sítí</th><td>od 3 000 Kč</td></tr>
+              <tr><th>Cloud úložiště pro prohlídku</th><td>80 Kč / měsíc</td></tr>
+              <tr><th>Doprava na prohlídku</th><td>cena dohodou</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="note">U větších projektů připravíme zvýhodněný balíček. Napište nám detaily – ozveme se do 24 hodin.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+      <div>© 2025 ShowSpace.cz</div>
+      <div style="display:flex;gap:1rem;align-items:center">
+        <a class="back" href="index.html#kontakt">Kontakt</a>
+        <a class="back" href="/gdpr.html">GDPR</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
