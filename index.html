@@ -1805,96 +1805,98 @@ body {
   <!-- SCRIPTS -->
   
   <script>
-    // Preloader
-    window.addEventListener('load', function() {
+// ==============================
+// ShowSpace.cz – hlavní skript
+// (vanilla + GSAP/AOS animace)
+// ==============================
+
+// ---------- PRELOADER ----------
+window.addEventListener('load', function() {
   const loader = document.getElementById('preloader');
   const minTime = 3000;
   const showTime = Date.now();
   setTimeout(function() {
     const elapsed = Date.now() - showTime;
+    const hide = () => loader.classList.add('hidden');
     if (elapsed < minTime) {
-      setTimeout(() => loader.classList.add('hidden'), minTime - elapsed);
+      setTimeout(hide, minTime - elapsed);
     } else {
-      loader.classList.add('hidden');
+      hide();
     }
-  }, 0); // v podstatě se ujistíš, že loader bude vždy minTime ms vidět
+  }, 0);
 });
 
-    // Kotva nahoru
-    window.addEventListener('scroll', function() {
-      document.getElementById('scrollUp').style.display =
-        window.scrollY > 350 ? 'block' : 'none';
-    });
-    // CO DĚLÁME - rozklikávání
-    function toggleDesc(el) {
-      el.classList.toggle('open');
-      document.querySelectorAll('.service').forEach(s => {
-        if (s !== el) s.classList.remove('open');
-      });
+// ---------- ŠIPKA NAHORU ----------
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('scrollUp');
+  if (btn) btn.style.display = window.scrollY > 350 ? 'block' : 'none';
+});
+
+// ---------- NAV / MENU / SMOOTH SCROLL ----------
+const hamburger = document.getElementById('hamburger');
+const navUl = document.querySelector('.nav-menu ul');
+
+if (hamburger && navUl) {
+  hamburger.addEventListener('click', function(e){
+    e.stopPropagation();
+    hamburger.classList.toggle('open');
+    navUl.classList.toggle('open');
+    document.body.classList.toggle('menu-open');
+
+    // NOVÉ: stagger animace položek v mobilním menu
+    if (navUl.classList.contains('open')) {
+      const navItems = navUl.querySelectorAll('li');
+      gsap.set(navItems, {opacity: 0, x: 30});
+      gsap.to(navItems, {opacity: 1, x: 0, duration: 0.28, ease: "power2.out", stagger: 0.06});
     }
-    // BALÍČKY - rozklikávání
-    function togglePackage(el) {
-      if (el.classList.contains('open')) {
-        el.classList.remove('open');
-        return;
+  });
+
+  // Zavření při kliku mimo menu (mobile)
+  window.addEventListener('click', function(e){
+    if(window.innerWidth < 800 && navUl.classList.contains('open')) {
+      if(!navUl.contains(e.target) && !hamburger.contains(e.target)) {
+        hamburger.classList.remove('open');
+        navUl.classList.remove('open');
+        document.body.classList.remove('menu-open');
       }
-      document.querySelectorAll('.package').forEach(p => p.classList.remove('open'));
-      el.classList.add('open');
     }
-    // Hamburger menu
-    const hamburger = document.getElementById('hamburger');
-    const navUl = document.querySelector('.nav-menu ul');
-    hamburger.addEventListener('click', function(e){
-      e.stopPropagation();
-      hamburger.classList.toggle('open');
-      navUl.classList.toggle('open');
-      document.body.classList.toggle('menu-open');
-    });
-    // Zavření při kliku mimo menu (mobile)
-    window.addEventListener('click', function(e){
-      if(window.innerWidth < 800 && navUl.classList.contains('open')) {
-        if(!navUl.contains(e.target) && !hamburger.contains(e.target)) {
+  });
+
+  // Smooth scroll pro anchor odkazy
+  document.querySelectorAll('.nav-menu a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e){
+      const targetId = this.getAttribute('href').substring(1);
+      const section = document.getElementById(targetId);
+      if(section) {
+        e.preventDefault();
+        section.scrollIntoView({ behavior: 'smooth' });
+        if(window.innerWidth < 800) {
           hamburger.classList.remove('open');
           navUl.classList.remove('open');
           document.body.classList.remove('menu-open');
         }
       }
     });
-    // Smooth scroll pro anchor odkazy
-    document.querySelectorAll('.nav-menu a[href^="#"]').forEach(link => {
-      link.addEventListener('click', function(e){
-        const targetId = this.getAttribute('href').substring(1);
-        const section = document.getElementById(targetId);
-        if(section) {
-          e.preventDefault();
-          section.scrollIntoView({ behavior: 'smooth' });
-          if(window.innerWidth < 800) {
-            hamburger.classList.remove('open');
-            navUl.classList.remove('open');
-            document.body.classList.remove('menu-open');
-          }
-        }
-      });
-    });
-    // Parallax efekt pro .hero pozadí
-    window.addEventListener('scroll', function() {
-      const hero = document.querySelector('.hero');
-      if (window.scrollY < 650 && hero) {
-        hero.style.backgroundPositionY = (window.scrollY * 0.38) + 'px';
-      }
-    });
-    // AOS
-    AOS.init({
-      duration: 820,
-      easing: "cubic-bezier(.61,.1,.51,1.3)",
-      once: true,
-    });
-  </script>
+  });
+}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script>// Animace loaderu - příklad na všechny 'path' ve tvém SVG
+// ---------- AOS ----------
+if (window.AOS) {
+  AOS.init({
+    duration: 820,
+    easing: "cubic-bezier(.61,.1,.51,1.3)",
+    once: true,
+  });
+}
+
+// ==============================
+// GSAP + ScrollTrigger animace
+// ==============================
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Loader logo (SVG)
 window.addEventListener('DOMContentLoaded', function() {
-  // K animaci vyber jen určité prvky, nebo všechny <path>
   gsap.set("#loader-logo path", {opacity: 0, y: 30, scale: 0.93});
   gsap.to("#loader-logo path", {
     opacity: 1,
@@ -1905,14 +1907,9 @@ window.addEventListener('DOMContentLoaded', function() {
     ease: "expo.out"
   });
 });
-</script>
-  
-<script>
-// Registrace ScrollTrigger
-gsap.registerPlugin(ScrollTrigger);
 
-// === HERO SEKCE ===
-// Rozdělení headline na slova (split na span)
+// === HERO ===
+// Rozdělení headline na slova
 const heroH1 = document.querySelector('.hero-content h1');
 if (heroH1) {
   heroH1.innerHTML = heroH1.textContent.split(' ').map(w => `<span>${w}</span>`).join(' ');
@@ -1927,7 +1924,7 @@ if (heroH1) {
   });
 }
 
-// Hero CTA tlačítko animace při vstupu a při hoveru
+// CTA entrance + hover
 gsap.from('.hero .cta-btn', {
   opacity: 0, y: 70, duration: 0.9, delay: 0.7, ease: "power3.out"
 });
@@ -1940,7 +1937,7 @@ document.querySelectorAll('.cta-btn').forEach(btn => {
   });
 });
 
-// Bubliny - parallax myší
+// Bubliny – parallax myší
 if(window.innerWidth > 700) {
   document.addEventListener("mousemove", function(e) {
     const x = (e.clientX / window.innerWidth - 0.5);
@@ -1954,7 +1951,16 @@ if(window.innerWidth > 700) {
   });
 }
 
-// === SEKCE "CO DĚLÁME" (služby) ===
+// NOVÉ: Hero background parallax přes GSAP (nahrazuje původní scroll handler)
+if (document.querySelector('.hero')) {
+  gsap.to('.hero', {
+    backgroundPositionY: () => (window.innerHeight * 0.38) + "px",
+    ease: "none",
+    scrollTrigger: {trigger: '.hero', start: "top top", end: "+=650", scrub: 0.5}
+  });
+}
+
+// === "CO DĚLÁME" (služby) ===
 gsap.utils.toArray('.service').forEach((el, i) => {
   gsap.from(el, {
     opacity: 0,
@@ -1964,7 +1970,6 @@ gsap.utils.toArray('.service').forEach((el, i) => {
     delay: 0.08*i,
     scrollTrigger: { trigger: el, start: "top 88%" }
   });
-  // Hover animace obrázku
   const img = el.querySelector('.img-wrap img');
   if (img) {
     img.addEventListener('mouseenter', () => gsap.to(img, { scale: 1.08, duration: 0.18 }));
@@ -1972,14 +1977,22 @@ gsap.utils.toArray('.service').forEach((el, i) => {
   }
 });
 
-// Rozklikávání s bouncem
+// Rozklikávání služeb s bouncem + NOVÝ reveal obsahu
 window.toggleDesc = function(el) {
-  el.classList.toggle('open');
-  document.querySelectorAll('.service').forEach(s => {
-    if (s !== el) s.classList.remove('open');
-  });
-  gsap.fromTo(el, {scale: 0.98}, {scale: 1.035, duration: 0.33, ease: "back.out(1.7)"});
-}
+  const isOpening = !el.classList.contains('open');
+  document.querySelectorAll('.service').forEach(s => s.classList.remove('open'));
+  if (isOpening) {
+    el.classList.add('open');
+    gsap.fromTo(el, {scale: 0.98}, {scale: 1.035, duration: 0.33, ease: "back.out(1.7)"});
+    const desc = el.querySelector('.service-desc');
+    if (desc) {
+      gsap.fromTo(desc,
+        {clipPath: 'inset(0 0 100% 0)', opacity: 0},
+        {clipPath: 'inset(0 0 0% 0)', opacity: 1, duration: 0.35, ease: "power2.out"}
+      );
+    }
+  }
+};
 
 // === KOMU NABÍZÍME ===
 gsap.utils.toArray('.target-tile').forEach((el, i) => {
@@ -2015,7 +2028,7 @@ window.togglePackage = function(el) {
   document.querySelectorAll('.package').forEach(p => p.classList.remove('open'));
   el.classList.add('open');
   gsap.fromTo(el, {scale: 0.97}, {scale: 1.03, duration: 0.31, ease: "back.out(1.7)"});
-}
+};
 
 // === DEMO sekce ===
 gsap.from('.demo-section .section-inner', {
@@ -2037,6 +2050,13 @@ gsap.utils.toArray('.work-card').forEach((el, i) => {
   });
   el.addEventListener('mouseenter', () => gsap.to(el, { scale: 1.06, boxShadow:"0 18px 48px rgba(203,161,53,0.18)", duration:0.16 }));
   el.addEventListener('mouseleave', () => gsap.to(el, { scale: 1, boxShadow:"0 8px 36px rgba(203,161,53,0.09)", duration:0.19 }));
+
+  // NOVÉ: jemný parallax během scrollu
+  gsap.to(el, {
+    y: -8,
+    ease: "none",
+    scrollTrigger: {trigger: el, start: "top bottom", end: "bottom top", scrub: 0.4}
+  });
 });
 
 // === WEB NA MÍRU ===
@@ -2047,6 +2067,12 @@ gsap.from('.customweb-card', {
   duration: 1,
   scrollTrigger: { trigger: '.customweb-card', start: "top 93%" }
 });
+// NOVÉ: nenápadný float loop
+if (document.querySelector('.customweb-card')) {
+  gsap.to('.customweb-card', {
+    y: -6, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: -1
+  });
+}
 
 // === O NÁS ===
 gsap.from('.about-title', {
@@ -2063,25 +2089,6 @@ gsap.from('.about-desc', {
   scrollTrigger: { trigger: '.about-desc', start: "top 96%" }
 });
 
-// === KONTAKT ===
-gsap.from('.kontakt-left', {
-  opacity: 0,
-  x: 70,
-  duration: 0.9,
-  scrollTrigger: { trigger: '.kontakt-section', start: "top 94%" }
-});
-gsap.from('.kontakt-form', {
-  opacity: 0,
-  x: -70,
-  duration: 0.9,
-  scrollTrigger: { trigger: '.kontakt-section', start: "top 94%" }
-});
-// Inputs animace
-document.querySelectorAll('.kontakt-form input, .kontakt-form textarea').forEach(inp => {
-  inp.addEventListener('focus', () => gsap.to(inp, {scale:1.03, boxShadow:"0 4px 18px #FFD86A19", duration:0.17}));
-  inp.addEventListener('blur', () => gsap.to(inp, {scale:1, boxShadow:"0 2px 10px rgba(203,161,53,0.07)", duration:0.21}));
-});
-
 // === FOOTER (ikony sítí) ===
 gsap.utils.toArray('footer a').forEach((el, i) => {
   gsap.from(el, {
@@ -2095,25 +2102,32 @@ gsap.utils.toArray('footer a').forEach((el, i) => {
   el.addEventListener('mouseenter', () => gsap.to(el, { scale: 1.13, rotate: -8, duration:0.15 }));
   el.addEventListener('mouseleave', () => gsap.to(el, { scale: 1, rotate: 0, duration:0.21 }));
 });
-</script>
 
-<script>
-
+// ==============================
+// Sticky CTA logika + animace
+// ==============================
 const stickyBtn = document.getElementById('stickyCtaBtn');
 const contactInfos = document.querySelectorAll('.contact-info');
 const coDelameSection = document.getElementById('co-delame');
 const mobileStickyBtn = document.getElementById('mobileStickyCtaBtn');
 const navbar = document.querySelector('.navbar');
 
-let btnVisible = false;          // desktop stav
-let ctaShownOnce = false;        // NOVÉ: po dosažení zůstane
+let btnVisible = false;     // desktop stav
+let ctaShownOnce = false;   // po dosažení zůstane
+
+function animateStickyCTA(el){ // NOVÉ
+  if (!el) return;
+  gsap.fromTo(el, {y: -14, opacity: 0, scale: 0.96},
+                   {y: 0, opacity: 1, scale: 1, duration: 0.28, ease: "back.out(1.7)"});
+}
 
 function showMobileCta(show){
   if (!mobileStickyBtn || !navbar) return;
   if (show){
-    mobileStickyBtn.style.display = '';      // ← přidat
+    mobileStickyBtn.style.display = '';
     mobileStickyBtn.classList.add('is-visible');
     navbar.classList.add('navbar-cta-visible');
+    animateStickyCTA(mobileStickyBtn); // NOVÉ
   } else {
     mobileStickyBtn.classList.remove('is-visible');
     navbar.classList.remove('navbar-cta-visible');
@@ -2123,40 +2137,36 @@ function showMobileCta(show){
 function checkScrollForCtaBtn() {
   if (!coDelameSection) return;
 
-  const atTop = window.scrollY < 10; // úplně nahoře?
+  const atTop = window.scrollY < 10;
   const rect = coDelameSection.getBoundingClientRect();
   const pastTrigger = rect.top <= 80;
 
-  // Když jsem úplně nahoře: všechno vrať do původního stavu a resetni "už jsme ukázali"
   if (atTop) {
     ctaShownOnce = false;
-
-    // desktop
     if (stickyBtn) stickyBtn.style.display = 'none';
     contactInfos.forEach(el => el.style.display = '');
-
     btnVisible = false;
-
-    // mobil
     showMobileCta(false);
-    return; // stačí, dál už neřešíme
+    return;
   }
 
-  // --- DESKTOP ---
+  // DESKTOP
   if (pastTrigger && !btnVisible) {
-    stickyBtn.style.display = 'inline-block';
+    if (stickyBtn) {
+      stickyBtn.style.display = 'inline-block';
+      animateStickyCTA(stickyBtn); // NOVÉ
+    }
     contactInfos.forEach(el => el.style.display = 'none');
     btnVisible = true;
   } else if (!pastTrigger && btnVisible && !ctaShownOnce) {
-    stickyBtn.style.display = 'none';
+    if (stickyBtn) stickyBtn.style.display = 'none';
     contactInfos.forEach(el => el.style.display = '');
     btnVisible = false;
   }
 
-  // Jakmile jednou přejedu trigger, nech to už zapnuté (dokud se nevrátím úplně nahoru)
   if (pastTrigger) ctaShownOnce = true;
 
-  // --- MOBIL ---
+  // MOBIL
   if (window.innerWidth <= 700) {
     if (ctaShownOnce) {
       showMobileCta(true);
@@ -2167,7 +2177,6 @@ function checkScrollForCtaBtn() {
     showMobileCta(false);
   }
 }
-
 
 window.addEventListener('scroll', checkScrollForCtaBtn);
 window.addEventListener('resize', checkScrollForCtaBtn);
@@ -2181,56 +2190,24 @@ mobileStickyBtn?.addEventListener('click', () =>
   document.getElementById('kontakt')?.scrollIntoView({behavior:'smooth'})
 );
 
-  
-  </script>
-
-
-
-
-<!-- COOKIE LIŠTA - ShowSpace.cz design -->
-<div id="cookieBar">
-  <span>
-    Tento web používá cookies pro analýzu návštěvnosti (<b style='color:#CBA135;'>Google Analytics</b>). Data zpracováváme pouze s vaším souhlasem.
-    <a href="/gdpr" target="_blank" style="color:#CBA135;text-decoration:underline;font-weight:600;">Více informací</a>.
-  </span>
-  <button id="cookieAccept" class="cta-btn">
-    Souhlasím
-  </button>
-  <button id="cookieDecline" class="cta-btn">
-    Odmítnout
-  </button>
-</div>
-
-
-  <script>
-  function showCookieBarIfNeeded() {
-    if(localStorage.getItem('cookieConsent')==='accepted'){
-      runConsentScripts();
-      document.getElementById('cookieBar').style.display='none';
-    } else if(localStorage.getItem('cookieConsent')==='declined'){
-      document.getElementById('cookieBar').style.display='none';
-    } else {
-      document.getElementById('cookieBar').style.display='flex'; // až po preloaderu!
+// ==============================
+// Cookie lišta (s animací)
+// ==============================
+function runConsentScripts(){
+  document.querySelectorAll('script[type="text/plain"][data-cookiecategory="analytics"]').forEach(s=>{
+    if(!s.getAttribute('data-activated')){
+      const clone = document.createElement('script');
+      Array.from(s.attributes).forEach(attr=>{
+        if(attr.name!=='type'&&attr.name!=='data-cookiecategory'){clone.setAttribute(attr.name,attr.value)}
+      });
+      clone.text = s.text;
+      s.parentNode.insertBefore(clone,s);
+      s.setAttribute('data-activated','true');
     }
-  }
+  });
+}
 
-  // Helper na spuštění blokovaných skriptů
-  function runConsentScripts(){
-    document.querySelectorAll('script[type="text/plain"][data-cookiecategory="analytics"]').forEach(s=>{
-      if(!s.getAttribute('data-activated')){
-        const clone = document.createElement('script');
-        Array.from(s.attributes).forEach(attr=>{
-          if(attr.name!=='type'&&attr.name!=='data-cookiecategory'){clone.setAttribute(attr.name,attr.value)}
-        });
-        clone.text = s.text;
-        s.parentNode.insertBefore(clone,s);
-        s.setAttribute('data-activated','true');
-      }
-    });
-  }
-
-  function deleteAnalyticsCookies() {
-  // Smaže všechny cookies s prefixem _ga, _gid, _gat
+function deleteAnalyticsCookies() {
   const cookies = document.cookie.split(';');
   cookies.forEach(cookie => {
     const name = cookie.split('=')[0].trim();
@@ -2241,35 +2218,61 @@ mobileStickyBtn?.addEventListener('click', () =>
   });
 }
 
-document.getElementById('cookieAccept').onclick = function() {
-    localStorage.setItem('cookieConsent', 'accepted');
+function animateCookieBarIn(){ // NOVÉ
+  const bar = document.getElementById('cookieBar');
+  if (!bar) return;
+  gsap.fromTo(bar, {y: 40, opacity: 0}, {y: 0, opacity: 1, duration: 0.3, ease: "power2.out"});
+}
+
+function showCookieBarIfNeeded() {
+  const bar = document.getElementById('cookieBar');
+  if (!bar) return;
+
+  if(localStorage.getItem('cookieConsent')==='accepted'){
     runConsentScripts();
-    document.getElementById('cookieBar').style.display = 'none';
-};
-document.getElementById('cookieDecline').onclick = function() {
-    localStorage.setItem('cookieConsent', 'declined');
-    deleteAnalyticsCookies();
-    document.getElementById('cookieBar').style.display = 'none';
-};
+    bar.style.display='none';
+  } else if(localStorage.getItem('cookieConsent')==='declined'){
+    bar.style.display='none';
+  } else {
+    bar.style.display='flex';       // až po preloaderu
+    animateCookieBarIn();           // NOVÉ
+  }
+}
 
+document.getElementById('cookieAccept')?.addEventListener('click', function() {
+  localStorage.setItem('cookieConsent', 'accepted');
+  runConsentScripts();
+  const bar = document.getElementById('cookieBar');
+  if (bar) bar.style.display = 'none';
+});
 
-  // Počkej na schování preloaderu, pak zobraz cookieBar (pokud je potřeba)
-  window.addEventListener('load', function(){
-    const loader = document.getElementById('preloader');
-    function afterLoaderHidden() {
-      if (loader.classList.contains('hidden')) {
-        showCookieBarIfNeeded();
-      } else {
-        setTimeout(afterLoaderHidden, 150);
-      }
+document.getElementById('cookieDecline')?.addEventListener('click', function() {
+  localStorage.setItem('cookieConsent', 'declined');
+  deleteAnalyticsCookies();
+  const bar = document.getElementById('cookieBar');
+  if (bar) bar.style.display = 'none';
+});
+
+// Počkej na schování preloaderu, pak cookie bar
+window.addEventListener('load', function(){
+  const loader = document.getElementById('preloader');
+  function afterLoaderHidden() {
+    if (loader && loader.classList.contains('hidden')) {
+      showCookieBarIfNeeded();
+    } else {
+      setTimeout(afterLoaderHidden, 150);
     }
-    afterLoaderHidden();
-  });
+  }
+  afterLoaderHidden();
+});
+
 </script>
+
 
   
 </body>
 </html>
+
 
 
 
