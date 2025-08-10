@@ -455,33 +455,47 @@ section[id] {
 }
 
 /* KOMU NABÍZÍME – GRID */
-.target-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2.2rem;
-  justify-content: center;
-  margin-bottom: 1.2rem;
+/* GRID 3×3 */
+.target-grid--3x3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.8rem;
+  justify-items: stretch;
 }
+
+/* dlaždice + poměr stran, ať je to konzistentní */
 .target-tile {
   position: relative;
-  width: 340px;
-  height: 210px;
+  width: 100%;
+  aspect-ratio: 16 / 9;          /* drží výšku, žádné skákání layoutu */
   overflow: hidden;
   border-radius: 18px;
   box-shadow: 0 2px 16px rgba(203,161,53,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: #fff;
 }
+
 .target-tile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: brightness(0.88);
-  transition: filter 0.22s;
+  transition: transform .35s ease, filter .22s ease;
 }
-.target-tile:hover img { filter: brightness(1); }
+
+.target-tile:hover img { 
+  transform: scale(1.04);
+  filter: brightness(1);
+}
+
+/* responzivita */
+@media (max-width: 999px) {
+  .target-grid--3x3 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; }
+}
+@media (max-width: 700px) {
+  .target-grid--3x3 { grid-template-columns: 1fr; gap: 1rem; }
+  .target-tile { border-radius: 14px; }
+}
+
 
 /* BALÍČKY */
 .full-bg.packages-section {
@@ -1573,19 +1587,27 @@ body {
 </section>
 
   <!-- KOMU NABÍZÍME -->
-  <section class="full-bg what-section" id="komu-nabizime" style="background:#fff;" data-aos="zoom-in" data-aos-delay="200">
-    <div class="section-inner">
-      <div class="section-title">Komu nabízíme?</div>
-      <div class="target-grid">
-        <div class="target-tile"><img src="images/prodejnajm.png" alt="Prodeje a pronájmy nemovitostí" data-aos="fade-up" data-aos-delay="200"></div>
-        <div class="target-tile"><img src="images/restaukav.png" alt="Restaurace, kavárny a bary" data-aos="fade-up" data-aos-delay="400"></div>
-        <div class="target-tile"><img src="images/hotelpenzi.png" alt="Hotely a penziony" data-aos="fade-up" data-aos-delay="600"></div>
-        <div class="target-tile"><img src="images/obchodysho.png" alt="Obchody a showroomy" data-aos="fade-up" data-aos-delay="800"></div>
-        <div class="target-tile"><img src="images/fitkowel.png" alt="Fitness a wellness" data-aos="fade-up" data-aos-delay="1000"></div>
-        <div class="target-tile"><img src="images/galeriamuzea.png" alt="Galerie a muzea" data-aos="fade-up" data-aos-delay="1200"></div>
-      </div>
+ <section class="full-bg what-section" id="komu-nabizime" style="background:#fff;" data-aos="zoom-in" data-aos-delay="200">
+  <div class="section-inner">
+    <div class="section-title">Komu nabízíme?</div>
+
+    <div class="target-grid target-grid--3x3">
+      <div class="target-tile"><img src="images/resbar.jpg"  alt="Restaurace, kavárny a bary"></div>
+      <div class="target-tile"><img src="images/fit.jpg"     alt="Fitness a wellness"></div>
+      <div class="target-tile"><img src="images/dum.jpg"     alt="Prodeje a pronájmy"></div>
+
+      <div class="target-tile"><img src="images/gal.jpg"     alt="Galerie a muzea"></div>
+      <div class="target-tile"><img src="images/sho.jpg"     alt="Obchody a showroomy"></div>
+      <div class="target-tile"><img src="images/hotel.jpg"   alt="Hotely a penziony"></div>
+
+      <div class="target-tile"><img src="images/ven.jpg"     alt="Venkovní prostory"></div>
+      <div class="target-tile"><img src="images/sport.jpg"   alt="Sportovní centra"></div>
+      <div class="target-tile"><img src="images/skoly.jpg"   alt="Školy a pracoviště"></div>
     </div>
-  </section>
+
+  </div>
+</section>
+
   <!-- BALÍČKY – UŽ SVĚTLÉ -->
   <section class="full-bg packages-section" id="balicky" style="background:#fff;" data-aos="zoom-in" data-aos-delay="400">
     <div class="section-inner">
@@ -2270,6 +2292,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
