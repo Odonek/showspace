@@ -1445,6 +1445,30 @@ body {
 
 
 
+
+/* Udrží čistý poměr stran a vyplní šířku karty */
+.work-iframe-aspect{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;     /* můžeš změnit na 16/10, pokud se víc hodí */
+  background: #F6F7FA;      /* příjemné pozadí při načítání */
+}
+
+.work-iframe-aspect iframe{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  /* .work-card už má overflow:hidden a border-radius,
+     takže iframe bude hezky oříznutý v horní části stejně jako obrázky */
+}
+
+/* (volitelné) trochu vyšší poměr na mobilu */
+@media (max-width: 700px){
+  .work-iframe-aspect{ aspect-ratio: 16 / 10; }
+}
+
     
   </style>
 </head>
@@ -1468,7 +1492,7 @@ body {
     <nav class="nav-menu">
       <ul>
         <li><a href="#co-delame">Služby</a></li>
-        <li><a href="#balicky">Balíčky</a></li>
+        <!--<li><a href="#balicky">Balíčky</a></li>-->
         <li><a href="#reference">Projekty</a></li>
         <li><a href="#web-na-miru">Web na míru</a></li>
         <li><a href="#onas">O nás</a></li>
@@ -1513,7 +1537,7 @@ body {
   <div class="section-inner">
     <div class="section-title">Co děláme?</div>
     <p style="text-align:center; max-width:720px; margin:0 auto 2rem; color:#47548B;">
-      Tvoříme vizuální prezentace na <strong>nejmodernější technologii Matterport</strong> – realistické 3D, plynulý pohyb, pohled z ptačí perspektivy a přesné měření.
+      Tvoříme vizuální prezentace na <strong>nejmodernější technologii</strong> – realistické 3D, plynulý pohyb, pohled z ptačí perspektivy a přesné měření.
     </p>
 
     <div class="what-we-do-grid">
@@ -1524,7 +1548,7 @@ body {
           <div class="service-name">Virtuální prohlídky</div>
           <button class="arrow-btn"><span>&#x25BC;</span></button>
           <div class="service-desc">
-            Interaktivní 3D prohlídky na <strong>Matterportu</strong> – plynulá navigace, <em>dollhouse</em> pohled, popisky, měření a snadné sdílení. 
+            Interaktivní 3D prohlídky – plynulá navigace, popisky, měření a snadné sdílení. 
             Ideální pro reality, hotely i firemní prostory.
           </div>
         </div>
@@ -1701,15 +1725,24 @@ body {
     </div>
 
     <div class="works-grid">
-      <!-- 1. reference karta -->
+      <!-- 1. reference karta – vložená přímo jako interaktivní tour -->
       <div class="work-card">
-        <a href="https://tour.giraffe360.com/daf4443b73aa4acaa0b4de3a5d12fd7b" target="_blank" rel="noopener" aria-label="Houseboat – otevřít virtuální prohlídku">
-          <img src="images/houseboat-thumb.jpg" alt="Houseboat – virtuální prohlídka" loading="lazy" decoding="async">
-        </a>
+        <div class="work-iframe-aspect">
+          <iframe
+            src="https://tour.giraffe360.com/daf4443b73aa4acaa0b4de3a5d12fd7b"
+            title="Houseboat – virtuální prohlídka"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
         <div class="work-info">
           <div class="work-name">Houseboat – virtuální prohlídka</div>
           <div class="work-ref">
-            <a href="https://tour.giraffe360.com/daf4443b73aa4acaa0b4de3a5d12fd7b" target="_blank" rel="noopener"> </a>
+            <a href="https://tour.giraffe360.com/daf4443b73aa4acaa0b4de3a5d12fd7b" target="_blank" rel="noopener">
+              Otevřít v nové kartě
+            </a>
           </div>
         </div>
       </div>
@@ -1718,6 +1751,7 @@ body {
     </div>
   </div>
 </section>
+
 
   <!-- WEB NA MÍRU -->
   <section class="full-bg customweb-section" id="web-na-miru">
@@ -2319,6 +2353,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
