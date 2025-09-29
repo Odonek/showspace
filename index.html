@@ -1469,6 +1469,21 @@ body {
   .work-iframe-aspect{ aspect-ratio: 16 / 10; }
 }
 
+    /* zvětšená verze reference karty */
+.work-card.large-tour {
+  grid-column: 1 / -1;     /* zabere celou šířku gridu */
+}
+
+.work-card.large-tour .work-iframe-aspect {
+  aspect-ratio: 16 / 7;    /* vyšší iframe = větší okno */
+}
+
+@media (max-width: 900px){
+  .work-card.large-tour .work-iframe-aspect {
+    aspect-ratio: 16 / 10; /* na mobilech trochu vyšší */
+  }
+}
+
     
   </style>
 </head>
@@ -1725,8 +1740,8 @@ body {
     </div>
 
     <div class="works-grid">
-      <!-- 1. reference karta – vložená přímo jako interaktivní tour -->
-      <div class="work-card">
+      <!-- 1. reference karta – zvětšená interaktivní tour -->
+      <div class="work-card large-tour">
         <div class="work-iframe-aspect">
           <iframe
             src="https://tour.giraffe360.com/daf4443b73aa4acaa0b4de3a5d12fd7b"
@@ -1739,18 +1754,12 @@ body {
 
         <div class="work-info">
           <div class="work-name">Houseboat – virtuální prohlídka</div>
-          <div class="work-ref">
-            <a href="https://tour.giraffe360.com/daf4443b73aa4acaa0b4de3a5d12fd7b" target="_blank" rel="noopener">
-              Otevřít v nové kartě
-            </a>
-          </div>
         </div>
       </div>
-
-      <!-- sem můžeš přidávat další karty ve stejném formátu -->
     </div>
   </div>
 </section>
+
 
 
   <!-- WEB NA MÍRU -->
@@ -2353,6 +2362,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
