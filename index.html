@@ -1519,7 +1519,69 @@ body {
   }
 }
 
-    
+    /* ===== O NÁS – layout s jednou fotkou ===== */
+.about-section{
+  background: linear-gradient(120deg, #f6f3e9 0%, #fff7d1 93%, #ffe085 100%);
+  border-radius: 32px;
+  margin: 0 auto 5.2rem auto;
+  max-width: 940px;
+  box-shadow: 0 16px 44px rgba(203,161,53,0.15), 0 1.5px 13px #FFD86A22;
+  padding: 2.6rem 2.2rem 2.4rem 2.2rem;
+  border: 2.7px solid #CBA13522;
+}
+
+.about-title{
+  color:#CBA135;
+  font-size:2.05rem;
+  font-weight:800;
+  text-align:center;
+  letter-spacing:-1px;
+  margin:0 0 1.4rem 0;
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns: 1.2fr 1fr; /* text : foto */
+  gap: 1.8rem;
+  align-items:center;
+}
+
+.about-text{
+  color:#222;
+  font-size:1.07rem;
+  line-height:1.7;
+}
+.about-text p{ margin: 0 0 0.9rem 0; }
+
+.about-photo{
+  margin:0;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow: 0 10px 28px rgba(20,32,82,0.18);
+  background:#F6F7FA;
+  aspect-ratio: 4/3;              /* drží výšku prostoru pro fotku */
+}
+.about-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;                /* pěkné zaplnění rámečku */
+  object-position: 35% center;     /* mírně doleva – ať jste ve středu záběru */
+  display:block;
+}
+
+/* ---- Mobil & tablet ---- */
+@media (max-width: 900px){
+  .about-section{ padding:1.4rem 1rem; border-radius:20px; }
+  .about-title{ font-size:1.4rem; margin-bottom:0.9rem; }
+  .about-grid{ grid-template-columns: 1fr; gap: 1rem; }
+  .about-photo{ order:-1; aspect-ratio: 16/10; }  /* fotka nad textem, vyšší okno */
+  .about-text{ font-size:1rem; }
+}
+@media (max-width: 420px){
+  .about-section{ padding:0.9rem; border-radius:14px; }
+  .about-photo{ aspect-ratio: 16/11; }
+}
+
     
   </style>
 </head>
@@ -1828,19 +1890,31 @@ body {
 
  <!-- O NÁS -->
 <section class="section about-section" id="onas">
-  <div class="about-title">O nás</div>
- <div class="about-desc">
- Jsme parta studentů Provozně ekonomické fakulty Mendelovy univerzity, kteří jsou zapálení do moderních technologií, marketingu a realitního trhu. Pomáháme podnikům i majitelům nemovitostí najít ty správné zájemce.<br><br>
-      Snažíme se, aby celý proces, ať už jde o prodej či pronájem nemovitostí, nebo získávání nových zákazníků pro váš byznys, byl co nejjednodušší a zároveň co nejefektivnější.<br><br>
-      Víme, že čas je drahý, proto za vás kompletně zajistíme všechny služby, abyste se mohli soustředit na to, co umíte nejlépe.
-</div>
+  <h2 class="about-title">O nás</h2>
 
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        Jsme parta vysokoškoláků a nadšenců do moderních technologií a marketingu.
+        Baví nás pomáhat s prezentací prostorů v co nejlepším světle.
+      </p>
+      <p>
+        Jsme energičtí a ambiciózní. Ke každému projektu přistupujeme s maximální péčí.
+        Spokojenost klienta je pro nás vždy na prvním místě – když se daří vám, daří se i nám.
+      </p>
+    </div>
+
+    <figure class="about-photo">
+      <img
+        src="images/fotkaonas.JPEG"
+        alt="Tým ShowSpace před bazénem Svitavy"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  </div>
 </section>
-  <div style="margin-top:-42px;margin-bottom:-12px;z-index:3;position:relative;">
-  <svg viewBox="0 0 1440 90" width="100%" height="90" preserveAspectRatio="none" style="display:block;">
-    <path fill="#fff" fill-opacity="1" d="M0,44 C380,130 1060,-20 1440,44 L1440,90 L0,90 Z"></path>
-  </svg>
-</div>
+
 
 
   <!-- KONTAKT -->
@@ -2401,6 +2475,7 @@ document.getElementById('cookieDecline').onclick = function() {
   
 </body>
 </html>
+
 
 
 
